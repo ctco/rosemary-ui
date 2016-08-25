@@ -1,0 +1,9 @@
+@for $i from 1 through 18 {
+  .grid-demo {
+    .gr-#{$i} {
+      height: 50px;
+      border: 1px solid #f1efee;
+      background-color: gainsboro;
+    }
+  }
+}

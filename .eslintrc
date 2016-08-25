@@ -1,0 +1,53 @@
+{
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true,
+      "spread": true,
+      "experimentalObjectRestSpread":true
+    },
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "dot-notation":2,
+    "no-console":0,
+    "eqeqeq": [2, "allow-null"],
+    "dot-location": [2, "property"],
+    "quotes": [2,"single","avoid-escape"],
+    "jsx-quotes": [2, "prefer-double"],
+    "no-mixed-spaces-and-tabs": [
+      "error",
+      "smart-tabs"
+    ],
+    "no-bitwise": 0,
+
+    "no-var": 2,
+    "no-unused-vars": [0, {"args": "none"}],
+    "brace-style": [0, "1tbs"],
+    "keyword-spacing": 2,
+    "space-before-blocks": 2,
+    "space-before-function-paren": [2, {"anonymous": "never", "named": "never"}],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "arrow-parens": 2,
+    "arrow-spacing": 2,
+    "no-multi-spaces":2,
+    "new-cap": 2,
+    "strict": 0,
+    "no-underscore-dangle": 0,
+    "no-use-before-define": 0,
+    "react/jsx-no-undef": 1,
+    "react/jsx-uses-react": 1,
+    "react/jsx-uses-vars": 1
+  }
+}

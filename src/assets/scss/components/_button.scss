@@ -1,0 +1,177 @@
+@import '../mixins/_all';
+@import '../variables/_all';
+
+
+.btn {
+  display: inline-block;
+  margin-bottom: 0; // For input.btn
+  font-weight: $btn-font-weight;
+  font-size: 1.6rem;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  background-color: $btn-background-color-base;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  //border: 1px solid transparent;
+  white-space: nowrap;
+  @include button-size($padding-base-vertical, $padding-base-horizontal, $btn-font-size-medium, $line-height-base, $btn-border-radius-base);
+  @include user-select(none);
+  min-width: 120px;
+  -webkit-font-smoothing: antialiased;
+
+  &:hover,
+  &:focus,
+  &.focus {
+    color: $btn-default-color;
+    text-decoration: none;
+  }
+
+  &:active,
+  &.active {
+    outline: 0;
+    background-image: none;
+    @include box-shadow(inset 0 1px 2px 0 rgba(0, 0, 0, 0.35));
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    @include opacity(.5);
+    cursor: default;
+    @include box-shadow(none);
+  }
+}
+
+.btn--default {
+  @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border, $btn-text-shadow-false);
+}
+
+.btn--primary {
+  @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border, $btn-text-shadow-true);
+}
+
+.btn--success {
+  @include button-variant($btn-success-color, $btn-success-bg, $btn-success-border, $btn-text-shadow-true);
+}
+
+.btn--warning {
+  @include button-variant($btn-warning-color, $btn-warning-bg, $btn-warning-border, $btn-text-shadow-true);
+}
+
+.btn--danger {
+  @include button-variant($btn-danger-color, $btn-danger-bg, $btn-danger-border, $btn-text-shadow-true);
+}
+
+.btn--flat {
+  border: 1px solid $ash-grey;
+  @include box-shadow(none);
+    &:hover {
+      border: 1px solid $mid-grey;
+    }
+    &:active {
+      @include box-shadow(none);
+    }
+}
+
+.btn--icon {
+  min-width: 10px;
+  i {
+    line-height: $btn-line-height;
+    text-align: left;
+    margin-right: $space-lvl1;
+  }
+}
+
+.btn--icon--one {
+  i {
+    margin-right: $space-lvl0;
+  }
+}
+
+.btn--round {
+  min-width: 50px;
+  width: 50px;
+  height: 50px;
+  @include display-flex();
+  @include button-size($padding-large-vertical, $padding-small-horizontal, $btn-font-size-large, $btn-line-height, $btn-border-radius-circle);
+    i {
+      margin: auto;
+    }
+}
+
+.btn--grouped {
+  border-radius: 0;
+  &:first-child {
+    border-radius: 3px 0 0 3px;
+  }
+  &:last-child {
+    border-radius: 0 3px 3px 0;
+  }
+}
+
+.btn-link {
+  border:0;
+  display: inline-block;
+  color: $link-color;
+  vertical-align: middle;
+  font-weight: $semi-bold-weight;
+  line-height: 2rem;
+  font-size: 1.6rem;
+
+  &,
+  &:active,
+  &.active,
+  &[disabled],
+  fieldset[disabled] & {
+    background-color: transparent;
+    @include box-shadow(none);
+  }
+  &,
+  &:hover,
+  &:active {
+    cursor: pointer;
+    border-color: transparent;
+  }
+  &:hover {
+    color: $link-hover-color;
+    background-color: $link-hover-bg;
+  }
+  &:active {
+    background-color: darken($link-hover-bg, 10%)
+  }
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus {
+      color: $btn-link-disabled-color;
+      text-decoration: none;
+    }
+  }
+
+}
+
+// Button Sizes
+// --------------------------------------------------
+.btn-lg {
+  @include button-size($padding-large-vertical, $padding-large-horizontal, $btn-font-size-large, $btn-line-height, $btn-border-radius-large);
+}
+
+.btn-m {
+  @include button-size($padding-medium-vertical, $padding-medium-horizontal, $btn-font-size-medium, $btn-line-height, $btn-border-radius-small);
+}
+
+.btn-sm {
+  @include button-size($padding-small-vertical, $padding-small-horizontal, $btn-font-size-small, $btn-line-height, $btn-border-radius-small);
+}
+
+.btn--inline {
+  padding: 0;
+  min-width: 0;
+  font-weight: $normal-weight;
+  -webkit-font-smoothing:subpixel-antialiased;
+  &:hover {
+    background-color: transparent;
+  }
+}

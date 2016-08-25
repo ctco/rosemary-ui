@@ -1,0 +1,31 @@
+@mixin control-lg() {
+  font-size: $control-lg-fsize;
+  height: $control-lg-height;
+  line-height: $control-lg-lheight;
+}
+
+@mixin control-sm() {
+  font-size: $control-sm-fsize;
+  height: $control-sm-height;
+  line-height: $control-sm-lheight;
+}
+
+@mixin control-base() {
+  display: inline-block;
+  vertical-align: middle;
+
+  color: $control-color;
+  height: $control-default-height;
+
+  outline: none;
+
+  @include border-radius(3px);
+  border: $control-border;
+
+  font-size: $control-default-fsize;
+  font-family: $main-font;
+  line-height: $control-default-lheight;
+
+  @include box-shadow(inset 0 1px 2px 0 rgba(0, 0, 0, 0.15));
+  @include transition(border-color ease-in-out .15s);
+}

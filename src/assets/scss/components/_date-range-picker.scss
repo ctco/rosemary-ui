@@ -1,0 +1,99 @@
+@import '../variables/variables';
+@import "../mixins/all";
+
+.date-range-picker-control {
+  display: inline-block;
+}
+
+.date-range-picker-control__input {
+  input {
+    width: 126px;
+    min-width: 126px;
+  }
+
+  :before {
+    @include icomoon-icon("/e927");
+  }
+}
+
+.date-range-picker-control__input:first-child {
+  margin-right: 10px;
+}
+
+.date-range-picker {
+  @include vertical-align-space-between;
+}
+
+.date-range-picker__calendars {
+  @include vertical-align-space-between;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.date-range-picker__arrow {
+  @include border-radius(50%);
+  @include user-select(none);
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  color: $date-range-picker__arrow-color;
+  opacity: .5;
+  cursor: $cursor-pointer;
+  display: inline-block;
+
+  &:hover {
+    background-color: $date-range-picker__arrow-bg-color;
+    opacity: 1;
+  }
+}
+
+.date-range-picker__header {
+  text-align: center;
+  @include fontSizeL;
+  margin-bottom: 10px;
+}
+
+.date-range-picker__cell--between {
+  background-color: $date-range-picker__cell-between-background-color;
+}
+
+.date-range-picker__cell--hover-square {
+  background-color: $date-picker-calendar__cell-hover-bg-color;
+}
+
+.date-range-picker__cell--from {
+  background-color: $date-range-picker__cell-selected-bg-color;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.date-range-picker__cell--to {
+  background-color: $date-range-picker__cell-selected-bg-color;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.date-range-picker__calendar {
+  margin: 0 10px;
+}
+
+.date-range-picker__calendar--animation-left-enter,
+.date-range-picker__calendar--animation-left-leave,
+.date-range-picker__calendar--animation-left-enter + .date-range-picker__calendar {
+  transform: translateX(-258px);
+}
+
+.date-range-picker__calendar--animation-left-enter-active,
+.date-range-picker__calendar--animation-left-leave-active,
+.date-range-picker__calendar--animation-left-enter-active + .date-range-picker__calendar {
+  transform: translateX(0);
+  transition: all .3s ease-out;
+}
+
+.date-range-picker__calendar--animation-right-leave-active,
+.date-range-picker__calendar--animation-right-enter-active,
+.date-range-picker__calendar--animation-right-leave-active + .date-range-picker__calendar {
+  transform: translateX(-258px);
+  transition: all .3s ease-out;
+}

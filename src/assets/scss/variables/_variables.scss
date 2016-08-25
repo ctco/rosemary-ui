@@ -1,0 +1,241 @@
+$main-font:                   'Open Sans', 'Verdana', 'sans-serif' !default;
+$font-size-base:              1.4rem;//todo
+$line-height-base:            2rem;//todo
+$text-shadow-base:            0px 1px 1px rgba(0,0,0,0.3);
+
+//cursor
+$cursor-pointer:              pointer;
+$cursor-default:              default;
+
+//Grid setup
+$columns:                     18;
+$gutter-width:                20px;
+
+//Screen
+$screen-min-width:            960px !default;
+$screen-max-width:            1680px !default;
+
+//Colors
+$dodge-blue:                  #398ff4 !default;
+$light-blue:                  #398ff4 !default;
+$black:                       #333333 !default;
+$dark-grey:                   #4f4f4f !default;
+$grey:                        #9b9b9b !default;
+$mid-grey:                    #afafaf !default;
+$light-grey:                  #f3f3f3 !default;
+$reddish-orange:              #f64a16 !default;
+$purple-pink:                 #ca3be7 !default;
+$lipstick:                    #e83249 !default;
+$darkish-pink:                #e15163 !default;
+$green-apple:                 #74cb14 !default;
+$nice-blue:                   #0e66ab !default;
+$water-blue:                  #1178c8 !default;
+$twilight-blue:               #074677 !default;
+$very-light-blue:             #ebf6ff !default;
+$butter-yellow:               #febc50 !default;
+$powder-blue:                 #a3d4fa !default;
+$watermelon:                  #ff465c !default;
+$ash-grey:                    #d4d4d4 !default;
+$dark-olive-green:            #2b5000 !default;
+$vivid-purple:                #9013fe !default;
+$violet-pink:                 #e45eff !default;
+$sepia:                       #8b572a !default;
+$wheat:                       #ffdd88 !default;
+$white:                       #ffffff !default;
+$pinkish-grey:                #c1c1c1 !default;
+$rusty-red:                   #a41313 !default;
+$dull-orange:                 #d87d2c !default;
+$dark-sky-blue:               #52a7ea !default;
+$black-two:                   #262626 !default;
+
+$border-radius-base:          3px !default;
+$border-radius-large:         3px !default;
+$border-radius-medium:        3px !default;
+$border-radius-small:         3px !default;
+$border-radius-circle:        100px !default;
+
+//font-weights
+$light-font-weight:           300 !default;
+$normal-weight:               400 !default;
+$semi-bold-weight:            600 !default;
+$bold-weight:                 bold !default;
+
+//common for controls
+$control-active-border-color: $dodge-blue !default;
+$control-border:              solid 1px $mid-grey !default;
+$control-default-height:      3.6rem !default;
+$control-default-fsize:       1.4rem !default;
+$control-default-lheight:     3.6rem !default;
+$control-color:               $black;
+
+//sizes
+$control-lg-fsize:            1.8rem !default;
+$control-lg-height:           48px !default;
+$control-lg-lheight:          48px !default;
+
+$control-sm-fsize:            1.4rem !default;
+$control-sm-height:           30px !default;
+$control-sm-lheight:          30px !default;
+
+//spacing
+$space-lvl0:                  0px !default;
+$space-lvl1:                  6px !default;
+$space-lvl2:                  12px !default;
+$space-lvl3:                  18px !default;
+$space-lvl4:                  24px !default;
+$space-lvl5:                  30px !default;
+$space-lvl6:                  36px !default;
+$space-lvl7:                  42px !default;
+$space-lvl8:                  48px !default;
+$space-lvl9:                  54px !default;
+$space-lvl10:                 60px !default;
+
+//nav bar
+$nav-bar-bgc:                 $dodge-blue !default;
+$nav-bar-item-color:          $white !default;
+$nav-bar-bgc-hover:           #1178c8 !default;
+$nav-bar-item-active-color:   $white !default;
+$nav-bar-brand-color:         #074677 !default;
+$nav-icon-base-color:         $white !default;
+
+//button
+$brand-primary:               $dodge-blue !default;
+$brand-success:               $green-apple !default;
+$brand-warning:               $butter-yellow !default;
+$brand-danger:                $lipstick !default;
+
+$btn-font-weight:             600 !default;
+$btn-background-color-base:   $light-grey !default;
+
+$btn-font-size-large:         1.8rem !default;
+$btn-font-size-medium:        1.6rem !default;
+$btn-font-size-small:         1.4rem !default;
+
+$btn-line-height:             2rem !default;
+
+$btn-border-radius-base:      $border-radius-base !default;
+$btn-border-radius-large:     $border-radius-large !default;
+$btn-border-radius-medium:    $border-radius-medium !default;
+$btn-border-radius-small:     $border-radius-small !default;
+$btn-border-radius-circle:    $border-radius-circle !default;
+
+$padding-base-vertical:       0.8rem!default;
+$padding-base-horizontal:     1.2rem !default;
+$padding-small-vertical:      0.4rem !default;
+$padding-small-horizontal:    0.6rem !default;
+$padding-medium-vertical:     0.8rem !default;
+$padding-medium-horizontal:   1.2rem !default;
+$padding-large-horizontal:    1.8rem !default;
+$padding-large-vertical:      1.2rem !default;
+
+$btn-default-color:           #333 !default;
+$btn-default-bg:              $light-grey !default;
+$btn-default-border:          transparent !default;
+
+$btn-primary-color:           $white !default;
+$btn-primary-bg:              $brand-primary !default;
+$btn-primary-border:          transparent !default;
+
+$btn-success-color:           $white !default;
+$btn-success-bg:              $brand-success !default;
+$btn-success-border:          transparent !default;
+
+$btn-warning-color:           $white !default;
+$btn-warning-bg:              $brand-warning !default;
+$btn-warning-border:          transparent;
+
+$btn-danger-color:            $white !default;
+$btn-danger-bg:               $brand-danger !default;
+$btn-danger-border:           transparent !default;
+
+$btn-text-shadow-true:        0 1px 1px rgba(0, 0, 0, 0.4) !default;
+$btn-text-shadow-false:       0 0 0 rgba(0, 0, 0, 0) !default;
+
+//button link
+$link-color:                  $dodge-blue;
+$link-hover-bg:               $light-grey;
+$link-hover-color:            $water-blue;
+$btn-link-disabled-color:     $black;
+
+//forms
+$form-min-width:                            260px;
+
+//select
+$select-color:                              $black;
+$select-background-color:                   $white;
+$select__option-selected-color:             $white;
+$select__option-selected-background-color:  $dodge-blue;
+$select__option-hover-background-color:     $light-grey;
+$select__icon-color:                        $black;
+
+//text-input
+$text-input-default-color:    $black !default;
+
+//popup
+$popup-color:                 $black;
+$popup-background-color:      $white;
+$popup-border:                1px solid $ash-grey;
+$popup-shadow:                0 2px 4px 0 rgba($black, 0.12), 0 2px 10px 0 rgba($black, 0.08);
+$popup-arrow-shadow-color:    $ash-grey;
+$popup-overlay-bg-color:      rgba(20, 20, 20, 0.7);
+$popup-blue-border:           0 0 0 6px $light-blue, 0 10px 14px 0 rgba(0, 0, 0, 0.28);
+
+$tooltip-color:               $white;
+$tooltip-background:          $black;
+$tooltip-border:              1px solid $black;
+$tooltip-shadow:              0 3px 12px 0 rgba($black, 0.3);
+$tooltip-arrow-shadow-color:  $black;
+
+$popover-colored-arrow-color: $light-blue;
+$popover-colored-border:      6px solid $light-blue;
+$popover-colored-background-color: $white;
+
+//radio button
+$radio-selected-color:        $dodge-blue;
+$radio-default-color:         $mid-grey;
+
+//checkbox
+$checkbox-bgc:                $dodge-blue;
+$checkbox-border-color:       $mid-grey;
+$checkbox-border-color-hover: $grey;
+$checkbox-size:               18px;
+
+//date picker calendar
+$date-picker-calendar__weekday-cell-working-color: $black;
+$date-picker-calendar__weekday-cell-non-working-color: $lipstick;
+$date-picker-calendar__cell-today-color: $light-blue;
+$date-picker-calendar__cell-today-shadow: 0 0 0 1px $date-picker-calendar__cell-today-color;
+$date-picker-calendar__cell-hover-bg-color: rgba($light-blue, 0.6);
+
+//date picker
+$date-picker__arrow-color: $black;
+$date-picker__arrow-bg-color: $light-grey;
+
+//date range picker
+$date-range-picker__cell-between-background-color: rgba($light-blue, 0.2);
+$date-range-picker__cell-selected-bg-color: $date-picker-calendar__cell-hover-bg-color;
+$date-range-picker__arrow-color: $black;
+$date-range-picker__arrow-bg-color: $light-grey;
+
+//shadow levels
+$shadow-lvl0:               inset 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+$shadow-lvl1:               0 0 0 0 rgba(0, 0, 0, 0);
+$shadow-lvl2:               0 1px 2px 0 rgba(0, 0, 0, 0.3);
+$shadow-lvl3:               0 3px 10px 0 rgba(0, 0, 0, 0.3);
+$shadow-lvl4:               0 10px 18px 0 rgba(0, 0, 0, 0.3);
+
+
+//icons
+$icon-xxs:                  1.2rem !default;
+$icon-xs:                   1.6rem !default;
+$icon-s:                    2rem !default;
+$icon-m:                    2.4rem !default;
+$icon-l:                    3.6rem !default;
+$icon-xl:                   4.8rem !default;
+$icon-xxl:                  9.6rem !default;
+$icon-xxxl:                 12.8rem !default;
+
+
+//transitions
+$transition-base:           all 0.1s ease-in-out;
+$transition-slow:           all 0.2s ease-in-out;

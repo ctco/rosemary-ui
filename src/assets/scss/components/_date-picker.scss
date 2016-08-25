@@ -1,0 +1,21 @@
+@import '../variables/all';
+
+.date-picker__date-cell--selected {
+  > div {
+    background-color: rgba($light-blue, 0.2);
+  }
+}
+
+.date-picker__date-cell--of-other-month {
+  color: $mid-grey;
+}
+
+.date-picker__date-cell {
+  &:not([data-disabled]) {
+    &:hover {
+      > div {
+        background-color: $light-grey;
+      }
+    }
+  }
+}

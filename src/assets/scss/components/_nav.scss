@@ -1,0 +1,129 @@
+@import '../variables/all';
+@import '../mixins/all';
+@import '../icons';
+
+.nav-bar {
+  background-color: $nav-bar-bgc;
+  width: 100%;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+  @include clearfix;
+}
+
+.nav-bar--secondary {
+  background-color: $white;
+  .nav-bar__item {
+    height: 40px;
+    line-height: 40px;
+
+    > .nav-bar__item-link {
+      color: $black;
+      font-weight: $normal-weight;
+    }
+
+    &:hover {
+      background-color: inherit;
+
+      > .nav-bar__item-link {
+        color: $light-blue;
+      }
+    }
+  }
+}
+
+.nav-bar--vertical {
+  > .nav-bar__item {
+    display: block;
+    float: none;
+    padding: 0;
+    min-width: 120px;
+  }
+}
+
+.nav-bar__item {
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 14px;
+  @include transition($transition-slow);
+
+  &.nav-bar__item--active {
+    background-color: $water-blue;
+    color: $nav-bar-item-active-color;
+  }
+
+  &.nav-bar__item--right {
+    float: right;
+  }
+
+  &:hover, &.open {
+    background-color: $water-blue;
+    cursor: pointer;
+    @include transition($transition-slow);
+  }
+
+}
+
+.nav-bar__item-link {
+  color: $nav-bar-item-color;
+  @include fontSizeL();
+  font-weight: $semi-bold-weight;
+  font-family: $main-font;
+  vertical-align: middle;
+}
+
+.nav-brand > .nav-icon,
+.nav-brand > .nav-bar__item-link {
+  color: $nav-bar-brand-color;
+}
+
+.nav-brand > .nav-icon {
+  font-size: 24px;
+  top: 3px;
+  position: relative;
+  margin-right: 5px;
+}
+
+.nav-brand > .nav-bar__item-link {
+  font-size: 20px;
+}
+
+.nav-icon {
+  color: $nav-icon-base-color;
+  font-size: 24px;
+  padding-right: 8px;
+}
+
+.nav-bar__item--user-menu {
+  margin-right: 14px;
+  cursor: $cursor-pointer;
+  &.open{
+    background-color: $dodge-blue;
+  }
+  &:hover {
+    background-color: $dodge-blue;
+    @include transition($transition-slow);
+      .avatar {
+        background-color: darken($water-blue, 5%);
+      }
+  }
+}
+
+.nav-drop-down-icon {
+  @include fontSizeXS
+  margin-left: $space-lvl1;
+  color: $twilight-blue;
+  vertical-align: middle;
+  @extend .icon-arrow-down;
+}
+
+.nav-brand {
+  &:hover {
+    background-color: $dodge-blue;
+    @include transition($transition-slow);
+    a, i {
+      color:$white;
+      @include transition($transition-slow);
+    }
+  }
+}

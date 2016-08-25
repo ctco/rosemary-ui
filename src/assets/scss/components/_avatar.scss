@@ -1,0 +1,18 @@
+@import '../variables/all';
+@import '../mixins/all';
+
+.avatar {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  font-size: 16px;
+  font-weight: $semi-bold-weight;
+  color: $very-light-blue;
+  background-color: $water-blue;
+  cursor: $cursor-pointer;
+  margin: 5px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  letter-spacing: 1px;
+}

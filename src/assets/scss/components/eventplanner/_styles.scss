@@ -1,0 +1,72 @@
+@import 'variables';
+@import 'reset';
+
+@import "../../variables/variables";
+@import "../../mixins/all";
+
+.rbc-calendar {
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.rbc-calendar *,
+.rbc-calendar *:before,
+.rbc-calendar *:after {
+  box-sizing: inherit;
+}
+
+@mixin rbc-abs-full() {
+  & {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@mixin rbc-ellipsis() {
+  & {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.rbc-rtl {
+  direction: rtl;
+}
+
+.rbc-off-range {
+  color: $out-of-range-color;
+}
+
+.rbc-header {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 3px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: $semi-bold-weight;
+  min-height: 0;
+
+  > a {
+    &, &:active, &:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}
+
+@import 'toolbar';
+@import 'event';
+@import 'month';
+@import 'agenda';
+@import 'time-grid';
+@import 'timelog-event-planner';

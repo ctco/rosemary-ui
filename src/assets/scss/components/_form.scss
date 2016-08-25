@@ -1,0 +1,64 @@
+@import "../variables/variables";
+
+.form {
+}
+
+.form__description {
+  padding-bottom: 12px;
+}
+
+.form__control {
+  width: 100%;
+}
+
+.form__msg {
+  border-radius: 3px;
+  padding: 10px;
+  background-color: #ecf5ff;
+}
+
+.form-field {
+  margin-bottom: 10px;
+}
+
+.form-field__label {
+  font-size: 1.4rem;
+  line-height: 20px;
+  display: inline-block;
+  padding-bottom: 3px;
+}
+
+.form-field__control {
+}
+
+.form-field__error-msg {
+  color: $lipstick;
+  font-size: 1.3rem;
+  padding-top: 3px;
+  display: inline-block;
+
+  /*
+  &:before {
+    content: '\e905';
+    font-size: $icon-xxs;
+    padding-right: 8px;
+    font-family: icomoon, "Open Sans", "Verdana", "sans-serif";
+  }
+  */
+}
+
+.form-buttons-block {
+  margin: $space-lvl5 0 $space-lvl4 0;
+  width: 100%;
+  padding-top: $space-lvl5;
+  border-top:1px solid $pinkish-grey;
+
+  & .btn {
+    margin-right: $space-lvl2;
+  }
+}
+
+.form-button-block--no-border {
+  border:none;
+  padding-top: 0;
+}

@@ -1,0 +1,207 @@
+@import '../icons';
+@import '../mixins/all';
+@import '../variables/all';
+
+$feedback-icon-close-color: $mid-grey;
+$feedback-description-color: $black-two;
+$feedback-message-background-color: $white;
+$close-icon-height: 30px;
+
+//error
+$feedback-error-background-color: $lipstick;
+$feedback-error-title-color: $lipstick;
+$feedback-error-icon-color: $rusty-red;
+
+//warning
+$feedback-warning-background-color: $butter-yellow;
+$feedback-warning-title-color: $sepia;
+$feedback-warning-icon-color: $dull-orange;
+
+//info
+$feedback-info-background-color: $powder-blue;
+$feedback-info-title-color: $nice-blue;
+$feedback-info-icon-color: $dark-sky-blue;
+
+//success
+$feedback-success-background-color: $green-apple;
+$feedback-success-title-color: $dark-olive-green;
+$feedback-success-icon-color: rgba($black, .5);
+
+@include keyframes(show) {
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+@include keyframes(hide) {
+  100% {
+    left: 370px;
+    opacity: 0;
+  }
+}
+
+@include keyframes(show) {
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+@include keyframes(hide) {
+  100% {
+    left: 370px;
+    opacity: 0;
+  }
+}
+
+%card-content {
+  width: 400px;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+  position: relative;
+  font-size: 0;
+  padding: 5px 5px 5px 0;
+
+  .card-message {
+    background-color: $feedback-message-background-color;
+    border-radius: 0 3px 3px 0;
+    padding: 10px 10px 15px 10px;
+    position: relative;
+    display: inline-block;
+    width: 335px;
+    vertical-align: middle;
+    margin-left: 60px;
+
+    .card-message__title {
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: $semi-bold-weight;
+      margin-bottom: 10px;
+    }
+
+    .card-message__description {
+      color: $feedback-description-color;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: $normal-weight;
+    }
+
+  }
+}
+
+.close-message {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: $feedback-icon-close-color;
+  font-size: 12px;
+  line-height: 12px;
+  width: 12px;
+  height: 12px;
+  cursor: $cursor-pointer;
+  @include user-select(none);
+
+  &:hover {
+    color: darken($feedback-icon-close-color, 50%);
+  }
+}
+
+.feedback {
+  position: absolute;
+  right: 10px;
+  top: 78px;
+  height: 0;
+  z-index: 95; //todo
+}
+
+.card {
+  width: 400px;
+  margin-bottom: 20px;
+  overflow: hidden;
+
+  &.card--error {
+    .card__icon {
+      color: #a41313;
+      @extend .icon-error;
+    }
+    .card__content {
+      @extend %card-content;
+      background-color: $feedback-error-background-color;
+
+      .card-message__title {
+        color: $feedback-error-title-color;
+      }
+    }
+  }
+
+  &.card--warning {
+    .card__icon {
+      color: #d87d2c;
+      @extend .icon-warning;
+    }
+    .card__content {
+      @extend %card-content;
+      background-color: $feedback-warning-background-color;
+
+      .card-message__title {
+        color: $feedback-warning-title-color;
+      }
+    }
+  }
+
+  &.card--info {
+    .card__icon {
+      color: $feedback-info-icon-color;
+      @extend .icon-info-notify;
+    }
+    .card__content {
+      @extend %card-content;
+      background-color: $feedback-info-background-color;
+
+      .card-message__title {
+        color: $feedback-info-title-color;
+      }
+    }
+  }
+
+  &.card--success {
+    .card__icon {
+      color: $feedback-success-icon-color;
+      @extend .icon-checkmark;
+    }
+    .card__content {
+      @extend %card-content;
+      background-color: $feedback-success-background-color;
+
+      .card-message__title {
+        color: $feedback-success-title-color;
+      }
+    }
+
+  }
+}
+
+.card__icon {
+  position: absolute;
+  width: 31px;
+  top: calc(50% - 30px / 2);
+  left: 15px;
+  height: 31px;
+  overflow: hidden;
+  text-align: center;
+  font-size: $close-icon-height;
+  line-height: $close-icon-height;
+}
+
+.card-enter .card__content {
+  left: 370px;
+  opacity: 0;
+  @include animation(0.45s ease show forwards)
+}
+
+.card-leave .card__content {
+  left: 0;
+  opacity: 1;
+  @include animation(0.45s ease hide forwards)
+}

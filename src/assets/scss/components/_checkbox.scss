@@ -1,0 +1,87 @@
+@import '../variables/variables';
+@import '../icons';
+@import "../mixins/mixins";
+
+.checkbox {
+  position: relative;
+  line-height: $checkbox-size;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: 0;
+  @include user-select(none);
+
+  &:hover:before {
+    border: solid 1px $checkbox-border-color-hover;
+  }
+
+  &:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    width: $checkbox-size;
+    height: $checkbox-size;
+    border-radius: 3px;
+    border: solid 1px $checkbox-border-color;
+    @include transition(all 0.1s ease-in-out);
+    @include box-shadow(inset 0px 1px 1px rgba(0,0,0,0.15));
+  }
+
+  .checkbox-label {
+    font-size: 1.3rem;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    padding-left: 7px;
+    vertical-align: middle;
+  }
+
+  &.checked {
+    &:before {
+      border: 1px solid transparent;
+      background-color: $checkbox-bgc;
+      box-shadow:none;
+    }
+
+    &:hover:not(.disabled) {
+      &:before {
+        background-color: darken($checkbox-bgc, 10%);
+        @include transition($transition-base);
+      }
+    }
+
+    i.icon-ok {
+      position: absolute;
+      font-size: 12px;
+      left: 3px;
+      display: inline;
+      color:#FFF;
+      /*
+      &:after {
+        display: inline-block;
+        content: "\e914"; //TODO AigarsB fix it
+        color: #fff;
+        vertical-align: middle;
+        height: 12px;
+        width: 12px;
+      }
+      */
+    }
+
+  }
+
+  &.disabled {
+    cursor: default;
+    opacity: 0.6;
+    .checkbox-label {
+      cursor: default;
+    }
+  }
+
+  & i.icon-ok {
+    display: none;
+  }
+
+}
+

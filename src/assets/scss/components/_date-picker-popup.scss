@@ -1,0 +1,52 @@
+@import '../variables/all';
+@import "../mixins/all";
+@import '../icons';
+
+.date-picker-popup__header {
+  @include vertical-align-space-between;
+  margin-bottom: 20px;
+}
+
+.date-picker-popup__months {
+  width: 110px;
+}
+
+.date-picker-popup__years {
+  width: 65px;
+}
+
+.date-picker-popup__years,
+.date-picker-popup__months {
+  min-width: 0;
+}
+
+.date-picker-popup__arrow {
+  @include border-radius(50%);
+  @include user-select(none);
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  color: $date-picker__arrow-color;
+  opacity: .5;
+  cursor: $cursor-pointer;
+  display: inline-block;
+
+  &:hover {
+    background-color: $date-picker__arrow-bg-color;
+    opacity: 1;
+  }
+}
+
+.date-picker-popup__arrow--left {
+  @extend .icon-arrow-thin-left;
+}
+
+.date-picker-popup__arrow--right {
+  @extend .icon-arrow-thin-right;
+}
+
+.date-picker__today-link {
+  @include vertical-align-center;
+  margin: 10px 0 5px 0;
+}

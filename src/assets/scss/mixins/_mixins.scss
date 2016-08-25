@@ -1,0 +1,337 @@
+@mixin any-firefox {
+  @-moz-document url-prefix() {
+    @content;
+  }
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin animation-fill-mode($var) {
+  -webkit-animation-fill-mode: $var;
+  -moz-animation-fill-mode: $var;
+  -o-animation-fill-mode: $var;
+  animation-fill-mode: $var;
+}
+
+@mixin animation-duraion($var) {
+  -webkit-animation-duration: $var;
+  -moz-animation-duration: $var;
+  -o-animation-duration: $var;
+  animation-duration: $var;
+}
+
+@mixin animation-name($var) {
+  -webkit-animation-name: $var;
+  -moz-animation-name: $var;
+  -o-animation-name: $var;
+  animation-name: $var;
+}
+
+@mixin animation-timing-function($var) {
+  -webkit-animation-timing-function: $var;
+  -moz-animation-timing-function: $var;
+  -o-animation-timing-function: $var;
+  animation-timing-function: $var;
+}
+
+@mixin animation($attributes...) {
+  animation: $attributes;
+  -moz-animation: $attributes;
+  -webkit-animation: $attributes;
+  -o-animation: $attributes;
+}
+
+@mixin animation-transform-origin($attributes...) {
+  transform-origin: $attributes;
+  -moz-transform-origin: $attributes;
+  -webkit-transform-origin: $attributes;
+  -o-transform-origin: $attributes;
+}
+
+@mixin animation-iteration-count($count) {
+  animation-iteration-count: $count;
+  -webkit-animation-iteration-count: $count;
+  -moz-animation-iteration-count: $count;
+  -o-animation-iteration-count: $count;
+}
+
+@mixin animation-delay($time) {
+  animation-delay: $time;
+  -moz-animation-delay: $time;
+  -webkit-animation-delay: $time;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin fullAbsoluteLayout() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@mixin heightCalc($x, $y) {
+  height: literal("calc(#{$x} - #{$y})");
+}
+
+@mixin transition($attributes...) {
+  transition: $attributes;
+  -moz-transition: $attributes;
+  -webkit-transition: $attributes;
+  -o-transition: $attributes;
+}
+
+@mixin translate($x,$y) {
+  transform: translate($x, $y);
+  -moz-transform: translate($x, $y);
+  -ms-transform: translate($x, $y);
+  -webkit-transform: translate($x, $y);
+  -o-transform: translate($x, $y);
+}
+
+@mixin translateX($x) {
+  transform: translateX($x);
+  -moz-transition: translateX($x);
+  -ms-transform: translateX($x);
+  -webkit-transform: translateX($x);
+  -o-transform: translateX($x);
+}
+
+@mixin translateY($y) {
+  transform: translateY($y);
+  -moz-transition: translateY($y);
+  -ms-transform: translateY($y);
+  -webkit-transform: translateY($y);
+  -o-transform: translateY($y);
+}
+
+@mixin scale($value) {
+  -webkit-transform: scale($value);
+  -moz-transform: scale($value);
+  -ms-transform: scale($value);
+  -o-transform: scale($value);
+  transform: scale($value);
+}
+
+@mixin scale3d($attributes...) {
+  -webkit-transform: scale3d($attributes);
+  -moz-transform: scale3d($attributes);
+  -ms-transform: scale3d($attributes);
+  -o-transform: scale3d($attributes);
+  transform: scale3d($attributes);
+}
+
+@mixin rotate($value) {
+  -webkit-transform: rotate($value);
+  -moz-transform: rotate($value);
+  -ms-transform: rotate($value);
+  -o-transform: rotate($value);
+  transform: rotate($value);
+}
+
+@mixin box-shadow($attributes...) {
+  -webkit-box-shadow: $attributes;
+  box-shadow: $attributes;
+}
+
+@mixin user-select($select) {
+  -webkit-user-select: $select;
+  -moz-user-select: $select;
+  -ms-user-select: $select; // IE10+
+  user-select: $select;
+}
+
+@mixin box-sizing($attributes...) {
+  -moz-box-sizing: $attributes;
+  box-sizing: $attributes;
+}
+
+@mixin background-size($value) {
+  background-size: $value;
+  -webkit-background-size: $value;
+  -moz-background-size: $value;
+}
+
+@mixin opacity($value) {
+  $IEValue: $value*100;
+  opacity: $value;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$IEValue+")";
+  filter: alpha(opacity=$IEValue);
+}
+
+@mixin modifier($modifier-name) {
+  $current-sequences: &;
+  $new-sequences: ();
+
+  @each $sequence in $current-sequences {
+    $current-selector: nth($sequence, -1);
+    $current-selector: str-slice(#{$current-selector}, 2);
+    $prepended-selector: #{unquote(".")}m-#{$current-selector}-#{$modifier-name};
+    $new-sequence: #{$sequence}#{$prepended-selector};
+
+    $new-sequences: append($new-sequences, $new-sequence, comma);
+  }
+
+  @at-root #{$new-sequences} {
+    @content;
+  }
+}
+
+@mixin vertical-center {
+  position: absolute;
+  top: 50%;
+  @include translateY(-50%);
+}
+
+@mixin horizontal-center {
+  position: absolute;
+  left: 50%;
+  @include translateX(-50%);
+}
+
+@mixin vertical-horizontal-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include translate(-50%, -50%);
+}
+
+@mixin ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  //-moz-binding: url(ellipsis.xml#ellipsis);
+}
+
+@mixin text-shadow {
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+@mixin vertical-align-center() {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  -ms-flex-align: center;
+
+}
+
+@mixin vertical-align-right() {
+  display: -webkit-flex;
+  display: flex;
+  display: -ms-flexbox;
+
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+  -ms-flex-pack: end;
+
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+@mixin vertical-align-left() {
+  display: -webkit-flex;
+  display: flex;
+  display: -ms-flexbox;
+
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -ms-flex-pack: start;
+
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+@mixin vertical-align-space-between {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+@mixin display-flex() {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin flex($arg) {
+  -webkit-flex: $arg; /* Safari 6.1+ */
+  -ms-flex: $arg; /* IE 10 */
+  flex: $arg;
+}
+
+@mixin flex-direction($direction) {
+  -ms-flex-direction: $direction;
+  -webkit-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+@mixin justify-content($position) {
+  -ms-flex-pack: $position;
+  -webkit-justify-content: $position;
+  justify-content: $position;
+}
+
+@mixin align-items($position) {
+  -ms-flex-align: $position;
+  -webkit-align-items: $position;
+  align-items: $position;
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin tab-focus() {
+  // Default
+  outline: thin dotted;
+  // WebKit
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+@mixin icomoon-icon($icon-name) {
+  content:$icon-name;
+  font-family: "icomoon" !important;
+  font-style: normal;
+  font-weight: normal;
+  display: inline-block;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+}

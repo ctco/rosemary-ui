@@ -1,0 +1,65 @@
+@import '../variables/variables';
+@import "../mixins/mixins";
+
+$calendar-width: 260px;
+
+.date-picker-calendar__days-of-week {
+  width: $calendar-width;
+  border-collapse: collapse;
+  margin-bottom: 7px;
+  font-size: 12px;
+  line-height: 12px;
+  table-layout: fixed;
+}
+
+.date-picker-calendar__grid {
+  width: $calendar-width;
+  border-collapse: collapse;
+  @include user-select(none);
+  font-size: 14px;
+  table-layout: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+.date-picker-calendar__day-of-week-cell,
+.date-picker-calendar__date-cell {
+  text-align: center;
+  width: 34px;
+}
+
+.date-picker-calendar__day-of-week-cell--working {
+  color: $date-picker-calendar__weekday-cell-working-color;
+}
+
+.date-picker-calendar__day-of-week-cell--non-working {
+  color: $date-picker-calendar__weekday-cell-non-working-color;
+}
+
+.date-picker-calendar__date-cell {
+  padding: 3px;
+  cursor: $cursor-pointer;
+
+  > div {
+    line-height: 27px;
+    height: 27px;
+    width: 27px;
+    display: inline-block;
+    @include border-radius(50%);
+  }
+
+  &[data-disabled] {
+    cursor: $cursor-default;
+    color: $mid-grey;
+  }
+}
+
+.date-picker-calendar__date-cell--today {
+  color: $date-picker-calendar__cell-today-color;
+  font-weight: $bold-weight;
+
+  > div {
+    @include box-shadow($date-picker-calendar__cell-today-shadow);
+  }
+}
+

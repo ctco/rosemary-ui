@@ -1,0 +1,19 @@
+@import '../mixins/_all';
+@import '../variables/_all';
+
+.label {
+    border-radius: $border-radius-base;
+    background-color: $ash-grey;
+    padding: 3px 6px;
+    color:$black;
+    width: auto;
+    display: inline-block;
+    font-weight: 600;
+    position: relative;
+    margin: 0 3px;
+}
+
+.label--primary {
+    color: $white;
+    background: $dodge-blue;
+}

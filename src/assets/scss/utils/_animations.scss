@@ -1,0 +1,96 @@
+@import '../mixins/all';
+
+%animation-base {
+  animation-iteration-count: 1;
+  animation-duration: 300ms;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+}
+
+@mixin slide-in-y {
+  @extend %animation-base;
+  transform-origin: top center;
+  animation-name: slide-in-y;
+}
+
+@mixin slide-out-y {
+  @extend %animation-base;
+  transform-origin: top center;
+  animation-name: slide-out-y;
+}
+
+@mixin scale-in {
+  animation-name: scale-in;
+  @extend %animation-base;
+}
+
+@mixin scale-out {
+  animation-name: scale-out;
+  @extend %animation-base;
+}
+
+@include keyframes(slide-in-y) {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@include keyframes(slide-out-y) {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+
+@include keyframes(scale-in) {
+  0% {
+    opacity: 0;
+    transform: scale(.4)
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1)
+  }
+}
+
+@include keyframes(scale-out) {
+  0% {
+    opacity: 1;
+    transform: scale(1)
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(.9)
+  }
+}
+
+@include keyframes(display) {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@include keyframes(display-none) {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

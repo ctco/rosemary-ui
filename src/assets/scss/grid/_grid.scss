@@ -1,0 +1,10 @@
+@import 'config';
+
+// generate classes :
+@include gridle_generate_classes ( );
+
+// manage container width :
+.container {
+  max-width : $screen-max-width;
+  margin : 0 auto;
+}

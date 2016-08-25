@@ -1,0 +1,256 @@
+@import "components/all";
+@import "grid";
+@import '../../../src/assets/scss/mixins/_all';
+@import '../../../src/assets/scss/variables/_all';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%; //1rem = 10px
+}
+
+button {
+  font-size: 1.6rem;
+}
+
+a {
+  color: $dodge-blue;
+}
+
+a, u {
+  text-decoration: none;
+}
+
+.demo-content {
+  margin: 10px;
+  width: auto;
+}
+
+.menu-bar {
+  border: 0 solid rgba(0, 0, 0, 0);
+  float: left;
+  width: 200px;
+  /* box-shadow: 0 0 20px rgba(34, 36, 38, .15); */
+  position: fixed;
+  top: 0;
+  height: 100% !important;
+  max-height: 100%;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  overflow-y: auto !important;
+  background: rgba(10, 133, 59, 1);
+  /* Old Browsers */
+  background: -moz-linear-gradient(top, rgba(10, 133, 59, 1) 0%, rgba(7, 102, 32, 1) 49%, rgba(7, 102, 32, 1) 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(10, 133, 59, 1)), color-stop(49%, rgba(7, 102, 32, 1)), color-stop(100%, rgba(7, 102, 32, 1)));
+  /* Chrome, Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(10, 133, 59, 1) 0%, rgba(7, 102, 32, 1) 49%, rgba(7, 102, 32, 1) 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(10, 133, 59, 1) 0%, rgba(7, 102, 32, 1) 49%, rgba(7, 102, 32, 1) 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(10, 133, 59, 1) 0%, rgba(7, 102, 32, 1) 49%, rgba(7, 102, 32, 1) 100%);
+  /* IE 10+ */
+  background: linear-gradient(to bottom, rgba(10, 133, 59, 1) 0%, rgba(7, 102, 32, 1) 49%, rgba(7, 102, 32, 1) 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0a853b', endColorstr='#076620', GradientType=0);
+  /* IE6-9 */
+
+  h1 {
+    font-size: 2.4rem;
+    padding: 24px 0 42px 18px;
+    color: #FFF;
+    font-weight: 300;
+  }
+
+  .rosmary-logo {
+    background: url(../../../src/assets/imgs/rosemary-logo.png) no-repeat;
+    background-size: contain;
+    width: auto;
+    height: 120px;
+    margin: 20px 0 20px 62px;
+  }
+}
+
+.header {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 0px;
+  color: #FFF;
+  text-transform: uppercase;
+}
+
+.item {
+  display: block;
+  color: #6ef1a0;
+  font-size: 1.3rem;
+  font-weight: 400;
+  padding: 5px 5px 5px 18px;
+
+  & a:hover {
+    color: #06451e;
+    transition: all ease 0.3s;
+  }
+
+  & a:last-child {
+    margin-bottom: 24px;
+  }
+}
+
+.content {
+  min-width: 755px;
+  height: 100%;
+  min-height: 800px;
+  font-size: 1.4rem;
+  margin: 42px 0 0 225px;
+}
+
+.tabs > .tab.active {
+  color: #000;
+  background: #eaeaea;
+  border-radius: 3px;
+}
+
+.tabs > .tab {
+  color: #07933c;
+  padding: 10px 15px;
+}
+
+.tab-content {
+  padding: 30px 0;
+}
+
+.icons-demo {
+  > div {
+    margin-top: 10px;
+  }
+  i {
+    //font-size: 2.4rem;
+    width: 5rem;
+    height: 3.6rem;
+    margin: 10px;
+    display: inline-block;
+  }
+}
+
+.popup-positioning-example {
+  td:nth-child(1) {
+    text-align: left;
+  }
+
+  td:nth-child(2) {
+    text-align: center;
+  }
+
+  td:nth-child(3) {
+    text-align: right;
+  }
+}
+
+.option-table {
+  width: 100%;
+  margin: 1em 0;
+  text-align: left;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  th, td {
+    border: 1px solid rgba(34, 36, 38, .15);
+    padding: 13px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th:first-child {
+    background-color: white;
+    border: 0;
+  }
+
+  th, td:first-child {
+    background-color: #f9fafb;
+    vertical-align: middle
+  }
+
+  th:nth-child(1) {
+    width: 25%;
+  }
+
+  th:nth-child(2) {
+    width: 25%;
+  }
+
+  th:nth-child(3) {
+    width: 50%;
+  }
+}
+
+.demo {
+  position: relative;
+}
+
+.demo__show-source {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  cursor: pointer;
+  opacity: 0.3;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.form-demo {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.demo-table {
+  margin: 20px 0;
+  border-spacing: 2px;
+  border-color: #ddd;
+  border-collapse: collapse;
+  thead {
+    td {
+      padding: 20px;
+      background: #ededed;
+      border: #ccc 1px solid;
+      text-align: center;
+      vertical-align: middle;
+      font-weight: 600;
+    }
+  }
+  tr {
+    text-align: center;
+    padding-left: 20px;
+  }
+  td {
+    padding: 20px;
+    border: #ccc 1px solid;
+    text-align: left;
+    vertical-align: middle;
+  }
+}
+
+.demo--no-border {
+  border: none;
+  tr, td {
+    border: none;
+  }
+}
+
+h1, h2, h3, h4 {
+  margin-bottom: 2rem;
+}
+
+.separator-block {
+  margin: 30px 0;
+  height: 20px;
+}
+
+
+

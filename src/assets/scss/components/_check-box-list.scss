@@ -1,0 +1,37 @@
+@import '../variables/all';
+@import '../mixins/all';
+@import '../utils/all';
+
+.check-box-list__table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.check-box-list__check-box-column {
+  width: 30px;
+}
+
+.check-box-list__label {
+  @include ellipsis;
+  @include fontSizeS();
+  padding-left: $space-lvl1;
+}
+
+.check-box-list__check-box {
+  padding-left: $space-lvl2;
+}
+
+.check-box-list__item {
+  height: 26px;
+  cursor: $cursor-pointer;
+
+  &:hover {
+    background-color: $select__option-hover-background-color;
+  }
+
+  &.selected {
+    background-color: $select__option-selected-background-color;
+    color: $select__option-selected-color;
+  }
+}

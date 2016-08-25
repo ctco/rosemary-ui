@@ -1,0 +1,191 @@
+@import 'variables/all';
+
+.icon {
+  vertical-align: middle;
+}
+
+.icon-calendar-from:before {
+  content: "\e923";
+}
+
+.icon-calendar-to:before {
+  content: "\e927";
+}
+
+.icon-request:before {
+  content: "\e924";
+}
+
+.icon-drag:before {
+  content: "\e922";
+}
+
+.icon-arrow-thin-down:before {
+  content: "\e91e";
+}
+
+.icon-arrow-thin-left:before {
+  content: "\e91f";
+}
+
+.icon-arrow-thin-right:before {
+  content: "\e920";
+}
+
+.icon-arrow-thin-up:before {
+  content: "\e921";
+}
+
+.icon-arrow-go-down:before {
+  content: "\e91c";
+}
+
+.icon-arrow-go-up:before {
+  content: "\e91d";
+}
+
+.icon-arrow-down:before {
+  content: "\e915";
+}
+
+.icon-arrow-up:before {
+  content: "\e916";
+}
+
+.icon-arrow-left:before {
+  content: "\e901";
+}
+
+.icon-arrow-right:before {
+  content: "\e902";
+}
+
+.icon-lock:before {
+  content: "\e91b";
+}
+
+.icon-blocked-user:before {
+  content: "\e91a";
+}
+
+.icon-logo:before {
+  content: "\e913";
+}
+
+.icon-act-as:before {
+  content: "\e914";
+}
+
+.icon-arrow-right2:before {
+  content: "\e919";
+}
+
+.icon-arrow-left2:before {
+  content: "\e918";
+}
+
+.icon-user:before {
+  content: "\e917";
+}
+
+.icon-checkmark:before {
+  content: "\e900";
+}
+
+.icon-calendar:before {
+  content: "\e903";
+}
+
+.icon-close-circle:before {
+  content: "\e904";
+}
+
+.icon-close:before {
+  content: "\e905";
+}
+
+.icon-cog:before {
+  content: "\e906";
+}
+
+.icon-error:before {
+  content: "\e907";
+}
+
+.icon-eye-disabled:before {
+  content: "\e908";
+}
+
+.icon-eye:before {
+  content: "\e909";
+}
+
+.icon-flame:before {
+  content: "\e90a";
+}
+
+.icon-info-notify:before {
+  content: "\e90b";
+}
+
+.icon-info:before {
+  content: "\e90c";
+}
+
+.icon-menu-vacation:before {
+  content: "\e90d";
+}
+
+.icon-my-efforts:before {
+  content: "\e90e";
+}
+
+.icon-notifications:before {
+  content: "\e90f";
+}
+
+.icon-ok:before {
+  content: "\e910";
+}
+
+.icon-search:before {
+  content: "\e911";
+}
+
+.icon-warning:before {
+  content: "\e912";
+}
+
+//Sizes
+
+.icon--xxs {
+  font-size: $icon-xxs;
+}
+
+.icon--xs {
+  font-size: $icon-xs;
+}
+
+.icon--s {
+  font-size: $icon-s;
+}
+
+.icon--m {
+  font-size: $icon-m;
+}
+
+.icon--l {
+  font-size: $icon-l;
+}
+
+.icon--xl {
+  font-size: $icon-xl;
+}
+
+.icon--xxl {
+  font-size: $icon-xxl;
+}
+
+.icon--xxxl {
+  font-size: $icon-xxxl;
+}

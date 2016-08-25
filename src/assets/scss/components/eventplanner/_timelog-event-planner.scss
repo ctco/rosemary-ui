@@ -1,0 +1,95 @@
+@import "../../variables/variables";
+@import "../../mixins/all";
+
+//STYLE
+.rbc-month-header, .rbc-time-header > .rbc-row:first-child {
+  background-color: #f3f3f3;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 38px;
+  font-family: "Open Sans", "Verdana", "sans-serif";
+  -webkit-font-smoothing: antialiased;
+}
+
+.rbc-date-cell {
+  > a {
+    font-size: 1.4rem;
+  }
+}
+
+.rbc-event-content {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #fff;
+  text-shadow: $text-shadow-base;
+}
+
+//HIDE TIME
+.rbc-time-content,
+.rbc-header-gutter {
+  display: none !important;
+}
+
+.rbc-time-header {
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+}
+
+.rbc-time-header,
+.rbc-time-header > .rbc-row:last-child {
+  flex: 1 !important;
+  -ms-flex: 1;
+}
+
+.rbc-time-header > .rbc-row > * + * {
+  border-left: 0 !important;
+}
+
+.rbc-header + .rbc-header {
+  border-left: 1px solid #DDD !important;
+}
+
+.rbc-event {
+  margin: 0px 8px 1px 8px;
+}
+
+
+//FIX IE10
+.rbc-calendar {
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  -ms-flex-align: stretch;
+}
+
+.rbc-month-header {
+  display: -ms-flexbox;
+  -ms-flex-direction: row;
+}
+
+.rbc-row {
+  display: -ms-flexbox;
+  -ms-flex-direction: row;
+}
+
+.rbc-row-bg {
+  display: -ms-flexbox;
+  -ms-flex-direction: row;
+  -ms-flex: 1;
+}
+
+.rbc-month-view,
+.rbc-time-view {
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  -ms-flex: 1;
+}
+
+.rbc-month-row {
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  -ms-flex: 1;
+}
+
+.rbc-toolbar {
+  display: -ms-flexbox;
+}

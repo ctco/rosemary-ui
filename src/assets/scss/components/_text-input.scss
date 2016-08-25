@@ -1,0 +1,39 @@
+@import '../variables/all';
+@import '../mixins/all';
+
+.text-input {
+  display: inline-block;
+  vertical-align: middle;
+
+  > input {
+    @include control-base;
+    padding: 0 12px;
+    width: inherit;
+    min-width: $form-min-width;
+    -webkit-font-smoothing: antialiased;
+
+    &:focus,
+    &:hover {
+      border-color: $control-active-border-color;
+    }
+    .form-field-error & {
+      border-color: $lipstick;
+    }
+
+    &.disabled {
+      // todo when Konstantin will be back from vocation
+    }
+  }
+}
+
+.text-input--sm {
+  > input {
+    @include control-sm;
+  }
+}
+
+.text-input--lg {
+  > input {
+    @include control-lg;
+  }
+}

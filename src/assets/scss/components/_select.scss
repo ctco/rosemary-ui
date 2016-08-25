@@ -1,0 +1,129 @@
+@import '../variables/all';
+@import '../mixins/all';
+@import '../utils/all';
+
+.select {
+  @include control-base;
+  background-color: $select-background-color;
+  position: relative;
+  cursor: $cursor-pointer;
+  min-width: $form-min-width;
+
+  &.placeholder {
+    color: $ash-grey;
+  }
+
+  &:focus,
+  &:hover,
+  .open > & {
+    border-color: $control-active-border-color;
+  }
+
+  &.open {
+    /*
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    */
+  }
+
+  > div {
+    @include ellipsis;
+    margin: 0 22px 0 8px;
+  }
+
+  & i.icon-arrow-down {
+    @include vertical-center;
+    //@include triangle-down(10px, 6px, $select__icon-color);
+    right: $space-lvl1;
+    margin: 1px 8px 0 0;
+
+    width: 1.2rem;
+    height: 1.2rem;
+    font-size: 1.1rem;
+    color: $black;
+    line-height: 1.2em;
+  }
+}
+
+.select--sm {
+  @include control-sm;
+}
+
+.select--lg {
+  @include control-lg;
+}
+
+/*
+.select__icon {
+  @include vertical-center;
+  @include triangle-down(10px, 6px, $select__icon-color);
+  right: 0;
+  margin: 1px 8px 0 0;
+
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: 1.2rem;
+  color: black;
+  line-height: 1.2em;
+}
+*/
+
+.select__option {
+  padding: 6px 0 6px 8px;
+  cursor: $cursor-pointer;
+  @include fontSizeM;
+
+  &:hover {
+    background-color: $select__option-hover-background-color;
+  }
+
+  &.selected {
+    background-color: $select__option-selected-background-color;
+    color: $select__option-selected-color;
+  }
+}
+
+.select__popover {
+  z-index: $z-tooltip;
+  margin-top: 2px;
+
+  .popup-content {
+    width: 100%;
+    //border: 1px solid $control-active-border-color;
+    border-top: 0;
+    position: relative;
+    overflow: hidden;
+    color: $popup-color;
+    background-color: $popup-background-color;
+    @include border-radius($border-radius-base);
+    @include fontSizeXS;
+    max-height: 230px;
+    overflow-y: auto;
+    @include box-shadow($shadow-lvl3);
+  }
+}
+
+.select__popover--animation-slide-y-appear {
+  @include slide-in-y;
+}
+
+.select__popover--animation-slide-y-leave {
+  @include slide-out-y;
+}
+
+.select__search-container {
+  padding: 6px 12px;
+}
+
+.select__search {
+  width: 100%;
+
+  & input {
+    min-width: 235px;
+    width: 235px;
+  }
+}
+
+.select__options {
+  overflow: auto;
+}

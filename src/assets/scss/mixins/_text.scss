@@ -1,0 +1,51 @@
+@mixin header1 {
+  font-size: 2.2rem;
+  line-height: 2.8rem;
+}
+
+@mixin header2 {
+  font-size: 2.4rem;
+  line-height: 3.4rem;
+}
+
+@mixin header3 {
+  font-size: 2rem;
+  line-height: 2.8rem;
+}
+
+@mixin fontSizeXL {
+  font-size: 2.2rem;
+  line-height: 2.8rem;
+}
+
+@mixin fontSizeL {
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+}
+
+@mixin fontSizeM {
+  font-size: 1.4rem;
+  line-height: 2rem;
+}
+
+@mixin fontSizeS {
+  font-size: 1.3rem;
+  line-height: 2rem; //?????????
+}
+
+@mixin fontSizeXS {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
