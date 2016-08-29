@@ -3,6 +3,8 @@
   "version": "1.0.113",
   "description": "C.T.Co React component library",
   "main": "lib/index.js",
+  "homepage": "https://github.com/ctco/rosemary-ui",
+  "license": "Apache-2.0",
   "files": [
     "lib"
   ],
