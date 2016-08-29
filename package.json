@@ -39,6 +39,8 @@
     "expect-jsx": "^2.5.1",
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.5",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
     "html-webpack-plugin": "^2.22.0",
     "ignore-styles": "^1.2.0",
     "jquery": "^2.2.3",
