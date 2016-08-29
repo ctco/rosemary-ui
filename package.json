@@ -1,14 +1,11 @@
 {
-  "name": "timelog-components",
+  "name": "rosemary-ui",
   "version": "1.0.111",
-  "description": "TaskODS React component library",
+  "description": "C.T.Co React component library",
   "main": "lib/index.js",
   "files": [
     "lib"
   ],
-  "publishConfig": {
-    "registry": "http://artifactory.ctco.lv/artifactory/api/npm/npm-local"
-  },
   "scripts": {
     "start": "node server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
