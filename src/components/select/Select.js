@@ -125,7 +125,7 @@ class Select extends React.Component {
                    popupState={this.state.popupState}
                    onPopupStateChange={(newPopupState) => this.handlePopupStateChange(newPopupState)}>
                 <div ref="input" tabIndex="0" className={className}>
-                    <div title="General feedback">
+                    <div title={text}>
                         {text}
                     </div>
                     <i className="im icon-arrow-down" />
