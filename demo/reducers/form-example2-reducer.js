@@ -1,6 +1,5 @@
 const initialState = {
     initialValues: {
-        city: 1,
         range: {
             from: '01.01.2016',
             to: '10.01.2016'
