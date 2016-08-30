@@ -5,6 +5,10 @@
   "main": "lib/index.js",
   "homepage": "https://github.com/ctco/rosemary-ui",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ctco/rosemary-ui.git"
+  },
   "files": [
     "lib"
   ],
