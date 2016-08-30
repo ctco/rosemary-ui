@@ -22,6 +22,10 @@
   @include border-radius(3px);
   border: $control-border;
 
+  .form-field-error & {
+    border-color: $lipstick;
+  }
+
   font-size: $control-default-fsize;
   font-family: $main-font;
   line-height: $control-default-lheight;

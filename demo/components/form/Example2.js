@@ -24,6 +24,10 @@ class Example2 extends React.Component {
                         <Input />
                     </FormField>
 
+                    <FormField label="city" {...city}>
+                        <Select className="form__control" options={this.props.cities}/>
+                    </FormField>
+
                     <FormField label="Password" {...email}>
                         <Input />
                     </FormField>
@@ -71,10 +75,14 @@ const validateUserName = (value) => {
         || max(value, 8);
 };
 
+function validateCityRequired(values) {
+    return required(values.city);
+}
 
 const validate = (values) => {
     const errors = {};
     errors.username = validateUserName(values.username);
+    errors.city = validateCityRequired(values);
     errors.range = required(values.range);
     return errors;
 };
