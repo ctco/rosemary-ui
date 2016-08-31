@@ -70,6 +70,12 @@
   font-weight: $semi-bold-weight;
   font-family: $main-font;
   vertical-align: middle;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+
 }
 
 .nav-brand > .nav-icon,
