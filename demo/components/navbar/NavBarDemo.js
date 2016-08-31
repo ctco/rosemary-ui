@@ -70,24 +70,27 @@ export default class NavBarDemo extends React.Component {
                 <br/>
                 <h4>With hover-Effect Example</h4>
                 <Nav>
-                    <NavHrefItem withHoverEffect={true}>
+                    <NavHrefItem>
                         <Link to="/p1">
                             <i className="im icon-my-efforts icon rm-nav-icon"/>
-                            <span className="rm-nav-bar__item-link">p1</span>
-                        </Link>
-                    </NavHrefItem>
-                    <NavHrefItem withHoverEffect={true} active={true}>
-                        <Link to="/p2">
-                            <i className="im icon-my-efforts icon rm-nav-icon"/>
-                            <span className="rm-nav-bar__item-link">p2</span>
+                            <span className="rm-nav-bar__item-link">NavHrefItemNoHover</span>
                         </Link>
                     </NavHrefItem>
                     <NavHrefItem withHoverEffect={true}>
                         <Link to="/p3">
                             <i className="im icon-my-efforts icon rm-nav-icon"/>
-                            <span className="rm-nav-bar__item-link">p3</span>
+                            <span className="rm-nav-bar__item-link">NavHrefItemHasHover</span>
                         </Link>
                     </NavHrefItem>
+
+                    <NavItem onClick={() => alert('some handler')}>
+                        <i className="im icon-my-efforts icon rm-nav-icon"/>
+                        <a className="rm-nav-bar__item-link">NavItemNoHover</a>
+                    </NavItem>
+                    <NavItem withHoverEffect={true} onClick={() => alert('some handler')}>
+                        <i className="im icon-my-efforts icon rm-nav-icon"/>
+                        <a className="rm-nav-bar__item-link">NavItemHasHover</a>
+                    </NavItem>
                 </Nav>
 
             </DemoWithSnippet>
