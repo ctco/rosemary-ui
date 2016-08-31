@@ -9,8 +9,8 @@ export default class Tabs extends React.Component {
             let className = 'tab';
             if (active) {
                 className += ' active';
+                className += ' demo-link';
             }
-
             return (<Link to={tab.link} className={className} key={tab.name}>{tab.name}</Link>);
         });
     }

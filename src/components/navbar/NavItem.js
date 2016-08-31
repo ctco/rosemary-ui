@@ -5,9 +5,10 @@ export default class NavItem extends React.Component {
 
     render() {
         let navItemClassNames = classNames(this.props.className, {
-            'nav-bar__item': true,
-            'nav-bar__item--right': this.props.right,
-            'nav-bar__item--active': this.props.active
+            'rm-nav-bar__item': true,
+            'rm-nav-bar__item--right': this.props.right,
+            'rm-nav-bar__item--active': this.props.active,
+            'rm-nav-bar__item--with-hover-effect': this.props.withHoverEffect
         });
 
         return (
@@ -30,6 +31,7 @@ NavItem.propTypes = {
     style: React.PropTypes.object,
     onClick: React.PropTypes.func,
     active: React.PropTypes.bool,
+    withHoverEffect: React.PropTypes.bool,
     right: React.PropTypes.bool
 };
 

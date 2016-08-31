@@ -10,56 +10,87 @@ export default class NavBarDemo extends React.Component {
         return (
             <DemoWithSnippet>
                 <Nav>
-                    <NavItem className="nav-brand">
-                        <i className="im icon-logo icon nav-icon"/>
-                        <a className="nav-bar__item-link" title="Back to main page">Brand</a>
+                    <NavItem className="rm-nav-brand">
+                        <i className="im icon-logo icon rm-nav-icon"/>
+                        <a className="rm-nav-bar__item-link" title="Back to main page">Brand</a>
                     </NavItem>
                     <NavHrefItem active={true}>
                         <Link to="/page1">
-                            <i className="im icon-my-efforts icon nav-icon"/>
-                            <span className="nav-bar__item-link">Page 1</span>
+                            <i className="im icon-my-efforts icon rm-nav-icon"/>
+                            <span className="rm-nav-bar__item-link">Page 1</span>
                         </Link>
                     </NavHrefItem>
                     <NavHrefItem>
                         <Link to="/page2">
-                            <i className="im icon-my-efforts icon nav-icon"/>
-                            <span className="nav-bar__item-link">Page 2</span>
+                            <i className="im icon-my-efforts icon rm-nav-icon"/>
+                            <span className="rm-nav-bar__item-link">Page 2</span>
                         </Link>
                     </NavHrefItem>
                     <NavItem onClick={() => alert('some handler')}>
-                        <a className="nav-bar__item-link">Link with handler</a>
+                        <a className="rm-nav-bar__item-link">Link with handler</a>
                     </NavItem>
-                    <NavDropDownItem right={true} className="nav-bar__item--user-menu">
+                    <NavDropDownItem right={true} className="rm-nav-bar__item--user-menu">
                         <div>
                             <Avatar text="TC"/>
-                            <i className="im nav-drop-down-icon"/>
+                            <i className="im rm-nav-drop-down-icon"/>
                         </div>
-                        <Nav className="nav-bar--vertical nav-bar--secondary">
-                            <NavItem>
-                                <a className="nav-bar__item-link">Settings</a>
-                            </NavItem>
-                            <NavHrefItem to="/logout">
-                                <span className="nav-bar__item-link">Logout</span>
+                        <Nav className="rm-nav-bar--vertical rm-nav-bar--secondary">
+                            <NavHrefItem>
+                                <Link to="/settings">
+                                    <span className="rm-nav-bar__item-link">Settings</span>
+                                </Link>
+                            </NavHrefItem>
+                            <NavHrefItem>
+                                <Link to="/page2">
+                                    <span className="rm-nav-bar__item-link">Logout</span>
+                                </Link>
                             </NavHrefItem>
                         </Nav>
                     </NavDropDownItem>
                 </Nav>
 
                 <br/>
-                <h4>Example of NavHrefItem between Internal and External </h4>
+                <h4>Example of NavHrefItem: between Internal and External resources</h4>
                 <Nav>
-                    <NavHrefItem to="http://www.google.com">
+                    <NavHrefItem>
                         <Link to="http://www.google.com">
-                            <i className="im icon-my-efforts icon nav-icon"/>
-                            <span className="nav-bar__item-link">External to google</span>
+                            <i className="im icon-my-efforts icon rm-nav-icon"/>
+                            <span className="rm-nav-bar__item-link">Internal_Link</span>
                         </Link>
                     </NavHrefItem>
-                    <NavHrefItem internal={false} to="http://www.google.com">
+                    <NavHrefItem>
                         <a href="http://www.google.com">
-                            <i className="im icon-my-efforts icon nav-icon"/>
-                            <span className="nav-bar__item-link">External to google</span>
+                            <i className="im icon-my-efforts icon rm-nav-icon"/>
+                            <span className="rm-nav-bar__item-link">External_Link</span>
                         </a>
                     </NavHrefItem>
+                </Nav>
+
+
+                <br/>
+                <h4>With hover-Effect Example</h4>
+                <Nav>
+                    <NavHrefItem>
+                        <Link to="/p1">
+                            <i className="im icon-my-efforts icon rm-nav-icon"/>
+                            <span className="rm-nav-bar__item-link">NavHrefItemNoHover</span>
+                        </Link>
+                    </NavHrefItem>
+                    <NavHrefItem withHoverEffect={true}>
+                        <Link to="/p3">
+                            <i className="im icon-my-efforts icon rm-nav-icon"/>
+                            <span className="rm-nav-bar__item-link">NavHrefItemHasHover</span>
+                        </Link>
+                    </NavHrefItem>
+
+                    <NavItem onClick={() => alert('some handler')}>
+                        <i className="im icon-my-efforts icon rm-nav-icon"/>
+                        <a className="rm-nav-bar__item-link">NavItemNoHover</a>
+                    </NavItem>
+                    <NavItem withHoverEffect={true} onClick={() => alert('some handler')}>
+                        <i className="im icon-my-efforts icon rm-nav-icon"/>
+                        <a className="rm-nav-bar__item-link">NavItemHasHover</a>
+                    </NavItem>
                 </Nav>
 
             </DemoWithSnippet>

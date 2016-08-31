@@ -11,6 +11,10 @@ export default () => {
         right: {
             values: 'boolean',
             description: 'Set link to float right'
+        },
+        withHoverEffect: {
+            values: 'boolean',
+            description: 'on hover will show underline'
         }
     };
 
@@ -23,15 +27,7 @@ export default () => {
     };
 
     let navHrefItemPropDesc = {
-        ...commonPropDesc,
-        to: {
-            values: 'string',
-            description: 'Redirect to link'
-        },
-        internal: {
-            values: 'boolean',
-            description: 'by default (true) react will compile as (Link) element instead of (a) element'
-        }
+        ...commonPropDesc
     };
 
     return (

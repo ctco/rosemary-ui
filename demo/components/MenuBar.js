@@ -18,7 +18,7 @@ export default class MenuBar extends React.Component {
     createSubCategory(category, subcategories) {
         return subcategories.map((sc) => {
             return (<Link to={`/${category.toLowerCase()}/${sc.name.toLowerCase()}`} key={sc.name}
-                         className="item">{sc.name}</Link>);
+                         className="item demo-link">{sc.name}</Link>);
         });
     }
 
