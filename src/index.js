@@ -4,7 +4,7 @@ import Button from './components/button/Button';
 import ButtonGroup from './components/button/ButtonGroup';
 import Radio from './components/radio/Radio';
 import RadioGroup from './components/radio/RadioGroup';
-import {Nav, NavItem, NavDropDownItem} from './components/navbar';
+import {Nav, NavItem, NavDropDownItem, NavHrefItem} from './components/navbar';
 import Popup from './components/Popup';
 import Input from './components/Input';
 import CheckBox from './components/CheckBox';
@@ -29,6 +29,7 @@ export {
     RadioGroup,
     Nav,
     NavItem,
+    NavHrefItem,
     NavDropDownItem,
     Input,
     TextArea,
