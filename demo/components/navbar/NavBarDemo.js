@@ -48,13 +48,13 @@ export default class NavBarDemo extends React.Component {
                 <br/>
                 <h4>Example of NavHrefItem between Internal and External </h4>
                 <Nav>
-                    <NavHrefItem to="http://www.google.com">
+                    <NavHrefItem>
                         <Link to="http://www.google.com">
                             <i className="im icon-my-efforts icon nav-icon"/>
                             <span className="nav-bar__item-link">External to google</span>
                         </Link>
                     </NavHrefItem>
-                    <NavHrefItem internal={false} to="http://www.google.com">
+                    <NavHrefItem>
                         <a href="http://www.google.com">
                             <i className="im icon-my-efforts icon nav-icon"/>
                             <span className="nav-bar__item-link">External to google</span>
