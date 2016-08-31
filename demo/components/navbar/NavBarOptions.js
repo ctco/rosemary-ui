@@ -24,13 +24,9 @@ export default () => {
 
     let navHrefItemPropDesc = {
         ...commonPropDesc,
-        to: {
-            values: 'string',
-            description: 'Redirect to link'
-        },
-        internal: {
+        withHoverEffect: {
             values: 'boolean',
-            description: 'by default (true) react will compile as (Link) element instead of (a) element'
+            description: 'on hover will show underline'
         }
     };
 

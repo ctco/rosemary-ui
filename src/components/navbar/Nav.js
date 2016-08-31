@@ -7,7 +7,7 @@ export default class Nav extends React.Component {
 
     render() {
         let navClassNames = classNames(this.props.className, {
-            'nav-bar': true
+            'rm-nav-bar': true
         });
         return (
             <nav style={this.props.style} className={navClassNames}>

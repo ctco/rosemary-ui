@@ -15,9 +15,9 @@ const DEFAULT_PROPS = {
 export default class NavDropDownItem extends React.Component {
     render() {
         let navItemClassNames = classNames(this.props.className, {
-            'nav-bar__item': true,
-            'nav-bar__item--right': this.props.right,
-            'nav-bar__item--active': this.props.active
+            'rm-nav-bar__item': true,
+            'rm-nav-bar__item--right': this.props.right,
+            'rm-nav-bar__item--active': this.props.active
         });
 
         return (

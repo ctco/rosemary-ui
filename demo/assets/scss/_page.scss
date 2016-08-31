@@ -16,11 +16,12 @@ button {
   font-size: 1.6rem;
 }
 
-a {
-  color: $dodge-blue;
+u {
+  text-decoration: none;
 }
 
-a, u {
+.demo-link {
+  color: $dodge-blue;
   text-decoration: none;
 }
 
