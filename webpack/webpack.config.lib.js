@@ -14,7 +14,7 @@ module.exports = webpackUtils.merge(base.defaults, {
     output: {
         path: path.join(__dirname, './../lib'),
         filename: 'index.js',
-        library: 'timelog-components',
+        library: 'rosemary-ui',
         libraryTarget: 'umd'
     },
     externals: [
