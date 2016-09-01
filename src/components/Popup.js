@@ -150,7 +150,6 @@ class Popup extends React.Component {
 
     changeState(popupState) {
         if (POPUP_STATE.CLOSED !== popupState && this.props.onPopupStateChange) {
-            console.log(popupState);
             this.props.onPopupStateChange(POPUP_STATE.OPEN === popupState);
         }
 
