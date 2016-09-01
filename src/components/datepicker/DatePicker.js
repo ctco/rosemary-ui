@@ -38,7 +38,7 @@ class DatePicker extends React.Component {
         this.state = {
             month: getFirstDayOfMonth(getToday()),
             value: props.value ? parse(props.value, props.format) : getToday(),
-            popupState: 'closed'
+            open: false
         };
 
         this.handleSelection = this.handleSelection.bind(this);
@@ -59,7 +59,7 @@ class DatePicker extends React.Component {
 
     handleSelection(selected) {
         this.setState({
-            popupState: 'closing'
+            open: false
         }, () => {
             setTimeout(() => {
                 if (!this.isControlled()) {
@@ -111,8 +111,8 @@ class DatePicker extends React.Component {
             <Popup popupClassName="popover-colored"
                    attachment="bottom center"
                    on="click"
-                   onPopupStateChange={(newPopupState) => this.setState({popupState: newPopupState})}
-                   popupState={this.state.popupState}
+                   onPopupStateChange={(open) => this.setState({open})}
+                   open={this.state.open}
                    onTransitionClosedToOpen={() => {this.resetMonth();}}>
                 <Button className={className}> {this.formatValue()} </Button>
                 <DatePickerPopup month={this.state.month}

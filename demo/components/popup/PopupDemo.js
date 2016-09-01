@@ -11,7 +11,7 @@ export default class PopupDemo extends React.Component {
 
         this.state = {
             popover: {},
-            popupState: 'closed'
+            open: false
         };
     }
 
@@ -55,27 +55,17 @@ export default class PopupDemo extends React.Component {
     }
 
 
-    handlePopupStateChange(newPopupState) {
-        if (newPopupState === 'open') {
+    handlePopupStateChange(open) {
+        if (open) {
             if (!window.confirm('Are you sure you want to open popup?')) {
                 return;
             }
         }
-        this.setState({popupState: newPopupState});
+        this.setState({open});
     }
 
     hidePopup() {
-        this.setState({popupState: 'closing'});
-    }
-
-    getText() {
-        if (this.state.popupState === 'open') {
-            return 'Hide popup';
-        } else if (this.state.popupState === 'closing') {
-            return 'Closing';
-        } else {
-            return 'Show popup';
-        }
+        this.setState({open: false});
     }
 
     build(level) {
@@ -185,8 +175,8 @@ export default class PopupDemo extends React.Component {
                            on="click"
                            attachment="middle center"
                            popupClassName="popup popup-blue-border"
-                           popupState={this.state.popupState}
-                           onPopupStateChange={(newPopupState) => {this.handlePopupStateChange(newPopupState);}}>
+                           open={this.state.open}
+                           onPopupStateChange={(open) => {this.handlePopupStateChange(open);}}>
                         <button>Show Popup</button>
                         <div>
                             Content <br/>
