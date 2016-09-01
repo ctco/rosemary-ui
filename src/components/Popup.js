@@ -94,15 +94,16 @@ class Popup extends React.Component {
             const isOpen = nextProps.open;
 
             if (isOpen && POPUP_STATE.OPEN !== this.state.popupState) {
-                this.setState({
-                    popupState: POPUP_STATE.OPEN
-                });
+                this.updatePopupState(POPUP_STATE.OPEN);
             } else if (!isOpen && POPUP_STATE.OPEN === this.state.popupState) {
-                this.setState({
-                    popupState: POPUP_STATE.CLOSING
-                });
+                this.updatePopupState(POPUP_STATE.CLOSING);
             }
         }
+    }
+
+    updatePopupState(popupState) {
+        this.setState({popupState});
+        this.applyOverlay(popupState);
     }
 
     getChildContext() {
@@ -154,8 +155,7 @@ class Popup extends React.Component {
         }
 
         if (POPUP_STATE.CLOSED === popupState || !this.isPopupStateControlled()) {
-            this.setState({popupState});
-            this.applyOverlay(popupState);
+            this.updatePopupState(popupState);
         }
     }
 
