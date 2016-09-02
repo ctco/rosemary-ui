@@ -6,11 +6,14 @@ import find from 'lodash/find';
 import Immutable from 'immutable';
 import ReactList from 'react-list';
 
-import {isDefined, findIdentifiables} from '../../util/utils';
+import {isDefined} from '../../util/utils';
 import CheckBox from '../CheckBox';
 
 const PROPERTY_TYPES = {
-    value: React.PropTypes.arrayOf(React.PropTypes.number.isRequired),
+    value: React.PropTypes.arrayOf(React.PropTypes.shape({
+        id: React.PropTypes.number.isRequired,
+        displayString: React.PropTypes.string.isRequired
+    })),
     options: React.PropTypes.arrayOf(React.PropTypes.shape({
         id: React.PropTypes.number.isRequired,
         displayString: React.PropTypes.string.isRequired
@@ -24,7 +27,7 @@ class CheckBoxList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: findIdentifiables(this.props.options, this.props.value),
+            selected: isDefined(props.value) ? props.value : [],
             counter: 0
         };
 
@@ -38,7 +41,7 @@ class CheckBoxList extends React.Component {
 
         if (isValueChanged || isOptionsChanged) {
             this.setState({
-                selected: findIdentifiables(nextProps.options, nextProps.value),
+                selected: nextProps.value,
                 counter: this.state.counter + 1
             });
         }
