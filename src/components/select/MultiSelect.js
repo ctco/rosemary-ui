@@ -35,8 +35,8 @@ class MultiSelect extends React.Component {
         super(props);
         this.state = {
             selected: findIdentifiables(this.props.options, props.value),
-            popupState: 'closed',
-            tooltipState: 'closed',
+            popupOpen: false,
+            tooltipOpen: false,
             filtered: props.options
         };
 
@@ -70,24 +70,21 @@ class MultiSelect extends React.Component {
         }
     }
 
-    handlePopupStateChange(newPopupState) {
-        let isOpening = newPopupState === 'open';
-
+    handlePopupStateChange(open) {
         let newState = {
-            popupState: newPopupState,
-            tooltipState: 'closed'
+            popupOpen: open,
+            tooltipOpen: false
         };
 
-        if (isOpening) {
+        if (open) {
             newState.filtered = this.getAllSorted();
         }
 
         this.setState(newState);
-        if (isOpening) {
+        if (open) {
             this.handlePopupOpening();
         }
     }
-
 
     getAllSorted() {
         let result = this.props.options.slice(0);
@@ -108,9 +105,9 @@ class MultiSelect extends React.Component {
         }
     }
 
-    handleTooltipStateChange(newTooltipState) {
-        if (this.state.popupState === 'closed' && this.state.selected.length > 0) {
-            this.setState({tooltipState: newTooltipState});
+    handleTooltipStateChange(open) {
+        if (!this.state.popupOpen && this.state.selected.length > 0) {
+            this.setState({tooltipOpen: open});
         }
     }
 
@@ -154,14 +151,14 @@ class MultiSelect extends React.Component {
                    attachment="bottom left" on="click"
                    popupClassName="select__popover"
                    animationBaseName="select__popover--animation-slide-y"
-                   popupState={this.state.popupState}
-                   onPopupStateChange={(newPopupState) => this.handlePopupStateChange(newPopupState)}>
+                   open={this.state.popupOpen}
+                   onPopupStateChange={(open) => this.handlePopupStateChange(open)}>
 
                 <Popup attachment="bottom left"
                        on="hover"
                        popupClassName="tooltip"
-                       popupState={this.state.tooltipState}
-                       onPopupStateChange={(newTooltipState) => this.handleTooltipStateChange(newTooltipState)}
+                       open={this.state.tooltipOpen}
+                       onPopupStateChange={(open) => this.handleTooltipStateChange(open)}
                     >
                     <div {...this.props.inputProps} ref="input" tabIndex="0" className={className}>
                         <div>{this.getText()}</div>

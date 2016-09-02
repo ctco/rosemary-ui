@@ -29,7 +29,7 @@ class Select extends React.Component {
         super(props);
         this.state = {
             selected: this.findById(this.props.options, props.value),
-            popupState: 'closed',
+            open: false,
             filtered: props.options
         };
     }
@@ -49,19 +49,19 @@ class Select extends React.Component {
         if (!this.isControlled()) {
             this.setState({
                 selected: option,
-                popupState: 'closing'
+                open: false
             });
         } else {
-            this.setState({popupState: 'closing'});
+            this.setState({open: false});
         }
         if (this.props.onChange) {
             this.props.onChange(option.id, option);
         }
     }
 
-    handlePopupStateChange(newPopupState) {
-        this.setState({popupState: newPopupState});
-        if (newPopupState === 'open') {
+    handlePopupStateChange(open) {
+        this.setState({open});
+        if (open) {
             this.handlePopupOpening();
         }
     }
@@ -122,8 +122,8 @@ class Select extends React.Component {
                    attachment="bottom left" on="click"
                    popupClassName="select__popover"
                    animationBaseName="select__popover--animation-slide-y"
-                   popupState={this.state.popupState}
-                   onPopupStateChange={(newPopupState) => this.handlePopupStateChange(newPopupState)}>
+                   open={this.state.open}
+                   onPopupStateChange={(open) => this.handlePopupStateChange(open)}>
                 <div ref="input" tabIndex="0" className={className}>
                     <div title={text}>
                         {text}
