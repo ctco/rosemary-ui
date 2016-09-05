@@ -97,8 +97,6 @@
     background-color: $popup-background-color;
     @include border-radius($border-radius-base);
     @include fontSizeXS;
-    max-height: 230px;
-    overflow-y: auto;
     @include box-shadow($shadow-lvl3);
   }
 }
@@ -126,4 +124,5 @@
 
 .select__options {
   overflow: auto;
+  max-height: 190px;
 }
