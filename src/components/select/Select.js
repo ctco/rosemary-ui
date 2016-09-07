@@ -8,6 +8,8 @@ import Popup from '../Popup';
 import Input from '../Input';
 import {isDefined, contains} from '../../util/utils';
 
+import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
+
 const PROPERTY_TYPES = {
     placeholder: React.PropTypes.string,
     search: React.PropTypes.bool,
@@ -152,4 +154,4 @@ class Select extends React.Component {
 Select.propTypes = PROPERTY_TYPES;
 Select.defaultProps = DEFAULT_PROPS;
 
-export default Select;
+export default withIdAndTypeContext(Select);

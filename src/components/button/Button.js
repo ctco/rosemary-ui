@@ -24,7 +24,7 @@ class Button extends React.Component {
         });
 
         return (
-            <div className={style} onClick={this.onClickButton}>
+            <div id={this.props.id} className={style} onClick={this.onClickButton}>
                 {this.props.children || this.props.text}
             </div>
         );
