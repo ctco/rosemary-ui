@@ -61,13 +61,20 @@ class PopupElement extends React.Component {
     }
 
     render() {
+        let attrForType = this.context.parentType;
+        let attrForId = this.context.id;
         return (
-            <div className={this.props.popupClassName}>
+            <div data-attr-for-type={attrForType} data-attr-for-id={attrForId} className={this.props.popupClassName}>
                 {this.props.children}
             </div>
         );
     }
 }
+
+PopupElement.contextTypes = {
+    id: React.PropTypes.string,
+    parentType: React.PropTypes.string
+};
 
 class Popup extends React.Component {
     constructor(props) {
