@@ -108,7 +108,7 @@ $feedback-success-icon-color: rgba($black, .5);
 }
 
 .feedback {
-  position: absolute;
+  position: fixed;
   right: 10px;
   top: 78px;
   height: 0;
