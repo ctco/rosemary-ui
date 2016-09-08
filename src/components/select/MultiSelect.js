@@ -10,6 +10,8 @@ import {isDefined, contains, findIdentifiables} from '../../util/utils';
 import Input from '../Input';
 import CheckBoxList from './CheckBoxList';
 
+import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
+
 const PROPERTY_TYPES = {
     placeholder: React.PropTypes.string,
     searchPlaceholder: React.PropTypes.string,
@@ -19,9 +21,7 @@ const PROPERTY_TYPES = {
     })),
     className: React.PropTypes.string,
     onChange: React.PropTypes.func,
-    getText: React.PropTypes.func,
-    inputProps: React.PropTypes.object,
-    tooltipProps: React.PropTypes.object
+    getText: React.PropTypes.func
 };
 const DEFAULT_PROPS = {
     placeholder: 'Select...',
@@ -160,11 +160,11 @@ class MultiSelect extends React.Component {
                        open={this.state.tooltipOpen}
                        onPopupStateChange={(open) => this.handleTooltipStateChange(open)}
                     >
-                    <div {...this.props.inputProps} ref="input" tabIndex="0" className={className}>
+                    <div ref="input" tabIndex="0" className={className}>
                         <div>{this.getText()}</div>
                         <i className="im select__icon"/>
                     </div>
-                    <div {...this.props.tooltipProps}>
+                    <div>
                         {this.state.selected.map((option) => {
                             return (
                                 <div key={`tooltip-${option.id}`}>{option.displayString}</div>
@@ -198,4 +198,4 @@ class MultiSelect extends React.Component {
 MultiSelect.propTypes = PROPERTY_TYPES;
 MultiSelect.defaultProps = DEFAULT_PROPS;
 
-export default MultiSelect;
+export default withIdAndTypeContext(MultiSelect);

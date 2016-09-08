@@ -11,6 +11,8 @@ import Input from '../Input';
 import Button from '../button/Button';
 import DatePickerPopup from './DatePickerPopup';
 
+import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
+
 import {getToday,
     parse,
     format,
@@ -114,7 +116,7 @@ class DatePicker extends React.Component {
                    onPopupStateChange={(open) => this.setState({open})}
                    open={this.state.open}
                    onTransitionClosedToOpen={() => {this.resetMonth();}}>
-                <Button className={className}> {this.formatValue()} </Button>
+                <Button id={this.props.id} className={className}> {this.formatValue()} </Button>
                 <DatePickerPopup month={this.state.month}
                                  onSelected={this.handleSelection}
                                  onMonthChange={(month) => this.setState({month})}
@@ -129,4 +131,4 @@ class DatePicker extends React.Component {
 DatePicker.propTypes = PROPERTY_TYPES;
 DatePicker.defaultProps = DEFAULT_PROPS;
 
-export default DatePicker;
+export default withIdAndTypeContext(DatePicker);

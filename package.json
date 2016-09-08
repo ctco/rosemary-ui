@@ -1,6 +1,6 @@
 {
   "name": "rosemary-ui",
-  "version": "1.0.127",
+  "version": "1.0.129",
   "description": "C.T.Co React component library",
   "main": "lib/index.js",
   "homepage": "https://github.com/ctco/rosemary-ui",
@@ -85,7 +85,7 @@
     "react-addons-css-transition-group": "^15.1.0",
     "react-click-outside": "^2.1.0",
     "react-dom": "^15.1.0",
-    "react-list": "^0.7.20",
+    "react-list": "^0.8.0",
     "react-overlays": "^0.6.3",
     "react-prop-types": "^0.2.1",
     "react-redux": "^4.4.1",
