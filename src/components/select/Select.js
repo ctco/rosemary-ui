@@ -102,7 +102,7 @@ class Select extends React.Component {
     }
 
     applySearch(value) {
-        let filtered = this.props.options.slice(0).filter((option) => {
+        let filtered = this.props.options.filter((option) => {
             return contains(option.displayString, value);
         });
 

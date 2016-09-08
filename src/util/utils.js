@@ -18,7 +18,7 @@ function contains(value, value2) {
 }
 
 function findIdentifiables(list, toFindIds) {
-    let result = list.slice(0).filter((item) => {
+    let result = list.filter((item) => {
         return !isUndefined(find(toFindIds, (toFindId) => toFindId === item.id));
     });
     return isDefined(result) ? result : [];
