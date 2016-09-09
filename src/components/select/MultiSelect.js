@@ -6,9 +6,8 @@ import classNames from 'classnames';
 import find from 'lodash/find';
 
 import Popup from '../Popup';
-import {isDefined, contains, findIdentifiables} from '../../util/utils';
-import Input from '../Input';
-import CheckBoxList from './CheckBoxList';
+import {isDefined, findIdentifiables} from '../../util/utils';
+import MultiSelectPopup from './MultiSelectPopup';
 
 import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
 
@@ -36,11 +35,8 @@ class MultiSelect extends React.Component {
         this.state = {
             selected: findIdentifiables(this.props.options, props.value),
             popupOpen: false,
-            tooltipOpen: false,
-            filtered: props.options
+            tooltipOpen: false
         };
-
-        this.sortSelectedOnTop = this.sortSelectedOnTop.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -48,14 +44,6 @@ class MultiSelect extends React.Component {
         if (isValueChanged) {
             this.setState({selected: findIdentifiables(nextProps.options, nextProps.value)});
         }
-    }
-
-    isSelected(option) {
-        return find(this.state.selected, (selected) => {
-            if (option.id === selected.id) {
-                return true;
-            }
-        });
     }
 
     select(selected) {
@@ -76,32 +64,9 @@ class MultiSelect extends React.Component {
             tooltipOpen: false
         };
 
-        if (open) {
-            newState.filtered = this.getAllSorted();
-        }
-
         this.setState(newState);
         if (open) {
             this.handlePopupOpening();
-        }
-    }
-
-    getAllSorted() {
-        let result = this.props.options.slice(0);
-        result.sort(this.sortSelectedOnTop);
-        return result;
-    }
-
-    sortSelectedOnTop(option1, option2) {
-        let isOption1Selected = this.isSelected(option1);
-        let isOption2Selected = this.isSelected(option2);
-
-        if (isOption1Selected && !isOption2Selected) {
-            return -1;
-        } else if (isOption2Selected && !isOption1Selected) {
-            return 1;
-        } else {
-            return option1.displayString.localeCompare(option2.displayString);
         }
     }
 
@@ -127,18 +92,6 @@ class MultiSelect extends React.Component {
         } else {
             return this.props.getText(this.state.selected);
         }
-    }
-
-    applySearch(value) {
-        let filtered = this.props.options.slice(0).filter((option) => {
-            return contains(option.displayString, value);
-        });
-
-        filtered.sort(this.sortSelectedOnTop);
-
-        this.setState({
-            filtered: filtered
-        });
     }
 
     render() {
@@ -173,23 +126,10 @@ class MultiSelect extends React.Component {
                     </div>
                 </Popup>
 
-
-                <div className="select__popup">
-                    <div className="select__search-container">
-                        <Input className="select__search text-input--sm"
-                               onChange={(value) => this.applySearch(value)}
-                               placeholder={this.props.searchPlaceholder}/>
-                    </div>
-
-                    <div className="select__options">
-                        <CheckBoxList options={this.state.filtered}
-                                      onChange={(selected) => this.select(selected)}
-                                      value={this.state.selected.map((selected) => {return selected.id;})}
-                            />
-                    </div>
-
-
-                </div>
+                <MultiSelectPopup placeholder={this.props.searchPlaceholder}
+                                  options={this.props.options}
+                                  value={this.state.selected.map((selected) => {return selected.id;})}
+                                  onChange={(selectedIds, selected) => this.select(selected)} />
             </Popup>
         );
     }
