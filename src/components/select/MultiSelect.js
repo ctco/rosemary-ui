@@ -113,7 +113,7 @@ class MultiSelect extends React.Component {
                        open={this.state.tooltipOpen}
                        onPopupStateChange={(open) => this.handleTooltipStateChange(open)}
                     >
-                    <div ref="input" tabIndex="0" className={className}>
+                    <div id={this.props.id} ref="input" tabIndex="0" className={className}>
                         <div>{this.getText()}</div>
                         <i className="im select__icon"/>
                     </div>
