@@ -5,6 +5,8 @@ import getHeight from 'dom-helpers/query/height';
 import { accessor, elementType } from './utils/propTypes';
 import { segStyle } from './utils/eventLevels';
 import { isSelected } from './utils/selection';
+import localizer from './localizer';
+import {accessor as get} from './utils/accessors';
 
 export function enhanceRowHOC(ParentClass) {
 
@@ -40,6 +42,7 @@ export function enhanceRowHOC(ParentClass) {
             this.renderEvent = this.renderEvent.bind(this);
             this.renderSpan = this.renderSpan.bind(this);
             this.getRowHeight = this.getRowHeight.bind(this);
+            this.getLvlKey = this.getLvlKey.bind(this);
         }
 
         renderEvent(event) {
@@ -67,12 +70,17 @@ export function enhanceRowHOC(ParentClass) {
 
         renderSpan(len, key, content = ' ') {
             let { slots } = this.props;
-
             return (
                 <div key={key} className="rbc-row-segment" style={segStyle(Math.abs(len), slots)}>
                     {content}
                 </div>
             );
+        }
+
+        getLvlKey(index, event) {
+            let start = get(event, this.props.startAccessor);
+
+            return `_lvl_${index}_${localizer.format(start, 'DD.MM.YYYY')}`;
         }
 
         getRowHeight() {
