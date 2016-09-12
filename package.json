@@ -19,7 +19,7 @@
         "test:coverage": "nyc npm test",
         "nyc:report": "nyc report",
         "build": "./node_modules/.bin/webpack --config webpack/webpack.config.lib.js",
-        "buildProd": "NODE_ENV=production webpack -p --config webpack/webpack.config.production.js",
+        "buildGh-Pages": "NODE_ENV=production webpack -p --config webpack/webpack.config.production.js",
         "prepublish": "npm run clean && npm run build",
         "clean": "./node_modules/.bin/rimraf lib",
         "deploy": "gh-pages-deploy"
@@ -104,10 +104,7 @@
     "gh-pages-deploy": {
         "staticpath": "dist",
         "prep": [
-            "buildProd"
-        ],
-        "post": [
-            "clean-source"
+            "buildGh-Pages"
         ],
         "noprompt": true
     }
