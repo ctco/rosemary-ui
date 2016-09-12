@@ -30,10 +30,10 @@ class EventRow extends React.Component {
       , row = [];
 
     while (current <= slotCount) {
-      let key = '_lvl_' + current;
-
       let { event, left, right, span } = rowSegments
         .filter(seg => isSegmentInSlot(seg, current))[0] || {}; //eslint-disable-line
+
+      let key = this.getLvlKey(current, event);
 
       if (!event) {
         current++;
