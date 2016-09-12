@@ -62,7 +62,7 @@ class PopupElement extends React.Component {
 
     render() {
         let attrForType = this.context.parentType;
-        let attrForId = this.context.id;
+        let attrForId = this.props.id || this.context.id;
         return (
             <div data-attr-for-type={attrForType} data-attr-for-id={attrForId} className={this.props.popupClassName}>
                 {this.props.children}
@@ -346,7 +346,8 @@ class Popup extends React.Component {
                     handlers.onClick();
                 }
             },
-            className: targetClassNames
+            className: targetClassNames,
+            id: target.props.id || this.props.id
         });
 
         return target;
@@ -359,7 +360,7 @@ class Popup extends React.Component {
 
         let element = React.Children.toArray(this.props.children)[1];
         return (
-            <PopupElement ref="content" popupClassName="popup-content" key={'popup'}
+            <PopupElement id={this.props.id} ref="content" popupClassName="popup-content" key={'popup'}
                           onUnmount={() => {this.closeCompletely();}}>
                 {element}
             </PopupElement>

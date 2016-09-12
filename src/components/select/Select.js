@@ -126,7 +126,7 @@ class Select extends React.Component {
                    animationBaseName="select__popover--animation-slide-y"
                    open={this.state.open}
                    onPopupStateChange={(open) => this.handlePopupStateChange(open)}>
-                <div ref="input" tabIndex="0" className={className}>
+                <div id={this.props.id} ref="input" tabIndex="0" className={className}>
                     <div title={text}>
                         {text}
                     </div>
