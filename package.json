@@ -103,7 +103,6 @@
     },
     "gh-pages-deploy": {
         "staticpath": "dist",
-        "cname": "nope.org",
         "prep": [
             "buildProd"
         ],

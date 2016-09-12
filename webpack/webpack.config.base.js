@@ -17,7 +17,10 @@ var defaults = {
             from: path.resolve('src/assets/scss'),
             to: path.resolve('lib/sass')
         }])
-    ]
+    ],
+    module: {
+        noParse: [/autoit.js/]
+    },
 };
 
 module.exports.defaults = defaults;
