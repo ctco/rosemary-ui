@@ -53,7 +53,8 @@ class DatePicker extends React.Component {
             fromText: '',
             toText: '',
             over: null,
-            animation: 'date-range-picker__calendar--animation-right'
+            animation: 'date-range-picker__calendar--animation-right',
+            open:false
         };
 
         this.handleSelection = this.handleSelection.bind(this);
@@ -174,7 +175,8 @@ class DatePicker extends React.Component {
         } else {
             this.setState({
                 to,
-                toText
+                toText,
+                open: to === null
             }, this.fireChangeEventByState);
         }
     }
@@ -258,6 +260,8 @@ class DatePicker extends React.Component {
         return (
             <Popup popupClassName="popover-colored"
                    attachment="bottom left"
+                   open={this.state.open}
+                   onPopupStateChange={(open) => this.setState({open})}
                    on="focus"
                    onTransitionClosedToOpen={() => {this.resetMonth();}}>
                 <div className="date-range-picker-control">
@@ -267,7 +271,7 @@ class DatePicker extends React.Component {
                            onChange={(value) => {this.updateTo(value);}}/>
                 </div>
                 <div tabIndex="-1" className="date-range-picker">
-                    <i onClick={() => this.left()} className="im icon-arrow-thin-left date-range-picker__arrow"></i>
+                    <i onClick={() => this.left()} className="im icon-arrow-thin-left date-range-picker__arrow" />
                     <ReactCSSTransitionGroup transitionEnter={true}
                                              transitionLeave={true}
                                              transitionEnterTimeout={300}
@@ -276,7 +280,7 @@ class DatePicker extends React.Component {
                                              className="date-range-picker__calendars">
                         {this.renderCalendars()}
                     </ReactCSSTransitionGroup>
-                    <i onClick={() => this.right()} className="im icon-arrow-thin-right date-range-picker__arrow"></i>
+                    <i onClick={() => this.right()} className="im icon-arrow-thin-right date-range-picker__arrow" />
                 </div>
             </Popup>
         );
