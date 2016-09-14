@@ -59,7 +59,7 @@ const routes = categories.map((category) => {
 });
 
 export default <Router history={browserHistory}>
-    <Route path="/" component={TimelogLibrary}>
+    <Route path="/rosemary-ui/" component={TimelogLibrary}>
         {routes}
     </Route>
 </Router>;
