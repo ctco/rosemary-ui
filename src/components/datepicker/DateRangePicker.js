@@ -12,12 +12,14 @@ import {
     getToday,
     addMonths,
     parse,
-    format} from '../../util/date-utils';
+    format
+} from '../../util/date-utils';
 
 import {
     formatDDMMYYYY,
     parseDDMMYYYY,
-    formatFullMonthYear} from '../../util/date-formats';
+    formatFullMonthYear
+} from '../../util/date-formats';
 
 import {isDefined} from '../../util/utils';
 
@@ -54,7 +56,7 @@ class DatePicker extends React.Component {
             toText: '',
             over: null,
             animation: 'date-range-picker__calendar--animation-right',
-            open:false
+            open: false
         };
 
         this.handleSelection = this.handleSelection.bind(this);
@@ -173,10 +175,11 @@ class DatePicker extends React.Component {
         if (this.isControlled()) {
             this.fireChangeEvent(this.state.fromText, toText);
         } else {
+            let open = this.state.from === null || to === null;
             this.setState({
                 to,
                 toText,
-                open: to === null
+                open
             }, this.fireChangeEventByState);
         }
     }
@@ -185,9 +188,11 @@ class DatePicker extends React.Component {
         if (this.isControlled()) {
             this.fireChangeEvent(fromText, this.state.toText);
         } else {
+            let open = this.state.to === null || from === null;
             this.setState({
                 from,
-                fromText
+                fromText,
+                open
             }, this.fireChangeEventByState);
         }
     }
@@ -248,7 +253,9 @@ class DatePicker extends React.Component {
                                     onMouseEnter={this.handleMouseEnter}
                                     onMouseLeave={this.handleMouseLeave}
                                     getStyles={this.getDateStyles}
-                                    componentWillUnmount={() => {this.transitioning = false;}}
+                                    componentWillUnmount={() => {
+                                        this.transitioning = false;
+                                    }}
                                     month={date}
                                     startDateType="simple"
                                     renderDatesOfOtherMonth={false}/>
@@ -263,15 +270,21 @@ class DatePicker extends React.Component {
                    open={this.state.open}
                    onPopupStateChange={(open) => this.setState({open})}
                    on="focus"
-                   onTransitionClosedToOpen={() => {this.resetMonth();}}>
+                   onTransitionClosedToOpen={() => {
+                       this.resetMonth();
+                   }}>
                 <div className="date-range-picker-control">
                     <Input className="date-range-picker-control__input" type="text" value={this.state.fromText}
-                           onChange={(value) => {this.updateFrom(value);}}/>
+                           onChange={(value) => {
+                               this.updateFrom(value);
+                           }}/>
                     <Input className="date-range-picker-control__input" type="text" value={this.state.toText}
-                           onChange={(value) => {this.updateTo(value);}}/>
+                           onChange={(value) => {
+                               this.updateTo(value);
+                           }}/>
                 </div>
                 <div tabIndex="-1" className="date-range-picker">
-                    <i onClick={() => this.left()} className="im icon-arrow-thin-left date-range-picker__arrow" />
+                    <i onClick={() => this.left()} className="im icon-arrow-thin-left date-range-picker__arrow"/>
                     <ReactCSSTransitionGroup transitionEnter={true}
                                              transitionLeave={true}
                                              transitionEnterTimeout={300}
@@ -280,7 +293,7 @@ class DatePicker extends React.Component {
                                              className="date-range-picker__calendars">
                         {this.renderCalendars()}
                     </ReactCSSTransitionGroup>
-                    <i onClick={() => this.right()} className="im icon-arrow-thin-right date-range-picker__arrow" />
+                    <i onClick={() => this.right()} className="im icon-arrow-thin-right date-range-picker__arrow"/>
                 </div>
             </Popup>
         );
