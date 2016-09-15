@@ -68,13 +68,11 @@ class DatePicker extends React.Component {
         if (nextProps.value) {
             let from = nextProps.value.from;
             let to = nextProps.value.to;
-            let open = isEmpty(from) || isEmpty(to);
             this.setState({
                 from: this.parseDate(from),
                 fromText: from,
                 to: this.parseDate(to),
-                toText: to,
-                open
+                toText: to
             });
         }
     }
@@ -171,10 +169,10 @@ class DatePicker extends React.Component {
     }
 
     updateStateTo(to, toText) {
+        let open = this.state.from === null || to === null;
         if (this.isControlled()) {
-            this.fireChangeEvent(this.state.fromText, toText);
+            this.fireChangeEvent(this.state.fromText, toText, open);
         } else {
-            let open = this.state.from === null || to === null;
             this.setState({
                 to,
                 toText,
@@ -184,10 +182,11 @@ class DatePicker extends React.Component {
     }
 
     updateStateFrom(from, fromText) {
+        let open = this.state.to === null || from === null;
+
         if (this.isControlled()) {
-            this.fireChangeEvent(fromText, this.state.toText);
+            this.fireChangeEvent(fromText, this.state.toText, open);
         } else {
-            let open = this.state.to === null || from === null;
             this.setState({
                 from,
                 fromText,
@@ -200,11 +199,19 @@ class DatePicker extends React.Component {
         this.fireChangeEvent(this.state.fromText, this.state.toText);
     }
 
-    fireChangeEvent(fromText, toText) {
+    fireChangeEvent(fromText, toText, open = true) {
         if (this.props.onChange) {
             this.props.onChange({
                 from: fromText,
                 to: toText
+            });
+        }
+
+        if (this.props.onPopupStateChange) {
+            this.props.onPopupStateChange(open);
+        } else {
+            this.setState({
+                open
             });
         }
     }
