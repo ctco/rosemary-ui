@@ -1,5 +1,5 @@
 import '../../assets/scss/components/_date-range-picker.scss';
-
+import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
@@ -23,8 +23,6 @@ import {
 
 import {isDefined} from '../../util/utils';
 
-
-import Select from '../select/Select';
 import DatePickerCalendar from './DatePickerCalendar';
 import Popup from '../Popup';
 import Input from '../Input';
@@ -70,12 +68,13 @@ class DatePicker extends React.Component {
         if (nextProps.value) {
             let from = nextProps.value.from;
             let to = nextProps.value.to;
-
+            let open = isEmpty(from) || isEmpty(to);
             this.setState({
                 from: this.parseDate(from),
                 fromText: from,
                 to: this.parseDate(to),
-                toText: to
+                toText: to,
+                open
             });
         }
     }
