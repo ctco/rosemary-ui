@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {DateRangePicker} from '../../../src';
 import DemoWithSnippet from '../../layout/DemoWithSnippet';
-import {updateDateFrom, updateDateTo} from '../../actions/date-picker-actions';
+import {updateDateFrom, updateDateTo,changePopupState} from '../../actions/date-picker-actions';
 
 export class DateRangePickerDemo extends React.Component {
     constructor(props) {
@@ -20,8 +20,11 @@ export class DateRangePickerDemo extends React.Component {
             <div>
                 <DemoWithSnippet>
                     <DateRangePicker />
-                    <h3>Controlled Date Picker</h3>
-                    <DateRangePicker onChange={(value) => this.handleRangeChange(value)} value={this.props.value}/>
+                    <h3>DRP can be controlled</h3>
+                    <DateRangePicker open={this.props.open}
+                                     onPopupStateChange={(open) => this.props.changePopupState(open)}
+                                     onChange={(value) => this.handleRangeChange(value)}
+                                     value={this.props.value}/>
                 </DemoWithSnippet>
             </div>
         );
@@ -32,12 +35,14 @@ const mapStateToProps = ({datePicker}) => ({
     value: {
         from: datePicker.from,
         to: datePicker.to
-    }
+    },
+    open: datePicker.open
 });
 const mapDispatchToProps = (dispatch) => (
     bindActionCreators({
         updateDateFrom,
-        updateDateTo
+        updateDateTo,
+        changePopupState
     }, dispatch)
 );
 
