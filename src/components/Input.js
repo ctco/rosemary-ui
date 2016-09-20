@@ -1,5 +1,3 @@
-import '../assets/scss/components/_text-input.scss';
-
 import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 import {isDefined} from '../util/utils';

@@ -1,4 +1,3 @@
-import '../../assets/scss/components/_date-range-picker.scss';
 import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 import ReactDOM from 'react-dom';

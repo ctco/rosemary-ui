@@ -1,4 +1,3 @@
-import '../../assets/scss/components/_radio.scss';
 import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 

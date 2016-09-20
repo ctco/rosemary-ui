@@ -13,14 +13,24 @@ var defaults = {
     devtool: 'source-map',
     plugins: [
         new ExtractTextPlugin('[name].css'),
-        new CopyWebpackPlugin([{
-            from: path.resolve('src/assets/scss'),
-            to: path.resolve('lib/sass')
-        }])
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve('src/assets/scss'),
+                to: path.resolve('lib/sass')
+            },
+            {
+                from: path.resolve('src/assets/fonts'),
+                to: path.resolve('lib/fonts')
+            },
+            {
+                from: path.resolve('src/assets/imgs'),
+                to: path.resolve('lib/imgs')
+            }
+        ])
     ],
     module: {
         noParse: [/autoit.js/]
-    },
+    }
 };
 
 module.exports.defaults = defaults;
