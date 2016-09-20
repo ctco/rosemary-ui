@@ -1,5 +1,3 @@
-import '../../assets/scss/components/_check-box-list.scss';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import find from 'lodash/find';

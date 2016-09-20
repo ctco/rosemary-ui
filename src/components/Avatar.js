@@ -1,5 +1,3 @@
-import '../assets/scss/components/_avatar.scss';
-
 import React, {PropTypes} from 'react';
 
 const PROPERTY_TYPES = {

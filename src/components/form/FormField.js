@@ -1,5 +1,3 @@
-import '../../assets/scss/components/_form.scss';
-
 import React, {Component} from 'react';
 import classNames from 'classnames';
 

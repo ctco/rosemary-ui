@@ -1,4 +1,11 @@
-$main-font:                   'Open Sans', 'Verdana', 'sans-serif' !default;
+$icomoon-font-path: '../fonts' !default;
+$icomoon-font-family: 'icomoon' !default;
+$icomoon-version: '1.0.0' !default;
+
+$text-font-path: '../fonts' !default;
+$text-font-family: 'Open Sans' !default;
+
+$main-font:                   $text-font-family, 'Verdana', 'sans-serif' !default;
 $font-size-base:              1.4rem;//todo
 $line-height-base:            2rem;//todo
 $text-shadow-base:            0px 1px 1px rgba(0,0,0,0.3);
@@ -6,14 +13,6 @@ $text-shadow-base:            0px 1px 1px rgba(0,0,0,0.3);
 //cursor
 $cursor-pointer:              pointer;
 $cursor-default:              default;
-
-//Grid setup
-$columns:                     18;
-$gutter-width:                20px;
-
-//Screen
-$screen-min-width:            960px !default;
-$screen-max-width:            1680px !default;
 
 //Colors
 $dodge-blue:                  #398ff4 !default;

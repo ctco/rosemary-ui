@@ -1,5 +1,3 @@
-import '../../assets/scss/components/_nav.scss';
-
 import React from 'react';
 import classNames from 'classnames';
 

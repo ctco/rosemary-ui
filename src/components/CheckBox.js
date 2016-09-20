@@ -1,5 +1,3 @@
-import '../assets/scss/components/_checkbox.scss';
-
 import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 

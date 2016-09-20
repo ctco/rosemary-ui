@@ -1,7 +1,6 @@
 @import 'variables/all';
-@import "mixins/mixins";
-@import 'grid/grid';
-@import 'icons';
+@import 'mixins/all';
+@import 'ionicons/ionicons';
 
 * {
   margin: 0;
@@ -52,7 +51,7 @@ p {
 }
 
 .im:before, .im:after {
-  font-family: "icomoon" !important;
+  font-family: $icomoon-font-family;
   font-style: normal;
   font-weight: normal;
   display: inline-block;
@@ -67,7 +66,7 @@ p {
 
 .ion {
   display: inline-block;
-  font-family: "Ionicons";
+  font-family: $ionicons-font-family;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -79,53 +78,52 @@ p {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 @font-face {
-  font-family: "Ionicons";
-  src:url("../fonts/ionicons.eot");
-  src:url("../fonts/ionicons.eot#iefix") format("embedded-opentype"),
-  url("../fonts/ionicons.woff") format("woff"),
-  url("../fonts/ionicons.ttf") format("truetype"),
-  url("../fonts/ionicons.svg#Ionicons") format("svg");
+  font-family: $ionicons-font-family;
+  src:url('#{$ionicons-font-path}/ionicons.eot?v=#{$ionicons-version}');
+  src:url('#{$ionicons-font-path}/ionicons.eot?v=#{$ionicons-version}#iefix') format('embedded-opentype'),
+  url('#{$ionicons-font-path}/ionicons.ttf?v=#{$ionicons-version}') format('truetype'),
+  url('#{$ionicons-font-path}/ionicons.woff?v=#{$ionicons-version}') format('woff'),
+  url('#{$ionicons-font-path}/ionicons.svg?v=#{$ionicons-version}#Ionicons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'icomoon';
-  src: url('../fonts/icomoon.eot');
-  src: url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/icomoon.woff') format('woff'),
-  url('../fonts/icomoon.ttf') format('truetype'),
-  url('../fonts/icomoon.svg?#icomoon') format('svg');
+  font-family: $icomoon-font-family;
+  src:url('#{$icomoon-font-path}/icomoon.eot?v=#{$icomoon-version}');
+  src:url('#{$icomoon-font-path}/icomoon.eot?v=#{$icomoon-version}#iefix') format('embedded-opentype'),
+  url('#{$icomoon-font-path}/icomoon.ttf?v=#{$icomoon-version}') format('truetype'),
+  url('#{$icomoon-font-path}/icomoon.woff?v=#{$icomoon-version}') format('woff'),
+  url('#{$icomoon-font-path}/icomoon.svg?v=#{$icomoon-version}#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Open Sans';
-  src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+  font-family: $text-font-family;
+  src: url('#{$text-font-path}/OpenSans-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Open Sans';
-  src: url('../fonts/OpenSans-Semibold.ttf') format('truetype');
+  font-family: $text-font-family;
+  src: url('#{$text-font-path}/OpenSans-Semibold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Open Sans';
-  src: url('../fonts/OpenSans-Bold.ttf') format('truetype');
+  font-family: $text-font-family;
+  src: url('#{$text-font-path}/OpenSans-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Open Sans';
-  src: url('../fonts/OpenSans-Light.ttf') format('truetype');
+  font-family: $text-font-family;
+  src: url('#{$text-font-path}/OpenSans-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
 }

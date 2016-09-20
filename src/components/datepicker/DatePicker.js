@@ -1,5 +1,3 @@
-import '../../assets/scss/components/_date-picker.scss';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
