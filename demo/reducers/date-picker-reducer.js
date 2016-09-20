@@ -3,7 +3,7 @@ import {DATE_RANGE_PICKER_FROM, DATE_RANGE_PICKER_TO, DATE_RANGE_PICKER_CHANGE} 
 const initialState = {
     from: '',
     to: '',
-    open: true
+    open: false
 };
 
 export default function datePickerReducer(state = initialState, action) {

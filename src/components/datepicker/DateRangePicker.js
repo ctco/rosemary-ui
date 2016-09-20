@@ -228,12 +228,11 @@ class DatePicker extends React.Component {
     }
 
     changePopupState(open) {
-        if (this.isPopupControlled()) {
-            if (this.props.onPopupStateChange) {
-                this.props.onPopupStateChange(open);
-            }
-        } else {
+        if (!this.isPopupControlled()) {
             this.setState({open});
+        }
+        if (this.props.onPopupStateChange) {
+            this.props.onPopupStateChange(open);
         }
     }
 
