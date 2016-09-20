@@ -96,7 +96,7 @@ class Select extends React.Component {
 
             return (
                 <div {...ref} className={className} key={option.id}
-                              onClick={() => this.select(option)}>{option.displayString}</div>
+                     onClick={() => this.select(option)}>{option.displayString}</div>
             );
         });
     }
@@ -130,16 +130,18 @@ class Select extends React.Component {
                     <div title={text}>
                         {text}
                     </div>
-                    <i className="im icon-arrow-down" />
+                    <i className="im icon-arrow-down"/>
                 </div>
 
                 <div className="select__popup">
                     { this.props.search &&
-                        <div className="select__search-container">
-                            <Input className="select__search text-input--sm"
-                                   onChange={(value) => this.applySearch(value)}
-                                   placeholder="Search ... "/>
-                        </div>
+                    <div className="select__search-container">
+                        <Input
+                            focus
+                            className="select__search text-input--sm"
+                            onChange={(value) => this.applySearch(value)}
+                            placeholder="Search ... "/>
+                    </div>
                     }
 
                     <div className="select__options">
