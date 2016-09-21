@@ -72,13 +72,14 @@ class Select extends React.Component {
             this.setState({open});
         }
 
+        if (this.props.onPopupStateChange) {
+            this.props.onPopupStateChange(open);
+        }
+
         if (open) {
             this.handlePopupOpening();
         }
 
-        if (this.props.onPopupStateChange) {
-            this.props.onPopupStateChange(open);
-        }
     }
 
     isControlled() {
