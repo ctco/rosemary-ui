@@ -43,7 +43,9 @@ class Select extends React.Component {
         }
 
         if (isDefined(nextProps.open)) {
-            this.setState({open: nextProps.open});
+            this.setState({open: nextProps.open}, () => {
+                this.handlePopupOpening();
+            });
         }
     }
 
@@ -69,17 +71,14 @@ class Select extends React.Component {
     handlePopupStateChange(open) {
 
         if (!this.isPopupControlled()) {
-            this.setState({open});
+            this.setState({open}, () => {
+                this.handlePopupOpening();
+            });
         }
 
         if (this.props.onPopupStateChange) {
             this.props.onPopupStateChange(open);
         }
-
-        if (open) {
-            this.handlePopupOpening();
-        }
-
     }
 
     isControlled() {
@@ -87,6 +86,9 @@ class Select extends React.Component {
     }
 
     handlePopupOpening() {
+        if (!this.isOpen()) {
+            return;
+        }
         this.setState({filtered: this.props.options});
         let popupContent = ReactDOM.findDOMNode(this.refs.popup.getContent());
         let input = ReactDOM.findDOMNode(this.refs.input);
