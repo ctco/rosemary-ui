@@ -11,6 +11,8 @@ import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
 const PROPERTY_TYPES = {
     placeholder: React.PropTypes.string,
     search: React.PropTypes.bool,
+    open: React.PropTypes.bool,
+    onPopupStateChange: React.PropTypes.func,
     value: React.PropTypes.number,
     options: React.PropTypes.arrayOf(React.PropTypes.shape({
         id: React.PropTypes.number.isRequired,
@@ -35,8 +37,13 @@ class Select extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+
         if (isDefined(nextProps.value)) {
             this.setState({selected: this.findById(nextProps.options, nextProps.value)});
+        }
+
+        if (isDefined(nextProps.open)) {
+            this.setState({open: nextProps.open});
         }
     }
 
@@ -60,9 +67,17 @@ class Select extends React.Component {
     }
 
     handlePopupStateChange(open) {
-        this.setState({open});
+
+        if (!this.isPopupControlled()) {
+            this.setState({open});
+        }
+
         if (open) {
             this.handlePopupOpening();
+        }
+
+        if (this.props.onPopupStateChange) {
+            this.props.onPopupStateChange(open);
         }
     }
 
@@ -109,6 +124,14 @@ class Select extends React.Component {
         });
     }
 
+    isOpen() {
+        return isDefined(this.props.open) ? this.props.open : this.state.open;
+    }
+
+    isPopupControlled() {
+        return isDefined(this.props.open);
+    }
+
     render() {
         let selectedObject = this.state.selected;
         let text = selectedObject ? selectedObject.displayString : this.props.placeholder;
@@ -122,7 +145,7 @@ class Select extends React.Component {
                    attachment="bottom left" on="click"
                    popupClassName="select__popover"
                    animationBaseName="select__popover--animation-slide-y"
-                   open={this.state.open}
+                   open={this.isOpen()}
                    onPopupStateChange={(open) => this.handlePopupStateChange(open)}>
                 <div id={this.props.id} ref="input" tabIndex="0" className={className}>
                     <div title={text}>
