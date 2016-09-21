@@ -21,8 +21,17 @@ export default class SelectDemo extends React.Component {
         ];
 
         this.state = {
-            value: 10
+            value: 10,
+            open: true
         };
+    }
+
+    handleChange(item) {
+        if (item === 3) {
+            this.setState({
+                open: false
+            });
+        }
     }
 
     render() {
@@ -66,6 +75,19 @@ export default class SelectDemo extends React.Component {
                 </h2>
                 <DemoWithSnippet>
                     <Select className="select--sm" placeholder="Small" options={this.options} search={true}/>
+                </DemoWithSnippet>
+
+                <h2>
+                    Can be Controllable(will close when option 3 are selected)
+                </h2>
+                <DemoWithSnippet>
+                    <Select className="select--sm"
+                            onPopupStateChange={(open) => {
+                                this.setState({open});
+                            }}
+                            open={this.state.open}
+                            onChange={(item) => this.handleChange(item)}
+                            options={this.options} search={true}/>
                 </DemoWithSnippet>
             </div>
         );
