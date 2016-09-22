@@ -8,10 +8,10 @@ export function endOfRange(dateRange, unit = 'day') {
   };
 }
 
-export function eventSegments(event, first, last, { startAccessor, endAccessor }) {
+export function eventSegments(event, first, last, { startAccessor, endAccessor, allDayAccessor }) {
   let slots = dates.diff(first, last, 'day');
   let start = dates.max(dates.startOf(get(event, startAccessor), 'day'), first);
-  let end = dates.min(dates.ceil(get(event, endAccessor), 'day'), last);
+  let end = dates.min(getEnd(event, endAccessor, allDayAccessor), last);
 
   let padding = dates.diff(first, start, 'day');
   let span = dates.diff(start, end, 'day');
