@@ -38,7 +38,9 @@ class Select extends React.Component {
 
     componentDidUpdate() {
         if (this.refs.searchInput instanceof Input) {
-            this.refs.searchInput.focus();
+            if (this.isOpen()) {
+                this.refs.searchInput.focus();
+            }
         }
     }
 
