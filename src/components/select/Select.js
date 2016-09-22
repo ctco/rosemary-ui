@@ -36,6 +36,12 @@ class Select extends React.Component {
         };
     }
 
+    componentDidUpdate() {
+        if (this.refs.searchInput instanceof Input) {
+            this.refs.searchInput.focus();
+        }
+    }
+
     componentWillReceiveProps(nextProps) {
 
         if (isDefined(nextProps.value)) {
@@ -161,7 +167,7 @@ class Select extends React.Component {
                     { this.props.search &&
                     <div className="select__search-container">
                         <Input
-                            focus
+                            ref="searchInput"
                             className="select__search text-input--sm"
                             onChange={(value) => this.applySearch(value)}
                             placeholder="Search ... "/>

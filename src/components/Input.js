@@ -5,7 +5,6 @@ import {isDefined} from '../util/utils';
 const PROPERTY_TYPES = {
     disabled: React.PropTypes.bool,
     placeholder: React.PropTypes.string,
-    focus: React.PropTypes.bool,
     type: React.PropTypes.oneOf(['text', 'password']),
     value: React.PropTypes.any,
     onBlur: React.PropTypes.func,
@@ -25,6 +24,10 @@ class Input extends React.Component {
             };
         }
         this.update = this.update.bind(this);
+    }
+
+    focus() {
+        this.refs.input.focus();
     }
 
     update(e) {
@@ -52,7 +55,6 @@ class Input extends React.Component {
         return (
             <div className={style}>
                 <input
-                    autoFocus={this.props.focus}
                     ref="input"
                     value={this.isControlled() ? this.props.value : this.state.value}
                     placeholder={this.props.placeholder}

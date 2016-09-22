@@ -22,17 +22,15 @@ export default class SelectDemo extends React.Component {
 
         this.state = {
             value: 10,
-            open: true
+            open: false
         };
     }
 
     handleChange(item) {
         if (item === 3) {
-            setTimeout(() => {
-                this.setState({
-                    open: false
-                });
-            },1000);
+            this.setState({
+                open: false
+            });
         }
     }
 
