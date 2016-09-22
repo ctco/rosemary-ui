@@ -60,9 +60,21 @@ export function eventLevels(rowSegments, limit = Infinity) {
   return { levels, extra };
 }
 
-export function inRange(e, start, end, { startAccessor, endAccessor }) {
+function getEnd(e, endAccessor, allDayAccessor) {
+  let isAllDay = get(e, allDayAccessor);
+  let date = get(e, endAccessor);
+
+  if (isAllDay) {
+    let floor = dates.startOf(date, 'day');
+    return dates.add(floor, 1, 'day');
+  } else {
+    return dates.ceil(date, 'day');
+  }
+}
+
+export function inRange(e, start, end, { startAccessor, endAccessor, allDayAccessor }) {
   let eStart = dates.startOf(get(e, startAccessor), 'day');
-  let eEnd = dates.ceil(get(e, endAccessor), 'day');
+  let eEnd = getEnd(e, endAccessor, allDayAccessor);
 
   let startsBeforeEnd = dates.lte(eStart, end, 'day');
   let endsAfterStart = dates.gt(eEnd, start, 'day');

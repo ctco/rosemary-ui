@@ -2,8 +2,8 @@ export default [
   {
     'title': 'All Day Event',
     'allDay': true,
-    'start': new Date(2015, 3, 0),
-    'end': new Date(2015, 3, 0),
+    'start': new Date(2015, 2, 30),
+    'end': new Date(2015, 2, 30),
     'type': 'vacation'
   },
   {
