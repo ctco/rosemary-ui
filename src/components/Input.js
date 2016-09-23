@@ -5,7 +5,7 @@ import {isDefined} from '../util/utils';
 const PROPERTY_TYPES = {
     disabled: React.PropTypes.bool,
     placeholder: React.PropTypes.string,
-    max: React.PropTypes.number,
+    maxLength: React.PropTypes.number,
     type: React.PropTypes.oneOf(['text', 'password']),
     value: React.PropTypes.any,
     onBlur: React.PropTypes.func,
