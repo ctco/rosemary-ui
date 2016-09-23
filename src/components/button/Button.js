@@ -1,5 +1,3 @@
-import '../../assets/scss/components/_button.scss';
-
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
@@ -24,7 +22,7 @@ class Button extends React.Component {
         });
 
         return (
-            <div className={style} onClick={this.onClickButton}>
+            <div id={this.props.id} className={style} onClick={this.onClickButton}>
                 {this.props.children || this.props.text}
             </div>
         );

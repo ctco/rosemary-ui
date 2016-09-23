@@ -1,5 +1,4 @@
-import '../../assets/scss/components/_date-range-picker.scss';
-
+import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
@@ -12,17 +11,17 @@ import {
     getToday,
     addMonths,
     parse,
-    format} from '../../util/date-utils';
+    format
+} from '../../util/date-utils';
 
 import {
     formatDDMMYYYY,
     parseDDMMYYYY,
-    formatFullMonthYear} from '../../util/date-formats';
+    formatFullMonthYear
+} from '../../util/date-formats';
 
 import {isDefined} from '../../util/utils';
 
-
-import Select from '../select/Select';
 import DatePickerCalendar from './DatePickerCalendar';
 import Popup from '../Popup';
 import Input from '../Input';
@@ -31,6 +30,8 @@ const PROPERTY_TYPES = {
     format: React.PropTypes.func,
     parse: React.PropTypes.func,
     formatHeader: React.PropTypes.func,
+    open: React.PropTypes.bool,
+    onPopupStateChange: React.PropTypes.func,
     value: React.PropTypes.shape({
         from: React.PropTypes.string,
         to: React.PropTypes.string
@@ -53,7 +54,8 @@ class DatePicker extends React.Component {
             fromText: '',
             toText: '',
             over: null,
-            animation: 'date-range-picker__calendar--animation-right'
+            animation: 'date-range-picker__calendar--animation-right',
+            open: false
         };
 
         this.handleSelection = this.handleSelection.bind(this);
@@ -67,7 +69,6 @@ class DatePicker extends React.Component {
         if (nextProps.value) {
             let from = nextProps.value.from;
             let to = nextProps.value.to;
-
             this.setState({
                 from: this.parseDate(from),
                 fromText: from,
@@ -75,10 +76,28 @@ class DatePicker extends React.Component {
                 toText: to
             });
         }
+
+        if (isDefined(nextProps.open)) {
+            this.setState({
+                open: nextProps.open
+            });
+        }
+    }
+
+    isPopupControlled() {
+        return isDefined(this.props.open);
     }
 
     isControlled() {
         return isDefined(this.props.value);
+    }
+
+    isOpen() {
+        if (this.isPopupControlled()) {
+            return this.props.open;
+        }
+
+        return this.state.open;
     }
 
     left() {
@@ -92,7 +111,6 @@ class DatePicker extends React.Component {
             animation: 'date-range-picker__calendar--animation-left'
         });
     }
-
 
     right() {
         if (this.transitioning) {
@@ -169,37 +187,51 @@ class DatePicker extends React.Component {
     }
 
     updateStateTo(to, toText) {
+        let open = this.state.from === null || to === null;
         if (this.isControlled()) {
-            this.fireChangeEvent(this.state.fromText, toText);
+            this.fireChangeEvent(this.state.fromText, toText, open);
         } else {
             this.setState({
                 to,
-                toText
+                toText,
+                open
             }, this.fireChangeEventByState);
         }
     }
 
     updateStateFrom(from, fromText) {
+        let open = this.state.to === null || from === null;
         if (this.isControlled()) {
-            this.fireChangeEvent(fromText, this.state.toText);
+            this.fireChangeEvent(fromText, this.state.toText, open);
         } else {
             this.setState({
                 from,
-                fromText
+                fromText,
+                open
             }, this.fireChangeEventByState);
         }
     }
 
     fireChangeEventByState() {
-        this.fireChangeEvent(this.state.fromText, this.state.toText);
+        this.fireChangeEvent(this.state.fromText, this.state.toText, this.state.open);
     }
 
-    fireChangeEvent(fromText, toText) {
+    fireChangeEvent(fromText, toText, open = true) {
         if (this.props.onChange) {
             this.props.onChange({
                 from: fromText,
                 to: toText
             });
+        }
+        this.changePopupState(open);
+    }
+
+    changePopupState(open) {
+        if (!this.isPopupControlled()) {
+            this.setState({open});
+        }
+        if (this.props.onPopupStateChange) {
+            this.props.onPopupStateChange(open);
         }
     }
 
@@ -246,7 +278,9 @@ class DatePicker extends React.Component {
                                     onMouseEnter={this.handleMouseEnter}
                                     onMouseLeave={this.handleMouseLeave}
                                     getStyles={this.getDateStyles}
-                                    componentWillUnmount={() => {this.transitioning = false;}}
+                                    componentWillUnmount={() => {
+                                        this.transitioning = false;
+                                    }}
                                     month={date}
                                     startDateType="simple"
                                     renderDatesOfOtherMonth={false}/>
@@ -258,16 +292,24 @@ class DatePicker extends React.Component {
         return (
             <Popup popupClassName="popover-colored"
                    attachment="bottom left"
+                   open={this.isOpen()}
+                   onPopupStateChange={(open) => this.changePopupState(open)}
                    on="focus"
-                   onTransitionClosedToOpen={() => {this.resetMonth();}}>
+                   onTransitionClosedToOpen={() => {
+                       this.resetMonth();
+                   }}>
                 <div className="date-range-picker-control">
                     <Input className="date-range-picker-control__input" type="text" value={this.state.fromText}
-                           onChange={(value) => {this.updateFrom(value);}}/>
+                           onChange={(value) => {
+                               this.updateFrom(value);
+                           }}/>
                     <Input className="date-range-picker-control__input" type="text" value={this.state.toText}
-                           onChange={(value) => {this.updateTo(value);}}/>
+                           onChange={(value) => {
+                               this.updateTo(value);
+                           }}/>
                 </div>
                 <div tabIndex="-1" className="date-range-picker">
-                    <i onClick={() => this.left()} className="im icon-arrow-thin-left date-range-picker__arrow"></i>
+                    <i onClick={() => this.left()} className="im icon-arrow-thin-left date-range-picker__arrow"/>
                     <ReactCSSTransitionGroup transitionEnter={true}
                                              transitionLeave={true}
                                              transitionEnterTimeout={300}
@@ -276,7 +318,7 @@ class DatePicker extends React.Component {
                                              className="date-range-picker__calendars">
                         {this.renderCalendars()}
                     </ReactCSSTransitionGroup>
-                    <i onClick={() => this.right()} className="im icon-arrow-thin-right date-range-picker__arrow"></i>
+                    <i onClick={() => this.right()} className="im icon-arrow-thin-right date-range-picker__arrow"/>
                 </div>
             </Popup>
         );

@@ -1,5 +1,3 @@
-import '../../assets/scss/components/_select.scss';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
@@ -8,9 +6,13 @@ import Popup from '../Popup';
 import Input from '../Input';
 import {isDefined, contains} from '../../util/utils';
 
+import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
+
 const PROPERTY_TYPES = {
     placeholder: React.PropTypes.string,
     search: React.PropTypes.bool,
+    open: React.PropTypes.bool,
+    onPopupStateChange: React.PropTypes.func,
     value: React.PropTypes.number,
     options: React.PropTypes.arrayOf(React.PropTypes.shape({
         id: React.PropTypes.number.isRequired,
@@ -29,14 +31,29 @@ class Select extends React.Component {
         super(props);
         this.state = {
             selected: this.findById(this.props.options, props.value),
-            popupState: 'closed',
+            open: false,
             filtered: props.options
         };
     }
 
+    componentDidUpdate() {
+        if (this.refs.searchInput instanceof Input) {
+            if (this.isOpen()) {
+                this.refs.searchInput.focus();
+            }
+        }
+    }
+
     componentWillReceiveProps(nextProps) {
+
         if (isDefined(nextProps.value)) {
             this.setState({selected: this.findById(nextProps.options, nextProps.value)});
+        }
+
+        if (isDefined(nextProps.open)) {
+            this.setState({open: nextProps.open}, () => {
+                this.handlePopupOpening();
+            });
         }
     }
 
@@ -49,20 +66,26 @@ class Select extends React.Component {
         if (!this.isControlled()) {
             this.setState({
                 selected: option,
-                popupState: 'closing'
+                open: false
             });
         } else {
-            this.setState({popupState: 'closing'});
+            this.setState({open: false});
         }
         if (this.props.onChange) {
             this.props.onChange(option.id, option);
         }
     }
 
-    handlePopupStateChange(newPopupState) {
-        this.setState({popupState: newPopupState});
-        if (newPopupState === 'open') {
-            this.handlePopupOpening();
+    handlePopupStateChange(open) {
+
+        if (!this.isPopupControlled()) {
+            this.setState({open}, () => {
+                this.handlePopupOpening();
+            });
+        }
+
+        if (this.props.onPopupStateChange) {
+            this.props.onPopupStateChange(open);
         }
     }
 
@@ -71,6 +94,9 @@ class Select extends React.Component {
     }
 
     handlePopupOpening() {
+        if (!this.isOpen()) {
+            return;
+        }
         this.setState({filtered: this.props.options});
         let popupContent = ReactDOM.findDOMNode(this.refs.popup.getContent());
         let input = ReactDOM.findDOMNode(this.refs.input);
@@ -94,19 +120,27 @@ class Select extends React.Component {
 
             return (
                 <div {...ref} className={className} key={option.id}
-                              onClick={() => this.select(option)}>{option.displayString}</div>
+                     onClick={() => this.select(option)}>{option.displayString}</div>
             );
         });
     }
 
     applySearch(value) {
-        let filtered = this.props.options.slice(0).filter((option) => {
+        let filtered = this.props.options.filter((option) => {
             return contains(option.displayString, value);
         });
 
         this.setState({
             filtered: filtered
         });
+    }
+
+    isOpen() {
+        return isDefined(this.props.open) ? this.props.open : this.state.open;
+    }
+
+    isPopupControlled() {
+        return isDefined(this.props.open);
     }
 
     render() {
@@ -122,22 +156,24 @@ class Select extends React.Component {
                    attachment="bottom left" on="click"
                    popupClassName="select__popover"
                    animationBaseName="select__popover--animation-slide-y"
-                   popupState={this.state.popupState}
-                   onPopupStateChange={(newPopupState) => this.handlePopupStateChange(newPopupState)}>
-                <div ref="input" tabIndex="0" className={className}>
+                   open={this.isOpen()}
+                   onPopupStateChange={(open) => this.handlePopupStateChange(open)}>
+                <div id={this.props.id} ref="input" tabIndex="0" className={className}>
                     <div title={text}>
                         {text}
                     </div>
-                    <i className="im icon-arrow-down" />
+                    <i className="im icon-arrow-down"/>
                 </div>
 
                 <div className="select__popup">
                     { this.props.search &&
-                        <div className="select__search-container">
-                            <Input className="select__search text-input--sm"
-                                   onChange={(value) => this.applySearch(value)}
-                                   placeholder="Search ... "/>
-                        </div>
+                    <div className="select__search-container">
+                        <Input
+                            ref="searchInput"
+                            className="select__search text-input--sm"
+                            onChange={(value) => this.applySearch(value)}
+                            placeholder="Search ... "/>
+                    </div>
                     }
 
                     <div className="select__options">
@@ -152,4 +188,4 @@ class Select extends React.Component {
 Select.propTypes = PROPERTY_TYPES;
 Select.defaultProps = DEFAULT_PROPS;
 
-export default Select;
+export default withIdAndTypeContext(Select);

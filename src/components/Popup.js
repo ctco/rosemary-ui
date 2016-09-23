@@ -1,5 +1,3 @@
-import '../assets/scss/components/_popup.scss';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
@@ -37,10 +35,10 @@ const PROPERTY_TYPES = {
     changeAttachmentDynamically: React.PropTypes.bool,
     modal: React.PropTypes.bool,
     animationBaseName: React.PropTypes.string,
-    popupState: React.PropTypes.oneOf(values(POPUP_STATE)),
     onOpen: React.PropTypes.func,
     onTransitionClosedToOpen: React.PropTypes.func,
-    onPopupStateChange: React.PropTypes.func
+    onPopupStateChange: React.PropTypes.func,
+    open: React.PropTypes.bool
 };
 const DEFAULT_PROPS = {
     on: 'hover',
@@ -61,19 +59,26 @@ class PopupElement extends React.Component {
     }
 
     render() {
+        let attrForType = this.context.parentType;
+        let attrForId = this.props.id || this.context.id;
         return (
-            <div className={this.props.popupClassName}>
+            <div data-attr-for-type={attrForType} data-attr-for-id={attrForId} className={this.props.popupClassName}>
                 {this.props.children}
             </div>
         );
     }
 }
 
+PopupElement.contextTypes = {
+    id: React.PropTypes.string,
+    parentType: React.PropTypes.string
+};
+
 class Popup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            popupState: props.popupState || POPUP_STATE.CLOSED
+            popupState: isDefined(props.open) && props.open ? POPUP_STATE.OPEN : POPUP_STATE.CLOSED
         };
         this.overlayElement = null;
         this.openTimeout = null;
@@ -90,11 +95,20 @@ class Popup extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const popupState = nextProps.popupState;
-        if (popupState && popupState !== this.state.popupState) {
-            this.setState({popupState});
-            this.applyOverlay(popupState);
+        if (isDefined(nextProps.open)) {
+            const isOpen = nextProps.open;
+
+            if (isOpen && POPUP_STATE.OPEN !== this.state.popupState) {
+                this.updatePopupState(POPUP_STATE.OPEN);
+            } else if (!isOpen && POPUP_STATE.OPEN === this.state.popupState) {
+                this.updatePopupState(POPUP_STATE.CLOSING);
+            }
         }
+    }
+
+    updatePopupState(popupState) {
+        this.setState({popupState});
+        this.applyOverlay(popupState);
     }
 
     getChildContext() {
@@ -141,17 +155,17 @@ class Popup extends React.Component {
     }
 
     changeState(popupState) {
-        if (this.props.onPopupStateChange) {
-            this.props.onPopupStateChange(popupState);
+        if (POPUP_STATE.CLOSED !== popupState && this.props.onPopupStateChange) {
+            this.props.onPopupStateChange(POPUP_STATE.OPEN === popupState);
         }
-        if (!this.isPopupStateControlled()) {
-            this.setState({popupState});
-            this.applyOverlay(popupState);
+
+        if (POPUP_STATE.CLOSED === popupState || !this.isPopupStateControlled()) {
+            this.updatePopupState(popupState);
         }
     }
 
     isPopupStateControlled() {
-        return isDefined(this.props.popupState);
+        return isDefined(this.props.open);
     }
 
     scheduleOpen() {
@@ -330,7 +344,8 @@ class Popup extends React.Component {
                     handlers.onClick();
                 }
             },
-            className: targetClassNames
+            className: targetClassNames,
+            id: target.props.id || this.props.id
         });
 
         return target;
@@ -343,7 +358,7 @@ class Popup extends React.Component {
 
         let element = React.Children.toArray(this.props.children)[1];
         return (
-            <PopupElement ref="content" popupClassName="popup-content" key={'popup'}
+            <PopupElement id={this.props.id} ref="content" popupClassName="popup-content" key={'popup'}
                           onUnmount={() => {this.closeCompletely();}}>
                 {element}
             </PopupElement>

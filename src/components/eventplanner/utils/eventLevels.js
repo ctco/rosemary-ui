@@ -8,10 +8,10 @@ export function endOfRange(dateRange, unit = 'day') {
   };
 }
 
-export function eventSegments(event, first, last, { startAccessor, endAccessor }) {
+export function eventSegments(event, first, last, { startAccessor, endAccessor, allDayAccessor }) {
   let slots = dates.diff(first, last, 'day');
   let start = dates.max(dates.startOf(get(event, startAccessor), 'day'), first);
-  let end = dates.min(dates.ceil(get(event, endAccessor), 'day'), last);
+  let end = dates.min(getEnd(event, endAccessor, allDayAccessor), last);
 
   let padding = dates.diff(first, start, 'day');
   let span = dates.diff(start, end, 'day');
@@ -60,9 +60,21 @@ export function eventLevels(rowSegments, limit = Infinity) {
   return { levels, extra };
 }
 
-export function inRange(e, start, end, { startAccessor, endAccessor }) {
+function getEnd(e, endAccessor, allDayAccessor) {
+  let isAllDay = get(e, allDayAccessor);
+  let date = get(e, endAccessor);
+
+  if (isAllDay) {
+    let floor = dates.startOf(date, 'day');
+    return dates.add(floor, 1, 'day');
+  } else {
+    return dates.ceil(date, 'day');
+  }
+}
+
+export function inRange(e, start, end, { startAccessor, endAccessor, allDayAccessor }) {
   let eStart = dates.startOf(get(e, startAccessor), 'day');
-  let eEnd = dates.ceil(get(e, endAccessor), 'day');
+  let eEnd = getEnd(e, endAccessor, allDayAccessor);
 
   let startsBeforeEnd = dates.lte(eStart, end, 'day');
   let endsAfterStart = dates.gt(eEnd, start, 'day');

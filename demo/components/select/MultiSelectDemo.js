@@ -26,11 +26,17 @@ export default class MultiSelectDemo extends React.Component {
                 <DemoWithSnippet>
                     <MultiSelect placeholder="Please select..." options={this.manyOptions} onChange={(ids) => {
                         console.log(ids);
-                    }} inputProps={{
-                        'data-selenium-id': 'multi-select'
-                    }} tooltipProps={{
-                        'data-selenium-id': 'multi-select-tooltip'
-                    }}/>
+                    }} />
+                </DemoWithSnippet>
+
+                <h3> Controlled </h3>
+                <DemoWithSnippet>
+                    <MultiSelect placeholder="Please select..."
+                                 options={this.manyOptions}
+                                 value={[0,626,1]}
+                                 onChange={(ids) => {
+                        console.log(ids);
+                    }} id="multi-select" />
                 </DemoWithSnippet>
             </div>
         );

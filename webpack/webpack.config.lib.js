@@ -14,7 +14,7 @@ module.exports = webpackUtils.merge(base.defaults, {
     output: {
         path: path.join(__dirname, './../lib'),
         filename: 'index.js',
-        library: 'timelog-components',
+        library: 'rosemary-ui',
         libraryTarget: 'umd'
     },
     externals: [
@@ -52,7 +52,7 @@ module.exports = webpackUtils.merge(base.defaults, {
             {test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css'), include: [path.resolve('src')]},
             {test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!postcss!sass?outputStyle=compact'), include: [path.resolve('src')]},
             {test: /\.png$/, loader: 'file', include: [path.resolve('src')]},
-            {test: /\.(woff|woff2|eot|ttf|svg)$/, loader: 'url?limit=100000', include: [path.resolve('src')]}
+            {test: /\.(woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=100000', include: [path.resolve('src')]}
         ]
     }
 });
