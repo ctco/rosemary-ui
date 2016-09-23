@@ -16,13 +16,13 @@ export default class NavBarDemo extends React.Component {
                     </NavItem>
                     <NavHrefItem active={true}>
                         <Link to="/page1">
-                            <i className="im icon-my-efforts icon rm-nav-icon"/>
+                            <i className="im clock icon rm-nav-icon"/>
                             <span className="rm-nav-bar__item-link">Page 1</span>
                         </Link>
                     </NavHrefItem>
                     <NavHrefItem>
                         <Link to="/page2">
-                            <i className="im icon-my-efforts icon rm-nav-icon"/>
+                            <i className="im clock icon rm-nav-icon"/>
                             <span className="rm-nav-bar__item-link">Page 2</span>
                         </Link>
                     </NavHrefItem>
@@ -54,13 +54,13 @@ export default class NavBarDemo extends React.Component {
                 <Nav>
                     <NavHrefItem>
                         <Link to="http://www.google.com">
-                            <i className="im icon-my-efforts icon rm-nav-icon"/>
+                            <i className="im icon-clock icon rm-nav-icon"/>
                             <span className="rm-nav-bar__item-link">Internal_Link</span>
                         </Link>
                     </NavHrefItem>
                     <NavHrefItem>
                         <a href="http://www.google.com">
-                            <i className="im icon-my-efforts icon rm-nav-icon"/>
+                            <i className="im icon-cal-vacation icon rm-nav-icon"/>
                             <span className="rm-nav-bar__item-link">External_Link</span>
                         </a>
                     </NavHrefItem>
@@ -72,23 +72,23 @@ export default class NavBarDemo extends React.Component {
                 <Nav>
                     <NavHrefItem>
                         <Link to="/p1">
-                            <i className="im icon-my-efforts icon rm-nav-icon"/>
+                            <i className="im icon-palm icon rm-nav-icon"/>
                             <span className="rm-nav-bar__item-link">NavHrefItemNoHover</span>
                         </Link>
                     </NavHrefItem>
                     <NavHrefItem withHoverEffect={true}>
                         <Link to="/p3">
-                            <i className="im icon-my-efforts icon rm-nav-icon"/>
+                            <i className="im icon-plane icon rm-nav-icon"/>
                             <span className="rm-nav-bar__item-link">NavHrefItemHasHover</span>
                         </Link>
                     </NavHrefItem>
 
                     <NavItem onClick={() => alert('some handler')}>
-                        <i className="im icon-my-efforts icon rm-nav-icon"/>
+                        <i className="im icon-sick icon rm-nav-icon"/>
                         <a className="rm-nav-bar__item-link">NavItemNoHover</a>
                     </NavItem>
                     <NavItem withHoverEffect={true} onClick={() => alert('some handler')}>
-                        <i className="im icon-my-efforts icon rm-nav-icon"/>
+                        <i className="im icon-gift icon rm-nav-icon"/>
                         <a className="rm-nav-bar__item-link">NavItemHasHover</a>
                     </NavItem>
                 </Nav>
