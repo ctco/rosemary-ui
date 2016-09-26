@@ -48,6 +48,9 @@ import TextAreaOptions from '../components/textarea/TextAreaOptions';
 import FeedbackDemo from '../components/feedback/FeedbackDemo';
 import FeedbackDescription from '../components/feedback/FeedbackDescription';
 
+import PagerDemo from '../components/switch/PagerDemo';
+import PagerOptions from '../components/switch/PagerOptions';
+
 export default [
     {
         name: 'Components',
@@ -216,6 +219,17 @@ export default [
                         name: 'Demo', component: FeedbackDemo
                     }, {
                         name: 'Description', component: FeedbackDescription
+                    }
+                ]
+            },
+            {
+                name: 'Pager',
+                link: '/',
+                components: [
+                    {
+                        name: 'Demo', component: PagerDemo
+                    }, {
+                        name: 'Options', component: PagerOptions
                     }
                 ]
             }

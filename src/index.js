@@ -18,6 +18,7 @@ import FormField from './components/form/FormField';
 import Label from './components/Label';
 import TextArea from './components/TextArea';
 import FeedbackManager from './components/feedback/FeedbackManager';
+import Pager from './components/Pager';
 
 import * as dateUtils from './util/date-utils';
 import * as dateFormats from './util/date-formats';
@@ -45,5 +46,6 @@ export {
     DateRangePicker,
     dateUtils,
     dateFormats,
-    FeedbackManager
+    FeedbackManager,
+    Pager
 };

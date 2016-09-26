@@ -1,0 +1,29 @@
+@import '../variables/variables';
+
+.ros-pager {
+  display: inline-block;
+  width: 250px;
+  height: 36px;
+  line-height: 36px;
+
+  .ros-pager__btn {
+    width: 25px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    color: rgba($black, .58);
+
+    &:hover {
+      color: $black;
+      cursor: $cursor-pointer;
+    }
+  }
+  .ros-pager__value {
+    display: inline-block;
+    vertical-align: middle;
+    width: 200px;
+    text-align: center;
+    font-weight: $semi-bold-weight;
+    font-size: 2rem;
+  }
+}
