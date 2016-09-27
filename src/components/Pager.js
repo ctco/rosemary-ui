@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 
 const PROPERTY_TYPES = {
