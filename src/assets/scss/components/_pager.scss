@@ -1,4 +1,5 @@
 @import '../variables/variables';
+@import '../mixins/all';
 
 .ros-pager {
   display: inline-block;
@@ -25,5 +26,6 @@
     text-align: center;
     font-weight: $semi-bold-weight;
     font-size: 2rem;
+    @include user-select(none);
   }
 }

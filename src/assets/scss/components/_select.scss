@@ -69,7 +69,7 @@
 */
 
 .select__option {
-  padding: 6px 0 6px 8px;
+  padding: 6px 0 6px 12px;
   cursor: $cursor-pointer;
   @include fontSizeM;
 
@@ -81,6 +81,10 @@
     background-color: $select__option-selected-background-color;
     color: $select__option-selected-color;
   }
+}
+
+.select__clear-btn {
+  padding: 6px 18px 6px;
 }
 
 .select__popover {
