@@ -1,0 +1,13 @@
+@import '../variables/variables';
+
+.ros-link {
+  color: $dodge-blue;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-family: inherit;
+
+  &:hover {
+    cursor: $cursor-pointer;
+    text-decoration: underline;
+  }
+}
