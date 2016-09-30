@@ -55,7 +55,7 @@ class FeedbackCard extends React.Component {
                             {this.getTitle(this.props.message.type)}
                         </div>
                         <div className="card-message__description">
-                            {this.props.message.text}
+                            <span dangerouslySetInnerHTML={{__html: this.props.message.text}} />
                         </div>
                         <i onClick={(e) => this.hide()} className="im icon-close close-message" />
 
