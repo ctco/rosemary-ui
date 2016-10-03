@@ -9,7 +9,6 @@
     @include control-base;
     padding: 0 12px;
     width: inherit;
-    min-width: $form-min-width;
     -webkit-font-smoothing: antialiased;
 
     &:focus,
