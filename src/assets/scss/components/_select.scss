@@ -7,7 +7,7 @@
   background-color: $select-background-color;
   position: relative;
   cursor: $cursor-pointer;
-  min-width: $form-min-width;
+  width: $form-min-width;
 
   &.placeholder {
     color: $ash-grey;
@@ -28,7 +28,7 @@
 
   > div {
     @include ellipsis;
-    margin: 0 22px 0 8px;
+    margin: 0 30px 0 8px;
   }
 
   & i.icon-arrow-down {
@@ -121,12 +121,12 @@
   width: 100%;
 
   & input {
-    min-width: 235px;
-    width: 235px;
+    width: 100%;
   }
 }
 
 .select__options {
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   max-height: 190px;
 }
