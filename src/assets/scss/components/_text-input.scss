@@ -7,7 +7,6 @@
 
   > input {
     @include control-base;
-    padding: 0 12px;
     width: inherit;
     -webkit-font-smoothing: antialiased;
 
@@ -34,5 +33,26 @@
 .text-input--lg {
   > input {
     @include control-lg;
+  }
+}
+
+.icon-input {
+  position: relative;
+  display: inline-block;
+
+  .text-input {
+    > input {
+      padding-right: 34px;
+    }
+  }
+  i {
+    width: 34px;
+    height: 100%;
+    @include display-flex;
+    @include align-items(center);
+    @include justify-content(center);
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }

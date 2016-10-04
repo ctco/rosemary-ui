@@ -7,11 +7,21 @@ export default class InputDemo extends React.Component {
     render() {
         return (
             <DemoWithSnippet>
-                <Input placeholder="small input" className="text-input--sm"/>
+                <div className="icon-input">
+                    <Input placeholder="small input" className="text-input--sm"/>
+                    <i className="im icon-search icon--xs" />
+                </div>
                 <br/><br/>
-                <Input placeholder="default input" onChange={(value) => alert(value)} type="text"/>
+                <div className="icon-input">
+                    <Input placeholder="default input" onChange={(value) => console.log(value)} type="text"/>
+                    <i className="im icon-search icon--xs"/>
+                </div>
+
                 <br/><br/>
-                <Input placeholder="large Input" className="text-input--lg"/>
+                <div className="icon-input">
+                    <Input placeholder="large Input" className="text-input--lg"/>
+                    <i className="im icon-search icon--s"/>
+                </div>
             </DemoWithSnippet>
         );
     }
