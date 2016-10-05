@@ -43,7 +43,8 @@
 .rm-nav-bar__item {
   float: left;
   height: 50px;
-  line-height: 50px;
+  @include display-flex;
+  @include align-items(center);
   padding: 0 14px;
   @include transition($transition-slow);
   text-decoration: none;
@@ -85,9 +86,6 @@
 }
 
 .rm-nav-brand > .rm-nav-icon {
-  font-size: 24px;
-  top: 3px;
-  position: relative;
   margin-right: 5px;
 }
 
@@ -96,6 +94,7 @@
 }
 
 .rm-nav-icon {
+  width: 30px;
   color: $nav-icon-base-color;
   font-size: 24px;
   padding-right: 8px;
