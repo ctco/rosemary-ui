@@ -2,20 +2,24 @@
 @import "../mixins/all";
 
 .date-range-picker-control {
+  width: 300px;
   display: inline-block;
 }
 
 .date-range-picker-control__input {
   color: rgba($black, 0.4);
-
-  input {
-    width: 126px;
-    min-width: 126px;
+  width: 50%;
+  .text-input {
+    width: 100%;
   }
 }
 
 .date-range-picker-control__input:first-child {
-  margin-right: 10px;
+  padding-right: 5px;
+}
+
+.date-range-picker-control__input:last-child {
+  padding-left: 5px;
 }
 
 .date-range-picker {

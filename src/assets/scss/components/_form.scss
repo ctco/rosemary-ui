@@ -26,13 +26,13 @@
 
 .form-field__control {
   width: 100%;
+
+  .form__control {
+    width: 100%;
+  }
 }
 
-.form__control {
-  width: 100%;
-}
-
-.form-field__error-msg {
+.form-field--error-msg {
   color: $lipstick;
   font-size: 1.3rem;
   padding-top: 3px;
