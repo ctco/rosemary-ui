@@ -46,6 +46,13 @@
   color: $out-of-range-color;
 }
 
+.rbc-off-range-non-work {
+  color: $out-of-range-non-work-color;
+}
+
+.rbc-off-non-work {
+  color: $non-work-color;
+}
 .rbc-header {
   overflow: hidden;
   text-overflow: ellipsis;

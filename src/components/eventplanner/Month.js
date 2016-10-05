@@ -5,6 +5,7 @@ import dates from './utils/dates';
 import localizer from './localizer';
 import chunk from 'lodash/chunk';
 import omit from 'lodash/omit';
+import collection from 'lodash/collection';
 
 import { navigate } from './utils/constants';
 import { notify } from './utils/helpers';
@@ -141,7 +142,7 @@ class MonthView extends React.Component {
     renderWeek(week, weekIdx, content) {
         let { first, last } = endOfRange(week);
         let evts = eventsForWeek(this.props.events, week[0], week[week.length - 1], this.props);
-
+        let nonWorkingDays = this.props.nonWorkingDays;
         evts.sort((a, b) => sortEvents(a, b, this.props));
 
         let segments = evts = evts.map((evt) => eventSegments(evt, first, last, this.props));
@@ -166,7 +167,7 @@ class MonthView extends React.Component {
                         className="rbc-row"
                         ref={!weekIdx && ((r) => this._firstDateRow = r)}
                         >
-                        { this._dates(week) }
+                        { this._dates(week, nonWorkingDays) }
                     </div>
                     {
                         content(levels, week, weekIdx)
@@ -240,16 +241,18 @@ class MonthView extends React.Component {
         );
     }
 
-    _dates(row) {
+    _dates(row, nonWorkingDays) {
         return row.map((day, colIdx) => {
             let offRange = dates.month(day) !== dates.month(this.props.date);
-
+            let isNonWorkDay = collection.find(nonWorkingDays, function(nonWorkDay) { return dates.isSameDate(nonWorkDay, day); });
             return (
                 <div
                     key={'header_' + colIdx}
                     style={segStyle(1, 7)}
                     className={cn('rbc-date-cell', {
-            'rbc-off-range': offRange,
+            'rbc-off-range': offRange && !isNonWorkDay,
+            'rbc-off-range-non-work': offRange && isNonWorkDay,
+            'rbc-off-non-work': !offRange && isNonWorkDay,
             'rbc-now': dates.eq(day, new Date(), 'day'),
             'rbc-current': dates.eq(day, this.props.date, 'day')
           })}

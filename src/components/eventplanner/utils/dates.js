@@ -89,6 +89,10 @@ let dates = assign(dateMath, {
     return dates.eq(dateA, dateB, 'month');
   },
 
+  isSameDate(dateA, dateB) {
+    return dates.eq(dateA, dateB, 'month') && dates.eq(dateA, dateB, 'day') && dates.eq(dateA, dateB, 'year');
+  },
+
   eqTime(dateA, dateB) {
     return dates.hours(dateA) === dates.hours(dateB)
       && dates.minutes(dateA) === dates.minutes(dateB)
