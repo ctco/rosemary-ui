@@ -1,5 +1,5 @@
-@import "../../variables/variables";
-@import "../../mixins/all";
+@import '../../variables/all';
+@import '../../mixins/all';
 
 //STYLE
 .rbc-month-header, .rbc-time-header > .rbc-row:first-child {
@@ -7,7 +7,7 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 38px;
-  font-family: "Open Sans", "Verdana", "sans-serif";
+  font-family: $main-font;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .rbc-event {
-  margin: 0px 8px 1px 8px;
+  margin: 0 8px 1px 8px;
 }
 
 

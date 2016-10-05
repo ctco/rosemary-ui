@@ -1,5 +1,4 @@
-import '../../assets/scss/components/_date-range-picker.scss';
-
+import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
@@ -23,8 +22,6 @@ import {
 
 import {isDefined} from '../../util/utils';
 
-
-import Select from '../select/Select';
 import DatePickerCalendar from './DatePickerCalendar';
 import Popup from '../Popup';
 import Input from '../Input';
@@ -33,6 +30,8 @@ const PROPERTY_TYPES = {
     format: React.PropTypes.func,
     parse: React.PropTypes.func,
     formatHeader: React.PropTypes.func,
+    open: React.PropTypes.bool,
+    onPopupStateChange: React.PropTypes.func,
     value: React.PropTypes.shape({
         from: React.PropTypes.string,
         to: React.PropTypes.string
@@ -70,7 +69,6 @@ class DatePicker extends React.Component {
         if (nextProps.value) {
             let from = nextProps.value.from;
             let to = nextProps.value.to;
-
             this.setState({
                 from: this.parseDate(from),
                 fromText: from,
@@ -78,10 +76,28 @@ class DatePicker extends React.Component {
                 toText: to
             });
         }
+
+        if (isDefined(nextProps.open)) {
+            this.setState({
+                open: nextProps.open
+            });
+        }
+    }
+
+    isPopupControlled() {
+        return isDefined(this.props.open);
     }
 
     isControlled() {
         return isDefined(this.props.value);
+    }
+
+    isOpen() {
+        if (this.isPopupControlled()) {
+            return this.props.open;
+        }
+
+        return this.state.open;
     }
 
     left() {
@@ -95,7 +111,6 @@ class DatePicker extends React.Component {
             animation: 'date-range-picker__calendar--animation-left'
         });
     }
-
 
     right() {
         if (this.transitioning) {
@@ -172,10 +187,10 @@ class DatePicker extends React.Component {
     }
 
     updateStateTo(to, toText) {
+        let open = this.state.from === null || to === null;
         if (this.isControlled()) {
-            this.fireChangeEvent(this.state.fromText, toText);
+            this.fireChangeEvent(this.state.fromText, toText, open);
         } else {
-            let open = this.state.from === null || to === null;
             this.setState({
                 to,
                 toText,
@@ -185,10 +200,10 @@ class DatePicker extends React.Component {
     }
 
     updateStateFrom(from, fromText) {
+        let open = this.state.to === null || from === null;
         if (this.isControlled()) {
-            this.fireChangeEvent(fromText, this.state.toText);
+            this.fireChangeEvent(fromText, this.state.toText, open);
         } else {
-            let open = this.state.to === null || from === null;
             this.setState({
                 from,
                 fromText,
@@ -198,15 +213,25 @@ class DatePicker extends React.Component {
     }
 
     fireChangeEventByState() {
-        this.fireChangeEvent(this.state.fromText, this.state.toText);
+        this.fireChangeEvent(this.state.fromText, this.state.toText, this.state.open);
     }
 
-    fireChangeEvent(fromText, toText) {
+    fireChangeEvent(fromText, toText, open = true) {
         if (this.props.onChange) {
             this.props.onChange({
                 from: fromText,
                 to: toText
             });
+        }
+        this.changePopupState(open);
+    }
+
+    changePopupState(open) {
+        if (!this.isPopupControlled()) {
+            this.setState({open});
+        }
+        if (this.props.onPopupStateChange) {
+            this.props.onPopupStateChange(open);
         }
     }
 
@@ -267,8 +292,8 @@ class DatePicker extends React.Component {
         return (
             <Popup popupClassName="popover-colored"
                    attachment="bottom left"
-                   open={this.state.open}
-                   onPopupStateChange={(open) => this.setState({open})}
+                   open={this.isOpen()}
+                   onPopupStateChange={(open) => this.changePopupState(open)}
                    on="focus"
                    onTransitionClosedToOpen={() => {
                        this.resetMonth();

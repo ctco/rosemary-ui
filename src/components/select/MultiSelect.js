@@ -1,5 +1,3 @@
-import '../../assets/scss/components/_select.scss';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
@@ -115,7 +113,7 @@ class MultiSelect extends React.Component {
                     >
                     <div id={this.props.id} ref="input" tabIndex="0" className={className}>
                         <div>{this.getText()}</div>
-                        <i className="im select__icon"/>
+                        <i className="im icon-arrow-down"/>
                     </div>
                     <div>
                         {this.state.selected.map((option) => {

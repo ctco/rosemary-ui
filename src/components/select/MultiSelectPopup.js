@@ -1,11 +1,6 @@
-import '../../assets/scss/components/_select.scss';
-
 import React from 'react';
-import ReactDOM from 'react-dom';
-import classNames from 'classnames';
 import find from 'lodash/find';
-
-import Popup from '../Popup';
+import Link from '../Link';
 import {isDefined, contains, findIdentifiables} from '../../util/utils';
 import Input from '../Input';
 import CheckBoxList from './CheckBoxList';
@@ -76,7 +71,9 @@ class MultiSelectPopup extends React.Component {
         }
 
         if (this.props.onChange) {
-            this.props.onChange(selectedMerged.map((option) => {return option.id;}), selectedMerged);
+            this.props.onChange(selectedMerged.map((option) => {
+                return option.id;
+            }), selectedMerged);
         }
     }
 
@@ -117,12 +114,18 @@ class MultiSelectPopup extends React.Component {
                            onChange={(value) => this.applySearch(value)}
                            placeholder={this.props.placeholder}/>
                 </div>
-
+                <div className="select__clear-btn">
+                    <Link className="select__clear-btn" onClick={() => {this.select([]);}}>
+                        Clear all selected
+                    </Link>
+                </div>
                 <div className="select__options">
                     <CheckBoxList options={this.state.filtered}
                                   onChange={(selected) => this.select(selected)}
-                                  value={this.state.selected.map((selected) => {return selected.id;})}
-                        />
+                                  value={this.state.selected.map((selected) => {
+                                      return selected.id;
+                                  })}
+                    />
                 </div>
             </div>
         );

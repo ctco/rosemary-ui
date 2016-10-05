@@ -1,4 +1,3 @@
-import '../assets/scss/components/_textarea.scss';
 import {isDefined} from '../util/utils';
 
 import React, {PropTypes} from 'react';

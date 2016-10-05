@@ -198,12 +198,12 @@ export default () => {
                     <span>icon-info</span>
                 </div>
                 <div className="gr-6">
-                    <i className="im icon-menu-vacation"></i>
-                    <span>icon-menu-vacation</span>
+                    <i className="im icon-cal-vacation"></i>
+                    <span>cal-vacation</span>
                 </div>
                 <div className="gr-6">
-                    <i className="im icon-my-efforts"></i>
-                    <span>icon-my-efforts</span>
+                    <i className="im icon-clock"></i>
+                    <span>clock</span>
                 </div>
             </div>
 
@@ -232,8 +232,23 @@ export default () => {
                     <span>icon-request</span>
                 </div>
                 <div className="gr-6">
-                    <i className="im"></i>
-                    <span></span>
+                    <i className="im icon-sick"></i>
+                    <span>icon-sick</span>
+                </div>
+            </div>
+
+            <div className="row">
+                <div className="gr-6">
+                    <i className="im icon-palm"></i>
+                    <span>icon-palm</span>
+                </div>
+                <div className="gr-6">
+                    <i className="im icon-plane"></i>
+                    <span>icon-plane</span>
+                </div>
+                <div className="gr-6">
+                    <i className="im icon-gift"></i>
+                    <span>icon-gift</span>
                 </div>
             </div>
 

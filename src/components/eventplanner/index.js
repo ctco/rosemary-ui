@@ -7,7 +7,6 @@ import viewLabel from './utils/viewLabel';
 import move from './utils/move';
 import { views } from './utils/constants';
 import {getConfiguredMoment} from '../../util/date-utils';
-import '../../assets/scss/components/eventplanner/_styles.scss';
 
 assign(Calendar, {
   setLocalizer,

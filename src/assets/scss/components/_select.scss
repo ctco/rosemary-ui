@@ -7,7 +7,7 @@
   background-color: $select-background-color;
   position: relative;
   cursor: $cursor-pointer;
-  min-width: $form-min-width;
+  width: $form-min-width;
 
   &.placeholder {
     color: $ash-grey;
@@ -28,7 +28,7 @@
 
   > div {
     @include ellipsis;
-    margin: 0 22px 0 8px;
+    margin: 0 15px 0 0;
   }
 
   & i.icon-arrow-down {
@@ -69,7 +69,7 @@
 */
 
 .select__option {
-  padding: 6px 0 6px 8px;
+  padding: 6px 0 6px 12px;
   cursor: $cursor-pointer;
   @include fontSizeM;
 
@@ -81,6 +81,10 @@
     background-color: $select__option-selected-background-color;
     color: $select__option-selected-color;
   }
+}
+
+.select__clear-btn {
+  padding: 6px 18px 6px;
 }
 
 .select__popover {
@@ -117,12 +121,12 @@
   width: 100%;
 
   & input {
-    min-width: 235px;
-    width: 235px;
+    width: 100%;
   }
 }
 
 .select__options {
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   max-height: 190px;
 }

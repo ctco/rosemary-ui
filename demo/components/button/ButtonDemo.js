@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from '../../../src';
+import {Button, Link} from '../../../src';
 import DemoWithSnippet from '../../../demo/layout/DemoWithSnippet';
 
 export default () => {
@@ -38,6 +38,7 @@ export default () => {
             <Button className="btn-link btn-lg">
                 Button Link
             </Button>
+            <Link className="someClass" href="wwww.google.com">link</Link>
         </DemoWithSnippet>
     );
 };

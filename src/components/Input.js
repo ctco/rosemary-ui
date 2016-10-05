@@ -1,5 +1,3 @@
-import '../assets/scss/components/_text-input.scss';
-
 import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 import {isDefined} from '../util/utils';
@@ -7,6 +5,7 @@ import {isDefined} from '../util/utils';
 const PROPERTY_TYPES = {
     disabled: React.PropTypes.bool,
     placeholder: React.PropTypes.string,
+    maxLength: React.PropTypes.number,
     type: React.PropTypes.oneOf(['text', 'password']),
     value: React.PropTypes.any,
     onBlur: React.PropTypes.func,
@@ -14,7 +13,8 @@ const PROPERTY_TYPES = {
     onChange: React.PropTypes.func
 };
 const DEFAULT_PROPS = {
-    type: 'text'
+    type: 'text',
+    maxLength: 254
 };
 
 class Input extends React.Component {
@@ -26,6 +26,10 @@ class Input extends React.Component {
             };
         }
         this.update = this.update.bind(this);
+    }
+
+    focus() {
+        this.refs.input.focus();
     }
 
     update(e) {
@@ -53,6 +57,7 @@ class Input extends React.Component {
         return (
             <div className={style}>
                 <input
+                    maxLength={this.props.maxLength}
                     ref="input"
                     value={this.isControlled() ? this.props.value : this.state.value}
                     placeholder={this.props.placeholder}
