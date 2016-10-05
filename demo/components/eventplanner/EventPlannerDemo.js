@@ -3,6 +3,7 @@ import React from 'react';
 import DemoWithSnippet from '../../layout/DemoWithSnippet';
 import EventPlanner from '../../../src/components/eventplanner';
 import events from './events';
+import nonWorkingDays from './nonWorkingDays';
 import MyEvent from './ExampleMyEventComponent';
 
 
@@ -52,6 +53,7 @@ export default class EventPlannerDemo extends React.Component {
                         <EventPlanner
                             popup
                             events={events}
+                            nonWorkingDays={nonWorkingDays}
                             selectable
                             onSelectSlot={(slotInfo) => {console.log('onSelectSlot');console.dir(slotInfo);}}
                             onSelectEvent={(event) => {console.log('onSelectEvent');console.dir(event);}}

@@ -72,6 +72,11 @@ const PROPERTY_TYPES = {
   events: PropTypes.arrayOf(PropTypes.object),
 
   /**
+   * An array of event objects to display on the calendar
+   */
+  nonWorkingDays: PropTypes.arrayOf(PropTypes.object),
+
+  /**
    * Callback fired when the `date` value changes.
    *
    * @controllable date
@@ -365,7 +370,7 @@ class Calendar extends React.Component {
 
   render() {
     let {
-        view, toolbar, events
+        view, toolbar, events, nonWorkingDays
         , culture
         , components = {}
         , formats = {}
@@ -412,6 +417,7 @@ class Calendar extends React.Component {
               culture={culture}
               formats={undefined}
               events={events}
+              nonWorkingDays={nonWorkingDays}
               date={current}
               components={viewComponents}
               onNavigate={this._navigate}
