@@ -28,6 +28,10 @@
   width: 100%;
 }
 
+.form__control {
+  width: 100%;
+}
+
 .form-field__error-msg {
   color: $lipstick;
   font-size: 1.3rem;
@@ -39,7 +43,7 @@
   margin: $space-lvl5 0 $space-lvl4 0;
   width: 100%;
   padding-top: $space-lvl5;
-  border-top:1px solid $pinkish-grey;
+  border-top: 1px solid $pinkish-grey;
 
   & .btn {
     margin-right: $space-lvl2;
@@ -47,6 +51,6 @@
 }
 
 .form-button-block--no-border {
-  border:none;
+  border: none;
   padding-top: 0;
 }
