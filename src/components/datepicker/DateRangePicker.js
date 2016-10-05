@@ -289,6 +289,8 @@ class DatePicker extends React.Component {
     }
 
     render() {
+        let drpClassNames = classNames(this.props.className, 'date-range-picker-control');
+
         return (
             <Popup popupClassName="popover-colored"
                    attachment="bottom left"
@@ -298,7 +300,7 @@ class DatePicker extends React.Component {
                    onTransitionClosedToOpen={() => {
                        this.resetMonth();
                    }}>
-                <div className="date-range-picker-control">
+                <div className={drpClassNames}>
                     <div className="icon-input date-range-picker-control__input">
                         <Input type="text" value={this.state.fromText}
                                onChange={(value) => {
@@ -311,7 +313,7 @@ class DatePicker extends React.Component {
                                onChange={(value) => {
                                    this.updateTo(value);
                                }}/>
-                        <i className="im icon-calendar-to date-range-picker-control__input-icon icon--xs" />
+                        <i className="im icon-calendar-to date-range-picker-control__input-icon icon--xs"/>
                     </div>
 
                 </div>
