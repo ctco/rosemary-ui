@@ -299,14 +299,21 @@ class DatePicker extends React.Component {
                        this.resetMonth();
                    }}>
                 <div className="date-range-picker-control">
-                    <Input className="date-range-picker-control__input" type="text" value={this.state.fromText}
-                           onChange={(value) => {
-                               this.updateFrom(value);
-                           }}/>
-                    <Input className="date-range-picker-control__input" type="text" value={this.state.toText}
-                           onChange={(value) => {
-                               this.updateTo(value);
-                           }}/>
+                    <div className="icon-input date-range-picker-control__input">
+                        <Input type="text" value={this.state.fromText}
+                               onChange={(value) => {
+                                   this.updateFrom(value);
+                               }}/>
+                        <i className="im icon-calendar-from icon--xs"/>
+                    </div>
+                    <div className="icon-input date-range-picker-control__input">
+                        <Input type="text" value={this.state.toText}
+                               onChange={(value) => {
+                                   this.updateTo(value);
+                               }}/>
+                        <i className="im icon-calendar-to date-range-picker-control__input-icon icon--xs" />
+                    </div>
+
                 </div>
                 <div tabIndex="-1" className="date-range-picker">
                     <i onClick={() => this.left()} className="im icon-arrow-thin-left date-range-picker__arrow"/>

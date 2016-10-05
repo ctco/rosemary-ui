@@ -6,13 +6,11 @@
 }
 
 .date-range-picker-control__input {
+  color: rgba($black, 0.4);
+
   input {
     width: 126px;
     min-width: 126px;
-  }
-
-  :before {
-    @include icomoon-icon("/e927");
   }
 }
 
