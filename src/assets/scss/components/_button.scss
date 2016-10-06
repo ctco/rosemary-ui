@@ -1,7 +1,6 @@
 @import '../mixins/_all';
 @import '../variables/_all';
 
-
 .btn {
   display: inline-block;
   margin-bottom: 0; // For input.btn
@@ -67,12 +66,12 @@
 .btn--flat {
   border: 1px solid $ash-grey;
   @include box-shadow(none);
-    &:hover {
-      border: 1px solid $mid-grey;
-    }
-    &:active {
-      @include box-shadow(none);
-    }
+  &:hover {
+    border: 1px solid $mid-grey;
+  }
+  &:active {
+    @include box-shadow(none);
+  }
 }
 
 .btn--icon {
@@ -80,7 +79,6 @@
   text-align: center;
   i {
     line-height: $btn-line-height;
-    text-align: left;
     margin-right: $space-lvl1;
   }
 }
@@ -97,9 +95,9 @@
   height: 50px;
   @include display-flex();
   @include button-size($padding-large-vertical, $padding-small-horizontal, $btn-font-size-large, $btn-line-height, $btn-border-radius-circle);
-    i {
-      margin: auto;
-    }
+  i {
+    margin: auto;
+  }
 }
 
 .btn--grouped {
@@ -113,7 +111,7 @@
 }
 
 .btn-link {
-  border:0;
+  border: 0;
   display: inline-block;
   color: $link-color;
   vertical-align: middle;
@@ -171,7 +169,7 @@
   padding: 0;
   min-width: 0;
   font-weight: $normal-weight;
-  -webkit-font-smoothing:subpixel-antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
   &:hover {
     background-color: transparent;
   }
