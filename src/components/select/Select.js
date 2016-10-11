@@ -168,11 +168,14 @@ class Select extends React.Component {
                 <div className="select__popup">
                     { this.props.search &&
                     <div className="select__search-container">
-                        <Input
-                            ref="searchInput"
-                            className="select__search text-input--sm"
-                            onChange={(value) => this.applySearch(value)}
-                            placeholder="Search ... "/>
+                        <div className="icon-input icon-input--left">
+                            <Input
+                                ref="searchInput"
+                                className="select__search text-input--sm"
+                                onChange={(value) => this.applySearch(value)}
+                                placeholder="Search ... "/>
+                            <i className="im icon-search icon--xs"/>
+                        </div>
                     </div>
                     }
 
