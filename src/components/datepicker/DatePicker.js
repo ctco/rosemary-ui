@@ -1,14 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
-import Select from '../select/Select';
-import DatePickerCalendar from './DatePickerCalendar';
 import Popup from '../Popup';
-import Input from '../Input';
 import Button from '../button/Button';
 import DatePickerPopup from './DatePickerPopup';
-
 import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
 
 import {getToday,
@@ -18,7 +13,7 @@ import {getToday,
     isMonthTheSame,
     getFirstDayOfMonth} from '../../util/date-utils';
 
-import {formatDMonthYear, formatFullMonth} from '../../util/date-formats';
+import {formatDMonthYear} from '../../util/date-formats';
 
 const PROPERTY_TYPES = {
     className: React.PropTypes.string,
