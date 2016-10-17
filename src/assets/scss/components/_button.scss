@@ -5,17 +5,18 @@
   display: inline-block;
   margin-bottom: 0; // For input.btn
   font-weight: $btn-font-weight;
-  font-size: 1.6rem;
+  font-size: 1.6em;
   text-align: center;
   vertical-align: middle;
   touch-action: manipulation;
   cursor: pointer;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  border-radius: $border-radius-base;
   background-color: $btn-background-color-base;
   background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
   //border: 1px solid transparent;
   white-space: nowrap;
-  @include button-size($padding-base-vertical, $padding-base-horizontal, $btn-font-size-medium, $line-height-base, $btn-border-radius-base);
+  @include button-size($padding-base-vertical, $padding-base-horizontal, $btn-font-size-medium, $line-height-base);
   @include user-select(none);
   min-width: 120px;
   -webkit-font-smoothing: antialiased;
@@ -23,7 +24,6 @@
   &:hover,
   &:focus,
   &.focus {
-    color: $btn-default-color;
     text-decoration: none;
   }
 
@@ -40,6 +40,10 @@
     @include opacity(.5);
     cursor: default;
     @include box-shadow(none);
+  }
+  i,.icon {
+    @include display-inline-flex;
+    @include justify-content(center);
   }
 }
 
@@ -75,18 +79,8 @@
 }
 
 .btn--icon {
-  min-width: 10px;
-  text-align: center;
-  i {
-    line-height: $btn-line-height;
-    margin-right: $space-lvl1;
-  }
-}
-
-.btn--icon--one {
-  i {
-    margin-right: $space-lvl0;
-  }
+  @include display-inline-flex;
+  @include justify-content(center);
 }
 
 .btn--round {
@@ -94,7 +88,7 @@
   width: 50px;
   height: 50px;
   @include display-flex();
-  @include button-size($padding-large-vertical, $padding-small-horizontal, $btn-font-size-large, $btn-line-height, $btn-border-radius-circle);
+  @include button-size($padding-large-vertical, $padding-small-horizontal, $btn-font-size-large, $btn-line-height);
   i {
     margin: auto;
   }
@@ -107,6 +101,30 @@
   }
   &:last-child {
     border-radius: 0 3px 3px 0;
+  }
+}
+
+// Button Sizes
+// --------------------------------------------------
+.btn--lg {
+  @include button-size($padding-large-vertical, $padding-large-horizontal, $btn-font-size-large, $btn-line-height);
+}
+
+.btn--m {
+  @include button-size($padding-medium-vertical, $padding-medium-horizontal, $btn-font-size-medium, $btn-line-height);
+}
+
+.btn--sm {
+  @include button-size($padding-small-vertical, $padding-small-horizontal, $btn-font-size-small, $btn-line-height);
+}
+
+.btn--inline {
+  padding: 0;
+  min-width: 0;
+  font-weight: $normal-weight;
+  -webkit-font-smoothing: subpixel-antialiased;
+  &:hover {
+    background-color: transparent;
   }
 }
 
@@ -151,26 +169,20 @@
 
 }
 
-// Button Sizes
-// --------------------------------------------------
-.btn-lg {
-  @include button-size($padding-large-vertical, $padding-large-horizontal, $btn-font-size-large, $btn-line-height, $btn-border-radius-large);
+//Button icon
+.btn--icon {
+  text-align: center;
+  min-width: 36px;
 }
 
-.btn-m {
-  @include button-size($padding-medium-vertical, $padding-medium-horizontal, $btn-font-size-medium, $btn-line-height, $btn-border-radius-small);
+.btn--icon-danger {
+  color: $lipstick;
 }
 
-.btn-sm {
-  @include button-size($padding-small-vertical, $padding-small-horizontal, $btn-font-size-small, $btn-line-height, $btn-border-radius-small);
+.btn--icon-success {
+  color: $green-apple;
 }
 
-.btn--inline {
-  padding: 0;
-  min-width: 0;
-  font-weight: $normal-weight;
-  -webkit-font-smoothing: subpixel-antialiased;
-  &:hover {
-    background-color: transparent;
-  }
+.btn-icon--circular {
+  border-radius: 50%;
 }
