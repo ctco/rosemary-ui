@@ -124,6 +124,10 @@
 }
 
 .rm-nav-brand {
+  &.rm-nav-bar__item {
+    cursor: default;
+  }
+
   &:hover {
     background-color: $dodge-blue;
     @include transition($transition-slow);
