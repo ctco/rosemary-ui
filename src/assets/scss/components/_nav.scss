@@ -128,7 +128,6 @@
     background-color: $dodge-blue;
     @include transition($transition-slow);
     a, i {
-      color:$white;
       @include transition($transition-slow);
     }
   }
