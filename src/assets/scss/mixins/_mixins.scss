@@ -284,6 +284,11 @@
   display: flex;
 }
 
+@mixin display-inline-flex() {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
 @mixin flex($arg) {
   -webkit-flex: $arg; /* Safari 6.1+ */
   -ms-flex: $arg; /* IE 10 */

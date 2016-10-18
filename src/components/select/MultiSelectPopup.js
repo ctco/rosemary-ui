@@ -110,9 +110,12 @@ class MultiSelectPopup extends React.Component {
         return (
             <div className="select__popup">
                 <div className="select__search-container">
-                    <Input className="select__search text-input--sm"
-                           onChange={(value) => this.applySearch(value)}
-                           placeholder={this.props.placeholder}/>
+                    <div className="icon-input icon-input--left">
+                        <Input className="select__search text-input--sm"
+                               onChange={(value) => this.applySearch(value)}
+                               placeholder={this.props.placeholder}/>
+                        <i className="im icon-search icon--xs"/>
+                    </div>
                 </div>
                 <div className="select__clear-btn">
                     <Link className="select__clear-btn" onClick={() => {this.select([]);}}>

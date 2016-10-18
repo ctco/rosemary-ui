@@ -39,12 +39,14 @@
 .icon-input {
   position: relative;
   display: inline-block;
+  width: 100%;
 
   .text-input {
     > input {
       padding-right: 34px;
     }
   }
+
   i {
     width: 25px;
     height: 100%;
@@ -55,4 +57,19 @@
     top: 0;
     right: 12px;
   }
+
+  &.icon-input--left {
+    i {
+      @include justify-content(flex-start);
+      left: 12px;
+      top: 0;
+    }
+
+    .text-input {
+      > input {
+        padding-left: 34px;
+      }
+    }
+  }
+
 }
