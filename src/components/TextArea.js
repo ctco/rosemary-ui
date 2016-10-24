@@ -22,6 +22,10 @@ class TextArea extends React.Component {
 
     }
 
+    getValue() {
+        return this.refs.textarea.value;
+    }
+
     update(e) {
         let value = e.target.value;
         if (!this.isControlled()) {
@@ -48,7 +52,8 @@ class TextArea extends React.Component {
 
         return (
             <div className={style}>
-                <textarea value={this.isControlled() ? this.props.value : this.state.value}
+                <textarea ref="textarea"
+                          value={this.isControlled() ? this.props.value : this.state.value}
                           onChange={(e) => this.update(e)}
                           placeholder={this.props.placeholder}
                           onBlur={this.props.onBlur}
