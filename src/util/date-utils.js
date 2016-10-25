@@ -1,4 +1,5 @@
 import moment from 'moment';
+import range from 'lodash/range';
 
 moment.updateLocale('en', {
     week: {
@@ -19,6 +20,10 @@ function isFirstDayOfWeek(date) {
 
 function isToday(date) {
     return isDayTheSame(moment(), date);
+}
+
+function isCurrentMonth(date) {
+    return isMonthTheSame(moment(), date);
 }
 
 function isCurrentYear(date) {
@@ -97,6 +102,11 @@ function getMonths() {
     return moment.months();
 }
 
+function getFirstDaysOfAllMonths(year) {
+    let firstMonth = getFirstDayOfYear(setYear(moment(), year));
+    return range(12).map((value) => addMonths(firstMonth, value));
+}
+
 function addDays(date, amount) {
     return date.clone().add(amount, 'days');
 }
@@ -165,6 +175,7 @@ export {
     isWeekend,
     isFirstDayOfWeek,
     isToday,
+    isCurrentMonth,
     isCurrentYear,
     isAfter,
     isBetweenNotInclusive,
@@ -190,6 +201,7 @@ export {
     getFirstDayOfWeek,
     getFirstDayOfPreviousWeek,
     getMonths,
+    getFirstDaysOfAllMonths,
     setMonth,
     setYear,
     addDays,

@@ -1,8 +1,6 @@
 import React from 'react';
-import {DatePicker, Input} from '../../../src';
+import {DatePicker, Button, MonthPicker, Input, IconInput} from '../../../src';
 import DemoWithSnippet from '../../layout/DemoWithSnippet';
-
-import {getToday, getLastDayOfMonth, format} from '../../../src/util/date-utils';
 
 export default class DatePickerDemo extends React.Component {
     constructor(props) {
@@ -18,7 +16,8 @@ export default class DatePickerDemo extends React.Component {
             <div>
                 <DemoWithSnippet>
                     <div>
-                        <span className="date-picker-demo__simple-example-text"> The selected date is:</span> <DatePicker className="btn--inline"/>
+                        <span className="date-picker-demo__simple-example-text"> The selected date is:</span>
+                        <DatePicker className="btn--inline"/>
                     </div>
                 </DemoWithSnippet>
 
@@ -26,7 +25,8 @@ export default class DatePickerDemo extends React.Component {
                 <br/>
 
                 <h2>Date picker can be controlled</h2>
-                <Input type="text" value={this.state.controlledValue} onChange={(value) => this.setState({controlledValue: value})}/>
+                <Input type="text" value={this.state.controlledValue}
+                       onChange={(value) => this.setState({controlledValue: value})}/>
 
                 <DemoWithSnippet>
                     <DatePicker value={this.state.controlledValue}
@@ -41,8 +41,23 @@ export default class DatePickerDemo extends React.Component {
                 <DemoWithSnippet>
                     <DatePicker format="DD.MM.YYYY"
                                 minDate="01.10.2015"
-                                maxDate="31.03.2017" />
+                                maxDate="31.03.2017"/>
                 </DemoWithSnippet>
+
+                <h2>Month picker:</h2>
+
+                <MonthPicker>
+                    <Button className="btn-link"/>
+                </MonthPicker>
+
+                <br/>
+                <br/>
+
+                <MonthPicker>
+                    <IconInput iconClassName="im icon-calendar-from"
+                               position="right"
+                               readOnly/>
+                </MonthPicker>
             </div>
         );
     }

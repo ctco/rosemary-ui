@@ -1,5 +1,5 @@
 import DemoWithSnippet from '../../../demo/layout/DemoWithSnippet';
-import Input from '../../../src/components/Input';
+import {IconInput, Input} from '../../../src';
 
 import React from 'react';
 
@@ -7,25 +7,24 @@ export default class InputDemo extends React.Component {
     render() {
         return (
             <DemoWithSnippet>
-                <div className="icon-input">
-                    <Input placeholder="small input" className="text-input--sm"/>
-                    <i className="im icon-search icon--xs"/>
-                </div>
+                <Input placeholder="small input" size="sm"/>
                 <br/><br/>
-                <div className="icon-input">
-                    <Input placeholder="default input" onChange={(value) => console.log(value)} type="text"/>
-                    <i className="im icon-search icon--xs"/>
-                </div>
+
+                <Input placeholder="default input" onChange={(value) => console.log(value)} type="text"/>
                 <br/><br/>
-                <div className="icon-input icon-input--left">
-                    <Input placeholder="default input" onChange={(value) => console.log(value)} type="text"/>
-                    <i className="im icon-search icon--xs"/>
-                </div>
+
+                <Input placeholder="default input" onChange={(value) => console.log(value)} type="text"/>
                 <br/><br/>
-                <div className="icon-input">
-                    <Input placeholder="large Input" className="text-input--lg"/>
-                    <i className="im icon-search icon--s"/>
-                </div>
+
+                <Input placeholder="large Input" size="lg"/>
+                <br/><br/>
+
+                <IconInput iconClassName="im icon-search"/>
+                <br/><br/>
+
+                <IconInput iconClassName="im icon-search"
+                           position="right"
+                           readOnly />
             </DemoWithSnippet>
         );
     }

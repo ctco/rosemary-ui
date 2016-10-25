@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button} from '../../../src';
-import ButtonGroup from '../../../src/components/button/ButtonGroup';
 
 
 export default () => {
@@ -195,7 +194,7 @@ export default () => {
                 <tbody>
                     <tr>
                         <td>
-                            <Button className="btn btn-sm btn--default">Small button</Button>
+                            <Button className="btn btn--sm btn--default">Small button</Button>
                         </td>
                         <td>26px</td>
                         <td>
@@ -204,7 +203,7 @@ export default () => {
                     </tr>
                     <tr>
                         <td>
-                            <Button className="btn btn-m btn--default">Medium button</Button>
+                            <Button className="btn btn--m btn--default">Medium button</Button>
                         </td>
                         <td>36px</td>
                         <td>
@@ -213,7 +212,7 @@ export default () => {
                     </tr>
                     <tr>
                         <td>
-                            <Button className="btn btn-lg btn--default">Large button</Button>
+                            <Button className="btn btn--lg btn--default">Large button</Button>
                         </td>
                         <td>44px</td>
                         <td>

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import find from 'lodash/find';
 import Popup from '../Popup';
-import Input from '../Input';
+import IconInput from '../IconInput';
 import {isDefined, contains} from '../../util/utils';
 
 import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
@@ -37,7 +37,7 @@ class Select extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.refs.searchInput instanceof Input) {
+        if (this.refs.searchInput && this.refs.searchInput.focus) {
             if (this.isOpen()) {
                 this.refs.searchInput.focus();
             }
@@ -120,7 +120,7 @@ class Select extends React.Component {
 
             return (
                 <div {...ref} className={className} key={option.id}
-                     onClick={() => this.select(option)}>{option.displayString}</div>
+                              onClick={() => this.select(option)}>{option.displayString}</div>
             );
         });
     }
@@ -168,14 +168,13 @@ class Select extends React.Component {
                 <div className="select__popup">
                     { this.props.search &&
                     <div className="select__search-container">
-                        <div className="icon-input icon-input--left">
-                            <Input
-                                ref="searchInput"
-                                className="select__search text-input--sm"
-                                onChange={(value) => this.applySearch(value)}
-                                placeholder="Search ... "/>
-                            <i className="im icon-search icon--xs"/>
-                        </div>
+                        <IconInput ref="searchInput"
+                                   fluid={true}
+                                   placeholder="Search ... "
+                                   size="sm"
+                                   onChange={(value) => this.applySearch(value)}
+                                   className="select__search"
+                                   iconClassName="im icon-search"/>
                     </div>
                     }
 
