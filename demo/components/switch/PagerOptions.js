@@ -1,6 +1,6 @@
 import React from 'react';
 import OptionsTable from '../../helper/OptionsTable';
-import Pager from '../../../src/components/Pager';
+import {MonthPager, Pager} from '../../../src';
 
 export default () => {
     let propDescription = {
@@ -27,6 +27,12 @@ export default () => {
     };
 
     return (
-        <OptionsTable component={Pager} propDescription={propDescription}/>
+        <div>
+            <h2>Pager</h2>
+            <OptionsTable component={Pager} propDescription={propDescription}/>
+            <br/>
+            <h2>MonthPager</h2>
+            <OptionsTable component={MonthPager} propDescription={propDescription}/>
+        </div>
     );
 };

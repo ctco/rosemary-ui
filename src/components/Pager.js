@@ -33,7 +33,7 @@ class Pager extends React.Component {
                            this.props.onPrevBtnClick();
                        }
                    }}/>
-                <div className="ros-pager__value">{this.props.value}</div>
+                <div className="ros-pager__value">{this.props.children}</div>
                 <i className={nextBtnStyle}
                    onClick={() => {
                        if (this.props.onNextBtnClick) {

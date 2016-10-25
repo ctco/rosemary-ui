@@ -33,10 +33,32 @@ import  {
     parse,
     format,
     clone,
-    getConfiguredMoment
+    getConfiguredMoment,
+    getFirstDaysOfAllMonths
     } from '../../src/util/date-utils';
 
 describe('date utils', () => {
+    describe('getFirstDaysOfAllMonths', ()=> {
+
+        it('should return months by year', () => {
+            var months = getFirstDaysOfAllMonths(2016);
+
+            expect(months.length).to.equal(12);
+            expect(format(months[0], 'DD.MM.YYYY')).to.equal('01.01.2016');
+            expect(format(months[1], 'DD.MM.YYYY')).to.equal('01.02.2016');
+            expect(format(months[2], 'DD.MM.YYYY')).to.equal('01.03.2016');
+            expect(format(months[3], 'DD.MM.YYYY')).to.equal('01.04.2016');
+            expect(format(months[4], 'DD.MM.YYYY')).to.equal('01.05.2016');
+            expect(format(months[5], 'DD.MM.YYYY')).to.equal('01.06.2016');
+            expect(format(months[6], 'DD.MM.YYYY')).to.equal('01.07.2016');
+            expect(format(months[7], 'DD.MM.YYYY')).to.equal('01.08.2016');
+            expect(format(months[8], 'DD.MM.YYYY')).to.equal('01.09.2016');
+            expect(format(months[9], 'DD.MM.YYYY')).to.equal('01.10.2016');
+            expect(format(months[10], 'DD.MM.YYYY')).to.equal('01.11.2016');
+            expect(format(months[11], 'DD.MM.YYYY')).to.equal('01.12.2016');
+        });
+    });
+
     describe('isWeekend', ()=> {
         it('should be true for saturday and sunday', () => {
             let saturday = isWeekend(moment('09.07.2016', 'DD.MM.YYYY'));

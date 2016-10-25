@@ -1,4 +1,3 @@
-import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
@@ -9,9 +8,7 @@ import {
     isAfter,
     isBetweenNotInclusive,
     getToday,
-    addMonths,
-    parse,
-    format
+    addMonths
 } from '../../util/date-utils';
 
 import {
@@ -24,7 +21,7 @@ import {isDefined} from '../../util/utils';
 
 import DatePickerCalendar from './DatePickerCalendar';
 import Popup from '../Popup';
-import Input from '../Input';
+import IconInput from '../IconInput';
 
 const PROPERTY_TYPES = {
     format: React.PropTypes.func,
@@ -301,21 +298,16 @@ class DatePicker extends React.Component {
                        this.resetMonth();
                    }}>
                 <div className={drpClassNames}>
-                    <div className="icon-input date-range-picker-control__input">
-                        <Input type="text" value={this.state.fromText}
-                               onChange={(value) => {
-                                   this.updateFrom(value);
-                               }}/>
-                        <i className="im icon-calendar-from icon--xs"/>
-                    </div>
-                    <div className="icon-input date-range-picker-control__input">
-                        <Input type="text" value={this.state.toText}
-                               onChange={(value) => {
-                                   this.updateTo(value);
-                               }}/>
-                        <i className="im icon-calendar-to date-range-picker-control__input-icon icon--xs"/>
-                    </div>
-
+                    <IconInput value={this.state.fromText}
+                               onChange={(value) => this.updateFrom(value)}
+                               className="date-range-picker-control__input"
+                               position="right"
+                               iconClassName="im icon-calendar-from"/>
+                    <IconInput value={this.state.toText}
+                               onChange={(value) => this.updateTo(value)}
+                               className="date-range-picker-control__input"
+                               position="right"
+                               iconClassName="im icon-calendar-to"/>
                 </div>
                 <div tabIndex="-1" className="date-range-picker">
                     <i onClick={() => this.left()} className="im icon-arrow-thin-left date-range-picker__arrow"/>

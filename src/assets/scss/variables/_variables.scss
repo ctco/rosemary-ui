@@ -192,23 +192,6 @@ $checkbox-border-color:       $mid-grey;
 $checkbox-border-color-hover: $grey;
 $checkbox-size:               18px;
 
-//date picker calendar
-$date-picker-calendar__weekday-cell-working-color: $black;
-$date-picker-calendar__weekday-cell-non-working-color: $lipstick;
-$date-picker-calendar__cell-today-color: $light-blue;
-$date-picker-calendar__cell-today-shadow: 0 0 0 1px $date-picker-calendar__cell-today-color;
-$date-picker-calendar__cell-hover-bg-color: rgba($light-blue, 0.6);
-
-//date picker
-$date-picker__arrow-color: $black;
-$date-picker__arrow-bg-color: $light-grey;
-
-//date range picker
-$date-range-picker__cell-between-background-color: rgba($light-blue, 0.2);
-$date-range-picker__cell-selected-bg-color: $date-picker-calendar__cell-hover-bg-color;
-$date-range-picker__arrow-color: $black;
-$date-range-picker__arrow-bg-color: $light-grey;
-
 //shadow levels
 $shadow-lvl0:               inset 0 1px 2px 0 rgba(0, 0, 0, 0.35);
 $shadow-lvl1:               0 0 0 0 rgba(0, 0, 0, 0);

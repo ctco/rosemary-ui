@@ -1,6 +1,6 @@
-@import '../variables/all';
-@import "../mixins/all";
-@import '../icons';
+@import "../../variables/all";
+@import "../../mixins/all";
+@import "../../icons";
 
 .date-picker-popup__header {
   @include vertical-align-space-between;
