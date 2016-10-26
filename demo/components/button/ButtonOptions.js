@@ -7,6 +7,10 @@ export default () => {
         onClick: {
             values: 'function',
             description: 'Is called when a button is clicked'
+        },
+        title: {
+            values: 'string',
+            description: 'HTMl-Element tile'
         }
     };
 
