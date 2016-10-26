@@ -1,5 +1,5 @@
 import React from 'react';
-import {DatePicker} from '../../../src';
+import {DatePicker, MonthPicker} from '../../../src';
 import OptionsTable from '../../helper/OptionsTable';
 
 export default () => {
@@ -19,6 +19,12 @@ export default () => {
     };
 
     return (
-        <OptionsTable component={DatePicker} propDescription={propDescription} />
+        <div>
+            <h2>DatePicker</h2>
+            <OptionsTable component={DatePicker} propDescription={propDescription} />
+            <br/>
+            <h2>MonthPicker</h2>
+            <OptionsTable component={MonthPicker} propDescription={propDescription} />
+        </div>
     );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import find from 'lodash/find';
 import Link from '../Link';
 import {isDefined, contains, findIdentifiables} from '../../util/utils';
-import Input from '../Input';
+import IconInput from '../IconInput';
 import CheckBoxList from './CheckBoxList';
 
 const PROPERTY_TYPES = {
@@ -29,6 +29,12 @@ class MultiSelectPopup extends React.Component {
         };
 
         this.state.filtered = this.getAllSorted();
+    }
+
+    componentDidMount() {
+        if (this.refs.searchInput && this.refs.searchInput.focus) {
+            setTimeout(() => this.refs.searchInput.focus(), 0);
+        }
     }
 
     getAllSorted() {
@@ -110,12 +116,13 @@ class MultiSelectPopup extends React.Component {
         return (
             <div className="select__popup">
                 <div className="select__search-container">
-                    <div className="icon-input icon-input--left">
-                        <Input className="select__search text-input--sm"
+                    <IconInput ref="searchInput"
+                               fluid={true}
+                               placeholder={this.props.placeholder}
+                               size="sm"
                                onChange={(value) => this.applySearch(value)}
-                               placeholder={this.props.placeholder}/>
-                        <i className="im icon-search icon--xs"/>
-                    </div>
+                               className="select__search"
+                               iconClassName="im icon-search"/>
                 </div>
                 <div className="select__clear-btn">
                     <Link className="select__clear-btn" onClick={() => {this.select([]);}}>

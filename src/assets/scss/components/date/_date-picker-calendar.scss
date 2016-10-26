@@ -1,5 +1,6 @@
-@import '../variables/variables';
-@import "../mixins/mixins";
+@import "../../variables/all";
+@import "../../mixins/all";
+@import "variables";
 
 $calendar-width: 260px;
 
@@ -62,4 +63,3 @@ $calendar-width: 260px;
     @include box-shadow($date-picker-calendar__cell-today-shadow);
   }
 }
-

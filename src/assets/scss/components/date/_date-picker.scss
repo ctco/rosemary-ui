@@ -1,8 +1,9 @@
-@import '../variables/all';
+@import "../../variables/all";
+@import "variables";
 
 .date-picker__date-cell--selected {
   > div {
-    background-color: rgba($light-blue, 0.2);
+    background-color: rgba($date-selected-bgc, 0.2);
   }
 }
 
@@ -14,7 +15,7 @@
   &:not([data-disabled]) {
     &:hover {
       > div {
-        background-color: $light-grey;
+        background-color: $date-hover-bgc;
       }
     }
   }

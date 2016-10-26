@@ -41,7 +41,7 @@
     cursor: default;
     @include box-shadow(none);
   }
-  i,.icon {
+  i, .icon {
     @include display-inline-flex;
     @include justify-content(center);
   }
@@ -104,30 +104,6 @@
   }
 }
 
-// Button Sizes
-// --------------------------------------------------
-.btn--lg {
-  @include button-size($padding-large-vertical, $padding-large-horizontal, $btn-font-size-large, $btn-line-height);
-}
-
-.btn--m {
-  @include button-size($padding-medium-vertical, $padding-medium-horizontal, $btn-font-size-medium, $btn-line-height);
-}
-
-.btn--sm {
-  @include button-size($padding-small-vertical, $padding-small-horizontal, $btn-font-size-small, $btn-line-height);
-}
-
-.btn--inline {
-  padding: 0;
-  min-width: 0;
-  font-weight: $normal-weight;
-  -webkit-font-smoothing: subpixel-antialiased;
-  &:hover {
-    background-color: transparent;
-  }
-}
-
 .btn-link {
   border: 0;
   display: inline-block;
@@ -166,7 +142,30 @@
       text-decoration: none;
     }
   }
+}
 
+// Button Sizes
+// --------------------------------------------------
+.btn--lg {
+  @include button-size($padding-large-vertical, $padding-large-horizontal, $btn-font-size-large, $btn-line-height);
+}
+
+.btn--m {
+  @include button-size($padding-medium-vertical, $padding-medium-horizontal, $btn-font-size-medium, $btn-line-height);
+}
+
+.btn--sm {
+  @include button-size($padding-small-vertical, $padding-small-horizontal, $btn-font-size-small, $btn-line-height);
+}
+
+.btn--inline {
+  padding: 0;
+  min-width: 0;
+  font-weight: $normal-weight;
+  -webkit-font-smoothing: subpixel-antialiased;
+  &:hover {
+    background-color: transparent;
+  }
 }
 
 //Button icon

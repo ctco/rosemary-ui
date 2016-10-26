@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
-import classNames from 'classnames';
+import cn from 'classnames';
 import {isDefined} from '../util/utils';
+import * as sizes from '../constant/sizes';
 
 const PROPERTY_TYPES = {
     disabled: React.PropTypes.bool,
@@ -10,11 +11,17 @@ const PROPERTY_TYPES = {
     value: React.PropTypes.any,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
-    onChange: React.PropTypes.func
+    onChange: React.PropTypes.func,
+    readOnly: React.PropTypes.bool,
+    fluid: React.PropTypes.bool,
+    size: sizes.anySize
 };
 const DEFAULT_PROPS = {
     type: 'text',
-    maxLength: 254
+    maxLength: 254,
+    readOnly: false,
+    fluid: false,
+    sizes: sizes.NORMAL
 };
 
 class Input extends React.Component {
@@ -49,9 +56,11 @@ class Input extends React.Component {
     }
 
     render() {
-        let style = classNames(this.props.className, {
-            'text-input': true,
-            'disabled': this.props.disabled
+        let style = cn(this.props.className, 'text-input', {
+            'disabled': this.props.disabled,
+            'text-input--fluid': this.props.fluid,
+            'text-input--sm': this.props.size === sizes.SMALL,
+            'text-input--lg': this.props.size === sizes.LARGE
         });
 
         return (
@@ -59,6 +68,7 @@ class Input extends React.Component {
                 <input
                     maxLength={this.props.maxLength}
                     ref="input"
+                    readOnly={this.props.readOnly}
                     value={this.isControlled() ? this.props.value : this.state.value}
                     placeholder={this.props.placeholder}
                     onChange={(e) => this.update(e)}

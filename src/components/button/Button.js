@@ -3,9 +3,13 @@ import classNames from 'classnames';
 
 const PROPERTY_TYPES = {
     onClick: React.PropTypes.func,
-    disabled: React.PropTypes.bool
+    disabled: React.PropTypes.bool,
+    baseClassName: React.PropTypes.string,
+    value: React.PropTypes.string
 };
-const DEFAULT_PROPS = {};
+const DEFAULT_PROPS = {
+    baseClassName: 'btn'
+};
 
 class Button extends React.Component {
 
@@ -14,16 +18,15 @@ class Button extends React.Component {
 
         this.onClickButton = this.onClickButton.bind(this);
     }
-
+    
     render() {
-        let style = classNames(this.props.className, {
-            'btn': true,
+        let style = classNames(this.props.className, this.props.baseClassName, {
             'disabled': this.props.disabled
         });
 
         return (
             <div id={this.props.id} className={style} onClick={this.onClickButton}>
-                {this.props.children || this.props.text}
+                {this.props.children || this.props.value}
             </div>
         );
     }

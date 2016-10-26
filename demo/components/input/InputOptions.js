@@ -1,5 +1,5 @@
 import React from 'react';
-import {Input} from '../../../src';
+import {Input, IconInput} from '../../../src';
 import OptionsTable from '../../helper/OptionsTable';
 
 export default () => {
@@ -19,6 +19,12 @@ export default () => {
     };
 
     return (
-        <OptionsTable component={Input} propDescription={propDescription} />
+        <div>
+            <h2>Input</h2>
+            <OptionsTable component={Input} propDescription={propDescription} />
+            <br/>
+            <h2>IconInput</h2>
+            <OptionsTable component={IconInput} propDescription={propDescription} />
+        </div>
     );
 };

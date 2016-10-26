@@ -1,0 +1,44 @@
+@import "../../variables/all";
+@import "../../mixins/all";
+@import "variables";
+
+.month-picker-popup__header {
+  @include vertical-align-space-between;
+  margin-bottom: 20px;
+}
+
+.month-picker-popup__years {
+  width: 80px;
+  min-width: 0;
+}
+
+.month-picker-popup__arrow {
+  @include border-radius(50%);
+  @include user-select(none);
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  color: $date-picker__arrow-color;
+  opacity: .5;
+  cursor: $cursor-pointer;
+  display: inline-block;
+
+  &:hover {
+    background-color: $date-picker__arrow-bg-color;
+    opacity: 1;
+  }
+}
+
+.month-picker-popup__arrow--left {
+  @extend .icon-arrow-thin-left;
+}
+
+.month-picker-popup__arrow--right {
+  @extend .icon-arrow-thin-right;
+}
+
+.month-picker-popup__today-link {
+  @include vertical-align-center;
+  margin: 24px 0 5px 0;
+}

@@ -7,7 +7,7 @@
 
   > input {
     @include control-base;
-    width: inherit;
+    width: 100%;
     -webkit-font-smoothing: antialiased;
 
     &:focus,
@@ -36,26 +36,38 @@
   }
 }
 
+.text-input--fluid {
+  width: 100%;
+}
+
 .icon-input {
   position: relative;
   display: inline-block;
-  width: 100%;
-
-  .text-input {
-    > input {
-      padding-right: 34px;
-    }
-  }
 
   i {
     width: 25px;
     height: 100%;
     @include display-flex;
     @include align-items(center);
-    @include justify-content(flex-end);
     position: absolute;
     top: 0;
     right: 12px;
+    color: $black;
+    opacity: .5;
+    transition: opacity ease .3s;
+  }
+
+  &.icon-input--right {
+    i {
+      @include justify-content(flex-end);
+      right: 12px;
+    }
+
+    .text-input {
+      > input {
+        padding-right: 34px;
+      }
+    }
   }
 
   &.icon-input--left {
@@ -71,5 +83,14 @@
       }
     }
   }
+}
 
+.icon-input--focused {
+  i {
+    opacity: 1 !important;
+  }
+}
+
+.icon-input--fluid {
+  width: 100%;
 }

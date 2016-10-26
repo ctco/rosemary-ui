@@ -31,7 +31,7 @@ module.exports = webpackUtils.merge(base.defaults, {
             { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
             { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!postcss!sass?outputStyle=compact'), include: [path.resolve('src'), path.resolve('demo')] },
             { test: /\.png$/, loader: 'file', include: [path.resolve('src'), path.resolve('demo')] },
-            { test: /\.(woff|woff2|eot|ttf|svg)$/, loader: 'url?limit=100000', include: [path.resolve('src'), path.resolve('demo')] }
+            { test: /\.(woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=100000', include: [path.resolve('src'), path.resolve('demo')] }
         ]
     },
     devServer: {

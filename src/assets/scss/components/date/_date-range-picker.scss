@@ -1,5 +1,6 @@
-@import '../variables/variables';
-@import "../mixins/all";
+@import "../../variables/variables";
+@import "../../mixins/all";
+@import "variables";
 
 .date-range-picker-control {
   width: 300px;

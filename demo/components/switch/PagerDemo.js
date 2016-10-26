@@ -1,7 +1,6 @@
-import DemoWithSnippet from '../../../demo/layout/DemoWithSnippet';
-import Pager from '../../../src/components/Pager';
-
 import React from 'react';
+
+import {Pager, MonthPager} from '../../../src';
 
 export default class PagerDemo extends React.Component {
 
@@ -9,13 +8,14 @@ export default class PagerDemo extends React.Component {
         super(props);
 
         this.state = {
-            count: 0
+            count: 0,
+            month: '01.10.2016'
         };
     }
 
     render() {
         return (
-            <DemoWithSnippet>
+            <div>
                 <Pager
                     onPrevBtnClick={() => {
                         this.setState({
@@ -27,9 +27,15 @@ export default class PagerDemo extends React.Component {
                             count: this.state.count + 1
                         });
                     }}
-                    value={this.state.count}
+                >
+                    {this.state.count}
+                </Pager>
+                <MonthPager
+                    onChange={(month) => this.setState({month})}
+                    value={this.state.month}
+                    format="DD.MM.YYYY"
                 />
-            </DemoWithSnippet>
+            </div>
         );
     }
 }

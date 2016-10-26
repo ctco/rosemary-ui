@@ -29,3 +29,7 @@
     @include user-select(none);
   }
 }
+
+.ros-pager__month-picker {
+  cursor: $cursor-pointer;
+}

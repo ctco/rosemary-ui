@@ -1,12 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import classNames from 'classnames';
 import range from 'lodash/range';
 
 import Select from '../select/Select';
 import DatePickerCalendar from './DatePickerCalendar';
-import Popup from '../Popup';
-import Input from '../Input';
 import Button from '../button/Button';
 
 import {getToday,
@@ -26,7 +23,7 @@ import {getToday,
     getFirstDayOfYear,
     getLastDayOfYear} from '../../util/date-utils';
 
-import {formatDMonthYear, formatFullMonth} from '../../util/date-formats';
+import {formatFullMonth} from '../../util/date-formats';
 
 const PROPERTY_TYPES = {
     value: React.PropTypes.object,
@@ -172,7 +169,7 @@ class DatePickerPopup extends React.Component {
                                     maxDate={this.props.maxDate}
                                     getStyles={this.props.getStyles}/>
                 <Button onClick={() => this.props.onSelected(getToday())}
-                        className="date-picker__today-link btn-link btn-sm">Today</Button>
+                        className="date-picker__today-link btn-link btn--sm">Today</Button>
             </div>
         );
     }
