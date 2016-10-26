@@ -102,6 +102,16 @@ export default () => {
                     </td>
                 </tr>
             </table>
+            <table>
+                <tr>
+                    <td>
+                        <Button disabled title="title" className="btn btn--primary">
+                            disabled with title
+                        </Button>
+                    </td>
+                </tr>
+            </table>
+
             <br/>
             <Link className="someClass" href="wwww.google.com">link</Link>
         </DemoWithSnippet>

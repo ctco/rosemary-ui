@@ -5,6 +5,7 @@ const PROPERTY_TYPES = {
     onClick: React.PropTypes.func,
     disabled: React.PropTypes.bool,
     baseClassName: React.PropTypes.string,
+    title: React.PropTypes.string,
     value: React.PropTypes.string
 };
 const DEFAULT_PROPS = {
@@ -25,7 +26,7 @@ class Button extends React.Component {
         });
 
         return (
-            <div id={this.props.id} className={style} onClick={this.onClickButton}>
+            <div title={this.props.title} id={this.props.id} className={style} onClick={this.onClickButton}>
                 {this.props.children || this.props.value}
             </div>
         );
