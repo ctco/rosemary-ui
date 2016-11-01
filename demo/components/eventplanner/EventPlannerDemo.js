@@ -32,7 +32,7 @@ export default class EventPlannerDemo extends React.Component {
             style = {...style, backgroundColor: '#000000'};
         }
         return {
-            style : style
+            style: style
         };
     }
 
@@ -41,7 +41,9 @@ export default class EventPlannerDemo extends React.Component {
             <DemoWithSnippet>
                 <div>
                     <h3>Link to: <a href="https://github.com/intljusticemission/react-big-calendar">SourceCode</a></h3>
-                    <h3>Link to: <a href="http://intljusticemission.github.io/react-big-calendar/examples/index.html#intro">Example With Api Docs</a></h3>
+                    <h3>Link to: <a
+                        href="http://intljusticemission.github.io/react-big-calendar/examples/index.html#intro">Example
+                        With Api Docs</a></h3>
 
                     <br/>
                     <hr />
@@ -49,21 +51,30 @@ export default class EventPlannerDemo extends React.Component {
 
                     <h3> Example With Custom My Evenet Comnponent </h3>
 
-                    <div style={{width:'800px', height:'800px'}}>
+                    <div style={{width: '800px', height: '800px'}}>
                         <EventPlanner
                             popup
+                            onRangeSelected={({start, end}) => {
+                                console.log(start);
+                                console.log(end);
+                            }}
                             events={events}
                             nonWorkingDays={nonWorkingDays}
                             selectable
-                            onSelectSlot={(slotInfo) => {console.log('onSelectSlot');console.dir(slotInfo);}}
-                            onSelectEvent={(event) => {console.log('onSelectEvent');console.dir(event);}}
-                            onSelecting={(start, end) => {console.log('onSelectEvent'); return true;}}
+                            onSelectEvent={(event) => {
+                                console.log('onSelectEvent');
+                                console.dir(event);
+                            }}
+                            onSelecting={(start, end) => {
+                                console.log('onSelectEvent');
+                                return true;
+                            }}
                             defaultDate={new Date(2015, 3, 1)}
                             components={{
                                 event: MyEvent
                             }}
                             eventPropGetter={(this.eventStyleGetter)}
-                            />
+                        />
                     </div>
 
                 </div>

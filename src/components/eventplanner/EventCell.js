@@ -3,7 +3,6 @@ import cn from 'classnames';
 import dates from './utils/dates';
 import { accessor as get } from './utils/accessors';
 
-
 class EventCell extends React.Component {
   render() {
     let {

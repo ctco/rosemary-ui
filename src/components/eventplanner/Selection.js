@@ -26,12 +26,14 @@ class Selection {
 
         this._mouseDown = this._mouseDown.bind(this);
         this._mouseUp = this._mouseUp.bind(this);
+        this._mouseOver = this._mouseOver.bind(this);
         this._openSelector = this._openSelector.bind(this);
         this._keyListener = this._keyListener.bind(this);
 
         this._onMouseDownListener = addEventListener('mousedown', this._mouseDown);
         this._onKeyDownListener = addEventListener('keydown', this._keyListener);
         this._onKeyUpListener = addEventListener('keyup', this._keyListener);
+        this._onMousOverListener = addEventListener('mouseover', this._mouseOver);
     }
 
     on(type, handler) {
@@ -59,6 +61,7 @@ class Selection {
         this._onMouseMoveListener && this._onMouseMoveListener.remove();
         this._onKeyUpListener && this._onKeyUpListener.remove();
         this._onKeyDownListener && this._onKeyDownListener.remove();
+        this._onMousOverListener && this._onMousOverListener.remove();
     }
 
     isSelected(node) {
@@ -79,6 +82,10 @@ class Selection {
         return items.filter(this.isSelected, this);
     }
 
+    _mouseOver(e) {
+        this.emit('mouseover', {x: e.pageX, y: e.pageY});
+    }
+
     _mouseDown(e) {
         let node = this.container()
             , collides, offsetData;
@@ -89,7 +96,7 @@ class Selection {
 
         if (!this.globalMouse && node && !contains(node, e.target)) {
 
-            let { top, left, bottom, right } = normalizeDistance(0);
+            let {top, left, bottom, right} = normalizeDistance(0);
 
             offsetData = getBoundsForNode(node);
 
@@ -135,7 +142,7 @@ class Selection {
         }
 
         if (click && inRoot)
-            return this.emit('click', {x: e.pageX, y: e.pageY});
+            return this.emit('click', {x: e.pageX, y: e.pageY}, e);
 
         // User drag-clicked in the Selectable area
         if (!click)
@@ -145,7 +152,7 @@ class Selection {
     }
 
     _openSelector(e) {
-        let { x, y } = this._mouseDownData;
+        let {x, y} = this._mouseDownData;
         let w = Math.abs(x - e.pageX);
         let h = Math.abs(y - e.pageY);
 
@@ -175,7 +182,7 @@ class Selection {
     }
 
     isClick(pageX, pageY) {
-        let { x, y } = this._mouseDownData;
+        let {x, y} = this._mouseDownData;
         return (
             Math.abs(pageX - x) <= clickTolerance &&
             Math.abs(pageY - y) <= clickTolerance
@@ -202,17 +209,17 @@ function normalizeDistance(distance = 0) {
  * @return {bool}
  */
 export function objectsCollide(nodeA, nodeB, tolerance = 0) {
-    let { top: aTop, left: aLeft, right: aRight = aLeft, bottom: aBottom = aTop } = getBoundsForNode(nodeA);
-    let { top: bTop, left: bLeft, right: bRight = bLeft, bottom: bBottom = bTop } = getBoundsForNode(nodeB);
+    let {top: aTop, left: aLeft, right: aRight = aLeft, bottom: aBottom = aTop} = getBoundsForNode(nodeA);
+    let {top: bTop, left: bLeft, right: bRight = bLeft, bottom: bBottom = bTop} = getBoundsForNode(nodeB);
 
     return !(
         // 'a' bottom doesn't touch 'b' top
         ((aBottom - tolerance ) < bTop) ||
-            // 'a' top doesn't touch 'b' bottom
+        // 'a' top doesn't touch 'b' bottom
         ((aTop + tolerance) > (bBottom)) ||
-            // 'a' right doesn't touch 'b' left
+        // 'a' right doesn't touch 'b' left
         ((aRight - tolerance) < bLeft ) ||
-            // 'a' left doesn't touch 'b' right
+        // 'a' left doesn't touch 'b' right
         ((aLeft + tolerance) > (bRight) )
     );
 }

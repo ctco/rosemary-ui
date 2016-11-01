@@ -1,17 +1,17 @@
 import React from 'react';
-import { findDOMNode } from 'react-dom';
+import {findDOMNode} from 'react-dom';
 import cn from 'classnames';
 import dates from './utils/dates';
 import localizer from './localizer';
 import chunk from 'lodash/chunk';
-import omit from 'lodash/omit';
 import collection from 'lodash/collection';
 
-import { navigate } from './utils/constants';
-import { notify } from './utils/helpers';
+import {navigate} from './utils/constants';
+import {notify} from './utils/helpers';
 import getHeight from 'dom-helpers/query/height';
 import getPosition from 'dom-helpers/query/position';
 import raf from 'dom-helpers/util/requestAnimationFrame';
+import {parse, isDateBetween, isDatesSame, isDateBefore} from '../../util/date-utils';
 
 import EventRow from './EventRow';
 import EventEndingRow from './EventEndingRow';
@@ -19,10 +19,11 @@ import Popup from './Popup';
 import Overlay from 'react-overlays/lib/Overlay';
 import BackgroundCells from './BackgroundCells';
 
-import { dateFormat } from './utils/propTypes';
+import {dateFormat} from './utils/propTypes';
 import {
     segStyle, inRange, eventSegments
-    , endOfRange, eventLevels, sortEvents } from './utils/eventLevels';
+    , endOfRange, eventLevels, sortEvents
+} from './utils/eventLevels';
 
 let eventsForWeek = (evts, start, end, props) =>
     evts.filter((e) => inRange(e, start, end, props));
@@ -61,7 +62,10 @@ class MonthView extends React.Component {
         super(props);
         this.state = {
             rowLimit: 5,
-            needLimitMeasure: true
+            needLimitMeasure: true,
+            startDate: null,
+            endDate: null,
+            dropSelection: false
         };
 
         this.renderWeek = this.renderWeek.bind(this);
@@ -85,7 +89,7 @@ class MonthView extends React.Component {
         this._pendingSelection = [];
     }
 
-    componentWillReceiveProps({ date }) {
+    componentWillReceiveProps({date}) {
         this.setState({
             needLimitMeasure: !dates.eq(date, this.props.date)
         });
@@ -96,6 +100,12 @@ class MonthView extends React.Component {
 
         if (this.state.needLimitMeasure)
             this._measureRowLimit(this.props);
+
+        window.addEventListener('click', this._dropSelection = (e) => {
+            if (!e.target.closest('.rbc-calendar')) {
+                this._reset();
+            }
+        });
 
         window.addEventListener('resize', this._resizeListener = () => {
             if (!running) {
@@ -114,33 +124,11 @@ class MonthView extends React.Component {
 
     componentWillUnmount() {
         window.removeEventListener('resize', this._resizeListener, false);
-    }
-
-    render() {
-        let { date, culture, weekdayFormat } = this.props
-            , month = dates.visibleDays(date, culture)
-            , weeks = chunk(month, 7);
-
-        let measure = this.state.needLimitMeasure;
-
-        this._weekCount = weeks.length;
-
-        return (
-            <div
-                className={cn('rbc-month-view', this.props.className)}
-                >
-                <div className="rbc-row rbc-month-header">
-                    {this._headers(weeks[0], weekdayFormat, culture)}
-                </div>
-                { weeks.map((week, idx) =>
-                    this.renderWeek(week, idx, measure && this._renderMeasureRows))
-                }
-            </div>
-        );
+        window.removeEventListener('resize', this._dropSelection, false);
     }
 
     renderWeek(week, weekIdx, content) {
-        let { first, last } = endOfRange(week);
+        let {first, last} = endOfRange(week);
         let evts = eventsForWeek(this.props.events, week[0], week[week.length - 1], this.props);
         let nonWorkingDays = this.props.nonWorkingDays;
         evts.sort((a, b) => sortEvents(a, b, this.props));
@@ -148,7 +136,7 @@ class MonthView extends React.Component {
         let segments = evts = evts.map((evt) => eventSegments(evt, first, last, this.props));
         let limit = (this.state.rowLimit - 1) || 1;
 
-        let { levels, extra } = eventLevels(segments, limit);
+        let {levels, extra} = eventLevels(segments, limit);
 
         content = content || ((lvls, wk) => lvls.map((lvl, idx) => this.renderRowLevel(lvl, wk, idx)));
 
@@ -156,17 +144,17 @@ class MonthView extends React.Component {
             <div key={'week_' + weekIdx}
                  className="rbc-month-row"
                  ref={!weekIdx && ((r) => this._firstRow = r)}
-                >
+            >
                 {
                     this.renderBackground(week, weekIdx)
                 }
                 <div
                     className="rbc-row-content"
-                    >
+                >
                     <div
                         className="rbc-row"
                         ref={!weekIdx && ((r) => this._firstDateRow = r)}
-                        >
+                    >
                         { this._dates(week, nonWorkingDays) }
                     </div>
                     {
@@ -184,30 +172,143 @@ class MonthView extends React.Component {
         );
     }
 
+    _setDate(date) {
+        if (this._getStartDate()) {
+            this.setState({
+                endDate: date
+            });
+        } else {
+            this.setState({
+                startDate: date
+            });
+        }
+
+
+        if (this._isStartEndDateSelected()) {
+            let start = this._getStartDate();
+            let end = this._getEndDate();
+
+            if (!isDateBefore(start, end)) {
+                let temp = end;
+                end = start;
+                start = temp;
+            }
+
+            notify(this.props.onRangeSelected, {
+                start,
+                end
+            });
+
+            this._reset();
+        }
+    }
+
+    _getStartDate() {
+        return this.state.startDate && parse(this.state.startDate);
+    }
+
+    _isStartEndDateSelected() {
+        return this._getStartDate() && this._getEndDate();
+    }
+
+    _getEndDate() {
+        return this.state.endDate && parse(this.state.endDate);
+    }
+
+    _getHoveredDate() {
+        return this.state.hoveredDate && parse(this.state.hoveredDate);
+    }
+
+    _reset() {
+        this.setState({
+            endDate: null,
+            startDate: null
+        });
+    }
+
     renderBackground(row, idx) {
         let self = this;
 
-        function onSelectSlot({ start, end }) {
-            self._pendingSelection = self._pendingSelection
-                .concat(row.slice(start, end + 1));
+        function getCurrentDate(index) {
+            let date = row.slice(index, index + 1)[0];
+            return parse(date);
+        }
+
+        function onSelectSlot({start, end}) {
+            let selectedDate = self._pendingSelection.concat(row.slice(start, end + 1));
+            self._setDate(selectedDate[0]);
+
+            self._pendingSelection = selectedDate;
 
             clearTimeout(self._selectTimer);
             self._selectTimer = setTimeout(() => self._selectDates());
+
+        }
+
+        function isEndDate(dateCell) {
+            let date = getCurrentDate(dateCell);
+
+            return isDatesSame(date, self._hoveredDate) && self._getStartDate();
+        }
+
+        function isStartDate(dateCell) {
+            let date = getCurrentDate(dateCell);
+
+            return isDatesSame(date, self._hoveredDate) && !self._getStartDate();
+        }
+
+        function onHoverSlot(dateCell) {
+            let date = getCurrentDate(dateCell);
+
+            if (isDatesSame(date, self._hoveredDate)) {
+                return;
+            }
+
+            self._hoveredDate = date;
+            self.setState({
+                hoveredDate: date
+            });
+        }
+
+        function highlight(cell) {
+            let date = getCurrentDate(cell);
+            let startDate = self._getStartDate();
+            let hoveredDate = self._getHoveredDate();
+
+            return hoveredDate && startDate && date
+                && isDateBetween(startDate, hoveredDate, date, '()')
+                || isDateBetween(hoveredDate, startDate, date, '()');
+
+        }
+
+        function isSelected(cell) {
+            let startDate = self._getStartDate();
+            let date = getCurrentDate(cell);
+
+            return isDatesSame(date, startDate);
         }
 
         return (
             <BackgroundCells
+                highlight={highlight}
+                isSelected={isSelected}
+                isStartDate={isStartDate}
+                isEndDate={isEndDate}
+                onHover={onHoverSlot}
+                rowIndex
+                index={idx}
                 container={() => findDOMNode(this)}
+                draggableSelect={this.props.draggableSelect}
                 selectable={this.props.selectable}
                 slots={7}
                 ref={(r) => this._bgRows[idx] = r}
                 onSelectSlot={onSelectSlot}
-                />
+            />
         );
     }
 
     renderRowLevel(segments, week, idx) {
-        let { first, last } = endOfRange(week);
+        let {first, last} = endOfRange(week);
 
         return (
             <EventRow
@@ -218,12 +319,12 @@ class MonthView extends React.Component {
                 segments={segments}
                 start={first}
                 end={last}
-                />
+            />
         );
     }
 
     renderShowMore(segments, extraSegments, week, weekIdx) {
-        let { first, last } = endOfRange(week);
+        let {first, last} = endOfRange(week);
 
         let onClick = (slot) => this._showMore(segments, week[slot - 1], weekIdx, slot);
 
@@ -237,26 +338,28 @@ class MonthView extends React.Component {
                 segments={extraSegments}
                 start={first}
                 end={last}
-                />
+            />
         );
     }
 
     _dates(row, nonWorkingDays) {
         return row.map((day, colIdx) => {
             let offRange = dates.month(day) !== dates.month(this.props.date);
-            let isNonWorkDay = collection.find(nonWorkingDays, function(nonWorkDay) { return dates.isSameDate(nonWorkDay, day); });
+            let isNonWorkDay = collection.find(nonWorkingDays, function same(nonWorkDay) {
+                return dates.isSameDate(nonWorkDay, day);
+            });
             return (
                 <div
                     key={'header_' + colIdx}
                     style={segStyle(1, 7)}
                     className={cn('rbc-date-cell', {
-            'rbc-off-range': offRange && !isNonWorkDay,
-            'rbc-off-range-non-work': offRange && isNonWorkDay,
-            'rbc-off-non-work': !offRange && isNonWorkDay,
-            'rbc-now': dates.eq(day, new Date(), 'day'),
-            'rbc-current': dates.eq(day, this.props.date, 'day')
-          })}
-                    >
+                        'rbc-off-range': offRange && !isNonWorkDay,
+                        'rbc-off-range-non-work': offRange && isNonWorkDay,
+                        'rbc-off-non-work': !offRange && isNonWorkDay,
+                        'rbc-now': dates.eq(day, new Date(), 'day'),
+                        'rbc-current': dates.eq(day, this.props.date, 'day')
+                    })}
+                >
                     <a href="#" onClick={this._dateClick.bind(null, day)}>
                         { localizer.format(day, this.props.dateFormat, this.props.culture) }
                     </a>
@@ -270,13 +373,13 @@ class MonthView extends React.Component {
         let last = row[row.length - 1];
 
         return dates.range(first, last, 'day').map((day, idx) =>
-                <div
-                    key={'header_' + idx}
-                    className="rbc-header"
-                    style={segStyle(1, 7)}
-                    >
-                    { localizer.format(day, format, culture) }
-                </div>
+            <div
+                key={'header_' + idx}
+                className="rbc-header"
+                style={segStyle(1, 7)}
+            >
+                { localizer.format(day, format, culture) }
+            </div>
         );
     }
 
@@ -303,8 +406,8 @@ class MonthView extends React.Component {
                 placement="bottom"
                 container={this}
                 show={!!overlay.position}
-                onHide={() => this.setState({ overlay: null })}
-                >
+                onHide={() => this.setState({overlay: null})}
+            >
                 <Popup
                     {...this.props}
                     position={overlay.position}
@@ -312,7 +415,7 @@ class MonthView extends React.Component {
                     slotStart={overlay.date}
                     slotEnd={overlay.end}
                     onSelect={this._selectEvent}
-                    />
+                />
             </Overlay>
         );
     }
@@ -344,7 +447,7 @@ class MonthView extends React.Component {
         notify(this.props.onSelectEvent, args);
     }
 
-    _selectDates() {
+    _selectDates(e) {
         let slots = this._pendingSelection.slice();
 
         this._pendingSelection = [];
@@ -387,6 +490,30 @@ class MonthView extends React.Component {
         this._pendingSelection = [];
     }
 
+    render() {
+        let {date, culture, weekdayFormat} = this.props
+            , month = dates.visibleDays(date, culture)
+            , weeks = chunk(month, 7);
+
+        let measure = this.state.needLimitMeasure;
+
+        this._weekCount = weeks.length;
+
+        return (
+            <div
+                className={cn('rbc-month-view', this.props.className)}
+            >
+                <div className="rbc-row rbc-month-header">
+                    {this._headers(weeks[0], weekdayFormat, culture)}
+                </div>
+                { weeks.map((week, idx) =>
+                    this.renderWeek(week, idx, measure && this._renderMeasureRows))
+                }
+            </div>
+        );
+    }
+
+
 }
 
 MonthView.navigate = (date, action) => {
@@ -402,7 +529,7 @@ MonthView.navigate = (date, action) => {
     }
 };
 
-MonthView.range = (date, { culture }) => {
+MonthView.range = (date, {culture}) => {
     let start = dates.firstVisibleDay(date, culture);
     let end = dates.lastVisibleDay(date, culture);
     return {start, end};
