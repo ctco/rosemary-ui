@@ -167,11 +167,25 @@ function isDayAfter(date1, date2) {
     return date1.isAfter(date2, 'day');
 }
 
+function isDateBetween(date1, date2, date, pattern = '[]') {
+    return date.isBetween(date1, date2, null, pattern);
+}
+
+function isDateBefore(dateAgainst, date) {
+    return dateAgainst.isBefore(date);
+}
 function isDayAfterOrTheSame(date1, date2) {
     return date1.isSameOrAfter(date2, 'day');
 }
 
+function isDatesSame(date1, date2) {
+    return date1.isSame(date2);
+}
+
 export {
+    isDatesSame,
+    isDateBefore,
+    isDateBetween,
     isWeekend,
     isFirstDayOfWeek,
     isToday,
@@ -212,4 +226,4 @@ export {
     format,
     clone,
     getConfiguredMoment
-    };
+};

@@ -260,6 +260,8 @@ const PROPERTY_TYPES = {
      * A time range format for selecting time slots.
      */
     selectRangeFormat: dateFormat,
+    onRangeSelected:React.PropTypes.func,
+    draggableSelect:React.PropTypes.func,
 
 
     agendaDateFormat: dateFormat,
@@ -368,6 +370,47 @@ class Calendar extends React.Component {
     return views[this.props.view];
   }
 
+  _navigate(action, newDate) {
+    let { view, date, onNavigate } = this.props;
+
+    date = moveDate(action, newDate || date, view);
+
+    onNavigate(date, view);
+
+    if (action === navigate.DATE)
+      this._viewNavigate(date);
+  }
+
+  _viewNavigate(nextDate) {
+    let { view, date, culture } = this.props;
+
+    if (dates.eq(date, nextDate, view, localizer.startOfWeek(culture))) {
+      this._view(views.DAY);
+    }
+  }
+
+  _view(view) {
+    if (view !== this.props.view && isValidView(view, this.props))
+      this.props.onView(view);
+  }
+
+  _select(event) {
+    notify(this.props.onSelectEvent, event);
+  }
+
+  _selectSlot(slotInfo) {
+    notify(this.props.onSelectSlot, slotInfo);
+  }
+
+  _headerClick(date) {
+    let { view } = this.props;
+
+    if ( view === views.MONTH || view === views.WEEK)
+      this._view(views.day);
+
+    this._navigate(navigate.DATE, date);
+  }
+
   render() {
     let {
         view, toolbar, events, nonWorkingDays
@@ -430,46 +473,6 @@ class Calendar extends React.Component {
     );
   }
 
-  _navigate(action, newDate) {
-    let { view, date, onNavigate } = this.props;
-
-    date = moveDate(action, newDate || date, view);
-
-    onNavigate(date, view);
-
-    if (action === navigate.DATE)
-      this._viewNavigate(date);
-  }
-
-  _viewNavigate(nextDate) {
-    let { view, date, culture } = this.props;
-
-    if (dates.eq(date, nextDate, view, localizer.startOfWeek(culture))) {
-      this._view(views.DAY);
-    }
-  }
-
-  _view(view) {
-    if (view !== this.props.view && isValidView(view, this.props))
-      this.props.onView(view);
-  }
-
-  _select(event) {
-    notify(this.props.onSelectEvent, event);
-  }
-
-  _selectSlot(slotInfo) {
-    notify(this.props.onSelectSlot, slotInfo);
-  }
-
-  _headerClick(date) {
-    let { view } = this.props;
-
-    if ( view === views.MONTH || view === views.WEEK)
-      this._view(views.day);
-
-    this._navigate(navigate.DATE, date);
-  }
 }
 
 Calendar.propTypes = PROPERTY_TYPES;
