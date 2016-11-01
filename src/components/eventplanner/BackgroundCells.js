@@ -33,6 +33,7 @@ class DisplayCells extends React.Component {
 
     componentWillUnmount() {
         this._teardownSelectable();
+        this._teardownDraggable();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -77,7 +78,6 @@ class DisplayCells extends React.Component {
     }
 
     _draggableSelect() {
-        console.log('set');
         let node = findDOMNode(this);
         let selector = this._draggableSelect = new Selection(this.props.container);
         selector.on('selecting', (box) => {
