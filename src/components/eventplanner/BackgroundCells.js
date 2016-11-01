@@ -28,7 +28,7 @@ class DisplayCells extends React.Component {
 
     componentDidMount() {
         this.props.selectable && this._selectable();
-        this.props.draggableSelect && this._draggableSelect();
+        this.props.draggableSelect && this._draggable();
     }
 
     componentWillUnmount() {
@@ -77,9 +77,9 @@ class DisplayCells extends React.Component {
         );
     }
 
-    _draggableSelect() {
+    _draggable() {
         let node = findDOMNode(this);
-        let selector = this._draggableSelect = new Selection(this.props.container);
+        let selector = this._dragableSelector = new Selection(this.props.container);
         selector.on('selecting', (box) => {
             let {slots} = this.props;
 
@@ -154,9 +154,9 @@ class DisplayCells extends React.Component {
     }
 
     _teardownDraggable() {
-        if (!this._draggableSelect) return;
-        this._draggableSelect.teardown();
-        this._draggableSelect = null;
+        if (!this._dragableSelector) return;
+        this._dragableSelector.teardown();
+        this._dragableSelector = null;
     }
 
     _selectSlot({endIdx, startIdx, selectedIndex}) {
