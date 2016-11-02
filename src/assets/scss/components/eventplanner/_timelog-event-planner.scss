@@ -94,12 +94,14 @@
 }
 
 .rbc-start-date {
-  box-shadow: inset 0 0 0 2px rgba($powder-blue, 1);
+  background-color: $light-grey;
+  cursor: $cursor-pointer;
 }
 
 .rbc-end-date,
 .rbc-selected {
   background-color: $powder-blue;
+  cursor: $cursor-pointer;
 }
 
 .rbc-day-highlighted {
