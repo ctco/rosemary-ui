@@ -13,7 +13,7 @@ const PROPERTY_TYPES = {
     onSelect: React.PropTypes.func,
     slots: React.PropTypes.number,
     highlight: React.PropTypes.func,
-    isSelected: React.PropTypes.func,
+    isHovered: React.PropTypes.func,
     isEndDate: React.PropTypes.func,
     isStartDate: React.PropTypes.func,
     onHover: React.PropTypes.func
@@ -63,7 +63,7 @@ class DisplayCells extends React.Component {
                         'rbc-selected': this.props.isSelected(i),
                         'rbc-day-highlighted': this.props.highlight(i),
                         'rbc-end-date': this.props.isEndDate(i),
-                        'rbc-start-date': this.props.isStartDate(i),
+                        'rbc-hovered-date': this.props.isHovered(i),
                         'rbc-selected-cell': selecting && i >= startIdx && i <= endIdx
                     })}
                 />

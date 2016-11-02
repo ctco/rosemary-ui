@@ -251,7 +251,7 @@ class MonthView extends React.Component {
             return isDatesSame(date, self._hoveredDate) && self._getStartDate();
         }
 
-        function isStartDate(dateCell) {
+        function isHovered(dateCell) {
             let date = getCurrentDate(dateCell);
 
             return isDatesSame(date, self._hoveredDate) && !self._getStartDate();
@@ -292,7 +292,7 @@ class MonthView extends React.Component {
             <BackgroundCells
                 highlight={highlight}
                 isSelected={isSelected}
-                isStartDate={isStartDate}
+                isHovered={isHovered}
                 isEndDate={isEndDate}
                 onHover={onHoverSlot}
                 rowIndex
