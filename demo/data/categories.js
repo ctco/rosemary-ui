@@ -51,6 +51,9 @@ import FeedbackDescription from '../components/feedback/FeedbackDescription';
 import PagerDemo from '../components/switch/PagerDemo';
 import PagerOptions from '../components/switch/PagerOptions';
 
+import AlertDemo from '../components/alert/AlertDemo';
+import AlertOptions from '../components/alert/AlertOptions';
+
 export default [
     {
         name: 'Components',
@@ -230,6 +233,17 @@ export default [
                         name: 'Demo', component: PagerDemo
                     }, {
                         name: 'Options', component: PagerOptions
+                    }
+                ]
+            },
+            {
+                name: 'Alert',
+                link: '/',
+                components: [
+                    {
+                        name: 'Demo', component: AlertDemo
+                    }, {
+                        name: 'Options', component: AlertOptions
                     }
                 ]
             }
