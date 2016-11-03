@@ -45,6 +45,6 @@ class Alert extends React.Component {
 
 Alert.propTypes = PROPERTY_TYPES;
 Alert.defaultProps = DEFAULT_PROPS;
+Alert.Type = Types;
 
-export const AlertType = Types;
 export default Alert;

@@ -1,5 +1,5 @@
 import DemoWithSnippet from '../../../demo/layout/DemoWithSnippet';
-import Alert, {AlertType} from '../../../src/components/Alert';
+import Alert from '../../../src/components/Alert';
 import Button from '../../../src/components/button/Button';
 
 import React from 'react';
@@ -39,26 +39,26 @@ export default class AlertDemo extends React.Component {
                 </p>
                 <br/>
 
-                <Alert type={AlertType.SUCCESS}
+                <Alert type={Alert.Type.SUCCESS}
                        title={successDemo.title}
                        description={successDemo.description}
                 />
                 <br/>
 
-                <Alert type={AlertType.DANGER}
+                <Alert type={Alert.Type.DANGER}
                        title={dangerDemo.title}
                        description={dangerDemo.description}
                 />
                 <br/>
 
-                <Alert type={AlertType.WARNING}
+                <Alert type={Alert.Type.WARNING}
                        title={warningDemo.title}
                        description={warningDemo.description}
                        extra={<Button value="YO"/>}
                 />
                 <br/>
 
-                <Alert type={AlertType.INFO}
+                <Alert type={Alert.Type.INFO}
                        title={infoDemo.title}
                        description={infoDemo.description}
                 />
