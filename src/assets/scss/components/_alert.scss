@@ -1,0 +1,39 @@
+@import '../variables/all';
+
+.ros-alert {
+  padding: 12px;
+  border-radius: 3px;
+
+  .ros-alert__title {
+    font-size: 14px;
+    font-weight: $semi-bold-weight;
+  }
+
+  .ros-alert__description {
+    font-size: 14px;
+    line-height: 1.43;
+    padding: 6px 0;
+    font-weight: $normal-weight;
+  }
+
+  &.ros-alert--success {
+    background-color: $off-white-two;
+    color: $dark-olive-green;
+  }
+
+  &.ros-alert--danger {
+    background-color: $very-light-pink-two;
+    color: $lipstick;
+  }
+
+  &.ros-alert--warning {
+    background-color: $off-white;
+    color: $sepia;
+  }
+
+  &.ros-alert--info {
+    background-color: $ice-blue;
+    color: $nice-blue;
+  }
+
+}

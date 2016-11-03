@@ -24,6 +24,7 @@ import FeedbackManager from './components/feedback/FeedbackManager';
 import Pager from './components/Pager';
 import MonthPager from './components/MonthPager';
 import Link from './components/Link';
+import Alert from './components/Alert';
 
 import * as dateUtils from './util/date-utils';
 import * as dateFormats from './util/date-formats';
@@ -56,5 +57,6 @@ export {
     Pager,
     Link,
     MonthPicker,
-    MonthPager
+    MonthPager,
+    Alert
 };
