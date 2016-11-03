@@ -117,6 +117,10 @@ class DisplayCells extends React.Component {
         let node = findDOMNode(this);
         let selector = this._selector = new Selection(this.props.container);
         selector.on('click', (point, event) => {
+
+            if (event.target.closest('.rbc-event')) {
+                return;
+            }
             let rowBox = getBoundsForNode(node);
 
             if (pointInBox(rowBox, point)) {
