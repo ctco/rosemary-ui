@@ -8,6 +8,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = webpackUtils.merge(base.defaults, {
     entry: {
         bundle: [
+            'element-closest',
             './src/index'
         ]
     },

@@ -10,6 +10,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = webpackUtils.merge(base.defaults, {
     entry: {
         bundle: [
+            'element-closest',
             'webpack-dev-server/client?http://localhost:3000',
             'webpack/hot/only-dev-server',
             './demo/app'

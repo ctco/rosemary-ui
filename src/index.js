@@ -1,5 +1,4 @@
 import './assets/scss/_all.scss';
-import './polyfill';
 
 import Button from './components/button/Button';
 import ButtonGroup from './components/button/ButtonGroup';
