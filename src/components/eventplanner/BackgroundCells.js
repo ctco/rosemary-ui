@@ -43,7 +43,7 @@ class DisplayCells extends React.Component {
             this._teardownSelectable();
 
         if (nextProps.draggableSelect && !this.props.draggableSelect)
-            this._draggableSelect();
+            this._draggable();
         if (!nextProps.draggableSelect && this.props.draggableSelect)
             this._teardownDraggable();
     }
@@ -118,7 +118,7 @@ class DisplayCells extends React.Component {
         let selector = this._selector = new Selection(this.props.container);
         selector.on('click', (point, event) => {
 
-            if (event.target.closest('.rbc-event')) {
+            if (event.target.closest('.rbc-event') || event.target.closest('.rbc-show-more')) {
                 return;
             }
             let rowBox = getBoundsForNode(node);
