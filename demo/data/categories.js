@@ -54,6 +54,9 @@ import PagerOptions from '../components/switch/PagerOptions';
 import AlertDemo from '../components/alert/AlertDemo';
 import AlertOptions from '../components/alert/AlertOptions';
 
+import TabsDemo from '../components/tabs/TabsDemo';
+import TabsOptions from '../components/tabs/TabsOptions';
+
 export default [
     {
         name: 'Components',
@@ -244,6 +247,17 @@ export default [
                         name: 'Demo', component: AlertDemo
                     }, {
                         name: 'Options', component: AlertOptions
+                    }
+                ]
+            },
+            {
+                name: 'Tabs',
+                link: '/',
+                components: [
+                    {
+                        name: 'Demo', component: TabsDemo
+                    }, {
+                        name: 'Options', component: TabsOptions
                     }
                 ]
             }
