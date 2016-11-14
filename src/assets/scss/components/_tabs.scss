@@ -17,7 +17,7 @@
     display: inline-block;
     min-width: 100px;
     text-align: center;
-    background-color: #f3f3f3;
+    background-color: $light-grey;
     padding: 8px 15px;
     color: $black;
     font-weight: $semi-bold-weight;
@@ -25,7 +25,7 @@
     cursor: $cursor-pointer;
 
     &.ros-tab--selected {
-      background-color: #696969;
+      background-color: $brownish-grey;
       color: $white;
     }
 
