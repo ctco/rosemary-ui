@@ -24,6 +24,8 @@ import Pager from './components/Pager';
 import MonthPager from './components/MonthPager';
 import Link from './components/Link';
 import Alert from './components/Alert';
+import Tabs from './components/tabs/Tabs';
+import Tab from './components/tabs/Tab';
 
 import * as dateUtils from './util/date-utils';
 import * as dateFormats from './util/date-formats';
@@ -57,5 +59,7 @@ export {
     Link,
     MonthPicker,
     MonthPager,
-    Alert
+    Alert,
+    Tabs,
+    Tab
 };
