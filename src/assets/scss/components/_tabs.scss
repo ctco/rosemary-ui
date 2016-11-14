@@ -1,0 +1,33 @@
+@import '../variables/all';
+
+.ros-tabs {
+  display: inline-block;
+
+  .ros-tabs__tab:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  .ros-tabs__tab:last-child {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
+  .ros-tabs__tab {
+    display: inline-block;
+    min-width: 100px;
+    text-align: center;
+    background-color: $light-grey;
+    padding: 8px 15px;
+    color: $black;
+    font-weight: $semi-bold-weight;
+    font-size: 16px;
+    cursor: $cursor-pointer;
+
+    &.ros-tab--selected {
+      background-color: $brownish-grey;
+      color: $white;
+    }
+
+  }
+}
