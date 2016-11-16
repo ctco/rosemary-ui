@@ -60,6 +60,5 @@ export {
     MonthPicker,
     MonthPager,
     Alert,
-    Tabs,
-    Tab
+    Tabs
 };

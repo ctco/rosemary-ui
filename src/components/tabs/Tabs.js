@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import Tab from './Tab';
 
 const PROPERTY_TYPES = {
     onChange: React.PropTypes.func,
@@ -51,5 +52,6 @@ class Tabs extends React.Component {
 
 Tabs.propTypes = PROPERTY_TYPES;
 Tabs.defaultProps = DEFAULT_PROPS;
+Tabs.Tab = Tab;
 
 export default Tabs;

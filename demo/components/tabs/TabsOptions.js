@@ -18,11 +18,26 @@ export default () => {
         }
     };
 
+    let tabDescription = {
+        tabId: {
+            values: 'any',
+            description: 'simple tab id'
+        },
+        onEnter: {
+            values: 'function[callback]',
+            description: 'called before onChange,can make ajax requests etc. to continue call callback func'
+        }
+
+    };
+
 
     return (
         <div>
-            Tabs:
+            Tabs
             <OptionsTable component={Tabs} propDescription={description}/>
+
+            Tabs.Tab
+            <OptionsTable component={Tabs.Tab} propDescription={tabDescription}/>
         </div>
     );
 };
