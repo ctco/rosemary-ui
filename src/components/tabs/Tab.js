@@ -3,7 +3,8 @@ import classNames from 'classnames';
 
 const PROPERTY_TYPES = {
     tabId: React.PropTypes.any,
-    onEnter: React.PropTypes.func
+    onEnter: React.PropTypes.func,
+    onChange: React.PropTypes.func
 };
 const DEFAULT_PROPS = {};
 
@@ -13,24 +14,41 @@ class Tab extends React.Component {
         super(props);
     }
 
-    _onChange(e) {
+    componentWillMount() {
+        if (this._isSelected() && this.props.onEnter) {
+            this.props.onEnter(() => {
+                this._triggerChangeEvent();
+            });
+        }
+    }
+
+    _isSelected() {
+        return this.props.selected === this.props.tabId;
+    }
+
+    _triggerChangeEvent() {
+        this.props.onChange(this.props.tabId);
+    }
+
+    _onChange() {
         if (this.props.onEnter) {
             this.props.onEnter(() => {
-                this.props.onChange(e, this.props.tabId);
+                this._triggerChangeEvent();
             });
         } else {
-            this.props.onChange(e, this.props.tabId);
+            this.props.onChange(this.props.tabId);
         }
     }
 
     render() {
-        let {tabId, className, selected, children} = this.props;
+        console.log('render');
+        let {className, children} = this.props;
         const style = classNames('ros-tabs__tab', className, {
-            'ros-tab--selected': selected === tabId
+            'ros-tab--selected': this._isSelected()
         });
 
         return (
-            <div className={style} onClick={(e) => this._onChange(e)}>
+            <div className={style} onClick={() => this._onChange()}>
                 <span>{name || children}</span>
             </div>
         );

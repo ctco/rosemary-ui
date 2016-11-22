@@ -27,7 +27,7 @@ class Tabs extends React.Component {
         });
     }
 
-    _onChange(event, tabId) {
+    _onChange(tabId) {
         if (this.props.onBeforeChange) {
             this.props.onBeforeChange(tabId, () => {
                 this.props.onChange(tabId);
