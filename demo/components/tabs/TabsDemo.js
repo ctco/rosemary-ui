@@ -9,7 +9,7 @@ export default class TabsDemo extends React.Component {
         this._onChange = this._onChange.bind(this);
 
         this.state = {
-            selected: 'Tab1'
+            selected: 'Tab3'
         };
     }
 

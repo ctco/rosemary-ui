@@ -6,6 +6,11 @@
   .ros-tabs__tab:first-child {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
+    margin-right: -1px;
+  }
+
+  .ros-tabs__tab:last-child {
+    margin-left: -1px;
   }
 
   .ros-tabs__tab:last-child {
@@ -23,10 +28,16 @@
     font-weight: $semi-bold-weight;
     font-size: 16px;
     cursor: $cursor-pointer;
+    box-shadow: inset 0 0 0 1px #d3d3d3;
+
+    &:hover {
+      background-color: darken($light-grey, 10%);
+    }
 
     &.ros-tab--selected {
       background-color: $brownish-grey;
       color: $white;
+      box-shadow: inset 0 1px 2px 0 rgba($black, 0.35);
     }
 
   }
