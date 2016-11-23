@@ -18,10 +18,9 @@ export default class TabsDemo extends React.Component {
         console.log(tabId);
     }
 
-    _ajax(cb) {
+    _ajax() {
         setTimeout(() => {
             alert('data has been loaded');
-            cb();
         }, 1000);
     }
 
@@ -40,8 +39,8 @@ export default class TabsDemo extends React.Component {
                     <Tabs.Tab tabId="Tab1">Tab1</Tabs.Tab>
                     <Tabs.Tab tabId="Tab2">Wait 1s then open</Tabs.Tab>
 
-                    <Tabs.Tab tabId="Tab3" onEnter={(cb) => {
-                        this._ajax(cb);
+                    <Tabs.Tab tabId="Tab3" onEnter={() => {
+                        this._ajax();
                     }}>Load Data from Server</Tabs.Tab>
                 </Tabs>
             </DemoWithSnippet>
