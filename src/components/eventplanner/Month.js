@@ -124,7 +124,7 @@ class MonthView extends React.Component {
 
     componentWillUnmount() {
         window.removeEventListener('resize', this._resizeListener, false);
-        window.removeEventListener('resize', this._dropSelection, false);
+        window.removeEventListener('click', this._dropSelection, false);
     }
 
     renderWeek(week, weekIdx, content) {
