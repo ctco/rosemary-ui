@@ -288,12 +288,18 @@ class MonthView extends React.Component {
             return isDatesSame(date, startDate);
         }
 
+        function isToday(index) {
+            let date = getCurrentDate(index);
+            return dates.eq(dates.today(), date, 'day');
+        }
+
         return (
             <BackgroundCells
                 highlight={highlight}
                 isSelected={isSelected}
                 isHovered={isHovered}
                 isEndDate={isEndDate}
+                isToday={isToday}
                 onHover={onHoverSlot}
                 rowIndex
                 index={idx}
