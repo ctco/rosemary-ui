@@ -15,6 +15,7 @@ const PROPERTY_TYPES = {
     highlight: React.PropTypes.func,
     isHovered: React.PropTypes.func,
     isEndDate: React.PropTypes.func,
+    isToday: React.PropTypes.func,
     isStartDate: React.PropTypes.func,
     onHover: React.PropTypes.func
 };
@@ -64,6 +65,7 @@ class DisplayCells extends React.Component {
                         'rbc-day-highlighted': this.props.highlight(i),
                         'rbc-end-date': this.props.isEndDate(i),
                         'rbc-hovered-date': this.props.isHovered(i),
+                        'rbc-current-bg-cell': this.props.isToday(i),
                         'rbc-selected-cell': selecting && i >= startIdx && i <= endIdx
                     })}
                 />
