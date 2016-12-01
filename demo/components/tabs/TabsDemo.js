@@ -1,5 +1,6 @@
 import DemoWithSnippet from '../../../demo/layout/DemoWithSnippet';
 import Tabs from '../../../src/components/tabs/Tabs';
+import Tab from '../../../src/components/tabs/Tab';
 
 import React from 'react';
 
@@ -36,8 +37,8 @@ export default class TabsDemo extends React.Component {
                           }
                       }}
                       onChange={this._onChange}>
-                    <Tabs.Tab tabId="Tab1">Tab1</Tabs.Tab>
-                    <Tabs.Tab tabId="Tab2">Wait 1s then open</Tabs.Tab>
+                    <Tab tabId="Tab1" value="Tab1"/>
+                    <Tab tabId="Tab2">Wait 1s then open</Tab>
 
                     <Tabs.Tab tabId="Tab3" onEnter={() => {
                         this._ajax();
