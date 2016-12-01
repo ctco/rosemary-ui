@@ -17,8 +17,8 @@ class Tabs extends React.Component {
         this._onChange = this._onChange.bind(this);
     }
 
-    _renderTabs(tabs) {
-        return React.Children.map(tabs, (tab, index) => {
+    _renderTabs() {
+        return React.Children.map(this.props.children, (tab, index) => {
             return React.cloneElement(tab, {
                 key: index,
                 onChange: this._onChange,
@@ -44,7 +44,7 @@ class Tabs extends React.Component {
 
         return (
             <div className={style}>
-                {this._renderTabs(this.props.children)}
+                {this._renderTabs()}
             </div>
         );
     }

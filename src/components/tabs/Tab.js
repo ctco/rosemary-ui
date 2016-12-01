@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 const PROPERTY_TYPES = {
     tabId: React.PropTypes.any,
+    value:React.PropTypes.string,
     onEnter: React.PropTypes.func,
     onChange: React.PropTypes.func
 };
@@ -29,14 +30,14 @@ class Tab extends React.Component {
     }
 
     render() {
-        let {className, children} = this.props;
+        let {className, children,value} = this.props;
         const style = classNames('ros-tabs__tab', className, {
             'ros-tab--selected': this._isSelected()
         });
 
         return (
             <div className={style} onClick={() => this._onChange()}>
-                <span>{name || children}</span>
+                <span>{value || children}</span>
             </div>
         );
     }
