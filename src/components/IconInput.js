@@ -10,6 +10,8 @@ const PROPERTY_TYPES = {
     iconClassName: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func,
     onClick: React.PropTypes.func,
+    onKeyPress: React.PropTypes.func,
+    onKeyDown: React.PropTypes.func,
     position: React.PropTypes.oneOf([LEFT, RIGHT]),
     readOnly: React.PropTypes.bool,
     fluid: React.PropTypes.bool,
@@ -56,6 +58,8 @@ class IconInput extends React.Component {
                        type="text"
                        value={this.props.value}
                        onChange={this.props.onChange}
+                       onKeyPress={this.props.onKeyPress}
+                       onKeyDown={this.props.onKeyDown}
                        readOnly={this.props.readOnly}
                        fluid={this.props.fluid}
                        placeholder={this.props.placeholder}

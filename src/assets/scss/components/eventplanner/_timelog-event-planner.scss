@@ -76,6 +76,13 @@
   -ms-flex: 1;
 }
 
+.rbc-day-bg {
+  &:hover {
+    background-color: $light-grey;
+    cursor: $cursor-pointer;
+  }
+}
+
 .rbc-month-view,
 .rbc-time-view {
   display: -ms-flexbox;
@@ -89,13 +96,15 @@
   -ms-flex: 1;
 }
 
-.rbc-toolbar {
-  display: -ms-flexbox;
+.rbc-row-bg {
+  .rbc-hovered-end-date {
+    background-color: $powder-blue !important;
+    cursor: $cursor-pointer;
+  }
 }
 
-.rbc-hovered-date {
-  background-color: $light-grey;
-  cursor: $cursor-pointer;
+.rbc-toolbar {
+  display: -ms-flexbox;
 }
 
 .rbc-end-date,

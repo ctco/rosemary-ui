@@ -7,6 +7,8 @@ import IconInput from '../IconInput';
 import {isDefined, contains} from '../../util/utils';
 
 import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
+import keyBordNav from './KeyBoardNavigationHOC';
+const singleOptionNav = keyBordNav(false);
 
 const PROPERTY_TYPES = {
     placeholder: React.PropTypes.string,
@@ -45,6 +47,9 @@ class Select extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        this.setState({
+            tempSelection: nextProps.tempSelection
+        });
 
         if (isDefined(nextProps.value)) {
             this.setState({selected: this.findById(nextProps.options, nextProps.value)});
@@ -71,12 +76,19 @@ class Select extends React.Component {
         } else {
             this.setState({open: false});
         }
+
+        this.props.navigate(null, option);
+
         if (this.props.onChange) {
             this.props.onChange(option.id, option);
         }
     }
 
     handlePopupStateChange(open) {
+
+        if (!open) {
+            this.props.resetNavigation(this.state.selected);
+        }
 
         if (!this.isPopupControlled()) {
             this.setState({open}, () => {
@@ -104,23 +116,25 @@ class Select extends React.Component {
 
         if (this.refs.selected) {
             let selectedItem = ReactDOM.findDOMNode(this.refs.selected);
-            popupContent.scrollTop = selectedItem.offsetTop;
+            this._optionContainer.scrollTop = selectedItem.offsetTop;
         }
     }
 
     renderItems() {
         let selectedObject = this.state.selected;
+        let tempSelectionObject = this.state.tempSelection;
+
         return this.state.filtered.map((option) => {
             let selected = selectedObject && selectedObject.id === option.id;
+            let tempSelection = tempSelectionObject && tempSelectionObject.id === option.id;
             let className = classNames('select__option', {
-                'selected': selected
+                'selected': tempSelection
             });
 
-            let ref = selected ? {ref: 'selected'} : null;
-
+            let ref = selected || tempSelection ? {ref: 'selected'} : null;
             return (
-                <div {...ref} className={className} key={option.id}
-                              onClick={() => this.select(option)}>{option.displayString}</div>
+                <div tabIndex="0" {...ref} className={className} key={option.id}
+                     onClick={() => this.select(option)}>{option.displayString}</div>
             );
         });
     }
@@ -133,6 +147,7 @@ class Select extends React.Component {
         this.setState({
             filtered: filtered
         });
+        this.props.resetNavigation();
     }
 
     isOpen() {
@@ -143,6 +158,22 @@ class Select extends React.Component {
         return isDefined(this.props.open);
     }
 
+    getInput() {
+        if (this.props.search && this.refs.searchInput) {
+            return this.refs.searchInput;
+        } else {
+            return this.refs.input;
+        }
+    }
+
+    getSelectedOptionEl() {
+        return this.refs.selected;
+    }
+
+    getOptions() {
+        return this.state.filtered;
+    }
+
     render() {
         let selectedObject = this.state.selected;
         let text = selectedObject ? selectedObject.displayString : this.props.placeholder;
@@ -150,7 +181,6 @@ class Select extends React.Component {
         let className = classNames(this.props.className, 'select', {
             'placeholder': !selectedObject
         });
-
         return (
             <Popup ref="popup"
                    attachment="bottom left" on="click"
@@ -158,7 +188,11 @@ class Select extends React.Component {
                    animationBaseName="select__popover--animation-slide-y"
                    open={this.isOpen()}
                    onPopupStateChange={(open) => this.handlePopupStateChange(open)}>
-                <div id={this.props.id} ref="input" tabIndex="0" className={className}>
+                <div onKeyDown={(e) => this.props.navigate(e)}
+                     id={this.props.id}
+                     ref="input"
+                     tabIndex="0"
+                     className={className}>
                     <div title={text}>
                         {text}
                     </div>
@@ -172,13 +206,14 @@ class Select extends React.Component {
                                    fluid={true}
                                    placeholder="Search ... "
                                    size="sm"
+                                   onKeyDown={(e) => this.props.navigate(e)}
                                    onChange={(value) => this.applySearch(value)}
                                    className="select__search"
                                    iconClassName="im icon-search"/>
                     </div>
                     }
 
-                    <div className="select__options">
+                    <div ref={(optionContainer) => this._optionContainer = optionContainer} className="select__options">
                         {this.renderItems()}
                     </div>
                 </div>
@@ -190,4 +225,4 @@ class Select extends React.Component {
 Select.propTypes = PROPERTY_TYPES;
 Select.defaultProps = DEFAULT_PROPS;
 
-export default withIdAndTypeContext(Select);
+export default withIdAndTypeContext(singleOptionNav(Select));
