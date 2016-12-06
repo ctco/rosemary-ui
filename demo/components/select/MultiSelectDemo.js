@@ -24,7 +24,9 @@ export default class MultiSelectDemo extends React.Component {
         return (
             <div>
                 <DemoWithSnippet>
-                    <MultiSelect placeholder="Please select..." options={this.manyOptions} onChange={(ids) => {
+                    <MultiSelect placeholder="Please select..."
+                                 options={this.manyOptions}
+                                 onChange={(ids) => {
                         console.log(ids);
                     }} />
                 </DemoWithSnippet>

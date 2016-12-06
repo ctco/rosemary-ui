@@ -30,6 +30,10 @@
     background-color: $select__option-hover-background-color;
   }
 
+  &.focused {
+    background-color: $select__option-hover-background-color;
+  }
+
   &.selected {
     background-color: $select__option-selected-background-color;
     color: $select__option-selected-color;

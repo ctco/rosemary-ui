@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import find from 'lodash/find';
 import Immutable from 'immutable';
 import ReactList from 'react-list';
+import classnames from 'classnames';
 
 import {isDefined, findIdentifiables} from '../../util/utils';
 import CheckBox from '../CheckBox';
@@ -13,7 +14,11 @@ const PROPERTY_TYPES = {
         id: React.PropTypes.number.isRequired,
         displayString: React.PropTypes.string.isRequired
     })),
-    onChange: React.PropTypes.func
+    onChange: React.PropTypes.func,
+    focus: React.PropTypes.shape({
+        id: React.PropTypes.number.isRequired,
+        displayString: React.PropTypes.string.isRequired
+    })
 };
 const DEFAULT_PROPS = {};
 
@@ -31,6 +36,9 @@ class CheckBoxList extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        this.setState({
+            focus: nextProps.focus
+        });
         let isValueChanged = nextProps.value !== this.props.value;
         let isOptionsChanged = nextProps.options !== this.props.options;
 
@@ -83,12 +91,20 @@ class CheckBoxList extends React.Component {
         return isDefined(this.props.value);
     }
 
+    getFocusedEl() {
+        return this._focusedEl;
+    }
+
     renderItem(index, key) {
         let option = this.props.options[index];
         let selected = this.isSelected(option);
-
+        let focus = this.state.focus && this.state.focus.id === option.id;
+        let style = classnames('check-box-list__item', {
+            'focused': focus
+        });
         return (
-            <tr className="check-box-list__item" key={key} onClick={() => this.select(option)}>
+            <tr tabIndex="0" ref={(option) => focus ? this._focusedEl = option : null}
+                className={style} key={key} onClick={() => this.select(option)}>
                 <td className="check-box-list__check-box">
                     <CheckBox value={selected}/>
                 </td>
@@ -121,7 +137,7 @@ class CheckBoxList extends React.Component {
                 length={this.props.options.length}
                 type="uniform"
                 justToUpdate={this.state.counter}
-                />
+            />
         );
     }
 }

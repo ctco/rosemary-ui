@@ -10,6 +10,8 @@ const PROPERTY_TYPES = {
     type: React.PropTypes.oneOf(['text', 'password']),
     value: React.PropTypes.any,
     onBlur: React.PropTypes.func,
+    onKeyPress: React.PropTypes.func,
+    onKeyDown: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onChange: React.PropTypes.func,
     readOnly: React.PropTypes.bool,
@@ -72,6 +74,8 @@ class Input extends React.Component {
                     value={this.isControlled() ? this.props.value : this.state.value}
                     placeholder={this.props.placeholder}
                     onChange={(e) => this.update(e)}
+                    onKeyPress={this.props.onKeyPress}
+                    onKeyDown={this.props.onKeyDown}
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     type={this.props.type}/>
