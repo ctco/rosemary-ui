@@ -22,6 +22,10 @@ export default function KeyBoardNavigationHOC(isMultiSelect) {
             event.preventDefault();
         }
 
+        select(option) {
+            this._component.select(option);
+        }
+
         _clearIndex() {
             this._optionIndex = null;
         }
