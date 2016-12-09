@@ -1,7 +1,7 @@
+import React from 'react';
 import {KeyCode} from '../../constant/key-codes';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
-import React from 'react';
 
 const STEP_BACK = -1;
 const STEP_FORWARD = 1;
