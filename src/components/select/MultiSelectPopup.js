@@ -4,9 +4,7 @@ import Link from '../Link';
 import {isDefined, contains, findIdentifiables} from '../../util/utils';
 import IconInput from '../IconInput';
 import CheckBoxList from './CheckBoxList';
-import keyboardNav from './KeyBoardNavigationHOC';
-
-const multiOptionNav = keyboardNav(true);
+import keyNav from './KeyBoardNav';
 
 const PROPERTY_TYPES = {
     placeholder: React.PropTypes.string,
@@ -47,9 +45,6 @@ class MultiSelectPopup extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({
-            tempSelection: nextProps.tempSelection
-        });
         let isValueChanged = nextProps.value !== this.props.value;
         if (isValueChanged) {
             this.setState({selected: findIdentifiables(nextProps.options, nextProps.value)});
@@ -74,7 +69,6 @@ class MultiSelectPopup extends React.Component {
     }
 
     select(option) {
-
         let beforeLen = this.state.selected.length;
 
         let selected = this.state.selected.filter((item) => {
@@ -124,7 +118,7 @@ class MultiSelectPopup extends React.Component {
     }
 
     _applySearch(value) {
-        this.props.resetNavigation();
+        this.resetNav();
 
         let filtered = this.props.options.filter((option) => {
             return contains(option.displayString, value);
@@ -154,7 +148,7 @@ class MultiSelectPopup extends React.Component {
             <div className="select__popup">
                 <div className="select__search-container">
                     <IconInput
-                        onKeyDown={this.props.navigate}
+                        onKeyDown={(e) => this.navigate(e)}
                         ref="searchInput"
                         fluid={true}
                         placeholder={this.props.placeholder}
@@ -189,4 +183,4 @@ class MultiSelectPopup extends React.Component {
 MultiSelectPopup.propTypes = PROPERTY_TYPES;
 MultiSelectPopup.defaultProps = DEFAULT_PROPS;
 
-export default multiOptionNav(MultiSelectPopup);
+export default keyNav(true)(MultiSelectPopup);

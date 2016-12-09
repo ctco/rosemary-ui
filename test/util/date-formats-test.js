@@ -51,7 +51,7 @@ describe('date formats', () => {
 
     describe('formatFullMonth', ()=> {
         it('should format correctly', () => {
-            let date = parseDDMMYYYY('10.12.2016');
+            let date = parseDDMMYYYY('08.12.2016');
             expect(formatFullMonth(date)).to.equal('December');
         });
     });
@@ -71,21 +71,21 @@ describe('date formats', () => {
     describe('range', ()=> {
         it('should format correctly for same month current year', () => {
             let from = changeYearToCurrent(parseDDMMYYYY('01.12.2016'));
-            let to = changeYearToCurrent(parseDDMMYYYY('09.12.2016'));
-            expect(formatRange(from, to)).to.equal('1 - 9 Dec');
+            let to = changeYearToCurrent(parseDDMMYYYY('08.12.2016'));
+            expect(formatRange(from, to)).to.equal('1 - 8 Dec');
         });
 
         it('should format correctly for current year', () => {
             let from = changeYearToCurrent(parseDDMMYYYY('01.01.2016'));
-            let to = changeYearToCurrent(parseDDMMYYYY('09.12.2016'));
-            expect(formatRange(from, to)).to.equal('1 Jan - 9 Dec');
+            let to = changeYearToCurrent(parseDDMMYYYY('08.12.2016'));
+            expect(formatRange(from, to)).to.equal('1 Jan - 8 Dec');
         });
 
         it('should format correctly for different years', () => {
             let currentYear = getCurrentYear();
             let from = parseDDMMYYYY('01.12.2010');
-            let to = setYear(parse('09.12.2016', 'DD.MM.YYYY'), currentYear);
-            expect(formatRange(from, to)).to.equal(`1 Dec 2010 - 9 Dec ${currentYear}`);
+            let to = setYear(parse('08.12.2015', 'DD.MM.YYYY'), currentYear);
+            expect(formatRange(from, to)).to.equal(`1 Dec 2010 - 8 Dec ${currentYear}`);
         });
     });
 
