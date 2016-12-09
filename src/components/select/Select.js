@@ -7,8 +7,7 @@ import IconInput from '../IconInput';
 import {isDefined, contains} from '../../util/utils';
 
 import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
-import keyBordNav from './KeyBoardNavigationHOC';
-const singleOptionNav = keyBordNav(false);
+import keyBordNav from './KeyBoardNav';
 
 const PROPERTY_TYPES = {
     placeholder: React.PropTypes.string,
@@ -47,9 +46,6 @@ class Select extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({
-            tempSelection: nextProps.tempSelection
-        });
 
         if (isDefined(nextProps.value)) {
             this.setState({selected: this.findById(nextProps.options, nextProps.value)});
@@ -77,7 +73,7 @@ class Select extends React.Component {
             this.setState({open: false});
         }
 
-        this.props.navigate(null, option);
+        this.navigate(null, option);
 
         if (this.props.onChange) {
             this.props.onChange(option.id, option);
@@ -85,10 +81,6 @@ class Select extends React.Component {
     }
 
     handlePopupStateChange(open) {
-
-        if (!open) {
-            this.props.resetNavigation(this.state.selected);
-        }
 
         if (!this.isPopupControlled()) {
             this.setState({open}, () => {
@@ -109,15 +101,15 @@ class Select extends React.Component {
         if (!this.isOpen()) {
             return;
         }
-        this.setState({filtered: this.props.options});
+        this.setState({filtered: this.props.options}, () => {
+            if (this.refs.selected) {
+                let selectedItem = this.refs.selected;
+                this._optionContainer.scrollTop = selectedItem.offsetTop;
+            }
+        });
         let popupContent = ReactDOM.findDOMNode(this.refs.popup.getContent());
         let input = ReactDOM.findDOMNode(this.refs.input);
         popupContent.style.width = `${input.offsetWidth}px`;
-
-        if (this.refs.selected) {
-            let selectedItem = ReactDOM.findDOMNode(this.refs.selected);
-            this._optionContainer.scrollTop = selectedItem.offsetTop;
-        }
     }
 
     renderItems() {
@@ -147,7 +139,8 @@ class Select extends React.Component {
         this.setState({
             filtered: filtered
         });
-        this.props.resetNavigation();
+
+        this.resetNav();
     }
 
     isOpen() {
@@ -188,7 +181,7 @@ class Select extends React.Component {
                    animationBaseName="select__popover--animation-slide-y"
                    open={this.isOpen()}
                    onPopupStateChange={(open) => this.handlePopupStateChange(open)}>
-                <div onKeyDown={(e) => this.props.navigate(e)}
+                <div onKeyDown={(e) => this.navigate(e)}
                      id={this.props.id}
                      ref="input"
                      tabIndex="0"
@@ -206,7 +199,7 @@ class Select extends React.Component {
                                    fluid={true}
                                    placeholder="Search ... "
                                    size="sm"
-                                   onKeyDown={(e) => this.props.navigate(e)}
+                                   onKeyDown={(e) => this.navigate(e)}
                                    onChange={(value) => this.applySearch(value)}
                                    className="select__search"
                                    iconClassName="im icon-search"/>
@@ -225,4 +218,4 @@ class Select extends React.Component {
 Select.propTypes = PROPERTY_TYPES;
 Select.defaultProps = DEFAULT_PROPS;
 
-export default withIdAndTypeContext(singleOptionNav(Select));
+export default withIdAndTypeContext(keyBordNav(false)(Select));
