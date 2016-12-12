@@ -10,8 +10,8 @@ $date-picker__arrow-bg-color: $light-grey;
 //date picker calendar
 $date-picker-calendar__weekday-cell-working-color: $black;
 $date-picker-calendar__weekday-cell-non-working-color: $lipstick;
-$date-picker-calendar__cell-today-color: $light-blue;
-$date-picker-calendar__cell-today-shadow: 0 0 0 1px $date-picker-calendar__cell-today-color;
+$date-picker-calendar__cell-today-color: $black;
+$date-picker-calendar__cell-today-shadow: 0 0 0 1px $light-blue;
 $date-picker-calendar__cell-hover-bg-color: rgba($light-blue, 0.6);
 
 //date range picker
