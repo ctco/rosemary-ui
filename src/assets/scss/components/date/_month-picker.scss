@@ -1,11 +1,5 @@
 @import "variables";
 
-.month-picker__date-cell--selected {
-  > div {
-    background-color: rgba($date-selected-bgc, 0.2);
-  }
-}
-
 .month-picker__date-cell {
   &:not([data-disabled]) {
     &:hover {
