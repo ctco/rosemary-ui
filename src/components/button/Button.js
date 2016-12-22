@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 
 const PROPERTY_TYPES = {
@@ -19,7 +19,7 @@ class Button extends React.Component {
 
         this.onClickButton = this.onClickButton.bind(this);
     }
-    
+
     render() {
         let style = classNames(this.props.className, this.props.baseClassName, {
             'disabled': this.props.disabled
@@ -32,9 +32,9 @@ class Button extends React.Component {
         );
     }
 
-    onClickButton() {
+    onClickButton(e) {
         if (this.props.onClick && !this.props.disabled) {
-            this.props.onClick();
+            this.props.onClick(e);
         }
     }
 }

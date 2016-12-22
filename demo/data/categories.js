@@ -57,6 +57,9 @@ import AlertOptions from '../components/alert/AlertOptions';
 import TabsDemo from '../components/tabs/TabsDemo';
 import TabsOptions from '../components/tabs/TabsOptions';
 
+import TableDemo from '../components/table/TableDemo';
+import TableOptions from '../components/table/TableOptions';
+
 export default [
     {
         name: 'Components',
@@ -258,6 +261,17 @@ export default [
                         name: 'Demo', component: TabsDemo
                     }, {
                         name: 'Options', component: TabsOptions
+                    }
+                ]
+            },
+            {
+                name: 'Table',
+                link: '/',
+                components: [
+                    {
+                        name: 'Demo', component: TableDemo
+                    }, {
+                        name: 'Options', component: TableOptions
                     }
                 ]
             }

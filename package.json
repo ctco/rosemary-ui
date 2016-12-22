@@ -85,6 +85,7 @@
     "moment": "^2.13.0",
     "node-sass": "^3.8.0",
     "react": "^15.1.0",
+    "react-addons-create-fragment": "15.4.1",
     "react-addons-css-transition-group": "^15.1.0",
     "react-click-outside": "^2.1.0",
     "react-dom": "^15.1.0",
