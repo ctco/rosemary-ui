@@ -1,0 +1,35 @@
+.ros-table__row {
+  cursor: pointer;
+}
+
+.rose-table__bottom-section {
+  padding: 0 13px;
+}
+
+.row-indicator {
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  background-color: green;
+}
+
+.row--expanded {
+  .row-indicator {
+    background-color: yellow;
+  }
+}
+
+.ros-table__row.positive {
+  background: #7fffd4;
+}
+
+.row-table__row.divided-by-10 {
+  background-color: #438884;
+}
+
+.table-bottom-section {
+  padding: 0 24px;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s;
+}

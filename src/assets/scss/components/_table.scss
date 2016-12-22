@@ -1,0 +1,52 @@
+@import "../variables/_all";
+@import "../mixins/_all";
+
+%base-table {
+  table-layout: fixed;
+  width: 100%;
+  border-spacing: 0;
+
+  thead {
+    th {
+      @extend %base-table-header-cell;
+    }
+  }
+  tbody {
+    .ros-table__cell {
+      @extend %base-table-body-cell;
+    }
+    .ros-table__row {
+      height: 46px;
+    }
+  }
+}
+
+%base-table-header-cell {
+  text-align: left;
+  border-bottom: solid 1px $ash-grey;
+  font-weight: $normal-weight;
+  font-size: 1.3rem;
+  color: $gray;
+  padding: 6px 13px;
+}
+
+%base-table-body-cell {
+  padding: 0 13px;
+  border-top: solid 1px $ash-grey;
+  font-size: 1.4rem;
+  color: $black;
+}
+
+.highlight-cell {
+  font-weight: $semi-bold-weight;
+}
+
+.ros-table {
+  @extend %base-table;
+}
+
+.ros-table__header-sortable {
+  cursor: pointer;
+  @include user-select(none);
+  color:$black;
+}
