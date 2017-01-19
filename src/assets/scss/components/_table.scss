@@ -48,5 +48,8 @@
 .ros-table__header-sortable {
   cursor: pointer;
   @include user-select(none);
-  color:$black;
+
+  &.sorted {
+    color: $black;
+  }
 }

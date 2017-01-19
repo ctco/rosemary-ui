@@ -10,12 +10,15 @@ import isFunction from 'lodash/isFunction';
 
 import Row from './Row';
 
-const DESC = false;
-const ASC = true;
+const DESC = 'DESC';
+const ASC = 'ASC';
 
 const PROPERTY_TYPES = {
     data: React.PropTypes.array,
-    order: React.PropTypes.bool,
+    sorted: React.PropTypes.shape({
+        key: React.PropTypes.any,
+        direction: React.PropTypes.any
+    }),
     colgroup: React.PropTypes.array,
     colSpanBottom: React.PropTypes.number,
     defSorting: React.PropTypes.number,
@@ -26,31 +29,18 @@ const PROPERTY_TYPES = {
     row: React.PropTypes.object,
     cells: React.PropTypes.func.isRequired,
     rowIndex: React.PropTypes.func.isRequired,
-    bottomSection: React.PropTypes.element
+    bottomSection: React.PropTypes.element,
+    onHeaderClick: React.PropTypes.func
 };
 const DEFAULT_PROPS = {
     data: [],
-    headerCells: [],
-    order: DESC
+    headerCells: []
 };
 
 class Table extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            data: this.props.data,
-            sorted: {
-                index: this.props.defSorting,
-                order: this.props.order
-            }
-        };
-    }
-
-    componentWillMount() {
-        this.setState({
-            data: this._getData()
-        });
     }
 
     _getCells(obj) {
@@ -99,78 +89,56 @@ class Table extends React.Component {
             </tr>);
     }
 
-    _handleSort(comparator, cellIndex) {
-        let data;
-        let order;
 
-        if (cellIndex === this.state.sorted.index) {
-            order = !this.state.sorted.order;
-            data = this._sortData(this.state.data, comparator, order);
-        } else {
-            order = DESC;
-            data = this._sortData(this.state.data, comparator, order);
-        }
-
-        this.setState({
-            data,
-            sorted: {
-                index: cellIndex,
-                order
-            }
-        });
-    }
-
-    _sortIndicator(index) {
-        return index === this.state.sorted.index ? (
+    _sortIndicator(key) {
+        return key === this._getSortIndex() ? (
             <span className="sort-indicator">
-             {
-                 this.state.sorted.order ?
-                     <span>&uarr;</span> :
-                     <span>&darr;</span>
-             }
+             { this._getSortDirection() === DESC ? <span>&darr;</span> : <span>&uarr;</span>}
            </span>
         ) : null;
     }
 
+    _getSortIndex() {
+        return this.props.sorted && this.props.sorted.key;
+    }
+
+    _isSortControlled() {
+        return !isUndefined(this.props.sorted);
+    }
+
+    _getSortDirection() {
+        let dir = this.props.sorted && this.props.sorted.direction;
+        return dir && dir.toUpperCase();
+    }
+
+    _handleHeaderCellClick(key, index, cell, sortable) {
+        if (this.props.onHeaderClick && sortable) {
+            this.props.onHeaderClick(key, index, cell);
+        }
+    }
+
     _renderHeader() {
         return this.props.headerCells().map((headerCell, index) => {
-
-            let cellStyle = classNames('ros-table__header-cell');
-
-            let style = classNames('ros-table__header-sortable', {
-                'sorted': index === this.state.sorted.index
-            });
+            const cellStyle = classNames('ros-table__header-cell');
 
             if (headerCell === null) {
                 return <th className={cellStyle} key={index}/>;
             }
 
-            if (React.isValidElement(headerCell)) {
-                return (
-                    <th key={index} className={cellStyle}>
-                        {headerCell}
-                    </th>
-                );
-            }
+            const sortable = headerCell.sortable === undefined ? true : headerCell.sortable;
 
-            if (typeof headerCell.comparator === 'function') {
-                let innerEl = (
-                    <span className={style}
-                          onClick={() => this._handleSort(headerCell.comparator, index)}>
-                             {this._sortIndicator(index)}
-                        {headerCell.el}
-                    </span>);
-
-                return (
-                    <th key={index} className={cellStyle} {...headerCell.props || {}}>
-                        {innerEl}
-                    </th>
-                );
-            }
+            const isSorted = headerCell.key === this._getSortIndex();
+            const style = classNames({
+                'ros-table__header-sortable': this._isSortControlled() && sortable,
+                'sorted': isSorted
+            });
 
             return (
                 <th key={index} className={cellStyle} {...headerCell.props || {}}>
-                    {headerCell.el}
+                    <span onClick={(e) => this._handleHeaderCellClick(headerCell.key, index, headerCell, sortable)}
+                          className={style}>{headerCell.el}
+                    </span>
+                    {isSorted && this._sortIndicator(headerCell.key)}
                 </th>
             );
         });
@@ -269,22 +237,6 @@ class Table extends React.Component {
         }
 
         return null;
-    }
-
-    _sortData(data, comparator, order = DESC) {
-        if (order) {
-            return data.sort(comparator);
-        }
-        return data.sort(comparator).reverse();
-    }
-
-    _getData() {
-        let comparator = this._getDefComparator();
-        if (comparator) {
-            return this._sortData(this.props.data, comparator, this.props.order);
-        }
-
-        return this.props.data;
     }
 
     render() {

@@ -17,7 +17,11 @@ export default class TableDemo extends React.Component {
         this.counter = 0;
         this.state = {
             data: this.getData(),
-            rowDetails: []
+            rowDetails: [],
+            sorted: {
+                key: 'name',
+                direction: Table.order.DESC
+            }
         };
         this._headers = [];
     }
@@ -76,21 +80,21 @@ export default class TableDemo extends React.Component {
     _getHeader() {
         return [
             null,
-            {
-                el: <span>Number</span>,
-                comparator: (item1, item2) => item1.number < item2.number ? 1 : -1
-            },
-            {
-                el: <span>Name</span>,
-                comparator: (item1, item2) => item1.name < item2.name ? 1 : -1
-            },
-            <span>Surname</span>,
-            {
-                el: <span>Average</span>,
-                comparator: (o1, o2) => o1.average < o2.average ? 1 : -1
-            },
+            {el: <span>Number</span>, key: 'number'},
+            {el: <span>Name</span>, key: 'name'},
+            {el: <span>Surname</span>, key: 'surname'},
+            {el: <span>Average</span>, key: 'average', sortable: false},
             null
         ];
+    }
+
+    _changeDirection(key) {
+        this.setState({
+            sorted: {
+                key,
+                direction: Table.order.DESC
+            }
+        });
     }
 
     render() {
@@ -99,13 +103,16 @@ export default class TableDemo extends React.Component {
                 <div>
                     <Table
                         data={this.state.data}
-                        order={Table.order.ASC}
-                        defSorting={4}
+                        sorted={{
+                            key: this.state.sorted.key,
+                            direction: this.state.sorted.direction
+                        }}
                         colgroup={['16%', '16%', '16%', '16%', '16%', '16%']}
                         loadingIndicator={() => {
                             return <LoaderDemo />;
                         }}
                         headerCells={() => this._getHeader()}
+                        onHeaderClick={(key, index, cell) => this._changeDirection(key)}
                         rowIndex={(item, index) => item.number}
                         rowStyle={(item) => {
                             return classNames({
