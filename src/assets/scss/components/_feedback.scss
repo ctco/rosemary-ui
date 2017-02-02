@@ -87,6 +87,9 @@ $feedback-success-icon-color: rgba($black, .5);
       font-weight: $normal-weight;
     }
 
+    .card-message__description li {
+      list-style-position: inside;
+    }
   }
 }
 
