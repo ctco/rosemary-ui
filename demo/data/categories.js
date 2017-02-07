@@ -60,6 +60,9 @@ import TabsOptions from '../components/tabs/TabsOptions';
 import TableDemo from '../components/table/TableDemo';
 import TableOptions from '../components/table/TableOptions';
 
+import ConfirmationDemo from '../components/confirmation/ConfirmationDemo';
+import ConfirmationOptions from '../components/confirmation/ConfirmationOptions';
+
 export default [
     {
         name: 'Components',
@@ -250,6 +253,18 @@ export default [
                         name: 'Demo', component: AlertDemo
                     }, {
                         name: 'Options', component: AlertOptions
+                    }
+                ]
+            },
+
+            {
+                name: 'Confirmation',
+                link: '/',
+                components: [
+                    {
+                        name: 'Demo', component: ConfirmationDemo
+                    }, {
+                        name: 'Options', component: ConfirmationOptions
                     }
                 ]
             },

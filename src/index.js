@@ -27,6 +27,7 @@ import Alert from './components/Alert';
 import Tabs from './components/tabs/Tabs';
 import Tab from './components/tabs/Tab';
 import Table from './components/table/Table';
+import Confirmation from './components/Confirmation';
 
 import * as dateUtils from './util/date-utils';
 import * as dateFormats from './util/date-formats';
@@ -63,5 +64,6 @@ export {
     Alert,
     Tabs,
     Tab,
-    Table
+    Table,
+    Confirmation
 };
