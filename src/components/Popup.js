@@ -63,6 +63,9 @@ class PopupElement extends React.Component {
         let attrForId = this.props.id || this.context.id;
         return (
             <div data-attr-for-type={attrForType} data-attr-for-id={attrForId} className={this.props.popupClassName}>
+                {this.props.modal &&
+                <i className="im icon-close popup-close icon--xxs"
+                   onClick={() => this.props.close()}/>}
                 {this.props.children}
             </div>
         );
@@ -86,6 +89,7 @@ class Popup extends React.Component {
 
         this.doCheck = this.doCheck.bind(this);
         this.isContainedByPopup = this.isContainedByPopup.bind(this);
+        this.close = this.close.bind(this);
     }
 
     componentDidMount() {
@@ -358,8 +362,11 @@ class Popup extends React.Component {
 
         let element = React.Children.toArray(this.props.children)[1];
         return (
-            <PopupElement id={this.props.id} ref="content" popupClassName="popup-content" key={'popup'}
-                          onUnmount={() => {this.closeCompletely();}}>
+            <PopupElement modal={this.isModal()} close={this.close} id={this.props.id} ref="content"
+                          popupClassName="popup-content" key={'popup'}
+                          onUnmount={() => {
+                              this.closeCompletely();
+                          }}>
                 {element}
             </PopupElement>
         );
@@ -407,7 +414,7 @@ class Popup extends React.Component {
 
         return (
             <TetherComponent {...tetherProperties}
-                className={this.props.popupClassName}>
+                             className={this.props.popupClassName}>
                 {this.renderTarget()}
                 {this.renderElement()}
             </TetherComponent>

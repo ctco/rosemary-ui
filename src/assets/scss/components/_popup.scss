@@ -179,6 +179,19 @@
     @include box-shadow($popup-blue-border);
   }
 
+  .popup-close {
+    position: absolute;
+    top: 6px;
+    right: 0;
+    opacity: .3;
+    font-size: 1rem;
+
+    &:hover {
+      cursor: $cursor-pointer;
+      opacity: 1;
+    }
+  }
+
   .popup-content {
     @include popup-content-base();
     padding: $space-lvl4 $space-lvl5;
@@ -243,8 +256,8 @@ $popover-arrow-horizontal-offset: 1em;
 
   .popup-content {
     @include popup-content-base();
-    padding: $space-lvl2 $space-lvl3 ;
-
+    padding: $space-lvl2 $space-lvl3;
+    position: relative;
     background-color: $popover-colored-background-color;
     box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.3);
 
