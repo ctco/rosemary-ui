@@ -1,0 +1,14 @@
+@import '../variables/all';
+
+.ros-confirm {
+  width: 440px;
+  .ros-confirm__title {
+    font-size: 2.4rem;
+    color: $black;
+  }
+  .ros-confirm__body {
+    font-size: 1.4rem;
+    font-weight: $normal-weight;
+    color: $black;
+  }
+}
