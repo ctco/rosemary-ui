@@ -1,5 +1,11 @@
 @import '../variables/all';
 
+.form-field-error {
+  .textarea > textarea {
+    border-color: $lipstick;
+  }
+}
+
 .textarea {
   > textarea {
     width: 400px;
@@ -10,6 +16,7 @@
     font-size: 1.4rem;
     font-family: $main-font;
     border-radius: 3px;
+    resize: none;
 
     &:focus,
     &:hover {
