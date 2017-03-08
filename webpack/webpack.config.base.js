@@ -25,6 +25,10 @@ var defaults = {
             {
                 from: path.resolve('src/assets/imgs'),
                 to: path.resolve('lib/imgs')
+            },
+            {
+                from: path.resolve('src/index.d.ts'),
+                to: path.resolve('lib/')
             }
         ])
     ],
