@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router, Route, IndexRoute, browserHistory } from 'react-router';
+import {Router, Route, IndexRoute, IndexRedirect, browserHistory } from 'react-router';
 import categories from '../data/categories';
 
 import Tabs from '../layout/tab/Tabs';
@@ -59,7 +59,10 @@ const routes = categories.map((category) => {
 });
 
 export default <Router history={browserHistory}>
-    <Route path="/rosemary-ui/" component={TimelogLibrary}>
-        {routes}
+    <Route path="/">
+        <IndexRedirect to="/rosemary-ui/"/>
+        <Route path="/rosemary-ui/" component={TimelogLibrary}>
+            {routes}
+        </Route>
     </Route>
 </Router>;
