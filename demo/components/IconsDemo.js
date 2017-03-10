@@ -252,6 +252,17 @@ export default () => {
                 </div>
             </div>
 
+            <div className="row">
+                <div className="gr-6">
+                    <i className="im icon-calendar-month"></i>
+                    <span>icon-calendar-month</span>
+                </div>
+                <div className="gr-6">
+                    <i className="im icon-table"></i>
+                    <span>icon-table</span>
+                </div>
+            </div>
+
             <div className="separator-block"></div>
 
             <h2>Ionicons</h2>
