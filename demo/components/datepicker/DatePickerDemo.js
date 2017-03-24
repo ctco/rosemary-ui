@@ -37,6 +37,13 @@ export default class DatePickerDemo extends React.Component {
                 <br/>
                 <br/>
 
+                <h2>Date Picker with Input</h2>
+                <DatePicker
+                    targetType={DatePicker.Types.INPUT}
+                    format="DD.MM.YYYY"
+                    minDate="01.10.2015"
+                    maxDate="31.03.2017"/>
+
                 <h2>Dates can be limited</h2>
                 <DemoWithSnippet>
                     <DatePicker format="DD.MM.YYYY"
