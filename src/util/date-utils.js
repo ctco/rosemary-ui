@@ -182,7 +182,13 @@ function isDatesSame(date1, date2) {
     return date1.isSame(date2);
 }
 
+function isValidDate(str, format) {
+    const d = parse(str, format);
+    return d !== null && d.isValid();
+}
+
 export {
+    isValidDate,
     isDatesSame,
     isDateBefore,
     isDateBetween,

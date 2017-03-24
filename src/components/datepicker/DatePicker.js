@@ -3,17 +3,25 @@ import classNames from 'classnames';
 
 import Popup from '../Popup';
 import Button from '../button/Button';
+import Input from '../Input';
 import DatePickerPopup from './DatePickerPopup';
 import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
 
-import {getToday,
+import {
+    getToday,
     parse,
     format,
     isDayTheSame,
     isMonthTheSame,
-    getFirstDayOfMonth} from '../../util/date-utils';
+    getFirstDayOfMonth,
+    isValidDate
+} from '../../util/date-utils';
 
 import {formatDMonthYear} from '../../util/date-formats';
+
+const TargetTypes = {
+    INPUT: 'input'
+};
 
 const PROPERTY_TYPES = {
     className: React.PropTypes.string,
@@ -21,7 +29,8 @@ const PROPERTY_TYPES = {
     format: React.PropTypes.string,
     onChange: React.PropTypes.func,
     minDate: React.PropTypes.string,
-    maxDate: React.PropTypes.string
+    maxDate: React.PropTypes.string,
+    targetType: React.PropTypes.oneOf([TargetTypes.INPUT])
 };
 
 const DEFAULT_PROPS = {};
@@ -32,6 +41,7 @@ class DatePicker extends React.Component {
 
         this.state = {
             month: getFirstDayOfMonth(getToday()),
+            inputValue: this.doFormat(props.value ? parse(props.value, props.format) : getToday()),
             value: props.value ? parse(props.value, props.format) : getToday(),
             open: false
         };
@@ -59,7 +69,8 @@ class DatePicker extends React.Component {
             setTimeout(() => {
                 if (!this.isControlled()) {
                     this.setState({
-                        value: selected
+                        value: selected,
+                        inputValue: this.doFormat(selected)
                     });
                 }
 
@@ -99,23 +110,53 @@ class DatePicker extends React.Component {
         });
     }
 
-    render() {
+    _getInput() {
+        return (
+            <div style={{display: 'inline-block'}}>
+                <Input value={this.state.inputValue} onChange={(value) => {
+                    this.setState({
+                        inputValue: value
+                    });
+                    if (isValidDate(value, this.props.format)) {
+                        const parsed = this.doParse(value);
+                        this.setState({
+                            value: parsed,
+                            month: parsed
+                        });
+                    }
+                }}/>
+            </div>
+        );
+    }
+
+    _getTarget() {
         let className = classNames(this.props.className, 'btn-link');
 
+        switch (this.props.targetType) {
+            case DatePicker.Types.INPUT:
+                return this._getInput();
+            default:
+                return <Button id={this.props.id} className={className}> {this.formatValue()} </Button>;
+        }
+    }
+
+    render() {
         return (
             <Popup popupClassName="popover-colored"
                    attachment="bottom center"
                    on="click"
                    onPopupStateChange={(open) => this.setState({open})}
                    open={this.state.open}
-                   onTransitionClosedToOpen={() => {this.resetMonth();}}>
-                <Button id={this.props.id} className={className}> {this.formatValue()} </Button>
+                   onTransitionClosedToOpen={() => {
+                       this.resetMonth();
+                   }}>
+                {this._getTarget()}
                 <DatePickerPopup month={this.state.month}
                                  onSelected={this.handleSelection}
                                  onMonthChange={(month) => this.setState({month})}
                                  minDate={this.props.minDate ? this.doParse(this.props.minDate) : undefined}
                                  maxDate={this.props.maxDate ? this.doParse(this.props.maxDate) : undefined}
-                                 getStyles={(date) => this.getStyles(date)} />
+                                 getStyles={(date) => this.getStyles(date)}/>
             </Popup>
         );
     }
@@ -123,5 +164,5 @@ class DatePicker extends React.Component {
 
 DatePicker.propTypes = PROPERTY_TYPES;
 DatePicker.defaultProps = DEFAULT_PROPS;
-
+DatePicker.Types = TargetTypes;
 export default withIdAndTypeContext(DatePicker);
