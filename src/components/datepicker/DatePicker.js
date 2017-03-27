@@ -33,7 +33,10 @@ const PROPERTY_TYPES = {
     targetType: React.PropTypes.oneOf([TargetTypes.INPUT])
 };
 
-const DEFAULT_PROPS = {};
+const DEFAULT_PROPS = {
+    onChange: () => {
+    }
+};
 
 class DatePicker extends React.Component {
     constructor(props) {
@@ -53,7 +56,8 @@ class DatePicker extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.value) {
             this.setState({
-                value: parse(nextProps.value, nextProps.format)
+                value: parse(nextProps.value, nextProps.format),
+                inputValue: nextProps.value
             });
         }
     }
@@ -74,9 +78,7 @@ class DatePicker extends React.Component {
                     });
                 }
 
-                if (this.props.onChange) {
-                    this.props.onChange(this.doFormat(selected));
-                }
+                this.props.onChange(this.doFormat(selected));
             }, 200);
         });
     }
@@ -117,12 +119,13 @@ class DatePicker extends React.Component {
                     this.setState({
                         inputValue: value
                     });
-                    if (isValidDate(value, this.props.format)) {
+                    if (isValidDate(value, this.props.format) && !this.isControlled()) {
                         const parsed = this.doParse(value);
                         this.setState({
                             value: parsed,
                             month: parsed
                         });
+                        this.props.onChange(value);
                     }
                 }}/>
             </div>
