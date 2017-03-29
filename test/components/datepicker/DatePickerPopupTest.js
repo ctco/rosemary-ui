@@ -11,7 +11,7 @@ import {isMonthTheSame, format, parse} from '../../../src/util/date-utils';
 describe('DatePickerPopup', () => {
     it('should render years by minDate and maxDate', ()=> {
         let instance = TestUtils.renderIntoDocument(
-            <DatePickerPopup month={parse('01.01.2016', 'DD.MM.YYYY')}
+            <DatePickerPopup value={parse('01.01.2016', 'DD.MM.YYYY')}
                              minDate={parse('01.01.2016', 'DD.MM.YYYY')}
                              maxDate={parse('31.12.2016', 'DD.MM.YYYY')} />
         );
@@ -22,7 +22,7 @@ describe('DatePickerPopup', () => {
         expect(years.props.options[0].id).to.equal(2016);
 
         instance = TestUtils.renderIntoDocument(
-            <DatePickerPopup month={parse('01.01.2016', 'DD.MM.YYYY')}
+            <DatePickerPopup value={parse('01.01.2016', 'DD.MM.YYYY')}
                              minDate={parse('01.01.2015', 'DD.MM.YYYY')}
                              maxDate={parse('31.12.2017', 'DD.MM.YYYY')} />
         );
@@ -37,7 +37,7 @@ describe('DatePickerPopup', () => {
 
     it('should allow to selected months between minDate and maxDate - simple', ()=> {
         let instance = TestUtils.renderIntoDocument(
-            <DatePickerPopup month={parse('01.01.2016', 'DD.MM.YYYY')}
+            <DatePickerPopup value={parse('01.01.2016', 'DD.MM.YYYY')}
                              minDate={parse('01.01.2016', 'DD.MM.YYYY')}
                              maxDate={parse('31.12.2016', 'DD.MM.YYYY')} />
         );
@@ -61,7 +61,7 @@ describe('DatePickerPopup', () => {
 
     it('should allow to selected months between minDate and maxDate - min and max in same year', ()=> {
         let instance = TestUtils.renderIntoDocument(
-            <DatePickerPopup month={parse('01.06.2016', 'DD.MM.YYYY')}
+            <DatePickerPopup value={parse('01.06.2016', 'DD.MM.YYYY')}
                              minDate={parse('01.05.2016', 'DD.MM.YYYY')}
                              maxDate={parse('31.10.2016', 'DD.MM.YYYY')} />
         );
@@ -79,7 +79,7 @@ describe('DatePickerPopup', () => {
 
     it('should allow to selected months between minDate and maxDate - showing for min year', ()=> {
         let instance = TestUtils.renderIntoDocument(
-            <DatePickerPopup month={parse('01.06.2016', 'DD.MM.YYYY')}
+            <DatePickerPopup value={parse('01.06.2016', 'DD.MM.YYYY')}
                              minDate={parse('01.05.2016', 'DD.MM.YYYY')}
                              maxDate={parse('31.10.2017', 'DD.MM.YYYY')} />
         );
@@ -93,7 +93,7 @@ describe('DatePickerPopup', () => {
 
     it('should allow to selected months between minDate and maxDate - showing for max year', ()=> {
         let instance = TestUtils.renderIntoDocument(
-            <DatePickerPopup month={parse('01.06.2017', 'DD.MM.YYYY')}
+            <DatePickerPopup value={parse('01.06.2017', 'DD.MM.YYYY')}
                              minDate={parse('01.05.2016', 'DD.MM.YYYY')}
                              maxDate={parse('31.10.2017', 'DD.MM.YYYY')} />
         );
@@ -107,7 +107,7 @@ describe('DatePickerPopup', () => {
 
     it('should allow to selected months between minDate and maxDate - showing for year between', ()=> {
         let instance = TestUtils.renderIntoDocument(
-            <DatePickerPopup month={parse('01.06.2017', 'DD.MM.YYYY')}
+            <DatePickerPopup value={parse('01.06.2017', 'DD.MM.YYYY')}
                              minDate={parse('01.05.2016', 'DD.MM.YYYY')}
                              maxDate={parse('31.10.2018', 'DD.MM.YYYY')} />
         );
@@ -129,7 +129,7 @@ describe('DatePickerPopup', () => {
         };
 
         let instance = TestUtils.renderIntoDocument(
-            <DatePickerPopup month={parse('01.11.2017', 'DD.MM.YYYY')}
+            <DatePickerPopup value={parse('01.11.2017', 'DD.MM.YYYY')}
                              onMonthChange={check}
                              minDate={parse('01.05.2016', 'DD.MM.YYYY')}
                              maxDate={parse('31.10.2018', 'DD.MM.YYYY')} />
@@ -150,7 +150,7 @@ describe('DatePickerPopup', () => {
         };
 
         let instance = TestUtils.renderIntoDocument(
-            <DatePickerPopup month={parse('01.04.2017', 'DD.MM.YYYY')}
+            <DatePickerPopup value={parse('01.04.2017', 'DD.MM.YYYY')}
                              onMonthChange={check}
                              minDate={parse('01.05.2016', 'DD.MM.YYYY')}
                              maxDate={parse('31.10.2018', 'DD.MM.YYYY')} />
@@ -171,7 +171,7 @@ describe('DatePickerPopup', () => {
         };
 
         let instance = TestUtils.renderIntoDocument(
-            <DatePickerPopup month={parse('01.05.2016', 'DD.MM.YYYY')}
+            <DatePickerPopup value={parse('01.05.2016', 'DD.MM.YYYY')}
                              onMonthChange={check}
                              minDate={parse('01.05.2016', 'DD.MM.YYYY')}
                              maxDate={parse('31.10.2016', 'DD.MM.YYYY')} />
@@ -181,7 +181,7 @@ describe('DatePickerPopup', () => {
         TestUtils.Simulate.click(arrowLeft);
 
         instance = TestUtils.renderIntoDocument(
-            <DatePickerPopup month={parse('01.07.2016', 'DD.MM.YYYY')}
+            <DatePickerPopup value={parse('01.07.2016', 'DD.MM.YYYY')}
                              onMonthChange={check}
                              minDate={parse('01.05.2016', 'DD.MM.YYYY')}
                              maxDate={parse('31.10.2016', 'DD.MM.YYYY')} />
@@ -201,7 +201,7 @@ describe('DatePickerPopup', () => {
         };
 
         let instance = TestUtils.renderIntoDocument(
-            <DatePickerPopup month={parse('01.10.2016', 'DD.MM.YYYY')}
+            <DatePickerPopup value={parse('01.10.2016', 'DD.MM.YYYY')}
                              onMonthChange={check}
                              minDate={parse('01.05.2016', 'DD.MM.YYYY')}
                              maxDate={parse('31.10.2016', 'DD.MM.YYYY')} />
@@ -211,7 +211,7 @@ describe('DatePickerPopup', () => {
         TestUtils.Simulate.click(arrowRight);
 
         instance = TestUtils.renderIntoDocument(
-            <DatePickerPopup month={parse('01.05.2016', 'DD.MM.YYYY')}
+            <DatePickerPopup value={parse('01.05.2016', 'DD.MM.YYYY')}
                              onMonthChange={check}
                              minDate={parse('01.05.2016', 'DD.MM.YYYY')}
                              maxDate={parse('31.10.2016', 'DD.MM.YYYY')} />
