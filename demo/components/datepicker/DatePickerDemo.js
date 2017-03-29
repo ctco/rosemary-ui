@@ -23,7 +23,6 @@ export default class DatePickerDemo extends React.Component {
 
                 <br/>
                 <br/>
-
                 <h2>Date picker can be controlled</h2>
                 <Input type="text" value={this.state.controlledValue}
                        onChange={(value) => this.setState({controlledValue: value})}/>

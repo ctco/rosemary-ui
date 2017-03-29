@@ -8,7 +8,7 @@ moment.updateLocale('en', {
     }
 });
 
-
+export const DD_MM_YYYY = 'DD.MM.YYYY';
 function isWeekend(date) {
     let dayOfWeek = date.isoWeekday();
     return dayOfWeek === 6 || dayOfWeek === 7;

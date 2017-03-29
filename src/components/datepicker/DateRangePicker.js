@@ -265,7 +265,6 @@ class DatePicker extends React.Component {
 
     renderCalendar(date) {
         let formattedDate = this.props.formatHeader(date);
-
         return (
             <div className="date-range-picker__calendar" key={formattedDate}>
                 <div className="date-range-picker__header">
