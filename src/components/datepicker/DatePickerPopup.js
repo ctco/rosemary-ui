@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import range from 'lodash/range';
+import isObject from 'lodash/isObject';
+import isString from 'lodash/isString';
 
 import Select from '../select/Select';
 import DatePickerCalendar from './DatePickerCalendar';
@@ -9,6 +11,7 @@ import Button from '../button/Button';
 import {getToday,
     addMonths,
     getMonth,
+    parse,
     getYear,
     setMonth,
     setYear,
@@ -21,18 +24,19 @@ import {getToday,
     isYearTheSame,
     getFirstDayOfMonth,
     getFirstDayOfYear,
+    isValidDate,
     getLastDayOfYear} from '../../util/date-utils';
 
 import {formatFullMonth} from '../../util/date-formats';
 
 const PROPERTY_TYPES = {
-    value: React.PropTypes.object,
-    month: React.PropTypes.object,
+    value: React.PropTypes.any,
     onSelected: React.PropTypes.func.isRequired,
     onMonthChange: React.PropTypes.func,
     minDate: React.PropTypes.object,
     maxDate: React.PropTypes.object,
-    getStyles: React.PropTypes.func
+    getStyles: React.PropTypes.func,
+    format:React.PropTypes.string.isRequired
 };
 
 const DEFAULT_PROPS = {
@@ -47,8 +51,7 @@ class DatePickerPopup extends React.Component {
         super(props);
 
         this.state = {
-            month: props.month,
-            value: props.value,
+            value: this._getValue(props.value),
             years: range(getYear(props.minDate), getYear(props.maxDate) + 1).map((item) => {
                 return {id: item, displayString: '' + item};
             })
@@ -56,31 +59,43 @@ class DatePickerPopup extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.month) {
+        if (nextProps.value) {
             this.setState({
-                month: nextProps.month
+                value: this._getValue(nextProps.value)
             });
         }
     }
 
+    _getValue(value) {
+        if (isObject(value)) {
+            return value;
+        }
+
+        if (isString(value) && isValidDate(value,this.props.format)) {
+            return parse(value,this.props.format);
+        }
+
+        return getToday();
+    }
+
     left() {
-        if (isMonthBeforeOrTheSame(this.state.month, this.props.minDate)) {
+        if (isMonthBeforeOrTheSame(this.state.value, this.props.minDate)) {
             return;
         }
-        let month = addMonths(this.state.month, -1);
+        let month = addMonths(this.state.value, -1);
         this.updateMonth(month);
     }
 
     right() {
-        if (isMonthAfterOrTheSame(this.state.month, this.props.maxDate)) {
+        if (isMonthAfterOrTheSame(this.state.value, this.props.maxDate)) {
             return;
         }
-        let month = addMonths(this.state.month, 1);
+        let month = addMonths(this.state.value, 1);
         this.updateMonth(month);
     }
 
     onYearChange(selectedYear) {
-        let month = setYear(this.state.month, selectedYear);
+        let month = setYear(this.state.value, selectedYear);
         if (isMonthBefore(month, this.props.minDate)) {
             month = this.props.minDate;
         } else if (isMonthAfter(month, this.props.maxDate)) {
@@ -90,7 +105,7 @@ class DatePickerPopup extends React.Component {
     }
 
     onMonthChange(selectedMonth) {
-        let month = setMonth(this.state.month, selectedMonth);
+        let month = setMonth(this.state.value, selectedMonth);
         this.updateMonth(month);
     }
 
@@ -113,17 +128,17 @@ class DatePickerPopup extends React.Component {
     }
 
     getSelectedMonth() {
-        return getMonth(this.state.month);
+        return getMonth(this.state.value);
     }
 
     getSelectedYear() {
-        return getYear(this.state.month);
+        return getYear(this.state.value);
     }
 
     getMonthOptions() {
         let result = [];
-        let isMinYear = isYearTheSame(this.props.minDate, this.state.month);
-        let isMaxYear = isYearTheSame(this.props.maxDate, this.state.month);
+        let isMinYear = isYearTheSame(this.props.minDate, this.state.value);
+        let isMaxYear = isYearTheSame(this.props.maxDate, this.state.value);
 
         if (!isMinYear && !isMaxYear) {
             return getMonths().map((item, index) => {
@@ -164,7 +179,7 @@ class DatePickerPopup extends React.Component {
                        className="im date-picker-popup__arrow date-picker-popup__arrow--right" />
                 </div>
                 <DatePickerCalendar onSelected={this.props.onSelected}
-                                    month={this.state.month}
+                                    month={this.state.value}
                                     minDate={this.props.minDate}
                                     maxDate={this.props.maxDate}
                                     getStyles={this.props.getStyles}/>
