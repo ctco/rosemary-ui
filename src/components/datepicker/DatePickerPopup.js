@@ -8,7 +8,8 @@ import Select from '../select/Select';
 import DatePickerCalendar from './DatePickerCalendar';
 import Button from '../button/Button';
 
-import {getToday,
+import {
+    getToday,
     addMonths,
     getMonth,
     parse,
@@ -25,7 +26,8 @@ import {getToday,
     getFirstDayOfMonth,
     getFirstDayOfYear,
     isValidDate,
-    getLastDayOfYear} from '../../util/date-utils';
+    getLastDayOfYear
+} from '../../util/date-utils';
 
 import {formatFullMonth} from '../../util/date-formats';
 
@@ -36,7 +38,7 @@ const PROPERTY_TYPES = {
     minDate: React.PropTypes.object,
     maxDate: React.PropTypes.object,
     getStyles: React.PropTypes.func,
-    format:React.PropTypes.string.isRequired
+    format: React.PropTypes.string.isRequired
 };
 
 const DEFAULT_PROPS = {
@@ -51,6 +53,7 @@ class DatePickerPopup extends React.Component {
         super(props);
 
         this.state = {
+            isValidDate: this._isValidDate(props.value),
             value: this._getValue(props.value),
             years: range(getYear(props.minDate), getYear(props.maxDate) + 1).map((item) => {
                 return {id: item, displayString: '' + item};
@@ -61,9 +64,17 @@ class DatePickerPopup extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.value) {
             this.setState({
+                isValidDate: this._isValidDate(nextProps.value),
                 value: this._getValue(nextProps.value)
             });
         }
+    }
+
+    _isValidDate(value) {
+        if (isObject(value)) {
+            return true;
+        }
+        return isString(value) && isValidDate(value, this.props.format);
     }
 
     _getValue(value) {
@@ -71,8 +82,8 @@ class DatePickerPopup extends React.Component {
             return value;
         }
 
-        if (isString(value) && isValidDate(value,this.props.format)) {
-            return parse(value,this.props.format);
+        if (isString(value) && isValidDate(value, this.props.format)) {
+            return parse(value, this.props.format);
         }
 
         return getToday();
@@ -109,18 +120,18 @@ class DatePickerPopup extends React.Component {
         this.updateMonth(month);
     }
 
-    updateMonth(month) {
+    updateMonth(value) {
         if (this.isMonthControlled()) {
-            this.props.onMonthChange(month);
+            this.props.onMonthChange(value);
         } else {
             this.setState({
-                month
+                value
             });
         }
     }
 
     isMonthControlled() {
-        if (this.props.month) {
+        if (this.props.value) {
             return true;
         } else {
             return false;
@@ -128,11 +139,17 @@ class DatePickerPopup extends React.Component {
     }
 
     getSelectedMonth() {
-        return getMonth(this.state.value);
+        if (isObject(this.state.value)) {
+            return getMonth(this.state.value);
+        }
+        return null;
     }
 
     getSelectedYear() {
-        return getYear(this.state.value);
+        if (isObject(this.state.value)) {
+            return getYear(this.state.value);
+        }
+        return null;
     }
 
     getMonthOptions() {
@@ -166,19 +183,24 @@ class DatePickerPopup extends React.Component {
             <div tabIndex="-1">
                 <div className="date-picker-popup__header">
                     <i onClick={() => this.left()}
-                       className="im date-picker-popup__arrow date-picker-popup__arrow--left" />
+                       className="im date-picker-popup__arrow date-picker-popup__arrow--left"/>
                     <Select className="date-picker-popup__months select--sm"
                             value={this.getSelectedMonth()}
-                            onChange={(month) => {this.onMonthChange(month);}}
+                            onChange={(month) => {
+                                this.onMonthChange(month);
+                            }}
                             options={this.getMonthOptions()}/>
                     <Select className="date-picker-popup__years select--sm"
                             value={this.getSelectedYear()}
-                            onChange={(year) => {this.onYearChange(year);}}
+                            onChange={(year) => {
+                                this.onYearChange(year);
+                            }}
                             options={this.state.years}/>
                     <i onClick={() => this.right()}
-                       className="im date-picker-popup__arrow date-picker-popup__arrow--right" />
+                       className="im date-picker-popup__arrow date-picker-popup__arrow--right"/>
                 </div>
                 <DatePickerCalendar onSelected={this.props.onSelected}
+                                    isValidDate={this.state.isValidDate}
                                     month={this.state.value}
                                     minDate={this.props.minDate}
                                     maxDate={this.props.maxDate}

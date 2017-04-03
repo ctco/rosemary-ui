@@ -7,7 +7,8 @@ export default class DatePickerDemo extends React.Component {
         super(props);
 
         this.state = {
-            controlledValue: '01.01.2015'
+            controlledValue: '01.01.2015',
+            hi: '22.03.2015'
         };
     }
 
@@ -38,10 +39,13 @@ export default class DatePickerDemo extends React.Component {
 
                 <h2>Date Picker with Input</h2>
                 <DatePicker
+                    value={this.state.hi}
                     targetType={DatePicker.Types.INPUT}
                     format="DD.MM.YYYY"
-                    minDate="01.10.2015"
-                    maxDate="31.03.2017"/>
+                    onChange={(value) => this.setState({
+                        hi: value
+                    })}
+                />
 
                 <h2>Dates can be limited</h2>
                 <DemoWithSnippet>
