@@ -5,7 +5,8 @@ import values from 'lodash/values';
 import memoize from 'lodash/memoize';
 import chunk from 'lodash/chunk';
 
-import {isWeekend,
+import {
+    isWeekend,
     isFirstDayOfWeek,
     isMonthTheSame,
     isToday,
@@ -17,12 +18,15 @@ import {isWeekend,
     getFirstDayOfPreviousWeek,
     addDays,
     parse,
-    format} from '../../util/date-utils';
+    format
+} from '../../util/date-utils';
 
-import {formatD,
+import {
+    formatD,
     formatDDMMYYYY,
     parseDDMMYYYY,
-    formatWeekDay} from '../../util/date-formats';
+    formatWeekDay
+} from '../../util/date-formats';
 
 const START_DATE_TYPES = {
     NORMALIZED: 'normalized',
@@ -46,10 +50,12 @@ const PROPERTY_TYPES = {
     month: React.PropTypes.object.isRequired,
     componentWillUnmount: React.PropTypes.func,
     minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object
+    maxDate: React.PropTypes.object,
+    isValidDate: React.PropTypes.bool
 };
 
 const DEFAULT_PROPS = {
+    isValidDate: true,
     startDateType: START_DATE_TYPES.NORMALIZED,
     renderDatesOfOtherMonth: true,
     formatDate: formatD,
@@ -122,7 +128,7 @@ class DatePickerCalendar extends React.Component {
     }
 
     getDateStyles(date) {
-        if (this.props.getStyles) {
+        if (this.props.getStyles && this.props.isValidDate) {
             return this.props.getStyles(date);
         }
     }
