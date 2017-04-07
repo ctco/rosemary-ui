@@ -24,10 +24,21 @@ function findIdentifiables(list, toFindIds) {
     return isDefined(result) ? result : [];
 }
 
+function compare(left, right) {
+    if (left === right) {
+        return 0;
+    } else if (left > right) {
+        return 1;
+    } else {
+        return -1;
+    }
+}
+
 export {
     findIdentifiables,
     isFunction,
     isDefined,
     isInArray,
-    contains
+    contains,
+    compare
 };

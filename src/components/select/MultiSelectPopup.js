@@ -1,7 +1,7 @@
 import React from 'react';
 import find from 'lodash/find';
 import Link from '../Link';
-import {isDefined, contains, findIdentifiables} from '../../util/utils';
+import {isDefined, contains, findIdentifiables, compare} from '../../util/utils';
 import IconInput from '../IconInput';
 import CheckBoxList from './CheckBoxList';
 import keyNav from './KeyBoardNav';
@@ -13,10 +13,12 @@ const PROPERTY_TYPES = {
         displayString: React.PropTypes.string.isRequired
     })),
     onChange: React.PropTypes.func,
-    value: React.PropTypes.arrayOf(React.PropTypes.number.isRequired)
+    value: React.PropTypes.arrayOf(React.PropTypes.number.isRequired),
+    compare: React.PropTypes.func
 };
 const DEFAULT_PROPS = {
-    placeHolder: 'Search ...'
+    placeHolder: 'Search ...',
+    compare: compare
 };
 
 class MultiSelectPopup extends React.Component {
@@ -109,7 +111,7 @@ class MultiSelectPopup extends React.Component {
         } else if (isOption2Selected && !isOption1Selected) {
             return 1;
         } else {
-            return option1.displayString.localeCompare(option2.displayString);
+            return this.props.compare(option1.displayString, option2.displayString);
         }
     }
 
