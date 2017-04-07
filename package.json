@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "start": "node server.js",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
+    "test": "mocha  --timeout 10000 --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
     "test:coverage": "nyc npm test",
     "nyc:report": "nyc report",

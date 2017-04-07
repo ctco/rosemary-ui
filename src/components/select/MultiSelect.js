@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import find from 'lodash/find';
 
 import Popup from '../Popup';
-import {isDefined, findIdentifiables} from '../../util/utils';
+import {isDefined, findIdentifiables, compare} from '../../util/utils';
 import MultiSelectPopup from './MultiSelectPopup';
 
 import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
@@ -31,7 +30,7 @@ class MultiSelect extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: findIdentifiables(this.props.options, props.value),
+            selected: this.sort(findIdentifiables(this.props.options, props.value)),
             popupOpen: false,
             tooltipOpen: false
         };
@@ -40,20 +39,24 @@ class MultiSelect extends React.Component {
     componentWillReceiveProps(nextProps) {
         let isValueChanged = nextProps.value !== this.props.value;
         if (isValueChanged) {
-            this.setState({selected: findIdentifiables(nextProps.options, nextProps.value)});
+            this.setState({selected: this.sort(findIdentifiables(nextProps.options, nextProps.value))});
         }
     }
 
     select(selected) {
         if (!this.isControlled()) {
             this.setState({
-                selected
+                selected: this.sort(selected)
             });
         }
 
         if (this.props.onChange) {
             this.props.onChange(selected.map((option) => {return option.id;}), selected);
         }
+    }
+
+    sort(selected) {
+        return selected.sort((left, right) => compare(left.displayString, right.displayString));
     }
 
     handlePopupStateChange(open) {
@@ -127,7 +130,9 @@ class MultiSelect extends React.Component {
                 <MultiSelectPopup placeholder={this.props.searchPlaceholder}
                                   options={this.props.options}
                                   value={this.state.selected.map((selected) => {return selected.id;})}
-                                  onChange={(selectedIds, selected) => this.select(selected)} />
+                                  onChange={(selectedIds, selected) => this.select(selected)}
+                                  compare={compare}
+                />
             </Popup>
         );
     }

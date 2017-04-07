@@ -3,7 +3,6 @@ import TestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 import {$, renderComponent, expect, assert} from '../../test_helper';
 import MultiSelectPopup from '../../../src/components/select/MultiSelectPopup';
-import CheckBoxList from '../../../src/components/select/CheckBoxList';
 
 import sinon from 'sinon';
 
