@@ -23,14 +23,17 @@
     "buildGh-Pages": "NODE_ENV=production webpack -p --config webpack/webpack.config.production.js",
     "prepublish": "npm run clean && npm run build",
     "clean": "./node_modules/.bin/rimraf lib",
-    "deploy": "gh-pages-deploy"
+    "deploy": "gh-pages-deploy",
+    "storybook": "start-storybook -p 9001 -c config/storybook"
   },
   "author": "C.T.Co Team TaskODS",
   "devDependencies": {
+    "@kadira/storybook": "^2.35.3",
     "autoprefixer": "^6.3.6",
     "babel-cli": "^6.7.5",
     "babel-core": "^6.2.1",
     "babel-loader": "^6.2.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-es2015-classes": "^6.9.0",
     "babel-plugin-transform-object-rest-spread": "^6.3.13",
     "babel-preset-es2015": "^6.1.18",

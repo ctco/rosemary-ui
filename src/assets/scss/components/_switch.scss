@@ -1,0 +1,60 @@
+@import "../variables/all";
+@import "../mixins/all";
+
+.ros-switch {
+  cursor: $cursor-pointer;
+  white-space: nowrap;
+  display: inline-block;
+
+  .ros-switch__control {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    width: 44px;
+    height: 22px;
+    background-color: $white-four;
+    border-radius: 100px;
+    @include transition(background .3s ease);
+  }
+
+  .ros-switch__title {
+    vertical-align: middle;
+    white-space: nowrap;
+    left: 50px;
+    color: $dark-grey;
+    font-size: 14px;
+    margin-left: 8px;
+    cursor: $cursor-pointer;
+  }
+
+  &.checked .ros-switch__control {
+    background-color: $dodge-blue;
+  }
+
+  &.disabled {
+    cursor: $cursor-default;
+    opacity: 0.5;
+
+    .ros-switch__title {
+      cursor: $cursor-default;
+    }
+  }
+
+  i {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15), 0 0 0 1px rgba(34, 36, 38, 0.15) inset;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.05)) $white;
+    border-radius: 50%;
+    @include transition(background .3s ease, left .3s ease)
+  }
+
+  &.checked i {
+    left: 22px;
+  }
+
+}
