@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf, action} from '@kadira/storybook';
-import Switch from './Switch';
+import Switch from './Switch.js';
 
 storiesOf('Switch', module)
     .add('Checked', () => (
