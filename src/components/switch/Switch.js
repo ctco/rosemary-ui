@@ -20,13 +20,14 @@ class Switch extends React.Component {
         this.state = {
             checked: this.props.checked
         };
+        this._handleOnChange = this._handleOnChange.bind(this);
     }
 
     _isControlled() {
         return !isUndefined(this.props.checked);
     }
 
-    _handleOnChange = (event) => {
+    _handleOnChange(event) {
         if (this.props.disabled) {
             return;
         }
@@ -36,10 +37,10 @@ class Switch extends React.Component {
             this.setState((prevState, props) => ({
                 checked: !this.state.checked
             }), () => {
-                this.props.onChange(this.state.checked, event)
+                this.props.onChange(this.state.checked, event);
             });
         }
-    };
+    }
 
     _isChecked() {
         return this._isControlled() ? this.props.checked : this.state.checked;
