@@ -4,10 +4,10 @@ import Switch from './Switch.js';
 
 storiesOf('Switch', module)
     .add('Checked', () => (
-        <Switch checked/>
+        <Switch checked title="This is Title"/>
     ))
     .add('Disabled', () => (
-        <Switch checked disabled/>
+        <Switch title="title title" checked disabled/>
     ))
     .add('Uncontrolled Switch', () => (
         <Switch />
