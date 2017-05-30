@@ -46,6 +46,10 @@ class Switch extends React.Component {
         return this._isControlled() ? this.props.checked : this.state.checked;
     }
 
+    _getTitle() {
+        return isUndefined(this.props.title) ? null : (<label className="ros-switch__title">{this.props.title}</label>);
+    }
+
     render() {
         const classNames = cn('ros-switch', {
             'disabled': this.props.disabled,
@@ -57,7 +61,7 @@ class Switch extends React.Component {
                 <span className="ros-switch__control">
                      <i />
                 </span>
-                <label className="ros-switch__title">Test</label>
+                {this._getTitle()}
             </div>
         );
     }
