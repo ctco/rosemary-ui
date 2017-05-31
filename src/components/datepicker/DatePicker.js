@@ -6,7 +6,6 @@ import isString from 'lodash/isString';
 import isObject from 'lodash/isObject';
 
 import Popup from '../Popup';
-import Button from '../button/Button';
 import Input from '../Input';
 import DatePickerPopup from './DatePickerPopup';
 import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
@@ -24,18 +23,13 @@ import {
 
 import {formatDMonthYear} from '../../util/date-formats';
 
-const TargetTypes = {
-    INPUT: 'input'
-};
-
 const PROPERTY_TYPES = {
     className: React.PropTypes.string,
     value: React.PropTypes.string,
     format: React.PropTypes.string,
     onChange: React.PropTypes.func,
     minDate: React.PropTypes.string,
-    maxDate: React.PropTypes.string,
-    targetType: React.PropTypes.oneOf([TargetTypes.INPUT])
+    maxDate: React.PropTypes.string
 };
 
 const DEFAULT_PROPS = {
@@ -141,13 +135,11 @@ class DatePicker extends React.Component {
     }
 
     _getTarget() {
-        let className = classNames(this.props.className, 'btn-link');
-
-        if (this.props.targetType === DatePicker.Types.INPUT) {
-            return this._getInput();
-        }
-
-        return <Button id={this.props.id} className={className}> {this.formatValue()}</Button>;
+        let target = React.Children.only(this.props.children);
+        return React.cloneElement(target, {
+            id: this.props.id,
+            value: this.formatValue()
+        });
     }
 
     resetMonth() {
@@ -182,5 +174,5 @@ class DatePicker extends React.Component {
 
 DatePicker.propTypes = PROPERTY_TYPES;
 DatePicker.defaultProps = DEFAULT_PROPS;
-DatePicker.Types = TargetTypes;
+
 export default withIdAndTypeContext(DatePicker);
