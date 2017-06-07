@@ -109,29 +109,8 @@ class DatePicker extends React.Component {
         }
     }
 
-    _getInputValue(value) {
-        if (isObject(value)) {
-            return this.doFormat(value);
-        }
-
-        return value;
-    }
-
     _triggerOnChange(value) {
         this.props.onChange(value);
-    }
-
-    _getInput() {
-        return (
-            <div style={{display: 'inline-block'}}>
-                <Input value={this._getInputValue(this.state.value)} onChange={(value) => {
-                    this.setState({
-                        value
-                    });
-                    this._triggerOnChange(value);
-                }}/>
-            </div>
-        );
     }
 
     _getTarget() {
