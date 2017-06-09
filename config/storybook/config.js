@@ -1,6 +1,5 @@
 import { configure } from '@kadira/storybook';
 const req = require.context('../../src/components', true, /.stories.js$/);
-console.log(req);
 function loadStories() {
     req.keys().forEach((filename) => req(filename));
 }

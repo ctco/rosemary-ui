@@ -29,6 +29,7 @@ import Tab from './components/tabs/Tab';
 import Table from './components/table/Table';
 import Confirmation from './components/Confirmation';
 import Switch from './components/switch/Switch';
+import GroupedMultiSelect from './components/select/GroupedMultiSelect';
 
 import * as dateUtils from './util/date-utils';
 import * as dateFormats from './util/date-formats';
@@ -67,5 +68,6 @@ export {
     Tab,
     Table,
     Confirmation,
-    Switch
+    Switch,
+    GroupedMultiSelect
 };

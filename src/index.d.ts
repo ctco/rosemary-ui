@@ -30,3 +30,4 @@ export const Tab;
 export const Table;
 export const Confirmation;
 export const Switch;
+export const GroupedMultiSelect;
