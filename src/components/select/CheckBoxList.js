@@ -1,9 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import find from 'lodash/find';
 import Immutable from 'immutable';
 import ReactList from 'react-list';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import {isDefined, findIdentifiables} from '../../util/utils';
 import CheckBox from '../CheckBox';
@@ -99,7 +98,7 @@ class CheckBoxList extends React.Component {
         let option = this.props.options[index];
         let selected = this.isSelected(option);
         let focus = this.state.focus && this.state.focus.id === option.id;
-        let style = classnames('check-box-list__item', {
+        let style = cn('check-box-list__item', {
             'focused': focus
         });
         return (

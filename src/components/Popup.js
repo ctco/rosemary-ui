@@ -38,7 +38,8 @@ const PROPERTY_TYPES = {
     onOpen: React.PropTypes.func,
     onTransitionClosedToOpen: React.PropTypes.func,
     onPopupStateChange: React.PropTypes.func,
-    open: React.PropTypes.bool
+    open: React.PropTypes.bool,
+    onContentDidMount: React.PropTypes.func
 };
 const DEFAULT_PROPS = {
     on: 'hover',
@@ -46,12 +47,18 @@ const DEFAULT_PROPS = {
     targetClassName: '',
     changeAttachmentDynamically: false,
     modal: false,
-    animationBaseName: 'popup--animation-scale'
+    animationBaseName: 'popup--animation-scale',
+    onContentDidMount: () => {
+    }
 };
 
 class PopupElement extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        this.props.didMount(this._popupElement);
     }
 
     componentWillUnmount() {
@@ -62,7 +69,7 @@ class PopupElement extends React.Component {
         let attrForType = this.context.parentType;
         let attrForId = this.props.id || this.context.id;
         return (
-            <div data-attr-for-type={attrForType} data-attr-for-id={attrForId} className={this.props.popupClassName}>
+            <div ref={(popupElement) => this._popupElement = popupElement} data-attr-for-type={attrForType} data-attr-for-id={attrForId} className={this.props.popupClassName}>
                 {this.props.modal &&
                 <i className="im icon-close popup-close icon--xxs"
                    onClick={() => this.props.close()}/>}
@@ -237,7 +244,7 @@ class Popup extends React.Component {
     }
 
     getContent() {
-        return this.refs.content;
+        return this._content;
     }
 
     closeCompletely() {
@@ -362,11 +369,17 @@ class Popup extends React.Component {
 
         let element = React.Children.toArray(this.props.children)[1];
         return (
-            <PopupElement modal={this.isModal()} close={this.close} id={this.props.id} ref="content"
-                          popupClassName="popup-content" key={'popup'}
-                          onUnmount={() => {
-                              this.closeCompletely();
-                          }}>
+            <PopupElement
+                modal={this.isModal()}
+                close={this.close}
+                id={this.props.id}
+                ref={(content) => this._content = content }
+                popupClassName="popup-content" key={'popup'}
+                onUnmount={() => {
+                    this.closeCompletely();
+                }}
+                didMount={(content) => this.props.onContentDidMount(content)}
+            >
                 {element}
             </PopupElement>
         );

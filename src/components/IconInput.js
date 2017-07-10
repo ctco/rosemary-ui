@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import cn from 'classnames';
 import Input from './Input';
 import * as sizes from '../constant/sizes';
@@ -16,6 +16,7 @@ const PROPERTY_TYPES = {
     readOnly: React.PropTypes.bool,
     fluid: React.PropTypes.bool,
     placeholder: React.PropTypes.string,
+    inputRef: React.PropTypes.func,
     size: sizes.anySize,
     value: React.PropTypes.string
 };
@@ -36,10 +37,6 @@ class IconInput extends React.Component {
         };
     }
 
-    focus() {
-        this.refs.input.focus();
-    }
-
     render() {
         let className = cn('icon-input', this.props.className, {
             'icon-input--left': this.props.position === LEFT,
@@ -54,7 +51,7 @@ class IconInput extends React.Component {
 
         return (
             <div className={className} onClick={this.props.onClick}>
-                <Input ref="input"
+                <Input {...this.props}
                        type="text"
                        value={this.props.value}
                        onChange={this.props.onChange}

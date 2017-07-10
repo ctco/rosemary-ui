@@ -1,10 +1,11 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import cn from 'classnames';
 import {isDefined} from '../util/utils';
 import * as sizes from '../constant/sizes';
 
 const PROPERTY_TYPES = {
     disabled: React.PropTypes.bool,
+    inputRef: React.PropTypes.func,
     placeholder: React.PropTypes.string,
     maxLength: React.PropTypes.number,
     type: React.PropTypes.oneOf(['text', 'password']),
@@ -16,11 +17,17 @@ const PROPERTY_TYPES = {
     onChange: React.PropTypes.func,
     readOnly: React.PropTypes.bool,
     fluid: React.PropTypes.bool,
+    autoFocus: React.PropTypes.bool,
     size: sizes.anySize
 };
 const DEFAULT_PROPS = {
+    inputRef: (input) => {
+    },
+    onFocus: () => {
+    },
     type: 'text',
     maxLength: 254,
+    autoFocus: false,
     readOnly: false,
     fluid: false,
     sizes: sizes.NORMAL
@@ -34,14 +41,22 @@ class Input extends React.Component {
                 value: ''
             };
         }
-        this.update = this.update.bind(this);
     }
 
-    focus() {
-        this.refs.input.focus();
+    _onFocus = (e) => {
+        e.preventDefault();
+        this.props.onFocus(e);
+    };
+
+    getValue() {
+        return this.state.value;
     }
 
-    update(e) {
+    focus() { //hoc is using this method
+        this._searchInput.focus();
+    }
+
+    update = (e) => {
         let value = e.target.value;
         if (!this.isControlled()) {
             this.setState({
@@ -51,11 +66,16 @@ class Input extends React.Component {
         if (this.props.onChange && !this.props.disabled) {
             this.props.onChange(value);
         }
-    }
+    };
 
     isControlled() {
         return isDefined(this.props.value);
     }
+
+    _attachInput = (input) => {
+        this._input = input;
+        this.props.inputRef(input);
+    };
 
     render() {
         let style = cn(this.props.className, 'text-input', {
@@ -68,8 +88,9 @@ class Input extends React.Component {
         return (
             <div className={style}>
                 <input
+                    autoFocus={this.props.autoFocus}
                     maxLength={this.props.maxLength}
-                    ref="input"
+                    ref={this._attachInput}
                     readOnly={this.props.readOnly}
                     value={this.isControlled() ? this.props.value : this.state.value}
                     placeholder={this.props.placeholder}
@@ -77,7 +98,7 @@ class Input extends React.Component {
                     onKeyPress={this.props.onKeyPress}
                     onKeyDown={this.props.onKeyDown}
                     onBlur={this.props.onBlur}
-                    onFocus={this.props.onFocus}
+                    onFocus={this._onFocus}
                     type={this.props.type}/>
             </div>
         );
