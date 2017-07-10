@@ -37,11 +37,19 @@ class Select extends React.Component {
         };
     }
 
-    componentDidUpdate() {
-        if (this.refs.searchInput && this.refs.searchInput.focus) {
-            if (this.isOpen()) {
-                this.refs.searchInput.focus();
-            }
+    componentWillMount() {
+        if (this.isPopupControlled()) {
+            this.setState({
+                open: this.props.open
+            });
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.search && this._searchInput) {
+            const x = window.scrollX, y = window.scrollY;
+            this._searchInput.focus();
+            window.scrollTo(x, y);
         }
     }
 
@@ -52,9 +60,7 @@ class Select extends React.Component {
         }
 
         if (isDefined(nextProps.open)) {
-            this.setState({open: nextProps.open}, () => {
-                this.handlePopupOpening();
-            });
+            this.setState({open: nextProps.open});
         }
     }
 
@@ -80,12 +86,20 @@ class Select extends React.Component {
         }
     }
 
-    handlePopupStateChange(open) {
+    _changePosition = (content) => {
+        if (this.state.open) {
+            let input = ReactDOM.findDOMNode(this.refs.input);
+            content.style.width = `${input.offsetWidth}px`;
+        }
+    };
 
+    handlePopupStateChange(open) {
         if (!this.isPopupControlled()) {
-            this.setState({open}, () => {
-                this.handlePopupOpening();
-            });
+            this.setState({open});
+        }
+
+        if (open) {
+            this.handlePopupOpening();
         }
 
         if (this.props.onPopupStateChange) {
@@ -98,18 +112,14 @@ class Select extends React.Component {
     }
 
     handlePopupOpening() {
-        if (!this.isOpen()) {
-            return;
-        }
+
         this.setState({filtered: this.props.options}, () => {
             if (this.refs.selected) {
                 let selectedItem = this.refs.selected;
                 this._optionContainer.scrollTop = selectedItem.offsetTop;
             }
         });
-        let popupContent = ReactDOM.findDOMNode(this.refs.popup.getContent());
-        let input = ReactDOM.findDOMNode(this.refs.input);
-        popupContent.style.width = `${input.offsetWidth}px`;
+
     }
 
     renderItems() {
@@ -143,17 +153,13 @@ class Select extends React.Component {
         this.resetNav();
     }
 
-    isOpen() {
-        return isDefined(this.props.open) ? this.props.open : this.state.open;
-    }
-
     isPopupControlled() {
         return isDefined(this.props.open);
     }
 
     getInput() {
-        if (this.props.search && this.refs.searchInput) {
-            return this.refs.searchInput;
+        if (this.props.search && this._searchInput) {
+            return this._searchInput;
         } else {
             return this.refs.input;
         }
@@ -176,10 +182,11 @@ class Select extends React.Component {
         });
         return (
             <Popup ref="popup"
+                   onContentDidMount={this._changePosition}
                    attachment="bottom left" on="click"
                    popupClassName="select__popover"
                    animationBaseName="select__popover--animation-slide-y"
-                   open={this.isOpen()}
+                   open={this.state.open}
                    onPopupStateChange={(open) => this.handlePopupStateChange(open)}>
                 <div onKeyDown={(e) => this.navigate(e)}
                      id={this.props.id}
@@ -195,14 +202,15 @@ class Select extends React.Component {
                 <div className="select__popup">
                     { this.props.search &&
                     <div className="select__search-container">
-                        <IconInput ref="searchInput"
-                                   fluid={true}
-                                   placeholder="Search ... "
-                                   size="sm"
-                                   onKeyDown={(e) => this.navigate(e)}
-                                   onChange={(value) => this.applySearch(value)}
-                                   className="select__search"
-                                   iconClassName="im icon-search"/>
+                        <IconInput
+                            inputRef={(input) => this._searchInput = input }
+                            fluid={true}
+                            placeholder="Search ... "
+                            size="sm"
+                            onKeyDown={(e) => this.navigate(e)}
+                            onChange={(value) => this.applySearch(value)}
+                            className="select__search"
+                            iconClassName="im icon-search"/>
                     </div>
                     }
 

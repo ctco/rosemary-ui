@@ -4,12 +4,9 @@ import cn from 'classnames';
 import CheckBox from '../CheckBox';
 
 const REACT_PROPS = {
-    type: React.PropTypes.string,
-    placeholder: React.PropTypes.element,
-    optionRenderer: React.PropTypes.func,
-    optionsRenderer: React.PropTypes.func,
+    noOptionPlaceholder: React.PropTypes.element,
+    extra: React.PropTypes.func,
     isSelected: React.PropTypes.func.isRequired,
-    value: React.PropTypes.arrayOf(React.PropTypes.number.isRequired),
     options: React.PropTypes.arrayOf(React.PropTypes.shape({
         id: React.PropTypes.number,
         displayString: React.PropTypes.string
@@ -20,7 +17,8 @@ const REACT_PROPS = {
 const DEF_PROPS = {
     options: [],
     type: 'unknown type',
-    placeholder: <div>No options</div>,
+    extra: () => null,
+    noOptionPlaceholder: <div/>,
     onChange: () => {
     },
     isSelected: () => {
@@ -42,32 +40,27 @@ class SelectionList extends React.Component {
     _renderOption(index, key) {
         const option = this.props.options[index];
         let style = cn('check-box-list__item');
-
-        if (this.props.optionRenderer) {
-            return this.props.optionRenderer(option);
-        }
-
         return (
             <tr
                 className={style}
                 tabIndex="0"
                 key={key}
-                onClick={() => this._onOptionSelect(option, this.props.type)}
+                onClick={() => this._onOptionSelect(option)}
             >
                 <td className="check-box-list__check-box">
                     <CheckBox value={this.props.isSelected(option, this.props.type)}/>
                 </td>
                 <td className="check-box-list__label">
                     <span>{option.displayString}</span>
+                    <div className="check-box-list__extra" onClick={(e) => e.stopPropagation()}>
+                        {this.props.extra(option)}
+                    </div>
                 </td>
             </tr>
         );
     }
 
     _renderOptions(options, ref) {
-        if (this.props.optionsRenderer) {
-            return this.props.optionsRenderer(options, ref);
-        }
         return (
             <table className="check-box-list__table">
                 <colgroup>
@@ -82,20 +75,18 @@ class SelectionList extends React.Component {
     }
 
     render() {
+
         if (this.props.options.length === 0) {
-            return this.props.placeholder;
+            return this.props.noOptionPlaceholder;
         }
 
         return (
-            <div style={{overflow: 'auto', maxHeight: 200}}>
-                <ReactList
-                    itemRenderer={this._renderOption}
-                    itemsRenderer={this._renderOptions}
-                    length={this.props.options.length}
-                    type="uniform"
-                />
-            </div>
-
+            <ReactList
+                itemRenderer={this._renderOption}
+                itemsRenderer={this._renderOptions}
+                length={this.props.options.length}
+                type="uniform"
+            />
         );
     }
 }

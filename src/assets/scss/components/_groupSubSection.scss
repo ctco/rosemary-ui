@@ -1,0 +1,28 @@
+@import '../variables/all';
+@import '../mixins/all';
+
+.ros-group-subs {
+  .ros-group-subs__header-wrap {
+    padding: 0 12px;
+  }
+  .ros-group-subs__header {
+    border-bottom: 1px solid $white-five;
+    padding: 12px 0;
+    @include clearfix();
+
+    &:hover {
+      cursor: $cursor-pointer;
+    }
+  }
+  .ros-group-subs__control {
+    font-weight: $semi-bold-weight;
+    font-size: 1.4rem;
+    color: $dodge-blue;
+  }
+  .ros-group-subs__back {
+    float: left;
+  }
+  .ros-group-subs__save {
+    float: right;
+  }
+}
