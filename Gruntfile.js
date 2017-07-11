@@ -6,7 +6,7 @@ module.exports = function(grunt) {
                 files: ['package.json'],
                 updateConfigs: [],
                 commit: true,
-                commitMessage: 'bumping version to %VERSION%',
+                commitMessage: '[skip ci] bumping version to %VERSION%',
                 commitFiles: ['package.json'],
                 createTag: false,
                 tagName: 'v%VERSION%',
