@@ -45,6 +45,7 @@ deploy:
         name: install
         code: |
           npm install
+    - npm-test
     - script:
         name: publish
         code: |
