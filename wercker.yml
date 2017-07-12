@@ -7,6 +7,10 @@ build:
     - npm-install
     # A step that executes `npm test` command
     - npm-test
+    - script:
+        name: build
+        code: |
+          npm run build
 
 deploy:
   steps:
