@@ -41,10 +41,7 @@ deploy:
 #          npm set init.author.email "cscm@ctco.lv"
 #          npm set init.author.url "http://ctco.github.io"
 #          node_modules/grunt/bin/grunt bump
-    - script:
-        name: install
-        code: |
-          npm install
+    - npm-install
     - npm-test
     - script:
         name: publish
