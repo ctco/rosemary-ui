@@ -13,7 +13,7 @@ module.exports = webpackUtils.merge(base.defaults, {
         ]
     },
     output: {
-        path: path.join(__dirname, './../lib'),
+        path: path.join(__dirname, './lib'),
         filename: 'index.js',
         library: 'rosemary-ui',
         libraryTarget: 'umd'
