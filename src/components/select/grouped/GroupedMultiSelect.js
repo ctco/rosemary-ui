@@ -17,11 +17,13 @@ const PROP_TYPES = {
     extra: React.PropTypes.func,
     subSection: React.PropTypes.any,
     onGoBack: React.PropTypes.func,
-    autoFocus: React.PropTypes.bool
+    onPopupStateChange: React.PropTypes.func
 };
 
 const DEF_PROPS = {
     autoFocus: true,
+    onPopupStateChange: () => {
+    },
     onChange: () => {
     },
     extra: () => {
@@ -98,6 +100,8 @@ class GroupedMultiSelect extends React.Component {
             }
             this._onPopupOpening();
         }
+
+        this.props.onPopupStateChange(open);
     };
 
     _onTooltipStateChange = (open) => {
@@ -197,8 +201,9 @@ class GroupedMultiSelect extends React.Component {
                 >
                     <div
                         ref={(input) => this._input = input }
+                        id={this.props.id}
                         tabIndex="0"
-                        className="select">
+                        className="select select--grouped">
                         {this._renderTooltip(this._getSelectedValues())}
                         <i className="im icon-arrow-down"/>
                     </div>

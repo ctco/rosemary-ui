@@ -233,7 +233,7 @@ class GroupedMultiSelectContent extends React.Component {
                                                 />
                                             );
                                         } else {
-                                            return <div>No match</div>;
+                                            return <div className="no-results-found">No results found</div>;
                                         }
                                     })()}
                                 </div>

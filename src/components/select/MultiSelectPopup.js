@@ -93,7 +93,9 @@ class MultiSelectPopup extends React.Component {
             });
         }
 
-        this.getInput().focus();
+        if (this.getInput()) {
+            this.getInput().focus();
+        }
 
         if (this.props.onChange) {
             this.props.onChange(selectedMerged.map((option) => {
@@ -142,7 +144,7 @@ class MultiSelectPopup extends React.Component {
     }
 
     getInput() {
-        return this.refs.searchInput;
+        return this._searchInput;
     }
 
     render() {
@@ -150,6 +152,7 @@ class MultiSelectPopup extends React.Component {
             <div className="select__popup">
                 <div className="select__search-container">
                     <IconInput
+                        inputRef={(input) => this._searchInput = input}
                         onKeyDown={(e) => this.navigate(e)}
                         ref="searchInput"
                         fluid={true}
