@@ -24,7 +24,7 @@ deploy:
 #        code: |
 #          shopt -s xpg_echo
 #          echo $NPMRC > ~/.npmrc
-    - npm-install
+#    - npm-install
 #    - script:
 #        name: version increment
 #        code: |
@@ -36,6 +36,10 @@ deploy:
 #          npm set init.author.email "cscm@ctco.lv"
 #          npm set init.author.url "http://ctco.github.io"
 #          node_modules/grunt/bin/grunt bump
+    - script:
+        name: install
+        code: |
+          npm install
     - script:
         name: publish
         code: |
