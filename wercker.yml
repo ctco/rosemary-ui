@@ -25,20 +25,23 @@ deploy:
           shopt -s xpg_echo
           echo $NPMRC > ~/.npmrc
     - npm-install
+#    - script:
+#        name: version increment
+#        code: |
+#          git checkout $WERCKER_GIT_BRANCH
+#          git reset --hard $WERCKER_GIT_COMMIT
+#          git config --global user.name "C.T.Co SCM"
+#          git config --global user.email "cscm@ctco.lv"
+#          npm set init.author.name "C.T.Co"
+#          npm set init.author.email "cscm@ctco.lv"
+#          npm set init.author.url "http://ctco.github.io"
+#          node_modules/grunt/bin/grunt bump
     - script:
-        name: version increment
+        name: publish
         code: |
-          git checkout $WERCKER_GIT_BRANCH
-          git reset --hard $WERCKER_GIT_COMMIT
-          git config --global user.name "C.T.Co SCM"
-          git config --global user.email "cscm@ctco.lv"
-          npm set init.author.name "C.T.Co"
-          npm set init.author.email "cscm@ctco.lv"
-          npm set init.author.url "http://ctco.github.io"
-          node_modules/grunt/bin/grunt bump
           npm run clean
           npm run build
-          npm publish ./
+#          npm publish ./
 
 gh-pages:
   steps:
