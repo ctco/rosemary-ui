@@ -16,4 +16,6 @@ const options = generateOptions('Robot', 1000);
 
 storiesOf('Select', module)
     .add('uncontrolled', () => <Select options={options}/>)
-    .add('controlled', () => <Select open={boolean('Open', true)} options={options}/>);
+    .add('controlled', () => <Select open={boolean('Open', true)} options={options}/>)
+    .add('with search', () => <Select search={true} options={options} />);
+

@@ -64,6 +64,13 @@ class Select extends React.Component {
         }
     }
 
+    _contentDidMount = (content) => {
+        this._changePosition(content);
+        if (this.props.search) {
+            this._searchInput.focus();
+        }
+    };
+
     findById(options, id) {
         return find(options, (option) => option && (option.id === id));
     }
@@ -182,8 +189,9 @@ class Select extends React.Component {
         });
         return (
             <Popup ref="popup"
-                   onContentDidMount={this._changePosition}
-                   attachment="bottom left" on="click"
+                   onContentDidMount={this._contentDidMount}
+                   attachment="bottom left"
+                   on="click"
                    popupClassName="select__popover"
                    animationBaseName="select__popover--animation-slide-y"
                    open={this.state.open}

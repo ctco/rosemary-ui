@@ -20,6 +20,8 @@
 
 .check-box-list__extra {
   display: inline-block;
+  position: relative;
+  z-index: 1;
 }
 
 .check-box-list__check-box {
