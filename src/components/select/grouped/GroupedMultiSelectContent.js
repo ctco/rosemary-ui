@@ -3,7 +3,7 @@ import isUndefined from 'lodash/isUndefined';
 
 import SelectionList from '../SelectionList';
 import IconInput from '../../IconInput';
-import {contains} from '../../../util/utils';
+import {contains, compare} from '../../../util/utils';
 
 const PROP_TYPES = {
     onChange: React.PropTypes.func,
@@ -25,8 +25,7 @@ const DEF_PROPS = {
     groupView: {},
     onChange: () => {
     },
-    compare: () => {
-    },
+    compare: compare,
     methodCallback: () => {
     }
 };
