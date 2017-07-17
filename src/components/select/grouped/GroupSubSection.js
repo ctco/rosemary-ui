@@ -35,6 +35,7 @@ class GroupSubSection extends React.Component {
                             &nbsp; Save
                         </span>
                     </div>
+                    <br/>
                 </div>
                 {
                     React.createElement(this.props.children, {

@@ -51,10 +51,10 @@ class SelectionList extends React.Component {
                     <CheckBox value={this.props.isSelected(option, this.props.type)}/>
                 </td>
                 <td className="check-box-list__label">
-                    <span>{option.displayString}</span>
                     <div className="check-box-list__extra" onClick={(e) => e.stopPropagation()}>
                         {this.props.extra(option)}
                     </div>
+                    <span title={option.displayString}>{option.displayString}</span>
                 </td>
             </tr>
         );

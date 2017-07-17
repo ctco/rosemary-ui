@@ -17,6 +17,7 @@ const PROP_TYPES = {
 
 const DEF_PROPS = {
     groups: [],
+    height: 192,
     bindChildMethods: () => {
     },
     options: [],
@@ -211,7 +212,7 @@ class GroupedMultiSelectContent extends React.Component {
                         className="select__search"
                         iconClassName="im icon-search"/>
                 </div>
-                <div className="select__options">
+                <div style={{height: this.props.height}} className="select__options">
                     {
                         this.props.keys.map((key) => {
                             const viewConfig = this._getGroupViewConfig(key);
