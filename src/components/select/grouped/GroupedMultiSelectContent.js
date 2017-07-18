@@ -16,6 +16,7 @@ const PROP_TYPES = {
 };
 
 const DEF_PROPS = {
+    searchPlaceholder:'Search...',
     groups: [],
     height: 192,
     bindChildMethods: () => {
@@ -205,7 +206,7 @@ class GroupedMultiSelectContent extends React.Component {
                     <IconInput
                         inputRef={(input) => this._searchInput = input}
                         fluid={true}
-                        placeholder="Search..."
+                        placeholder={this.props.searchPlaceholder}
                         size="sm"
                         onChange={this._applySearch}
                         className="select__search"
