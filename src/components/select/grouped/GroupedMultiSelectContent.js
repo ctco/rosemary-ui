@@ -212,7 +212,7 @@ class GroupedMultiSelectContent extends React.Component {
                         className="select__search"
                         iconClassName="im icon-search"/>
                 </div>
-                <div style={{height: this.props.height}} className="select__options">
+                <div style={{maxHeight: this.props.height}} className="select__options">
                     {
                         this.props.keys.map((key) => {
                             const viewConfig = this._getGroupViewConfig(key);

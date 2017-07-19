@@ -45,14 +45,6 @@ class Select extends React.Component {
         }
     }
 
-    componentDidMount() {
-        if (this.props.search && this._searchInput) {
-            const x = window.scrollX, y = window.scrollY;
-            this._searchInput.focus();
-            window.scrollTo(x, y);
-        }
-    }
-
     componentWillReceiveProps(nextProps) {
 
         if (isDefined(nextProps.value)) {
@@ -67,7 +59,9 @@ class Select extends React.Component {
     _contentDidMount = (content) => {
         this._changePosition(content);
         if (this.props.search) {
-            this._searchInput.focus();
+            setTimeout(() => {
+                this._searchInput.focus();
+            }, 0);
         }
     };
 
