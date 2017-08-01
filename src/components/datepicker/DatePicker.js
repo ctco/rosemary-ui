@@ -44,7 +44,7 @@ class DatePicker extends React.Component {
         let initialValue = props.value ? parse(props.value, props.format) : getToday();
 
         this.state = {
-            month: getFirstDayOfMonth(initialValue),
+            month: this.doParse(initialValue),
             value: initialValue,
             open: false
         };
@@ -76,7 +76,10 @@ class DatePicker extends React.Component {
                         value: selected
                     });
                 }
-                this.props.onChange(this.doFormat(selected));
+
+                if (this.props.onChange) {
+                    this.props.onChange(this.doFormat(selected));
+                }
             }, 200);
         });
     }
@@ -121,9 +124,9 @@ class DatePicker extends React.Component {
         });
     }
 
-    resetMonth() {
+    resetDate() {
         this.setState({
-            month: getFirstDayOfMonth(this.state.value)
+            month: this.doParse(this.state.value)
         });
     }
 
@@ -134,12 +137,10 @@ class DatePicker extends React.Component {
                    on="focus"
                    onPopupStateChange={(open) => this.setState({open})}
                    open={this.state.open}
+                   onTransitionClosedToOpen={() => {this.resetDate();}}
             >
                 {this._getTarget()}
                 <DatePickerPopup value={this.state.month}
-                                 onTransitionClosedToOpen={() => {
-                                     this.resetMonth();
-                                 }}
                                  format={this.props.format}
                                  onSelected={this._handleSelection}
                                  onMonthChange={(month) => this.setState({month})}
