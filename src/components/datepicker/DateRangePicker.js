@@ -1,21 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import {
-    isDayTheSame,
-    isAfter,
-    isBetweenNotInclusive,
-    getToday,
-    addMonths
-} from '../../util/date-utils';
+import {addMonths, getToday, isAfter, isBetweenNotInclusive, isDayTheSame} from '../../util/date-utils';
 
-import {
-    formatDDMMYYYY,
-    parseDDMMYYYY,
-    formatFullMonthYear
-} from '../../util/date-formats';
+import {formatDDMMYYYY, formatFullMonthYear, parseDDMMYYYY} from '../../util/date-formats';
 
 import {isDefined} from '../../util/utils';
 
@@ -37,19 +26,19 @@ const PROPERTY_TYPES = {
 const DEFAULT_PROPS = {
     format: formatDDMMYYYY,
     parse: parseDDMMYYYY,
-    formatHeader: formatFullMonthYear
+    formatHeader: formatFullMonthYear,
+    value: {
+        from: '',
+        to: ''
+    }
 };
+
 
 class DatePicker extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             month: getToday(),
-            from: null,
-            to: null,
-            fromText: '',
-            toText: '',
             over: null,
             animation: 'date-range-picker__calendar--animation-right',
             open: false
@@ -60,6 +49,15 @@ class DatePicker extends React.Component {
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
         this.getDateStyles = this.getDateStyles.bind(this);
         this.transitioning = false;
+    }
+
+    componentDidMount() {
+        this.setState({
+            from: (this.props.value.from) ? this.parseDate(this.props.value.from) : null,
+            fromText: ((this.props.value.from)) ? this.props.value.from : '',
+            to: (this.props.value.to) ? this.parseDate(this.props.value.to) : null,
+            toText: (this.props.value.to) ? this.props.value.to : ''
+        });
     }
 
     componentWillReceiveProps(nextProps) {
@@ -287,6 +285,7 @@ class DatePicker extends React.Component {
     render() {
         let drpClassNames = classNames(this.props.className, 'date-range-picker-control');
 
+        console.dir(this.state);
         return (
             <Popup popupClassName="popover-colored"
                    attachment="bottom left"
