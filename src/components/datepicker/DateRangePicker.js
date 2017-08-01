@@ -46,10 +46,10 @@ class DatePicker extends React.Component {
 
         this.state = {
             month: getToday(),
-            from: null,
-            to: null,
-            fromText: '',
-            toText: '',
+            from: (props.value) ? props.value.from : null,
+            to: (props.value) ? props.value.to : null,
+            fromText: (props.value) ? this.parseDate(props.value.from) : '',
+            toText: (props.value) ? this.parseDate(props.value.to) : '',
             over: null,
             animation: 'date-range-picker__calendar--animation-right',
             open: false
