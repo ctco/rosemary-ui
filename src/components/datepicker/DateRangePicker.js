@@ -284,8 +284,6 @@ class DatePicker extends React.Component {
 
     render() {
         let drpClassNames = classNames(this.props.className, 'date-range-picker-control');
-
-        console.dir(this.state);
         return (
             <Popup popupClassName="popover-colored"
                    attachment="bottom left"
