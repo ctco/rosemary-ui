@@ -54,7 +54,7 @@ class SelectionList extends React.Component {
                     <div className="check-box-list__extra" onClick={(e) => e.stopPropagation()}>
                         {this.props.extra(option)}
                     </div>
-                    <span title={option.displayString}>{option.displayString}</span>
+                    <span className="check-box-list__item-text" title={option.displayString}>{option.displayString}</span>
                 </td>
             </tr>
         );

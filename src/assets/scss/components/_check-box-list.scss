@@ -24,6 +24,14 @@
   z-index: 1;
 }
 
+.check-box-list__item-text {
+  width: auto;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
 .check-box-list__check-box {
   padding-left: $space-lvl2;
 }
