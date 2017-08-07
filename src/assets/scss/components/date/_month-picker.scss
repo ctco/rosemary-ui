@@ -1,11 +1,25 @@
 @import "variables";
 
-.month-picker__date-cell {
+@mixin month-picker-hover($color) {
   &:not([data-disabled]) {
     &:hover {
       > div {
-        background-color: $date-hover-bgc;
+        background-color: $color;
       }
     }
+  }
+}
+
+.month-picker__date-cell {
+  @include month-picker-hover($date-hover-bgc);
+
+  &.month-picker__date-cell--selected {
+    $selected-color: rgba($date-selected-bgc, 0.2);
+
+    > div {
+      background-color: $selected-color;
+    }
+
+    @include month-picker-hover($selected-color);
   }
 }
