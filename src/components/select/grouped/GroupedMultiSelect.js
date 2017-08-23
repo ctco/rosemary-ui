@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import isUndefined from 'lodash/isUndefined';
+import noop from 'lodash/noop';
+import lowerCase from 'lodash/lowerCase';
 import find from 'lodash/find';
 import cn from 'classnames';
+
+import {compare} from '../../../util/utils';
 import Popup from '../../Popup';
 import GroupedMultiSelectContent from './GroupedMultiSelectContent';
 import GroupSubSection from './GroupSubSection';
@@ -22,12 +26,9 @@ const PROP_TYPES = {
 
 const DEF_PROPS = {
     autoFocus: true,
-    onPopupStateChange: () => {
-    },
-    onChange: () => {
-    },
-    extra: () => {
-    }
+    onPopupStateChange: noop,
+    onChange: noop,
+    extra: noop
 };
 
 class GroupedMultiSelect extends React.Component {
@@ -172,13 +173,18 @@ class GroupedMultiSelect extends React.Component {
         return (
             <div>
                 {this.props.keys.map((key) => {
-                    return this._getSelectedValuesByKey(key).map((id, index) => {
-                        return (
-                            <div key={`${key}-${index}`}>
-                                {this._getSelectedOption(id, key).displayString}
-                            </div>
-                        );
-                    });
+                    return this._getSelectedValuesByKey(key)
+                        .map((id) => {
+                            return this._getSelectedOption(id, key).displayString;
+                        })
+                        .sort((l, r) => compare(lowerCase(l), lowerCase(r)))
+                        .map((option, index) => {
+                            return (
+                                <div key={`${key}-${index}`}>
+                                    {option}
+                                </div>
+                            );
+                        });
                 })}
             </div>
         );
@@ -200,7 +206,7 @@ class GroupedMultiSelect extends React.Component {
                        onPopupStateChange={this._onTooltipStateChange}
                 >
                     <div
-                        ref={(input) => this._input = input }
+                        ref={(input) => this._input = input}
                         id={this.props.id}
                         tabIndex="0"
                         className="select select--grouped">

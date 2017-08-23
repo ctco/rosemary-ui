@@ -1,5 +1,7 @@
 import React from 'react';
 import isUndefined from 'lodash/isUndefined';
+import lowerCase from 'lodash/lowerCase';
+import noop from 'lodash/noop';
 
 import SelectionList from '../SelectionList';
 import IconInput from '../../IconInput';
@@ -16,19 +18,16 @@ const PROP_TYPES = {
 };
 
 const DEF_PROPS = {
-    searchPlaceholder:'Search...',
+    searchPlaceholder: 'Search...',
     groups: [],
     height: 192,
-    bindChildMethods: () => {
-    },
+    bindChildMethods: noop,
     options: [],
     keys: [],
     groupView: {},
-    onChange: () => {
-    },
+    onChange: noop,
     compare: compare,
-    methodCallback: () => {
-    }
+    methodCallback: noop
 };
 
 class GroupedMultiSelectContent extends React.Component {
@@ -52,8 +51,7 @@ class GroupedMultiSelectContent extends React.Component {
         if (nextProps.options && nextProps.options !== this.props.options) {
             const filtered = this._getFilteredOptions({
                 options: nextProps.options,
-                filterFn: (options) => this._filterByQueryStr(this._getSearchValue(), options),
-                sortFn: this._sortedOnTop
+                filterFn: (options) => this._filterByQueryStr(this._getSearchValue(), options)
             });
 
             this.setState({
@@ -127,7 +125,7 @@ class GroupedMultiSelectContent extends React.Component {
             } else if (isOption2Selected && !isOption1Selected) {
                 return 1;
             } else {
-                return this.props.compare(option1.displayString, option2.displayString);
+                return this.props.compare(lowerCase(option1.displayString), lowerCase(option2.displayString));
             }
         };
     };
@@ -241,11 +239,12 @@ class GroupedMultiSelectContent extends React.Component {
                             );
                         })
                     }
-                </div >
+                </div>
             </div>
         );
     }
 }
+
 GroupedMultiSelectContent.propType = PROP_TYPES;
 GroupedMultiSelectContent.defaultProps = DEF_PROPS;
 
