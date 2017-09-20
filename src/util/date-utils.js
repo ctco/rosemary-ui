@@ -39,6 +39,10 @@ function isBetweenNotInclusive(dateToCheck, from, to) {
 }
 
 function isDayTheSame(date1, date2) {
+    if (!date2) {
+        return false;
+    }
+
     return date1.isSame(date2, 'day');
 }
 

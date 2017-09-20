@@ -9,7 +9,7 @@ import {enhanceWithClickOutside} from './hoc/OnClickOutsideHOC';
 import {enhanceWithKeyDown} from './hoc/OnKeyDownHOC';
 import {isDefined} from '../util/utils';
 
-const attachmentPositions = {
+export const attachmentPositions = {
     'top left': {attachment: 'bottom left', targetAttachment: 'top left'},
     'top center': {attachment: 'bottom center', targetAttachment: 'top center'},
     'top right': {attachment: 'bottom right', targetAttachment: 'top right'},

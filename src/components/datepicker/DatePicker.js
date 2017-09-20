@@ -1,12 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
-import isUndefined from 'lodash/isUndefined';
 import debounce from 'lodash/debounce';
-import isString from 'lodash/isString';
-import isObject from 'lodash/isObject';
+import noop from 'lodash/noop';
+import isNull from 'lodash/isNull';
 
-import Popup from '../Popup';
-import Input from '../Input';
+import Popup, {attachmentPositions} from '../Popup';
 import DatePickerPopup from './DatePickerPopup';
 import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
 
@@ -17,11 +15,11 @@ import {
     isDayTheSame,
     isMonthTheSame,
     getFirstDayOfMonth,
-    isValidDate,
     DD_MM_YYYY
 } from '../../util/date-utils';
 
 import {formatDMonthYear} from '../../util/date-formats';
+import Input from '../Input';
 
 const PROPERTY_TYPES = {
     className: React.PropTypes.string,
@@ -29,41 +27,39 @@ const PROPERTY_TYPES = {
     format: React.PropTypes.string,
     onChange: React.PropTypes.func,
     minDate: React.PropTypes.string,
-    maxDate: React.PropTypes.string
+    maxDate: React.PropTypes.string,
+    attachment: React.PropTypes.oneOf(Object.keys(attachmentPositions))
 };
 
 const DEFAULT_PROPS = {
-    onChange: () => {
-    },
-    format: DD_MM_YYYY
+    onChange: noop,
+    format: DD_MM_YYYY,
+    attachment: 'bottom center'
 };
 
 class DatePicker extends React.Component {
     constructor(props) {
         super(props);
-        let initialValue = props.value ? parse(props.value, props.format) : getToday();
 
         this.state = {
-            month: getFirstDayOfMonth(initialValue),
-            value: initialValue,
             open: false
         };
         this._triggerOnChange = debounce(this._triggerOnChange, 50).bind(this);
         this._handleSelection = this._handleSelection.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.value) {
-            this.setState({
-                value: nextProps.value,
-                month: nextProps.value
-            });
+    formatValue = () => {
+        if (!this.props.value) {
+            return '';
         }
-    }
 
-    formatValue() {
-        return isString(this.state.value) ?
-            formatDMonthYear(this.doParse(this.state.value)) : formatDMonthYear(this.state.value);
+        const momentValue = this.getMomentValue(this.props.value);
+
+        if (isNull(momentValue)) {
+            return this.props.value;
+        }
+
+        return formatDMonthYear(momentValue);
     }
 
     _handleSelection(selected) {
@@ -71,11 +67,6 @@ class DatePicker extends React.Component {
             open: false
         }, () => {
             setTimeout(() => {
-                if (!this.isControlled()) {
-                    this.setState({
-                        value: selected
-                    });
-                }
                 this.props.onChange(this.doFormat(selected));
             }, 200);
         });
@@ -89,24 +80,11 @@ class DatePicker extends React.Component {
         return parse(date, this.props.format);
     }
 
-    isControlled() {
-        return !isUndefined(this.props.value);
-    }
-
     getStyles(date) {
         return classNames('date-picker__date-cell', {
-            'date-picker__date-cell--selected': isDayTheSame(date, this._getValue(this.state.month)),
-            'date-picker__date-cell--of-other-month': !isMonthTheSame(date, this._getValue(this.state.month))
+            'date-picker__date-cell--selected': isDayTheSame(date, this.getMomentValue(this.props.value)),
+            'date-picker__date-cell--of-other-month': !isMonthTheSame(date, this.state.month)
         });
-    }
-
-    _getValue(val) {
-        if (isObject(val)) {
-            return val;
-        }
-        if (isString(val) && isValidDate(val, this.props.format)) {
-            return this.doParse(val);
-        }
     }
 
     _triggerOnChange(value) {
@@ -115,34 +93,61 @@ class DatePicker extends React.Component {
 
     _getTarget() {
         let target = React.Children.only(this.props.children);
+        this.isInput = target.type === Input;
+
         return React.cloneElement(target, {
             id: this.props.id,
-            value: this.formatValue()
+            value: this.isInput ? this.props.value || '' : this.formatValue(),
+            onChange: this._handleInputChange
         });
     }
 
-    resetMonth() {
-        this.setState({
-            month: getFirstDayOfMonth(this.state.value)
-        });
+    _handleInputChange = (value) => {
+        const moment = this.getMomentValue(value);
+        if (!isNull(moment)) {
+            this.resetMonth(value);
+        }
+
+        this.props.onChange(value);
+    }
+
+    resetMonth = (value) => {
+        const momentValue = this.getMomentValue(value);
+        const month = isNull(momentValue) ? getToday() : momentValue;
+
+        this.handleMonthChange(getFirstDayOfMonth(month));
+    }
+
+    getMomentValue = (value) => {
+        const parsed = this.doParse(value);
+
+        if (parsed.isValid()) {
+            return parsed;
+        }
+
+        return null;
+    }
+
+    handleMonthChange = (month) => {
+        this.setState({month});
     }
 
     render() {
         return (
             <Popup popupClassName="popover-colored"
-                   attachment="bottom center"
+                   attachment={this.props.attachment}
                    on="focus"
                    onPopupStateChange={(open) => this.setState({open})}
                    open={this.state.open}
+                   onTransitionClosedToOpen={() => {
+                       this.resetMonth(this.props.value);
+                   }}
             >
                 {this._getTarget()}
-                <DatePickerPopup value={this.state.month}
-                                 onTransitionClosedToOpen={() => {
-                                     this.resetMonth();
-                                 }}
+                <DatePickerPopup month={this.state.month}
                                  format={this.props.format}
                                  onSelected={this._handleSelection}
-                                 onMonthChange={(month) => this.setState({month})}
+                                 onMonthChange={this.handleMonthChange}
                                  minDate={this.props.minDate ? this.doParse(this.props.minDate) : undefined}
                                  maxDate={this.props.maxDate ? this.doParse(this.props.maxDate) : undefined}
                                  getStyles={(date) => this.getStyles(date)}/>

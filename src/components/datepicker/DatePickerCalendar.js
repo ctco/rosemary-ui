@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import values from 'lodash/values';
 import memoize from 'lodash/memoize';
@@ -17,8 +16,6 @@ import {
     getFirstDayOfWeek,
     getFirstDayOfPreviousWeek,
     addDays,
-    parse,
-    format
 } from '../../util/date-utils';
 
 import {
@@ -50,12 +47,10 @@ const PROPERTY_TYPES = {
     month: React.PropTypes.object.isRequired,
     componentWillUnmount: React.PropTypes.func,
     minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object,
-    isValidDate: React.PropTypes.bool
+    maxDate: React.PropTypes.object
 };
 
 const DEFAULT_PROPS = {
-    isValidDate: true,
     startDateType: START_DATE_TYPES.NORMALIZED,
     renderDatesOfOtherMonth: true,
     formatDate: formatD,
@@ -128,7 +123,7 @@ class DatePickerCalendar extends React.Component {
     }
 
     getDateStyles(date) {
-        if (this.props.getStyles && this.props.isValidDate) {
+        if (this.props.getStyles) {
             return this.props.getStyles(date);
         }
     }
