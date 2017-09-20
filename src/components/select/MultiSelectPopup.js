@@ -1,10 +1,14 @@
 import React from 'react';
 import find from 'lodash/find';
+import trim from 'lodash/trim';
+import Fuse from 'fuse.js';
 import Link from '../Link';
-import {isDefined, contains, findIdentifiables, compare} from '../../util/utils';
+import {isDefined, findIdentifiables, compare} from '../../util/utils';
 import IconInput from '../IconInput';
 import CheckBoxList from './CheckBoxList';
 import keyNav from './KeyBoardNav';
+import fuseConfig from './fuseSearchConfig';
+
 
 const PROPERTY_TYPES = {
     placeholder: React.PropTypes.string,
@@ -31,6 +35,8 @@ class MultiSelectPopup extends React.Component {
             selected: findIdentifiables(this.props.options, props.value)
         };
 
+        this.fuse = new Fuse(props.options, fuseConfig);
+
         this.state.filtered = this.getAllSorted();
     }
 
@@ -47,6 +53,8 @@ class MultiSelectPopup extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        this.fuse.setCollection(nextProps.options);
+
         let isValueChanged = nextProps.value !== this.props.value;
         if (isValueChanged) {
             this.setState({selected: findIdentifiables(nextProps.options, nextProps.value)});
@@ -121,12 +129,9 @@ class MultiSelectPopup extends React.Component {
         return isDefined(this.props.value);
     }
 
-    _applySearch(value) {
+    _applySearch = (value) => {
         this.resetNav();
-
-        let filtered = this.props.options.filter((option) => {
-            return contains(option.displayString, value);
-        });
+        let filtered = trim(value).length === 0 ? this.props.options : this.fuse.search(value);
 
         filtered.sort(this._sortSelectedOnTop);
 
@@ -158,7 +163,7 @@ class MultiSelectPopup extends React.Component {
                         fluid={true}
                         placeholder={this.props.placeholder}
                         size="sm"
-                        onChange={(value) => this._applySearch(value)}
+                        onChange={this._applySearch}
                         className="select__search"
                         iconClassName="im icon-search"/>
                 </div>

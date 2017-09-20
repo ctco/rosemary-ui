@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
+import Fuse from 'fuse.js';
 import find from 'lodash/find';
+import trim from 'lodash/trim';
 import Popup from '../Popup';
 import IconInput from '../IconInput';
-import {isDefined, contains} from '../../util/utils';
+import {isDefined} from '../../util/utils';
+import fuseConfig from './fuseSearchConfig';
 
 import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
 import keyBordNav from './KeyBoardNav';
@@ -35,6 +38,7 @@ class Select extends React.Component {
             open: false,
             filtered: props.options
         };
+        this.fuse = new Fuse(props.options, fuseConfig);
     }
 
     componentWillMount() {
@@ -46,6 +50,8 @@ class Select extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+
+        this.fuse.setCollection(nextProps.options);
 
         if (isDefined(nextProps.value)) {
             this.setState({selected: this.findById(nextProps.options, nextProps.value)});
@@ -143,9 +149,7 @@ class Select extends React.Component {
     }
 
     applySearch(value) {
-        let filtered = this.props.options.filter((option) => {
-            return contains(option.displayString, value);
-        });
+        let filtered = trim(value).length === 0 ? this.props.options : this.fuse.search(value);
 
         this.setState({
             filtered: filtered
@@ -202,10 +206,10 @@ class Select extends React.Component {
                 </div>
 
                 <div className="select__popup">
-                    { this.props.search &&
+                    {this.props.search &&
                     <div className="select__search-container">
                         <IconInput
-                            inputRef={(input) => this._searchInput = input }
+                            inputRef={(input) => this._searchInput = input}
                             fluid={true}
                             placeholder="Search ... "
                             size="sm"
