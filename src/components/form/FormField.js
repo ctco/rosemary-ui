@@ -7,7 +7,8 @@ const PROPERTY_TYPES = {
     error: React.PropTypes.string,
     touched: React.PropTypes.bool,
     valid: React.PropTypes.bool,
-    label: React.PropTypes.string
+    label: React.PropTypes.string,
+    testId: React.PropTypes.string
 };
 const DEFAULT_PROPS = {
 };
@@ -49,7 +50,7 @@ class FormField extends Component {
         });
 
         return (
-            <div className={className}>
+            <div className={className} data-test-id={this.props.testId}>
                 <label className="form-field__label">{this.props.label}</label>
 
                 <div className="form-field__control">
