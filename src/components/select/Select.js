@@ -18,7 +18,7 @@ const PROPERTY_TYPES = {
     search: React.PropTypes.bool,
     open: React.PropTypes.bool,
     onPopupStateChange: React.PropTypes.func,
-    value: React.PropTypes.number,
+    value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
     options: React.PropTypes.arrayOf(React.PropTypes.shape({
         id: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
         displayString: React.PropTypes.string.isRequired
