@@ -22,6 +22,7 @@ import {formatDMonthYear} from '../../util/date-formats';
 import Input from '../Input';
 
 const PROPERTY_TYPES = {
+    disabled: React.PropTypes.bool,
     className: React.PropTypes.string,
     value: React.PropTypes.string,
     format: React.PropTypes.string,
@@ -34,7 +35,8 @@ const PROPERTY_TYPES = {
 const DEFAULT_PROPS = {
     onChange: noop,
     format: DD_MM_YYYY,
-    attachment: 'bottom center'
+    attachment: 'bottom center',
+    disabled: false
 };
 
 class DatePicker extends React.Component {
@@ -98,7 +100,8 @@ class DatePicker extends React.Component {
         return React.cloneElement(target, {
             id: this.props.id,
             value: this.isInput ? this.props.value || '' : this.formatValue(),
-            onChange: this._handleInputChange
+            onChange: this._handleInputChange,
+            disabled: this.props.disabled
         });
     }
 
@@ -132,12 +135,20 @@ class DatePicker extends React.Component {
         this.setState({month});
     }
 
+    handlePopupStateChange = (open) => {
+        if (this.props.disabled) {
+            return;
+        }
+
+        this.setState({open});
+    }
+
     render() {
         return (
             <Popup popupClassName="popover-colored"
                    attachment={this.props.attachment}
                    on="focus"
-                   onPopupStateChange={(open) => this.setState({open})}
+                   onPopupStateChange={this.handlePopupStateChange}
                    open={this.state.open}
                    onTransitionClosedToOpen={() => {
                        this.resetMonth(this.props.value);

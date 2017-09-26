@@ -99,7 +99,9 @@ class Input extends React.Component {
                     onKeyDown={this.props.onKeyDown}
                     onBlur={this.props.onBlur}
                     onFocus={this._onFocus}
-                    type={this.props.type}/>
+                    type={this.props.type}
+                    disabled={this.props.disabled}
+                />
             </div>
         );
     }

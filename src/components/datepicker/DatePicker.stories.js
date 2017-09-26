@@ -14,7 +14,9 @@ class DatePickerStatefull extends React.Component {
                 <DatePicker
                     value={this.state.value}
                     onChange={(value) => this.setState({value})}
-                    attachment="bottom left">
+                    attachment="bottom left"
+                    {...this.props}
+                >
                     <Input/>
                 </DatePicker>
             </div>
@@ -23,6 +25,5 @@ class DatePickerStatefull extends React.Component {
 }
 
 storiesOf('DatePicker', module)
-    .add('default', () => (
-        <DatePickerStatefull/>
-    ));
+    .add('default', () => (<DatePickerStatefull/>))
+    .add('disabled', () => (<DatePickerStatefull disabled/>));

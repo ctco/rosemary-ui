@@ -26,6 +26,10 @@
     */
   }
 
+  &.disabled {
+    @include disabled;
+  }
+
   > div {
     @include ellipsis;
     margin: 0 15px 0 0;
@@ -133,13 +137,13 @@
 }
 
 .select--grouped {
-  background-color:rgba(51, 51, 51, 0.1);
+  background-color: rgba(51, 51, 51, 0.1);
 }
 
 .select__group:not(:last-child):after {
   content: "";
   display: block;
-  color:black;
+  color: black;
   margin: 12px 12px 0 12px;
   border-bottom: 1px solid $white-five;
 }

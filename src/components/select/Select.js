@@ -13,6 +13,7 @@ import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
 import keyBordNav from './KeyBoardNav';
 
 const PROPERTY_TYPES = {
+    disabled: React.PropTypes.bool,
     placeholder: React.PropTypes.string,
     search: React.PropTypes.bool,
     open: React.PropTypes.bool,
@@ -26,7 +27,8 @@ const PROPERTY_TYPES = {
 };
 const DEFAULT_PROPS = {
     placeholder: 'Select...',
-    search: false
+    search: false,
+    disabled: false
 };
 
 class Select extends React.Component {
@@ -101,6 +103,10 @@ class Select extends React.Component {
     };
 
     handlePopupStateChange(open) {
+        if (this.props.disabled) {
+            return;
+        }
+
         if (!this.isPopupControlled()) {
             this.setState({open});
         }
@@ -183,7 +189,8 @@ class Select extends React.Component {
         let text = selectedObject ? selectedObject.displayString : this.props.placeholder;
 
         let className = classNames(this.props.className, 'select', {
-            'placeholder': !selectedObject
+            'placeholder': !selectedObject,
+            'disabled': this.props.disabled
         });
         return (
             <Popup ref="popup"

@@ -17,10 +17,10 @@
     .form-field-error & {
       border-color: $lipstick;
     }
+  }
 
-    &.disabled {
-      // todo when Konstantin will be back from vocation
-    }
+  &.disabled > input {
+    @include disabled;
   }
 }
 
