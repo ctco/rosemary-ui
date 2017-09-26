@@ -20,7 +20,7 @@ const PROPERTY_TYPES = {
     onPopupStateChange: React.PropTypes.func,
     value: React.PropTypes.number,
     options: React.PropTypes.arrayOf(React.PropTypes.shape({
-        id: React.PropTypes.number.isRequired,
+        id: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
         displayString: React.PropTypes.string.isRequired
     })),
     className: React.PropTypes.string
