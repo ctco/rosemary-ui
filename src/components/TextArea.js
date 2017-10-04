@@ -4,7 +4,8 @@ import classNames from 'classnames';
 
 const PROPERTY_TYPES = {
     placeholder: React.PropTypes.string,
-    value: React.PropTypes.any
+    value: React.PropTypes.any,
+    maxLength: React.PropTypes.number
 };
 const DEFAULT_PROPS = {};
 
@@ -56,6 +57,7 @@ class TextArea extends React.Component {
                           onChange={(e) => this.update(e)}
                           placeholder={this.props.placeholder}
                           onBlur={this.props.onBlur}
+                          maxLength={this.props.maxLength}
                 />
             </div>
         );
