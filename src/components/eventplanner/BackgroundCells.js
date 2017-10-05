@@ -107,7 +107,7 @@ class DisplayCells extends React.Component {
                 startIdx, endIdx
             });
         });
-        selector.on('select', () => {
+        selector.on('select', (event) => {
             this._selectSlot(this.state);
             this._initial = {};
             this.setState({selecting: false});
@@ -133,7 +133,7 @@ class DisplayCells extends React.Component {
                     startIdx: currentCell,
                     endIdx: currentCell,
                     selectedIndex: currentCell
-                });
+                }, event);
             }
 
             this._initial = {};
@@ -165,13 +165,13 @@ class DisplayCells extends React.Component {
         this._dragableSelector = null;
     }
 
-    _selectSlot({endIdx, startIdx, selectedIndex}) {
+    _selectSlot({endIdx, startIdx, selectedIndex}, event) {
         this.props.onSelectSlot &&
         this.props.onSelectSlot({
             start: startIdx,
             end: endIdx,
             selectedIndex
-        });
+        }, event);
     }
 }
 

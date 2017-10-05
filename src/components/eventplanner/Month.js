@@ -172,7 +172,7 @@ class MonthView extends React.Component {
         );
     }
 
-    _setDate(date) {
+    _setDate(date, event) {
         if (this._getStartDate()) {
             this.setState({
                 endDate: date
@@ -194,10 +194,10 @@ class MonthView extends React.Component {
                 start = temp;
             }
 
-            notify(this.props.onRangeSelected, {
+            notify(this.props.onRangeSelected, [{
                 start,
                 end
-            });
+            }, event]);
 
             this._reset();
         }
@@ -234,9 +234,9 @@ class MonthView extends React.Component {
             return parse(date);
         }
 
-        function onSelectSlot({start, end}) {
+        function onSelectSlot({start, end}, event) {
             let selectedDate = self._pendingSelection.concat(row.slice(start, end + 1));
-            self._setDate(selectedDate[0]);
+            self._setDate(selectedDate[0], event);
 
             self._pendingSelection = selectedDate;
 
