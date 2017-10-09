@@ -24,6 +24,7 @@
     height: $checkbox-size;
     border-radius: 3px;
     border: solid 1px $checkbox-border-color;
+    background-color: white;
     @include transition(all 0.1s ease-in-out);
     @include box-shadow(inset 0px 1px 1px rgba(0,0,0,0.15));
   }

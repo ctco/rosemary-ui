@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 
-import {isDefined} from '../util/utils';
+import {isDefined} from '../../util/utils';
 
 const PROPERTY_TYPES = {
     disabled: React.PropTypes.bool,

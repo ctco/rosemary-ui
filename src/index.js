@@ -8,7 +8,7 @@ import {Nav, NavItem, NavDropDownItem, NavHrefItem} from './components/navbar';
 import Popup from './components/Popup';
 import Input from './components/Input';
 import IconInput from './components/IconInput';
-import CheckBox from './components/CheckBox';
+import CheckBox from './components/checkbox/CheckBox';
 import Avatar from './components/Avatar';
 import Select from './components/select/Select';
 import MultiSelect from './components/select/MultiSelect';

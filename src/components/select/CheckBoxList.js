@@ -5,7 +5,7 @@ import ReactList from 'react-list';
 import cn from 'classnames';
 
 import {isDefined, findIdentifiables} from '../../util/utils';
-import CheckBox from '../CheckBox';
+import CheckBox from '../checkbox/CheckBox';
 
 const PROPERTY_TYPES = {
     value: React.PropTypes.arrayOf(React.PropTypes.number.isRequired),

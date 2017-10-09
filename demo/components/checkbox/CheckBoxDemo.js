@@ -1,5 +1,5 @@
 import DemoWithSnippet from '../../layout/DemoWithSnippet';
-import CheckBox from '../../../src/components/CheckBox';
+import CheckBox from '../../../src/components/checkbox/CheckBox';
 
 import React from 'react';
 
