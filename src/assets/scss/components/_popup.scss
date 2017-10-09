@@ -192,13 +192,16 @@
     }
   }
 
+  .popup-content-wrapper {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
   .popup-content {
     @include popup-content-base();
     padding: $space-lvl4 $space-lvl5;
     color: $popup-color;
     background-color: $popup-background-color;
-    max-height: 90vh;
-    overflow-y: auto;
 
     &:before {
       background-color: $popup-background-color;

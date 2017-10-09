@@ -69,11 +69,16 @@ class PopupElement extends React.Component {
         let attrForType = this.context.parentType;
         let attrForId = this.props.id || this.context.id;
         return (
-            <div ref={(popupElement) => this._popupElement = popupElement} data-attr-for-type={attrForType} data-attr-for-id={attrForId} className={this.props.popupClassName}>
-                {this.props.modal &&
-                <i className="im icon-close popup-close icon--xxs"
-                   onClick={() => this.props.close()}/>}
-                {this.props.children}
+            <div className="popup-content-wrapper">
+                <div ref={(popupElement) => this._popupElement = popupElement}
+                     data-attr-for-type={attrForType}
+                     data-attr-for-id={attrForId}
+                     className={this.props.popupClassName}>
+                    {this.props.modal &&
+                    <i className="im icon-close popup-close icon--xxs"
+                       onClick={() => this.props.close()}/>}
+                    {this.props.children}
+                </div>
             </div>
         );
     }
@@ -373,7 +378,7 @@ class Popup extends React.Component {
                 modal={this.isModal()}
                 close={this.close}
                 id={this.props.id}
-                ref={(content) => this._content = content }
+                ref={(content) => this._content = content}
                 popupClassName="popup-content" key={'popup'}
                 onUnmount={() => {
                     this.closeCompletely();
