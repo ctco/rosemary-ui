@@ -24,7 +24,7 @@ class Switch extends React.Component {
     }
 
     _isControlled() {
-        return !isUndefined(this.props.checked);
+        return !isUndefined(this.props.value);
     }
 
     _handleOnChange(event) {
@@ -32,7 +32,7 @@ class Switch extends React.Component {
             return;
         }
         if (this._isControlled()) {
-            this.props.onChange(this.props.checked, event);
+            this.props.onChange(!this.props.value, event);
         } else {
             this.setState((prevState, props) => ({
                 checked: !this.state.checked
@@ -43,7 +43,7 @@ class Switch extends React.Component {
     }
 
     _isChecked() {
-        return this._isControlled() ? this.props.checked : this.state.checked;
+        return this._isControlled() ? this.props.value : this.state.checked;
     }
 
     _getTitle() {
