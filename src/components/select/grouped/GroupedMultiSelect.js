@@ -7,7 +7,7 @@ import find from 'lodash/find';
 import cn from 'classnames';
 
 import {compare} from '../../../util/utils';
-import Popup from '../../Popup';
+import Popup from '../../popup/Popup';
 import GroupedMultiSelectContent from './GroupedMultiSelectContent';
 import GroupSubSection from './GroupSubSection';
 

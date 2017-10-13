@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import Popup from './../Popup';
+import Popup from '../popup/Popup';
 
 const PROPERTY_TYPES = {
     className: React.PropTypes.string,

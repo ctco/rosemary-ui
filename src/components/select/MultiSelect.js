@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
-import Popup from '../Popup';
+import Popup from '../popup/Popup';
 import {isDefined, findIdentifiables, compare} from '../../util/utils';
 import MultiSelectPopup from './MultiSelectPopup';
 

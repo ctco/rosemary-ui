@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import sinon from 'sinon';
 
 import {$, expect} from '../test_helper';
-import Popup from '../../src/components/Popup';
+import Popup from '../../src/components/popup/Popup';
 
 describe('Popup', () => {
      var clock;

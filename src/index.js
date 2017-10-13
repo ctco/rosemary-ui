@@ -5,7 +5,7 @@ import ButtonGroup from './components/button/ButtonGroup';
 import Radio from './components/radio/Radio';
 import RadioGroup from './components/radio/RadioGroup';
 import {Nav, NavItem, NavDropDownItem, NavHrefItem} from './components/navbar';
-import Popup from './components/Popup';
+import Popup from './components/popup/Popup';
 import Input from './components/Input';
 import IconInput from './components/IconInput';
 import CheckBox from './components/checkbox/CheckBox';

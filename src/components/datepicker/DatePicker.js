@@ -4,7 +4,7 @@ import debounce from 'lodash/debounce';
 import noop from 'lodash/noop';
 import isNull from 'lodash/isNull';
 
-import Popup, {attachmentPositions} from '../Popup';
+import Popup, {attachmentPositions} from '../popup/Popup';
 import DatePickerPopup from './DatePickerPopup';
 import {withIdAndTypeContext} from '../hoc/WithIdAndTypeHOC';
 

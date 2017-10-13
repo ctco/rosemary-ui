@@ -9,7 +9,7 @@ import {formatDDMMYYYY, formatFullMonthYear, parseDDMMYYYY} from '../../util/dat
 import {isDefined} from '../../util/utils';
 
 import DatePickerCalendar from './DatePickerCalendar';
-import Popup from '../Popup';
+import Popup from '../popup/Popup';
 import IconInput from '../IconInput';
 
 const PROPERTY_TYPES = {

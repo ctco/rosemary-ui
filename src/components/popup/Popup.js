@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import TetherComponent from 'react-tether';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {values} from 'lodash';
-import {ESCAPE} from '../constant/key-codes';
-import {enhanceWithClickOutside} from './hoc/OnClickOutsideHOC';
-import {enhanceWithKeyDown} from './hoc/OnKeyDownHOC';
-import {isDefined} from '../util/utils';
+import {ESCAPE} from '../../constant/key-codes';
+import {enhanceWithClickOutside} from '../hoc/OnClickOutsideHOC';
+import {enhanceWithKeyDown} from '../hoc/OnKeyDownHOC';
+import {isDefined} from '../../util/utils';
+import PopupElement from './PopupElement';
 
 export const attachmentPositions = {
     'top left': {attachment: 'bottom left', targetAttachment: 'top left'},
@@ -52,43 +52,6 @@ const DEFAULT_PROPS = {
     }
 };
 
-class PopupElement extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        this.props.didMount(this._popupElement);
-    }
-
-    componentWillUnmount() {
-        this.props.onUnmount();
-    }
-
-    render() {
-        let attrForType = this.context.parentType;
-        let attrForId = this.props.id || this.context.id;
-        return (
-            <div ref={(popupElement) => this._popupElement = popupElement}
-                 data-attr-for-type={attrForType}
-                 data-attr-for-id={attrForId}
-                 className="popup-content-wrapper">
-                <div className="popup-content">
-                    {this.props.modal &&
-                    <i className="im icon-close popup-close icon--xxs"
-                       onClick={() => this.props.close()}/>}
-                    {this.props.children}
-                </div>
-            </div>
-        );
-    }
-}
-
-PopupElement.contextTypes = {
-    id: React.PropTypes.string,
-    parentType: React.PropTypes.string
-};
-
 class Popup extends React.Component {
     constructor(props) {
         super(props);
@@ -98,6 +61,7 @@ class Popup extends React.Component {
         this.overlayElement = null;
         this.openTimeout = null;
         this.additionalChecks = [];
+        this.popupsToRepopsition = [];
 
         this.doCheck = this.doCheck.bind(this);
         this.isContainedByPopup = this.isContainedByPopup.bind(this);
@@ -107,6 +71,10 @@ class Popup extends React.Component {
     componentDidMount() {
         if (this.context.addCheck) {
             this.context.addCheck(this.doCheck);
+        }
+
+        if (this.context.addPopupsToReposition) {
+            this.context.addPopupsToReposition(this.position);
         }
     }
 
@@ -131,6 +99,9 @@ class Popup extends React.Component {
         return {
             addCheck: (func) => {
                 this.additionalChecks.push(func);
+            },
+            addPopupsToReposition: (func) => {
+                this.popupsToRepopsition.push(func);
             }
         };
     }
@@ -431,19 +402,36 @@ class Popup extends React.Component {
         let tetherProperties = this.getProperties();
 
         return (
-            <TetherComponent {...tetherProperties}
+            <TetherComponent ref={(tether) => this.tether = tether}
+                             {...tetherProperties}
+                             onRepositioned={this.handleRepositioned}
                              className={this.props.popupClassName}>
                 {this.renderTarget()}
                 {this.renderElement()}
             </TetherComponent>
         );
     }
+
+    position = () => {
+        if (!this.tether) {
+            return;
+        }
+
+        const tetherInstance = this.tether.getTetherInstance();
+        tetherInstance && tetherInstance.position();
+    }
+
+    handleRepositioned = () => {
+        for (let i = 0; i < this.popupsToRepopsition.length; i++) {
+            this.popupsToRepopsition[i]();
+        }
+    }
 }
 
 Popup.propTypes = PROPERTY_TYPES;
 Popup.defaultProps = DEFAULT_PROPS;
 
-Popup.childContextTypes = {addCheck: React.PropTypes.func};
-Popup.contextTypes = {addCheck: React.PropTypes.func};
+Popup.childContextTypes = {addCheck: React.PropTypes.func, addPopupsToReposition: React.PropTypes.func};
+Popup.contextTypes = {addCheck: React.PropTypes.func, addPopupsToReposition: React.PropTypes.func};
 
 export default enhanceWithKeyDown(enhanceWithClickOutside(Popup));

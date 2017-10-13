@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Fuse from 'fuse.js';
 import find from 'lodash/find';
 import trim from 'lodash/trim';
-import Popup from '../Popup';
+import Popup from '../popup/Popup';
 import IconInput from '../IconInput';
 import {isDefined} from '../../util/utils';
 import fuseConfig from './fuseSearchConfig';
