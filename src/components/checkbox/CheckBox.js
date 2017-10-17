@@ -10,6 +10,7 @@ const PROPERTY_TYPES = {
     value: React.PropTypes.bool,
     onChange: React.PropTypes.func
 };
+
 const DEFAULT_PROPS = {
     disabled: false,
     defaultValue: false,
