@@ -6,6 +6,6 @@ export default {
     minMatchCharLength: 2,
     threshold: 0.3,
     location: 0,
-    distance: 5,
+    distance: 100,
     keys: ['displayString']
 };
