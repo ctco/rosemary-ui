@@ -1,10 +1,8 @@
-import {$, renderComponent, expect, assert} from '../../test_helper';
+import {$} from '../../test_helper';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import ReactDOM from 'react-dom';
-import sinon from 'sinon';
-
-import DatePickerCalendar from '../../../src/components/DatePicker/DatePickerCalendar';
+import {renderComponent, expect, assert} from '../../test_helper';
+import DatePickerCalendar from '../../../src/DatePicker/DatePickerCalendar';
 import {format, parse} from '../../../src/util/date-utils';
 
 describe('DatePickerCalendar', () => {

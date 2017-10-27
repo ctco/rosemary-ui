@@ -2,7 +2,7 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 import {renderComponent, expect, assert} from '../../test_helper';
-import Button from '../../../src/components/Button/Button';
+import Button from '../../../src/Button';
 
 
 describe('Button Component', () => {

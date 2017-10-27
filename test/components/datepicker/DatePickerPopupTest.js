@@ -1,15 +1,12 @@
-import {$, renderComponent, expect, assert} from '../../test_helper';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import ReactDOM from 'react-dom';
-import sinon from 'sinon';
-
-import DatePickerPopup from '../../../src/components/DatePicker/DatePickerPopup';
-import Select from '../../../src/components/Select/Select';
-import {isMonthTheSame, format, parse} from '../../../src/util/date-utils';
+import {renderComponent, expect, assert} from '../../test_helper';
+import DatePickerPopup from '../../../src/DatePicker/DatePickerPopup';
+import Select from '../../../src/Select';
+import {isMonthTheSame, parse} from '../../../src/util/date-utils';
 
 describe('DatePickerPopup', () => {
-    it('should render years by minDate and maxDate', ()=> {
+    it('should render years by minDate and maxDate', () => {
         let instance = TestUtils.renderIntoDocument(
             <DatePickerPopup value={parse('01.01.2016', 'DD.MM.YYYY')}
                              minDate={parse('01.01.2016', 'DD.MM.YYYY')}

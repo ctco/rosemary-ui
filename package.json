@@ -94,7 +94,7 @@
     "invariant": "^2.2.1",
     "jsx-to-string": "^0.2.10",
     "lodash": "^4.11.1",
-    "moment": "^2.13.0",
+    "moment": "2.13.0",
     "prettier": "^1.7.4",
     "react": "^15.1.0",
     "@types/react":"*",
