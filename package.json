@@ -10,7 +10,7 @@
     "url": "https://github.com/ctco/rosemary-ui.git"
   },
   "scripts": {
-    "start": "yarn build:lib && node server.js",
+    "start": "yarn build && node server.js",
     "format": "prettier --write --list-different --single-quote --tab-width=4 --print-width=120 webpack.config.js \"src/**/*.{js,jsx,ts,tsx}\"",
     "build:v2": "rimraf lib && babel ./src --out-dir ./lib && node ./scripts/copy-files.js",
     "build:v2style": "node-sass --output-style compressed --include-path scss ./src/assets/scss/_all.scss -o css lib/css/bundle.css",

@@ -47,7 +47,7 @@ const DEFAULT_PROPS = {
     targetClassName: '',
     changeAttachmentDynamically: false,
     modal: false,
-    animationBaseName: 'Popup--animation-scale',
+    animationBaseName: 'popup--animation-scale',
     onContentDidMount: () => {}
 };
 

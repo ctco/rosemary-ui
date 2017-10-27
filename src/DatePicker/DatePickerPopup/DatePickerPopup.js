@@ -2,7 +2,7 @@ import React from 'react';
 import range from 'lodash/range';
 
 import Select from '../../Select/Select';
-import DatePickerCalendar from '../DatePickerCalendar/DatePickerCalendar';
+import DatePickerCalendar from '../DatePickerCalendar';
 import Button from '../../Button/Button';
 
 import {
