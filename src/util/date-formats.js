@@ -1,11 +1,4 @@
-import {
-    format,
-    parse,
-    isCurrentYear,
-    isMonthTheSame,
-    isYearTheSame,
-    isToday
-} from './date-utils';
+import { format, parse, isCurrentYear, isMonthTheSame, isYearTheSame, isToday } from './date-utils';
 
 //01.12.2016 =>
 const D = 'D'; // 1

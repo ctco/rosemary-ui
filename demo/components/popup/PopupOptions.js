@@ -18,23 +18,23 @@ export default () => {
         },
         on: {
             values: 'One Of: hover, click',
-            description: 'Whether popup should be opened on click or on hover'
+            description: 'Whether Popup should be opened on click or on hover'
         },
         popupClassName: {
-            values: 'Variations: tooltip, popup, popup-blue-border',
+            values: 'Variations: tooltip, Popup, Popup-blue-border',
             description: 'Popup class name'
         },
         targetClassName: {
             values: 'string',
-            description: 'Component to which popup is attached class name'
+            description: 'Component to which Popup is attached class name'
         },
         changeAttachmentDynamically: {
             values: 'boolean',
-            description: 'Whether popup will change location on window resize'
+            description: 'Whether Popup will change location on window resize'
         },
         modal: {
             values: 'boolean',
-            description: 'Whether popup is modal'
+            description: 'Whether Popup is modal'
         },
         animationBaseName: {
             values: 'string',
@@ -42,7 +42,7 @@ export default () => {
         },
         onOpen: {
             values: 'function',
-            description: 'Callback when popup is opened'
+            description: 'Callback when Popup is opened'
         }
     };
 

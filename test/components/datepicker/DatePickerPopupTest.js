@@ -4,8 +4,8 @@ import TestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 import sinon from 'sinon';
 
-import DatePickerPopup from '../../../src/components/datepicker/DatePickerPopup';
-import Select from '../../../src/components/select/Select';
+import DatePickerPopup from '../../../src/components/DatePicker/DatePickerPopup';
+import Select from '../../../src/components/Select/Select';
 import {isMonthTheSame, format, parse} from '../../../src/util/date-utils';
 
 describe('DatePickerPopup', () => {
@@ -119,7 +119,7 @@ describe('DatePickerPopup', () => {
         expect(months.props.options[11].displayString).to.equal('December');
     });
 
-    it('should select available month on year change - when greater than max', (done)=> {
+    it('should Select available month on year change - when greater than max', (done)=> {
         let check = (month) => {
             if (isMonthTheSame(month, parse('01.10.2018', 'DD.MM.YYYY'))) {
                 done();
@@ -140,7 +140,7 @@ describe('DatePickerPopup', () => {
         years.select({id: 2018, displayString: '2018'});
     });
 
-    it('should select available month on year change - when less than min', (done)=> {
+    it('should Select available month on year change - when less than min', (done)=> {
         let check = (month) => {
             if (isMonthTheSame(month, parse('01.05.2016', 'DD.MM.YYYY'))) {
                 done();

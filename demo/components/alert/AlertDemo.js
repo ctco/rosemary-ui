@@ -1,6 +1,6 @@
 import DemoWithSnippet from '../../../demo/layout/DemoWithSnippet';
-import Alert from '../../../src/components/Alert';
-import Button from '../../../src/components/button/Button';
+import Alert from '../../../src/Alert/Alert';
+import Button from '../../../src/Button/Button';
 
 import React from 'react';
 

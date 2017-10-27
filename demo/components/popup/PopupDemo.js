@@ -57,7 +57,7 @@ export default class PopupDemo extends React.Component {
 
     handlePopupStateChange(open) {
         if (open) {
-            if (!window.confirm('Are you sure you want to open popup?')) {
+            if (!window.confirm('Are you sure you want to open Popup?')) {
                 return;
             }
         }

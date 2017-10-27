@@ -2,8 +2,11 @@ import React from 'react';
 import {Link} from 'react-router';
 
 import DemoWithSnippet from '../../../demo/layout/DemoWithSnippet';
-import {Nav, NavItem, NavDropDownItem, NavHrefItem} from '../../../src/components/navbar';
-import Avatar from '../../../src/components/Avatar';
+import Nav from '../../../src/NavBar';
+import NavItem from '../../../src/NavBar/NavItem';
+import NavHrefItem from '../../../src/NavBar/NavHrefItem';
+import NavDropDownItem from '../../../src/NavBar/NavDropDownItem';
+import Avatar from '../../../src/Avatar/Avatar';
 
 export default class NavBarDemo extends React.Component {
     render() {

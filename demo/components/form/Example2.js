@@ -1,8 +1,7 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-import {Input, Select, DateRangePicker, Button, FormField} from '../../../src';
+import {Input, Select, Button, FormField} from '../../../src';
 
 class Example2 extends React.Component {
 

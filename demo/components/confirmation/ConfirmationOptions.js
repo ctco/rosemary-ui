@@ -1,5 +1,5 @@
 import React from 'react';
-import Confirmation from '../../../src/components/Confirmation';
+import Confirmation from '../../../src/Confirmation/Confirmation';
 import OptionsTable from '../../helper/OptionsTable';
 
 export default () => {

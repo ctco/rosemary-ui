@@ -1,6 +1,6 @@
 import DemoWithSnippet from '../../../demo/layout/DemoWithSnippet';
 import {ButtonGroup} from '../../../src';
-import Button from '../../../src/components/button/Button';
+import Button from '../../../src/Button/Button';
 
 import React from 'react';
 

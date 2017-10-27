@@ -1,5 +1,5 @@
 import DemoWithSnippet from '../../../demo/layout/DemoWithSnippet';
-import TextArea from '../../../src/components/TextArea';
+import TextArea from '../../../src/TextArea/TextArea';
 
 import React from 'react';
 

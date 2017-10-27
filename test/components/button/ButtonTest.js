@@ -2,7 +2,7 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 import {renderComponent, expect, assert} from '../../test_helper';
-import Button from '../../../src/components/button/Button';
+import Button from '../../../src/components/Button/Button';
 
 
 describe('Button Component', () => {
@@ -38,7 +38,7 @@ describe('Button Component', () => {
 
         it('Should not call onClick callback', (done)=> {
             let doneOp = () => {
-                assert.fail(0, 1, 'onClick callback is called when button is disabled');
+                assert.fail(0, 1, 'onClick callback is called when Button is disabled');
             };
 
             let instance = TestUtils.renderIntoDocument(

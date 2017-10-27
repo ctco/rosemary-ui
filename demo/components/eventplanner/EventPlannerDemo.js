@@ -1,7 +1,7 @@
 import React from 'react';
 
 import DemoWithSnippet from '../../layout/DemoWithSnippet';
-import EventPlanner from '../../../src/components/eventplanner';
+import EventPlanner from '../../../src/Eventplanner';
 import events from './events';
 import nonWorkingDays from './nonWorkingDays';
 import MyEvent from './ExampleMyEventComponent';

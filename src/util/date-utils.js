@@ -108,7 +108,7 @@ function getMonths() {
 
 function getFirstDaysOfAllMonths(year) {
     let firstMonth = getFirstDayOfYear(setYear(moment(), year));
-    return range(12).map((value) => addMonths(firstMonth, value));
+    return range(12).map(value => addMonths(firstMonth, value));
 }
 
 function addDays(date, amount) {

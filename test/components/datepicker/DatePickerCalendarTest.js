@@ -4,7 +4,7 @@ import TestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 import sinon from 'sinon';
 
-import DatePickerCalendar from '../../../src/components/datepicker/DatePickerCalendar';
+import DatePickerCalendar from '../../../src/components/DatePicker/DatePickerCalendar';
 import {format, parse} from '../../../src/util/date-utils';
 
 describe('DatePickerCalendar', () => {

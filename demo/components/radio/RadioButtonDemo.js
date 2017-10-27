@@ -1,6 +1,6 @@
 import DemoWithSnippet from '../../../demo/layout/DemoWithSnippet';
-import RadioGroup from '../../../src/components/radio/RadioGroup';
-import Radio from '../../../src/components/radio/Radio';
+import RadioGroup from '../../../src/Radio/RadioGroup/RadioGroup';
+import Radio from '../../../src/Radio/Radio';
 
 import React from 'react';
 

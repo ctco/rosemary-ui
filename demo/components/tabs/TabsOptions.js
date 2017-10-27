@@ -1,5 +1,5 @@
 import React from 'react';
-import Tabs from '../../../src/components/tabs/Tabs';
+import Tabs from '../../../src/Tabs/Tabs';
 import OptionsTable from '../../helper/OptionsTable';
 
 export default () => {

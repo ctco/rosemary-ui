@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Popup, Button} from '../../../src';
+import {Popup} from '../../../src';
 
 
 export default class MyEvent extends Component {

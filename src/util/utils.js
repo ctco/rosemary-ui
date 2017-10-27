@@ -1,4 +1,4 @@
-import {isUndefined} from 'lodash';
+import { isUndefined } from 'lodash';
 import find from 'lodash/find';
 
 function isFunction(possibleFunction) {
@@ -18,8 +18,8 @@ function contains(value, value2) {
 }
 
 function findIdentifiables(list, toFindIds) {
-    let result = list.filter((item) => {
-        return !isUndefined(find(toFindIds, (toFindId) => toFindId === item.id));
+    let result = list.filter(item => {
+        return !isUndefined(find(toFindIds, toFindId => toFindId === item.id));
     });
     return isDefined(result) ? result : [];
 }
@@ -34,11 +34,4 @@ function compare(left, right) {
     }
 }
 
-export {
-    findIdentifiables,
-    isFunction,
-    isDefined,
-    isInArray,
-    contains,
-    compare
-};
+export { findIdentifiables, isFunction, isDefined, isInArray, contains, compare };

@@ -1,5 +1,5 @@
 import DemoWithSnippet from '../../../demo/layout/DemoWithSnippet';
-import Confirmation from '../../../src/components/Confirmation';
+import Confirmation from '../../../src/Confirmation/Confirmation';
 
 import React from 'react';
 

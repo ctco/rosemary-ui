@@ -1,16 +1,20 @@
 {
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    "prettier"
+  ],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 6,
     "ecmaFeatures": {
       "jsx": true,
       "spread": true,
-      "experimentalObjectRestSpread":true
+      "experimentalObjectRestSpread": true
     },
     "sourceType": "module"
   },
   "env": {
+    "es6": true,
     "browser": true,
     "node": true
   },
@@ -18,31 +22,56 @@
     "react"
   ],
   "rules": {
-    "dot-notation":2,
-    "no-console":0,
-    "eqeqeq": [2, "allow-null"],
-    "dot-location": [2, "property"],
-    "quotes": [2,"single","avoid-escape"],
-    "jsx-quotes": [2, "prefer-double"],
+    "dot-notation": 2,
+    "no-console": 0,
+    "eqeqeq": [
+      2,
+      "allow-null"
+    ],
+    "dot-location": [
+      2,
+      "property"
+    ],
+    "quotes": [
+      2,
+      "single",
+      "avoid-escape"
+    ],
+    "jsx-quotes": [
+      2,
+      "prefer-double"
+    ],
     "no-mixed-spaces-and-tabs": [
       "error",
       "smart-tabs"
     ],
     "no-bitwise": 0,
-
     "no-var": 2,
-    "no-unused-vars": [0, {"args": "none"}],
-    "brace-style": [0, "1tbs"],
+    "no-unused-vars": [
+      0,
+      {
+        "args": "none"
+      }
+    ],
+    "brace-style": [
+      0,
+      "1tbs"
+    ],
     "keyword-spacing": 2,
     "space-before-blocks": 2,
-    "space-before-function-paren": [2, {"anonymous": "never", "named": "never"}],
+    "space-before-function-paren": [
+      2,
+      {
+        "anonymous": "never",
+        "named": "never"
+      }
+    ],
     "semi": [
       "error",
       "always"
     ],
-    "arrow-parens": 2,
     "arrow-spacing": 2,
-    "no-multi-spaces":2,
+    "no-multi-spaces": 2,
     "new-cap": 2,
     "strict": 0,
     "no-underscore-dangle": 0,

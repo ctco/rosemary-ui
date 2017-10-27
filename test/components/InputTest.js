@@ -2,7 +2,7 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 import {renderComponent, expect, assert} from '../test_helper';
-import Input from '../../src/components/Input';
+import Input from '../../src/Input/Input';
 
 describe('Input', () => {
     it('should have correct class', ()=> {

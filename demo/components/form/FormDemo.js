@@ -1,10 +1,8 @@
 import React from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
 
 import DemoWithSnippet from '../../../demo/layout/DemoWithSnippet';
 import Example2 from './Example2';
-import {Form, formHelper, Input, Select, DateRangePicker} from '../../../src';
+import {Form, formHelper} from '../../../src';
 
 class FormDemo extends React.Component {
 

@@ -1,6 +1,6 @@
 import DemoWithSnippet from '../../../demo/layout/DemoWithSnippet';
-import Tabs from '../../../src/components/tabs/Tabs';
-import Tab from '../../../src/components/tabs/Tab';
+import Tabs from '../../../src/Tabs/Tabs';
+import Tab from '../../../src/Tabs/Tab/Tab';
 
 import React from 'react';
 

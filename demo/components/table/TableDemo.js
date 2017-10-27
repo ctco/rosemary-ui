@@ -1,13 +1,12 @@
 import './TableDemo.scss';
 import React from 'react';
-import pull from 'lodash/pull';
 import filter from 'lodash/remove';
 import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
 import LoaderDemo from './LoaderDemo';
 
 import DemoWithSnippet from '../../../demo/layout/DemoWithSnippet';
-import Table from '../../../src/components/table/Table';
+import Table from '../../../src/Table/Table';
 import TableSectionDemo from './TableSectionDemo';
 
 
