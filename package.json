@@ -14,7 +14,7 @@
     "format": "prettier --write --list-different --single-quote --tab-width=4 --print-width=120 webpack.config.js \"src/**/*.{js,jsx,ts,tsx}\"",
     "build:v2": "rimraf lib && babel ./src --out-dir ./lib && node ./scripts/copy-files.js",
     "build:v2style": "node-sass --output-style compressed --include-path scss ./src/assets/scss/_all.scss -o css lib/css/bundle.css",
-    "build:lib": "yarn build:v2 && yarn build:v2style",
+    "build": "yarn build:v2 && yarn build:v2style",
     "test": "mocha  --timeout 10000 --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
     "test:coverage": "nyc npm test",

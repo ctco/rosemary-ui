@@ -9,7 +9,7 @@ build:
         name: publish
         code: |
           npm run clean
-          npm run build:lib
+          npm run build
 
 deploy:
   steps:
@@ -39,7 +39,7 @@ deploy:
           npm set init.author.email "cscm@ctco.lv"
           npm set init.author.url "http://ctco.github.io"
           node_modules/grunt/bin/grunt bump
-          npm publish ./
+          npm publish ./lib
 
 gh-pages:
   steps:
