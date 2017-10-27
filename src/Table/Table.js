@@ -8,7 +8,7 @@ import find from 'lodash/find';
 import isArray from 'lodash/isArray';
 import isFunction from 'lodash/isFunction';
 
-import Row from './Row';
+import Row from './Row/Row';
 
 const DESC = 'DESC';
 const ASC = 'ASC';

@@ -1,3 +1,3 @@
-import DateRangePicker from './MonthPicker';
+import Pager from './Pager';
 
-export default DateRangePicker;
+export default Pager;

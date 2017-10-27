@@ -1,3 +1,3 @@
-import DateRangePicker from './MonthPicker';
+import Label from './Label';
 
-export default DateRangePicker;
+export default Label;
