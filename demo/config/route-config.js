@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router, Route, IndexRoute, IndexRedirect, browserHistory } from 'react-router';
+import {Router, Route, IndexRoute, IndexRedirect, browserHistory} from 'react-router';
 import categories from '../data/categories';
 
 import Tabs from '../layout/tab/Tabs';
@@ -12,16 +12,16 @@ import TimelogLibrary from '../components/TimelogLibrary';
  * @return {Component} returns wrapped component
  * @api public
  */
-export let cTabs = function(tabs) {
-    return React.createClass({
-        render: function() {
+export let cTabs = function ctabs(tabs) {
+    return class extends React.Component {
+        render() {
             return (
                 <Tabs tabs={tabs}>
                     {this.props.children}
                 </Tabs>
             );
         }
-    });
+    };
 };
 
 function removeSpaces(str) {

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { isDefined } from '../util/utils';
 
 const PROPERTY_TYPES = {
-    error: React.PropTypes.string,
-    touched: React.PropTypes.bool,
-    valid: React.PropTypes.bool,
-    label: React.PropTypes.string,
-    testId: React.PropTypes.string
+    error: PropTypes.string,
+    touched: PropTypes.bool,
+    valid: PropTypes.bool,
+    label: PropTypes.string,
+    testId: PropTypes.string
 };
 const DEFAULT_PROPS = {};
 

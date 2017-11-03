@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import isUndefined from 'lodash/isUndefined';
 import lowerCase from 'lodash/lowerCase';
 import noop from 'lodash/noop';
@@ -8,13 +9,13 @@ import IconInput from '../../InputIcon/IconInput';
 import { contains, compare } from '../../util/utils';
 
 const PROP_TYPES = {
-    onChange: React.PropTypes.func,
-    options: React.PropTypes.object.isRequired,
-    groupView: React.PropTypes.shape({
-        noOptionPlaceholder: React.PropTypes.element
+    onChange: PropTypes.func,
+    options: PropTypes.object.isRequired,
+    groupView: PropTypes.shape({
+        noOptionPlaceholder: PropTypes.element
     }),
-    value: React.PropTypes.object,
-    extra: React.PropTypes.func
+    value: PropTypes.object,
+    extra: PropTypes.func
 };
 
 const DEF_PROPS = {

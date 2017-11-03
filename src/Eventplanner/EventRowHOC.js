@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import EventCell from './EventCell';
 import getHeight from 'dom-helpers/query/height';
@@ -22,7 +23,7 @@ export function enhanceRowHOC(ParentClass) {
         endAccessor: accessor,
 
         eventComponent: elementType,
-        onSelect: React.PropTypes.func
+        onSelect: PropTypes.func
     };
 
     const DEFAULT_PROPS = {

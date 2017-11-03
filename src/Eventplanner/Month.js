@@ -1,5 +1,6 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import dates from './utils/dates';
 import localizer from './localizer';
@@ -27,29 +28,29 @@ let eventsForWeek = (evts, start, end, props) => evts.filter(e => inRange(e, sta
 let isSegmentInSlot = (seg, slot) => seg.left <= slot && seg.right >= slot;
 
 const PROPERTY_TYPES = {
-    culture: React.PropTypes.string,
+    culture: PropTypes.string,
 
-    date: React.PropTypes.instanceOf(Date),
+    date: PropTypes.instanceOf(Date),
 
-    min: React.PropTypes.instanceOf(Date),
-    max: React.PropTypes.instanceOf(Date),
+    min: PropTypes.instanceOf(Date),
+    max: PropTypes.instanceOf(Date),
 
     dateFormat,
 
     weekdayFormat: dateFormat,
 
-    popup: React.PropTypes.bool,
+    popup: PropTypes.bool,
 
-    popupOffset: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.shape({
-            x: React.PropTypes.number,
-            y: React.PropTypes.number
+    popupOffset: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.shape({
+            x: PropTypes.number,
+            y: PropTypes.number
         })
     ]),
 
-    onSelectEvent: React.PropTypes.func,
-    onSelectSlot: React.PropTypes.func
+    onSelectEvent: PropTypes.func,
+    onSelectSlot: PropTypes.func
 };
 
 class MonthView extends React.Component {

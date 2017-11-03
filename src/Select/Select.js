@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import Fuse from 'fuse.js';
@@ -13,19 +14,19 @@ import { withIdAndTypeContext } from '../util/hoc/WithIdAndTypeHOC';
 import keyBordNav from './KeyBoardNav';
 
 const PROPERTY_TYPES = {
-    disabled: React.PropTypes.bool,
-    placeholder: React.PropTypes.string,
-    search: React.PropTypes.bool,
-    open: React.PropTypes.bool,
-    onPopupStateChange: React.PropTypes.func,
-    value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-    options: React.PropTypes.arrayOf(
-        React.PropTypes.shape({
-            id: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
-            displayString: React.PropTypes.string.isRequired
+    disabled: PropTypes.bool,
+    placeholder: PropTypes.string,
+    search: PropTypes.bool,
+    open: PropTypes.bool,
+    onPopupStateChange: PropTypes.func,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    options: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+            displayString: PropTypes.string.isRequired
         })
     ),
-    className: React.PropTypes.string
+    className: PropTypes.string
 };
 const DEFAULT_PROPS = {
     placeholder: 'Select...',

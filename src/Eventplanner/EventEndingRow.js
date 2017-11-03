@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { enhanceRowHOC } from './EventRowHOC';
 import { eventLevels } from './utils/eventLevels';
 import message from './utils/messages';
@@ -8,8 +9,8 @@ let isSegmentInSlot = (seg, slot) => seg.left <= slot && seg.right >= slot;
 let eventsInSlot = (segments, slot) => segments.filter(seg => isSegmentInSlot(seg, slot)).length;
 
 const PROPERTY_TYPES = {
-    segments: React.PropTypes.array,
-    slots: React.PropTypes.number
+    segments: PropTypes.array,
+    slots: PropTypes.number
 };
 
 class EventRow extends React.Component {

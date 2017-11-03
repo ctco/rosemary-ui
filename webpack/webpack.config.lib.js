@@ -49,7 +49,7 @@ module.exports = webpackUtils.merge(base.defaults, {
             {test: /\.js$/, loaders: ['eslint'], include: [path.resolve('src')]}
         ],
         loaders: [
-            {test: /\.js$/, loaders: ['react-hot', 'babel'], include: [path.resolve('src')]},
+            {test: /\.js$/, loaders: ['babel'], include: [path.resolve('src')]},
             {test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css'), include: [path.resolve('src')]},
             {test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!postcss!sass?outputStyle=compact'), include: [path.resolve('src')]},
             {test: /\.png$/, loader: 'file', include: [path.resolve('src')]},

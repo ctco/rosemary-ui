@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import values from 'lodash/values';
 import memoize from 'lodash/memoize';
@@ -29,20 +30,20 @@ const WEEKS_IN_CALENDAR = 6;
 const DAYS_IN_WEEK = 7;
 
 const PROPERTY_TYPES = {
-    startDateType: React.PropTypes.oneOf(values(START_DATE_TYPES)),
-    renderDatesOfOtherMonth: React.PropTypes.bool,
-    getStyles: React.PropTypes.func,
-    onSelected: React.PropTypes.func,
-    onMouseEnter: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
-    formatDate: React.PropTypes.func,
-    formatDataDate: React.PropTypes.func,
-    parseDataDate: React.PropTypes.func,
-    formatWeekDay: React.PropTypes.func,
-    month: React.PropTypes.object.isRequired,
-    componentWillUnmount: React.PropTypes.func,
-    minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object
+    startDateType: PropTypes.oneOf(values(START_DATE_TYPES)),
+    renderDatesOfOtherMonth: PropTypes.bool,
+    getStyles: PropTypes.func,
+    onSelected: PropTypes.func,
+    onMouseEnter: PropTypes.func,
+    onMouseLeave: PropTypes.func,
+    formatDate: PropTypes.func,
+    formatDataDate: PropTypes.func,
+    parseDataDate: PropTypes.func,
+    formatWeekDay: PropTypes.func,
+    month: PropTypes.object.isRequired,
+    componentWillUnmount: PropTypes.func,
+    minDate: PropTypes.object,
+    maxDate: PropTypes.object
 };
 
 const DEFAULT_PROPS = {

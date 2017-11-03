@@ -1,10 +1,11 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const PROPERTY_TYPES = {
-    onPrevBtnClick: React.PropTypes.func,
-    onNextBtnClick: React.PropTypes.func,
-    value: React.PropTypes.any,
+    onPrevBtnClick: PropTypes.func,
+    onNextBtnClick: PropTypes.func,
+    value: PropTypes.any,
     prevBtnIcon: PropTypes.string,
     nextBtnIcon: PropTypes.string
 };

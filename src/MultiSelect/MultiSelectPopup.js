@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import find from 'lodash/find';
 import trim from 'lodash/trim';
 import Fuse from 'fuse.js';
@@ -10,16 +11,16 @@ import keyNav from '../Select/KeyBoardNav';
 import fuseConfig from '../Select/fuseSearchConfig';
 
 const PROPERTY_TYPES = {
-    placeholder: React.PropTypes.string,
-    options: React.PropTypes.arrayOf(
-        React.PropTypes.shape({
-            id: React.PropTypes.number.isRequired,
-            displayString: React.PropTypes.string.isRequired
+    placeholder: PropTypes.string,
+    options: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            displayString: PropTypes.string.isRequired
         })
     ),
-    onChange: React.PropTypes.func,
-    value: React.PropTypes.arrayOf(React.PropTypes.number.isRequired),
-    compare: React.PropTypes.func
+    onChange: PropTypes.func,
+    value: PropTypes.arrayOf(PropTypes.number.isRequired),
+    compare: PropTypes.func
 };
 const DEFAULT_PROPS = {
     placeHolder: 'Search ...',

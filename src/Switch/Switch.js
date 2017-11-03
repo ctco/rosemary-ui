@@ -1,11 +1,12 @@
 import isUndefined from 'lodash/isUndefined';
 import React from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 const PROP_TYPES = {
-    disable: React.PropTypes.bool,
-    checked: React.PropTypes.bool,
-    title: React.PropTypes.string
+    disable: PropTypes.bool,
+    checked: PropTypes.bool,
+    title: PropTypes.string
 };
 
 const DEFAULT_PROPS = {

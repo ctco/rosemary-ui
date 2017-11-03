@@ -1,14 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Button from '../Button/Button';
 
 const PROPERTY_TYPES = {
-    body: React.PropTypes.string,
-    title: React.PropTypes.string,
-    onConfirm: React.PropTypes.func,
-    onCancel: React.PropTypes.func,
-    confirmBtnTxt: React.PropTypes.string,
-    cancelBtnText: React.PropTypes.string
+    body: PropTypes.string,
+    title: PropTypes.string,
+    onConfirm: PropTypes.func,
+    onCancel: PropTypes.func,
+    confirmBtnTxt: PropTypes.string,
+    cancelBtnText: PropTypes.string
 };
 const DEFAULT_PROPS = {
     cancelBtnText: 'Cancel',

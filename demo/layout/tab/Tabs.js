@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router';
 
 export default class Tabs extends React.Component {
@@ -29,5 +30,5 @@ export default class Tabs extends React.Component {
 }
 
 Tabs.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
 };

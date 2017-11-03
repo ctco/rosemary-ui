@@ -1,6 +1,6 @@
 import React from 'react';
 import range from 'lodash/range';
-
+import PropTypes from 'prop-types';
 import Select from '../../Select/Select';
 import MonthPickerCalendar from '../MonthPickerCalendar/MonthPickerCalendar';
 import Button from '../../Button/Button';
@@ -9,13 +9,13 @@ import * as dateUtils from '../../util/date-utils';
 import * as utils from '../../util/utils';
 
 const PROPERTY_TYPES = {
-    value: React.PropTypes.object,
-    year: React.PropTypes.number,
-    onSelected: React.PropTypes.func.isRequired,
-    onYearChange: React.PropTypes.func,
-    minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object,
-    getStyles: React.PropTypes.func
+    value: PropTypes.object,
+    year: PropTypes.number,
+    onSelected: PropTypes.func.isRequired,
+    onYearChange: PropTypes.func,
+    minDate: PropTypes.object,
+    maxDate: PropTypes.object,
+    getStyles: PropTypes.func
 };
 
 const DEFAULT_PROPS = {

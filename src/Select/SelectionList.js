@@ -1,19 +1,20 @@
 import React from 'react';
 import ReactList from 'react-list';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
-import CheckBox from '../Checkbox/CheckBox';
+import CheckBox from '../Checkbox';
 
 const REACT_PROPS = {
-    noOptionPlaceholder: React.PropTypes.element,
-    extra: React.PropTypes.func,
-    isSelected: React.PropTypes.func.isRequired,
-    options: React.PropTypes.arrayOf(
-        React.PropTypes.shape({
-            id: React.PropTypes.number,
-            displayString: React.PropTypes.string
+    noOptionPlaceholder: PropTypes.element,
+    extra: PropTypes.func,
+    isSelected: PropTypes.func.isRequired,
+    options: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            displayString: PropTypes.string
         })
     ),
-    onChange: React.PropTypes.func
+    onChange: PropTypes.func
 };
 
 const DEF_PROPS = {

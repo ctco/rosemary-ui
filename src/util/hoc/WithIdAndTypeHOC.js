@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export function withIdAndTypeContext(ParentClass) {
     class Enhance extends ParentClass {
@@ -30,12 +31,12 @@ export function withIdAndTypeContext(ParentClass) {
 
     Enhance.childContextTypes = {
         ...parentChildContextTypes,
-        parentType: React.PropTypes.string,
-        id: React.PropTypes.string
+        parentType: PropTypes.string,
+        id: PropTypes.string
     };
     Enhance.contextTypes = {
         ...parentContextTypes,
-        id: React.PropTypes.string
+        id: PropTypes.string
     };
     return Enhance;
 }

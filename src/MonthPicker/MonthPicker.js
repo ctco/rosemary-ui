@@ -1,24 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Popup from '../Popup/Popup';
 import MonthPickerPopup from './MonthPickerPopup';
 
-import { withIdAndTypeContext } from '../util/hoc/WithIdAndTypeHOC';
+import {withIdAndTypeContext} from '../util/hoc/WithIdAndTypeHOC';
 
 import * as dateUtils from '../util/date-utils';
 import * as dateFormats from '../util/date-formats';
 
 const PROPERTY_TYPES = {
-    className: React.PropTypes.string,
-    baseClassName: React.PropTypes.string,
-    value: React.PropTypes.string,
-    format: React.PropTypes.string,
-    onChange: React.PropTypes.func,
-    minDate: React.PropTypes.string,
-    maxDate: React.PropTypes.string,
-    formatMonth: React.PropTypes.func,
-    target: React.PropTypes.element
+    className: PropTypes.string,
+    baseClassName: PropTypes.string,
+    value: PropTypes.string,
+    format: PropTypes.string,
+    onChange: PropTypes.func,
+    minDate: PropTypes.string,
+    maxDate: PropTypes.string,
+    formatMonth: PropTypes.func,
+    target: PropTypes.element
 };
 
 const DEFAULT_PROPS = {
@@ -117,7 +118,7 @@ class MonthPicker extends React.Component {
                 popupClassName="popover-colored"
                 attachment="bottom center"
                 on="click"
-                onPopupStateChange={open => this.setState({ open })}
+                onPopupStateChange={open => this.setState({open})}
                 open={this.state.open}
                 onTransitionClosedToOpen={() => {
                     this.resetYear();
@@ -127,7 +128,7 @@ class MonthPicker extends React.Component {
                 <MonthPickerPopup
                     year={this.state.year}
                     onSelected={this.handleSelection}
-                    onYearChange={year => this.setState({ year })}
+                    onYearChange={year => this.setState({year})}
                     minDate={this.props.minDate ? this.doParse(this.props.minDate) : undefined}
                     maxDate={this.props.maxDate ? this.doParse(this.props.maxDate) : undefined}
                     getStyles={date => this.getStyles(date)}

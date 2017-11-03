@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class PopupElement extends React.Component {
     constructor(props) {
@@ -35,8 +36,8 @@ class PopupElement extends React.Component {
 }
 
 PopupElement.contextTypes = {
-    id: React.PropTypes.string,
-    parentType: React.PropTypes.string
+    id: PropTypes.string,
+    parentType: PropTypes.string
 };
 
 export default PopupElement;

@@ -1,12 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import Popup from '../../Popup';
 
 const PROPERTY_TYPES = {
-    className: React.PropTypes.string,
-    active: React.PropTypes.bool,
-    right: React.PropTypes.bool
+    className: PropTypes.string,
+    active: PropTypes.bool,
+    right: PropTypes.bool
 };
 const DEFAULT_PROPS = {
     className: ''

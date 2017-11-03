@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const PROPERTY_TYPES = {
-    item: React.PropTypes.any
+    item: PropTypes.any
 };
 const DEFAULT_PROPS = {};
 

@@ -1,14 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { isDefined } from '../util/utils';
 
 const PROPERTY_TYPES = {
-    disabled: React.PropTypes.bool,
-    label: React.PropTypes.string,
-    defaultValue: React.PropTypes.bool,
-    value: React.PropTypes.bool,
-    onChange: React.PropTypes.func
+    disabled: PropTypes.bool,
+    label: PropTypes.string,
+    defaultValue: PropTypes.bool,
+    value: PropTypes.bool,
+    onChange: PropTypes.func
 };
 const DEFAULT_PROPS = {
     disabled: false,

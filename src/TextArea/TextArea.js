@@ -1,11 +1,12 @@
 import { isDefined } from '../util/utils';
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const PROPERTY_TYPES = {
-    placeholder: React.PropTypes.string,
-    value: React.PropTypes.any,
-    maxLength: React.PropTypes.number
+    placeholder: PropTypes.string,
+    value: PropTypes.any,
+    maxLength: PropTypes.number
 };
 const DEFAULT_PROPS = {};
 

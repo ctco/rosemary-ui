@@ -1,24 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import find from 'lodash/find';
 import Immutable from 'immutable';
 import ReactList from 'react-list';
 import cn from 'classnames';
 
-import CheckBox from '../Checkbox/CheckBox';
+import CheckBox from '../Checkbox';
 import { isDefined, findIdentifiables } from '../util/utils';
 
 const PROPERTY_TYPES = {
-    value: React.PropTypes.arrayOf(React.PropTypes.number.isRequired),
-    options: React.PropTypes.arrayOf(
-        React.PropTypes.shape({
-            id: React.PropTypes.number.isRequired,
-            displayString: React.PropTypes.string.isRequired
+    value: PropTypes.arrayOf(PropTypes.number.isRequired),
+    options: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            displayString: PropTypes.string.isRequired
         })
     ),
-    onChange: React.PropTypes.func,
-    focus: React.PropTypes.shape({
-        id: React.PropTypes.number.isRequired,
-        displayString: React.PropTypes.string.isRequired
+    onChange: PropTypes.func,
+    focus: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        displayString: PropTypes.string.isRequired
     })
 };
 const DEFAULT_PROPS = {};

@@ -1,11 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const PROPERTY_TYPES = {
-    tabId: React.PropTypes.any,
-    value: React.PropTypes.string,
-    onEnter: React.PropTypes.func,
-    onChange: React.PropTypes.func
+    tabId: PropTypes.any,
+    value: PropTypes.string,
+    onEnter: PropTypes.func,
+    onChange: PropTypes.func
 };
 const DEFAULT_PROPS = {};
 

@@ -1,5 +1,6 @@
 import Radio from '../Radio';
-import React, { PropTypes, Children } from 'react';
+import React, { Children } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const PROPERTY_TYPES = {

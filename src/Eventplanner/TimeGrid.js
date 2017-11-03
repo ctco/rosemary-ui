@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { findDOMNode } from 'react-dom';
 import dates from './utils/dates';
@@ -26,11 +27,11 @@ const MIN_ROWS = 2;
 const PROPERTY_TYPES = {
     ...DayColumn.propTypes,
     ...TimeColumn.propTypes,
-    step: React.PropTypes.number,
-    min: React.PropTypes.instanceOf(Date),
-    max: React.PropTypes.instanceOf(Date),
+    step: PropTypes.number,
+    min: PropTypes.instanceOf(Date),
+    max: PropTypes.instanceOf(Date),
     dayFormat: dateFormat,
-    rtl: React.PropTypes.bool
+    rtl: PropTypes.bool
 };
 
 const DEFAULT_PROPS = {

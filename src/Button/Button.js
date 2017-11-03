@@ -1,12 +1,13 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const PROPERTY_TYPES = {
-    onClick: React.PropTypes.func,
-    disabled: React.PropTypes.bool,
-    baseClassName: React.PropTypes.string,
-    title: React.PropTypes.string,
-    value: React.PropTypes.string
+    onClick: PropTypes.func,
+    disabled: PropTypes.bool,
+    baseClassName: PropTypes.string,
+    title: PropTypes.string,
+    value: PropTypes.string
 };
 const DEFAULT_PROPS = {
     baseClassName: 'btn'

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import chunk from 'lodash/chunk';
 
@@ -10,17 +11,17 @@ import { formatDDMMYYYY, parseDDMMYYYY } from '../../util/date-formats';
 const MONTHS_IN_ROW = 4;
 
 const PROPERTY_TYPES = {
-    getStyles: React.PropTypes.func,
-    onSelected: React.PropTypes.func,
-    onMouseEnter: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
-    formatDataDate: React.PropTypes.func,
-    parseDataDate: React.PropTypes.func,
-    formatMonth: React.PropTypes.func,
-    year: React.PropTypes.number.isRequired,
-    componentWillUnmount: React.PropTypes.func,
-    minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object
+    getStyles: PropTypes.func,
+    onSelected: PropTypes.func,
+    onMouseEnter: PropTypes.func,
+    onMouseLeave: PropTypes.func,
+    formatDataDate: PropTypes.func,
+    parseDataDate: PropTypes.func,
+    formatMonth: PropTypes.func,
+    year: PropTypes.number.isRequired,
+    componentWillUnmount: PropTypes.func,
+    minDate: PropTypes.object,
+    maxDate: PropTypes.object
 };
 
 const DEFAULT_PROPS = {

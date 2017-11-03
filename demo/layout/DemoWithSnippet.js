@@ -4,8 +4,6 @@ import React, {Component} from 'react';
 import jsxToString from 'jsx-to-string';
 import classNames from 'classnames';
 
-import Highlight from './Higlight';
-
 class DemoWithSnippet extends Component {
     constructor(props) {
         super(props);
@@ -25,9 +23,9 @@ class DemoWithSnippet extends Component {
     renderCode() {
         return React.Children.map(this.props.children, (child) => {
             return (
-                <Highlight className="html">
+                <div>
                     {jsxToString(child)}
-                </Highlight>
+                </div>
             );
         });
     }

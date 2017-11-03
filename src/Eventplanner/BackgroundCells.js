@@ -1,5 +1,6 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { segStyle } from './utils/eventLevels';
 import { notify } from './utils/helpers';
@@ -7,16 +8,16 @@ import { dateCellSelection, slotWidth, getCellAtX, pointInBox } from './utils/se
 import Selection, { getBoundsForNode } from './Selection';
 
 const PROPERTY_TYPES = {
-    selectable: React.PropTypes.bool,
-    draggableSelect: React.PropTypes.bool,
-    onSelect: React.PropTypes.func,
-    slots: React.PropTypes.number,
-    highlight: React.PropTypes.func,
-    isHovered: React.PropTypes.func,
-    isEndDate: React.PropTypes.func,
-    isToday: React.PropTypes.func,
-    isStartDate: React.PropTypes.func,
-    onHover: React.PropTypes.func
+    selectable: PropTypes.bool,
+    draggableSelect: PropTypes.bool,
+    onSelect: PropTypes.func,
+    slots: PropTypes.number,
+    highlight: PropTypes.func,
+    isHovered: PropTypes.func,
+    isEndDate: PropTypes.func,
+    isToday: PropTypes.func,
+    isStartDate: PropTypes.func,
+    onHover: PropTypes.func
 };
 
 class DisplayCells extends React.Component {

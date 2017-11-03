@@ -28,7 +28,7 @@ module.exports = webpackUtils.merge(base.defaults, {
             { test: /\.js$/, loaders: ['eslint'], include: [path.resolve('src'), path.resolve('demo')] }
         ],
         loaders: [
-            { test: /\.js$/, loaders: ['react-hot', 'babel'], include: [path.resolve('src'), path.resolve('demo')] },
+            { test: /\.js$/, loaders: ['babel'], include: [path.resolve('src'), path.resolve('demo')] },
             { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
             { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!postcss!sass?outputStyle=compact'), include: [path.resolve('src'), path.resolve('demo')] },
             { test: /\.png$/, loader: 'file', include: [path.resolve('src'), path.resolve('demo')] },

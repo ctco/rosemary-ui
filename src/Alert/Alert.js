@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const Types = {
@@ -9,8 +10,8 @@ const Types = {
 };
 
 const PROPERTY_TYPES = {
-    extra: React.PropTypes.any,
-    type: React.PropTypes.oneOf([Types.SUCCESS, Types.WARNING, Types.DANGER, Types.INFO])
+    extra: PropTypes.any,
+    type: PropTypes.oneOf([Types.SUCCESS, Types.WARNING, Types.DANGER, Types.INFO])
 };
 const DEFAULT_PROPS = {};
 

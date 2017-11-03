@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import TetherComponent from 'react-tether';
+import TetherComponent from '../react-tether/TetherComponent.js';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { ESCAPE } from '../util/constant/key-codes';
 import { enhanceWithClickOutside } from '../util/hoc/OnClickOutsideHOC';
@@ -28,18 +29,18 @@ const POPUP_STATE = {
 };
 
 const PROPERTY_TYPES = {
-    attachment: React.PropTypes.oneOf(Object.keys(attachmentPositions)).isRequired,
-    on: React.PropTypes.oneOf(['hover', 'click', 'focus']),
-    popupClassName: React.PropTypes.string,
-    targetClassName: React.PropTypes.string,
-    changeAttachmentDynamically: React.PropTypes.bool,
-    modal: React.PropTypes.bool,
-    animationBaseName: React.PropTypes.string,
-    onOpen: React.PropTypes.func,
-    onTransitionClosedToOpen: React.PropTypes.func,
-    onPopupStateChange: React.PropTypes.func,
-    open: React.PropTypes.bool,
-    onContentDidMount: React.PropTypes.func
+    attachment: PropTypes.oneOf(Object.keys(attachmentPositions)).isRequired,
+    on: PropTypes.oneOf(['hover', 'click', 'focus']),
+    popupClassName: PropTypes.string,
+    targetClassName: PropTypes.string,
+    changeAttachmentDynamically: PropTypes.bool,
+    modal: PropTypes.bool,
+    animationBaseName: PropTypes.string,
+    onOpen: PropTypes.func,
+    onTransitionClosedToOpen: PropTypes.func,
+    onPopupStateChange: PropTypes.func,
+    open: PropTypes.bool,
+    onContentDidMount: PropTypes.func
 };
 const DEFAULT_PROPS = {
     on: 'hover',
@@ -434,8 +435,8 @@ class Popup extends React.Component {
 Popup.propTypes = PROPERTY_TYPES;
 Popup.defaultProps = DEFAULT_PROPS;
 
-Popup.childContextTypes = { addCheck: React.PropTypes.func, addPopupsToReposition: React.PropTypes.func };
-Popup.contextTypes = { addCheck: React.PropTypes.func, addPopupsToReposition: React.PropTypes.func };
+Popup.childContextTypes = { addCheck: PropTypes.func, addPopupsToReposition: PropTypes.func };
+Popup.contextTypes = { addCheck: PropTypes.func, addPopupsToReposition: PropTypes.func };
 
 Popup.attachmentPositions = attachmentPositions;
 

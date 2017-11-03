@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import isUndefined from 'lodash/isUndefined';
 import noop from 'lodash/noop';
@@ -12,16 +13,16 @@ import GroupedMultiSelectContent from './GroupedMultiSelectContent';
 import GroupSubSection from './GroupSubSection';
 
 const PROP_TYPES = {
-    onChange: React.PropTypes.func,
-    showSubSection: React.PropTypes.bool,
-    placeholder: React.PropTypes.string,
-    value: React.PropTypes.object,
-    options: React.PropTypes.object,
-    keys: React.PropTypes.arrayOf(React.PropTypes.string),
-    extra: React.PropTypes.func,
-    subSection: React.PropTypes.any,
-    onGoBack: React.PropTypes.func,
-    onPopupStateChange: React.PropTypes.func
+    onChange: PropTypes.func,
+    showSubSection: PropTypes.bool,
+    placeholder: PropTypes.string,
+    value: PropTypes.object,
+    options: PropTypes.object,
+    keys: PropTypes.arrayOf(PropTypes.string),
+    extra: PropTypes.func,
+    subSection: PropTypes.any,
+    onGoBack: PropTypes.func,
+    onPopupStateChange: PropTypes.func
 };
 
 const DEF_PROPS = {

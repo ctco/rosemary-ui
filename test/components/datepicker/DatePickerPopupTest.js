@@ -1,5 +1,5 @@
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
 import {renderComponent, expect, assert} from '../../test_helper';
 import DatePickerPopup from '../../../src/DatePicker/DatePickerPopup';
 import Select from '../../../src/Select';

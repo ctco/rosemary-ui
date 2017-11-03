@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { enhanceRowHOC } from './EventRowHOC';
 
 const PROPERTY_TYPES = {
-    segments: React.PropTypes.array
+    segments: PropTypes.array
 };
 
 class EventRow extends React.Component {

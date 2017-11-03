@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import Input from '../Input/Input';
 import * as sizes from '../util/constant/sizes';
@@ -7,18 +8,18 @@ const LEFT = 'left';
 const RIGHT = 'right';
 
 const PROPERTY_TYPES = {
-    iconClassName: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func,
-    onClick: React.PropTypes.func,
-    onKeyPress: React.PropTypes.func,
-    onKeyDown: React.PropTypes.func,
-    position: React.PropTypes.oneOf([LEFT, RIGHT]),
-    readOnly: React.PropTypes.bool,
-    fluid: React.PropTypes.bool,
-    placeholder: React.PropTypes.string,
-    inputRef: React.PropTypes.func,
+    iconClassName: PropTypes.string.isRequired,
+    onChange: PropTypes.func,
+    onClick: PropTypes.func,
+    onKeyPress: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    position: PropTypes.oneOf([LEFT, RIGHT]),
+    readOnly: PropTypes.bool,
+    fluid: PropTypes.bool,
+    placeholder: PropTypes.string,
+    inputRef: PropTypes.func,
     size: sizes.anySize,
-    value: React.PropTypes.string
+    value: PropTypes.string
 };
 
 const DEFAULT_PROPS = {

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
@@ -9,17 +10,17 @@ import MultiSelectPopup from './MultiSelectPopup';
 import { withIdAndTypeContext } from '../util/hoc/WithIdAndTypeHOC';
 
 const PROPERTY_TYPES = {
-    placeholder: React.PropTypes.string,
-    searchPlaceholder: React.PropTypes.string,
-    options: React.PropTypes.arrayOf(
-        React.PropTypes.shape({
-            id: React.PropTypes.number.isRequired,
-            displayString: React.PropTypes.string.isRequired
+    placeholder: PropTypes.string,
+    searchPlaceholder: PropTypes.string,
+    options: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            displayString: PropTypes.string.isRequired
         })
     ),
-    className: React.PropTypes.string,
-    onChange: React.PropTypes.func,
-    getText: React.PropTypes.func
+    className: PropTypes.string,
+    onChange: PropTypes.func,
+    getText: PropTypes.func
 };
 const DEFAULT_PROPS = {
     placeholder: 'Select...',

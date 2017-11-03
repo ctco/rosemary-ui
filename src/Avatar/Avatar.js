@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const PROPERTY_TYPES = {
-    text: React.PropTypes.string
+    text: PropTypes.string
 };
 const DEFAULT_PROPS = {};
 

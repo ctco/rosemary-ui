@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -13,14 +14,14 @@ import Popup from '../Popup';
 import IconInput from '../InputIcon/IconInput';
 
 const PROPERTY_TYPES = {
-    format: React.PropTypes.func,
-    parse: React.PropTypes.func,
-    formatHeader: React.PropTypes.func,
-    open: React.PropTypes.bool,
-    onPopupStateChange: React.PropTypes.func,
-    value: React.PropTypes.shape({
-        from: React.PropTypes.string,
-        to: React.PropTypes.string
+    format: PropTypes.func,
+    parse: PropTypes.func,
+    formatHeader: PropTypes.func,
+    open: PropTypes.bool,
+    onPopupStateChange: PropTypes.func,
+    value: PropTypes.shape({
+        from: PropTypes.string,
+        to: PropTypes.string
     })
 };
 const DEFAULT_PROPS = {

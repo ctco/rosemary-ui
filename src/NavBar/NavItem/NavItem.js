@@ -1,10 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 export default class NavItem extends React.Component {
     render() {
-        let navItemClassNames = classNames(this.props.className, {
-            'rm-nav-bar__item': true,
+        let navItemClassNames = classNames(this.props.className, 'rm-nav-bar__item', {
             'rm-nav-bar__item--right': this.props.right,
             'rm-nav-bar__item--active': this.props.active,
             'rm-nav-bar__item--with-hover-effect': this.props.withHoverEffect
@@ -26,12 +26,12 @@ export default class NavItem extends React.Component {
 }
 
 NavItem.propTypes = {
-    className: React.PropTypes.string,
-    style: React.PropTypes.object,
-    onClick: React.PropTypes.func,
-    active: React.PropTypes.bool,
-    withHoverEffect: React.PropTypes.bool,
-    right: React.PropTypes.bool
+    className: PropTypes.string,
+    style: PropTypes.object,
+    onClick: PropTypes.func,
+    active: PropTypes.bool,
+    withHoverEffect: PropTypes.bool,
+    right: PropTypes.bool
 };
 
 NavItem.defaultProps = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import createFragment from 'react-addons-create-fragment';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isUndefined from 'lodash/isUndefined';
 import some from 'lodash/some';
@@ -14,23 +14,23 @@ const DESC = 'DESC';
 const ASC = 'ASC';
 
 const PROPERTY_TYPES = {
-    data: React.PropTypes.array,
-    sorted: React.PropTypes.shape({
-        key: React.PropTypes.any,
-        direction: React.PropTypes.any
+    data: PropTypes.array,
+    sorted: PropTypes.shape({
+        key: PropTypes.any,
+        direction: PropTypes.any
     }),
-    colgroup: React.PropTypes.array,
-    colSpanBottom: React.PropTypes.number,
-    defSorting: React.PropTypes.number,
-    expand: React.PropTypes.array,
-    headerCells: React.PropTypes.func,
-    loadingIndicator: React.PropTypes.func,
-    rowStyle: React.PropTypes.func,
-    row: React.PropTypes.object,
-    cells: React.PropTypes.func.isRequired,
-    rowIndex: React.PropTypes.func.isRequired,
-    bottomSection: React.PropTypes.element,
-    onHeaderClick: React.PropTypes.func
+    colgroup: PropTypes.array,
+    colSpanBottom: PropTypes.number,
+    defSorting: PropTypes.number,
+    expand: PropTypes.array,
+    headerCells: PropTypes.func,
+    loadingIndicator: PropTypes.func,
+    rowStyle: PropTypes.func,
+    row: PropTypes.object,
+    cells: PropTypes.func.isRequired,
+    rowIndex: PropTypes.func.isRequired,
+    bottomSection: PropTypes.element,
+    onHeaderClick: PropTypes.func
 };
 const DEFAULT_PROPS = {
     data: [],
@@ -178,7 +178,7 @@ class Table extends React.Component {
             this._getRowStyle(item)
         );
 
-        return createFragment({
+        return React.addons.createFragment({
             row: (
                 <Row className={style} key={index} item={item} onClick={e => this._handleRowClick(item, index)}>
                     {this._getCells(item).map((cell, key) => {

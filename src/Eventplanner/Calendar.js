@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import uncontrollable from 'uncontrollable';
 import cn from 'classnames';
 import { accessor, elementType, dateFormat, views as componentViews } from './utils/propTypes';
@@ -253,8 +254,8 @@ const PROPERTY_TYPES = {
      * A time range format for selecting time slots.
      */
         selectRangeFormat: dateFormat,
-        onRangeSelected: React.PropTypes.func,
-        draggableSelect: React.PropTypes.func,
+        onRangeSelected: PropTypes.func,
+        draggableSelect: PropTypes.func,
 
         agendaDateFormat: dateFormat,
         agendaTimeFormat: dateFormat,

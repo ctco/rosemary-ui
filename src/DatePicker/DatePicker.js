@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import debounce from 'lodash/debounce';
 import noop from 'lodash/noop';
@@ -22,14 +23,14 @@ import { formatDMonthYear } from '../util/date-formats';
 import Input from '../Input';
 
 const PROPERTY_TYPES = {
-    disabled: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    value: React.PropTypes.string,
-    format: React.PropTypes.string,
-    onChange: React.PropTypes.func,
-    minDate: React.PropTypes.string,
-    maxDate: React.PropTypes.string,
-    attachment: React.PropTypes.oneOf(Object.keys(Popup.attachmentPositions))
+    disabled: PropTypes.bool,
+    className: PropTypes.string,
+    value: PropTypes.string,
+    format: PropTypes.string,
+    onChange: PropTypes.func,
+    minDate: PropTypes.string,
+    maxDate: PropTypes.string,
+    attachment: PropTypes.oneOf(Object.keys(Popup.attachmentPositions))
 };
 
 const DEFAULT_PROPS = {

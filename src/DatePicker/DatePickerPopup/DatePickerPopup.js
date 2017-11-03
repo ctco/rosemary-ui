@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import range from 'lodash/range';
 
 import Select from '../../Select/Select';
@@ -27,13 +28,13 @@ import {
 import { formatFullMonth } from '../../util/date-formats';
 
 const PROPERTY_TYPES = {
-    month: React.PropTypes.object, //moment
-    onSelected: React.PropTypes.func.isRequired,
-    onMonthChange: React.PropTypes.func,
-    minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object,
-    getStyles: React.PropTypes.func,
-    format: React.PropTypes.string.isRequired
+    month: PropTypes.object, //moment
+    onSelected: PropTypes.func.isRequired,
+    onMonthChange: PropTypes.func,
+    minDate: PropTypes.object,
+    maxDate: PropTypes.object,
+    getStyles: PropTypes.func,
+    format: PropTypes.string.isRequired
 };
 
 const DEFAULT_PROPS = {

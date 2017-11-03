@@ -1,6 +1,6 @@
 import {$} from '../../test_helper';
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
 import {renderComponent, expect, assert} from '../../test_helper';
 import DatePickerCalendar from '../../../src/DatePicker/DatePickerCalendar';
 import {format, parse} from '../../../src/util/date-utils';

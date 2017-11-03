@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const PROPERTY_TYPES = {
-    placeholder: React.PropTypes.string,
-    type: React.PropTypes.oneOf(['text', 'password'])
+    placeholder: PropTypes.string,
+    type: PropTypes.oneOf(['text', 'password'])
 };
 const DEFAULT_PROPS = {
     type: 'text'

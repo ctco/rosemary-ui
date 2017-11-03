@@ -1,23 +1,24 @@
 import React from 'react';
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 import { isDefined } from '../util/utils';
 import * as sizes from '../util/constant/sizes';
 
 const PROPERTY_TYPES = {
-    disabled: React.PropTypes.bool,
-    inputRef: React.PropTypes.func,
-    placeholder: React.PropTypes.string,
-    maxLength: React.PropTypes.number,
-    type: React.PropTypes.oneOf(['text', 'password']),
-    value: React.PropTypes.any,
-    onBlur: React.PropTypes.func,
-    onKeyPress: React.PropTypes.func,
-    onKeyDown: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    readOnly: React.PropTypes.bool,
-    fluid: React.PropTypes.bool,
-    autoFocus: React.PropTypes.bool,
+    disabled: PropTypes.bool,
+    inputRef: PropTypes.func,
+    placeholder: PropTypes.string,
+    maxLength: PropTypes.number,
+    type: PropTypes.oneOf(['text', 'password']),
+    value: PropTypes.any,
+    onBlur: PropTypes.func,
+    onKeyPress: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onFocus: PropTypes.func,
+    onChange: PropTypes.func,
+    readOnly: PropTypes.bool,
+    fluid: PropTypes.bool,
+    autoFocus: PropTypes.bool,
     size: sizes.anySize
 };
 const DEFAULT_PROPS = {

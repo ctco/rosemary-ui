@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 import MonthPicker from '../MonthPicker/MonthPicker';
 import Pager from '../Pager/Pager';
@@ -9,8 +9,8 @@ import * as dateUtils from '../util/date-utils';
 import * as dateFormats from '../util/date-formats';
 
 const PROPERTY_TYPES = {
-    onChange: React.PropTypes.func,
-    value: React.PropTypes.string
+    onChange: PropTypes.func,
+    value: PropTypes.string
 };
 
 const DEFAULT_PROPS = {
