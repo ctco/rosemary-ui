@@ -98,7 +98,7 @@
     "prettier": "^1.7.4",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
-    "react-addons-create-fragment": "15.4.1",
+    "react-addons-create-fragment": "^15.6.2",
     "react-addons-css-transition-group": "^15.1.0",
     "react-click-outside": "^2.1.0",
     "react-dom": "^16.0.0",

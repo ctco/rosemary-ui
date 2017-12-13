@@ -125,7 +125,7 @@ export default [
                 ]
             },
             {
-                name: 'Checkbox',
+                name: 'CheckBox',
                 link: '/',
                 components: [
                     {

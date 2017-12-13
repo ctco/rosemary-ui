@@ -2,7 +2,7 @@ import Button from './Button/Button';
 import ButtonGroup from './Button/ButtonGroup';
 import Radio from './Radio/Radio';
 import RadioGroup from './Radio/RadioGroup/RadioGroup';
-import Nav from './NavBar';
+import NavBar from './NavBar';
 import NavItem from './NavBar/NavItem';
 import NavDropDownItem from './NavBar/NavDropDownItem';
 import NavHrefItem from './NavBar/NavHrefItem';
@@ -41,7 +41,7 @@ export {
     ButtonGroup,
     Radio,
     RadioGroup,
-    Nav,
+    NavBar,
     NavItem,
     NavHrefItem,
     NavDropDownItem,

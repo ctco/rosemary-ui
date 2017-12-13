@@ -7,12 +7,12 @@ declare module 'rosemary-ui' {
     export import NavItem = __RosemaryUI.NavItem;
     export import DatePickerPopup = __RosemaryUI.DatePickerPopup;
     export import DateRangePicker = __RosemaryUI.DateRangePicker;
-    export import Eventplanner = __RosemaryUI.Eventplanner;
+    export import EventPlanner = __RosemaryUI.EventPlanner;
     export import Alert = __RosemaryUI.Alert;
     export import Avatar = __RosemaryUI.Avatar;
     export import Button = __RosemaryUI.Button;
     export import Confirmation = __RosemaryUI.Confirmation;
-    export import Checkbox = __RosemaryUI.Checkbox;
+    export import CheckBox = __RosemaryUI.CheckBox;
     export import Feedback = __RosemaryUI.NavBar;
     export import FeedbackCard = __RosemaryUI.FeedbackCard;
     export import FeedbackManager = __RosemaryUI.FeedbackManager;
@@ -36,6 +36,9 @@ declare module 'rosemary-ui' {
     export import Tabs = __RosemaryUI.Tabs;
     export import Tab = __RosemaryUI.Tab;
     export import TextArea = __RosemaryUI.TextArea;
+    export import Input = __RosemaryUI.TextArea;
+    export import GroupedMultiSelect = __RosemaryUI.GroupedMultiSelect;
+    export import MultiSelectPopup = __RosemaryUI.MultiSelectPopup;
 }
 
 declare namespace __RosemaryUI {
@@ -55,9 +58,11 @@ declare namespace __RosemaryUI {
 
     class DateRangePicker extends React.Component<any> {}
 
-    class Eventplanner extends React.Component<any> {}
+    class EventPlanner extends React.Component<any> {}
 
-    class Alert extends React.Component<any> {}
+    class Alert extends React.Component<any> {
+        static Type:any;
+    }
 
     class Avatar extends React.Component<any> {}
 
@@ -65,7 +70,7 @@ declare namespace __RosemaryUI {
 
     class Confirmation extends React.Component<any> {}
 
-    class Checkbox extends React.Component<any> {}
+    class CheckBox extends React.Component<any> {}
 
     class Feedback extends React.Component<any> {}
 
@@ -114,6 +119,12 @@ declare namespace __RosemaryUI {
     class Tab extends React.Component<any> {}
 
     class TextArea extends React.Component<any> {}
+
+    class Input extends React.Component<any> {}
+
+    class GroupedMultiSelect extends React.Component<any> {}
+
+    class MultiSelectPopup extends React.Component<any> {}
 }
 
 declare module 'rosemary-ui/NavBar' {
@@ -133,9 +144,9 @@ declare module 'rosemary-ui/NavBar/NavItem' {
     export default NavItem;
 }
 
-declare module 'rosemary-ui/Eventplanner' {
-    export import Eventplanner = __RosemaryUI.Eventplanner;
-    export default Eventplanner;
+declare module 'rosemary-ui/EventPlanner' {
+    export import EventPlanner = __RosemaryUI.EventPlanner;
+    export default EventPlanner;
 }
 
 declare module 'rosemary-ui/Alert' {
@@ -150,9 +161,9 @@ declare module 'rosemary-ui/Button' {
     export import Button = __RosemaryUI.Button;
     export default Button;
 }
-declare module 'rosemary-ui/Checkbox' {
-    export import Checkbox = __RosemaryUI.Checkbox;
-    export default Checkbox;
+declare module 'rosemary-ui/CheckBox' {
+    export import CheckBox = __RosemaryUI.CheckBox;
+    export default CheckBox;
 }
 declare module 'rosemary-ui/Confirmation' {
     export import Confirmation = __RosemaryUI.Confirmation;
@@ -274,4 +285,19 @@ declare module 'rosemary-ui/Tabs/Tab' {
 declare module 'rosemary-ui/TextArea' {
     export import TextArea = __RosemaryUI.TextArea;
     export default TextArea;
+}
+
+declare module 'rosemary-ui/Input' {
+    export import Input = __RosemaryUI.Input;
+    export default Input;
+}
+
+declare module 'rosemary-ui/GroupedMultiSelect' {
+    export import GroupedMultiSelect = __RosemaryUI.GroupedMultiSelect;
+    export default GroupedMultiSelect;
+}
+
+declare module 'rosemary-ui/MultiSelectPopup' {
+    export import MultiSelectPopup = __RosemaryUI.MultiSelectPopup;
+    export default MultiSelectPopup;
 }

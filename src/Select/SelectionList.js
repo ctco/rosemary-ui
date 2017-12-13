@@ -2,7 +2,7 @@ import React from 'react';
 import ReactList from 'react-list';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import CheckBox from '../Checkbox';
+import CheckBox from '../CheckBox';
 
 const REACT_PROPS = {
     noOptionPlaceholder: PropTypes.element,

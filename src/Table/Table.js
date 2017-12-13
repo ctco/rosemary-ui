@@ -1,4 +1,5 @@
 import React from 'react';
+import createFragment from 'react-addons-create-fragment';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isUndefined from 'lodash/isUndefined';
@@ -178,7 +179,7 @@ class Table extends React.Component {
             this._getRowStyle(item)
         );
 
-        return React.addons.createFragment({
+        return createFragment({
             row: (
                 <Row className={style} key={index} item={item} onClick={e => this._handleRowClick(item, index)}>
                     {this._getCells(item).map((cell, key) => {
