@@ -120,8 +120,6 @@ declare namespace __RosemaryUI {
 
     class TextArea extends React.Component<any> {}
 
-    class Input extends React.Component<any> {}
-
     class GroupedMultiSelect extends React.Component<any> {}
 
     class MultiSelectPopup extends React.Component<any> {}
@@ -286,12 +284,6 @@ declare module 'rosemary-ui/TextArea' {
     export import TextArea = __RosemaryUI.TextArea;
     export default TextArea;
 }
-
-declare module 'rosemary-ui/Input' {
-    export import Input = __RosemaryUI.Input;
-    export default Input;
-}
-
 declare module 'rosemary-ui/GroupedMultiSelect' {
     export import GroupedMultiSelect = __RosemaryUI.GroupedMultiSelect;
     export default GroupedMultiSelect;
