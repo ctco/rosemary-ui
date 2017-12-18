@@ -1,6 +1,6 @@
 /* eslint no-fallthrough: 0 */
 import dateMath from 'date-arithmetic';
-import { assign } from 'lodash';
+import assign from 'lodash/assign';
 import localizer from '../localizer';
 import { directions } from './constants';
 

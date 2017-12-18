@@ -1,4 +1,4 @@
-import { assign } from 'lodash';
+import assign from 'lodash/assign';
 import dates from './utils/dates';
 
 function inSame12Hr(start, end) {

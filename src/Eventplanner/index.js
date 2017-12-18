@@ -1,4 +1,4 @@
-import { assign } from 'lodash';
+import assign from 'lodash/assign';
 
 import Calendar from './Calendar';
 import { set as setLocalizer } from './localizer';

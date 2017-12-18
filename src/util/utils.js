@@ -1,4 +1,4 @@
-import { isUndefined } from 'lodash';
+import isUndefined from 'lodash/isUndefined';
 import find from 'lodash/find';
 
 function isFunction(possibleFunction) {
