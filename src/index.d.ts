@@ -61,7 +61,7 @@ declare namespace __RosemaryUI {
     class EventPlanner extends React.Component<any> {}
 
     class Alert extends React.Component<any> {
-        static Type:any;
+        static Type: any;
     }
 
     class Avatar extends React.Component<any> {}
@@ -190,6 +190,10 @@ declare module 'rosemary-ui/Feedback' {
 declare module 'rosemary-ui/Feedback/FeedbackCard' {
     export import FeedbackCard = __RosemaryUI.FeedbackCard;
     export default FeedbackCard;
+}
+declare module 'rosemary-ui/Feedback/types' {
+    type types = { error: string; warning: string; info: string; success: string };
+    export default types;
 }
 
 declare module 'rosemary-ui/Feedback/FeedbackManager' {

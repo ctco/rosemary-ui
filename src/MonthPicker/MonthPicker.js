@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Popup from '../Popup/Popup';
 import MonthPickerPopup from './MonthPickerPopup';
 
-import {withIdAndTypeContext} from '../util/hoc/WithIdAndTypeHOC';
+import { withIdAndTypeContext } from '../util/hoc/WithIdAndTypeHOC';
 
 import * as dateUtils from '../util/date-utils';
 import * as dateFormats from '../util/date-formats';
@@ -118,7 +118,7 @@ class MonthPicker extends React.Component {
                 popupClassName="popover-colored"
                 attachment="bottom center"
                 on="click"
-                onPopupStateChange={open => this.setState({open})}
+                onPopupStateChange={open => this.setState({ open })}
                 open={this.state.open}
                 onTransitionClosedToOpen={() => {
                     this.resetYear();
@@ -128,7 +128,7 @@ class MonthPicker extends React.Component {
                 <MonthPickerPopup
                     year={this.state.year}
                     onSelected={this.handleSelection}
-                    onYearChange={year => this.setState({year})}
+                    onYearChange={year => this.setState({ year })}
                     minDate={this.props.minDate ? this.doParse(this.props.minDate) : undefined}
                     maxDate={this.props.maxDate ? this.doParse(this.props.maxDate) : undefined}
                     getStyles={date => this.getStyles(date)}

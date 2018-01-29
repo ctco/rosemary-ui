@@ -11,7 +11,8 @@ const Types = {
 
 const PROPERTY_TYPES = {
     extra: PropTypes.any,
-    type: PropTypes.oneOf([Types.SUCCESS, Types.WARNING, Types.DANGER, Types.INFO])
+    type: PropTypes.oneOf([Types.SUCCESS, Types.WARNING, Types.DANGER, Types.INFO]),
+    testId: PropTypes.any
 };
 const DEFAULT_PROPS = {};
 
@@ -29,7 +30,7 @@ class Alert extends React.Component {
         });
 
         return (
-            <div className={style}>
+            <div data-test-id={this.props.testId} className={style}>
                 <div className="ros-alert__title">{this.props.title}</div>
                 <div className="ros-alert__description">{this.props.description}</div>
                 <div className="ros-alert__extra">{this.props.extra}</div>

@@ -6,7 +6,8 @@ import Tab from './Tab/Tab';
 const PROPERTY_TYPES = {
     onChange: PropTypes.func,
     onBeforeChange: PropTypes.func,
-    selected: PropTypes.any
+    selected: PropTypes.any,
+    testId: PropTypes.any
 };
 
 const DEFAULT_PROPS = {};
@@ -42,7 +43,11 @@ class Tabs extends React.Component {
             disabled: this.props.disabled
         });
 
-        return <div className={style}>{this._renderTabs()}</div>;
+        return (
+            <div data-test-id={this.props.testId} className={style}>
+                {this._renderTabs()}
+            </div>
+        );
     }
 }
 

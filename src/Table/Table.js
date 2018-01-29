@@ -31,7 +31,8 @@ const PROPERTY_TYPES = {
     cells: PropTypes.func.isRequired,
     rowIndex: PropTypes.func.isRequired,
     bottomSection: PropTypes.element,
-    onHeaderClick: PropTypes.func
+    onHeaderClick: PropTypes.func,
+    testId: PropTypes.any
 };
 const DEFAULT_PROPS = {
     data: [],
@@ -39,10 +40,6 @@ const DEFAULT_PROPS = {
 };
 
 class Table extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     _getCells(obj) {
         return this.props.cells(obj);
     }
@@ -236,7 +233,7 @@ class Table extends React.Component {
         let style = classNames('ros-table', this.props.className);
 
         return (
-            <table className={style}>
+            <table data-test-id={this.props.testId} className={style}>
                 {this._renderColGroup()}
                 <thead>
                     <tr className="ros-table__header">{this._renderHeader()}</tr>

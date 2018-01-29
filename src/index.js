@@ -20,7 +20,7 @@ import EventPlanner from './Eventplanner';
 import FormField from './FormField/FormField';
 import Label from './Label/Label';
 import TextArea from './TextArea/TextArea';
-import FeedbackManager from './Feedback/FeedbackManager/FeedbackManager';
+import FeedbackManager from './Feedback/FeedbackManager';
 import Pager from './Pager/Pager';
 import MonthPager from './MonthPager/MonthPager';
 import Link from './Link/Link';

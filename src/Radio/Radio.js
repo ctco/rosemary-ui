@@ -6,7 +6,8 @@ const PROPERTY_TYPES = {
     onChange: PropTypes.func,
     label: PropTypes.string,
     disabled: PropTypes.bool,
-    checked: PropTypes.bool
+    checked: PropTypes.bool,
+    testId: PropTypes.any
 };
 const DEFAULT_PROPS = {};
 
@@ -38,6 +39,7 @@ class Radio extends React.Component {
 
         return (
             <div
+                data-test-id={this.props.testId}
                 className={radioStyle}
                 onClick={() => {
                     this.onChange();

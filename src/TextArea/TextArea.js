@@ -6,7 +6,8 @@ import classNames from 'classnames';
 const PROPERTY_TYPES = {
     placeholder: PropTypes.string,
     value: PropTypes.any,
-    maxLength: PropTypes.number
+    maxLength: PropTypes.number,
+    testId: PropTypes.any
 };
 const DEFAULT_PROPS = {};
 
@@ -49,6 +50,7 @@ class TextArea extends React.Component {
         return (
             <div className={style}>
                 <textarea
+                    data-test-id={this.props.testId}
                     ref="textarea"
                     value={this.isControlled() ? this.props.value : this.state.value}
                     onChange={e => this.update(e)}

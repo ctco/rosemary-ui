@@ -6,6 +6,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var defaults = {
     clearBeforeBuild: true,
     resolve: {
+        extension: ['.js', '.jsx'],
         root: [
             path.resolve('src')
         ]

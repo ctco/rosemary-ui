@@ -19,7 +19,8 @@ const PROPERTY_TYPES = {
     readOnly: PropTypes.bool,
     fluid: PropTypes.bool,
     autoFocus: PropTypes.bool,
-    size: sizes.anySize
+    size: sizes.anySize,
+    testId: PropTypes.any
 };
 const DEFAULT_PROPS = {
     inputRef: input => {},
@@ -88,6 +89,7 @@ class Input extends React.Component {
         return (
             <div className={style}>
                 <input
+                    data-test-id={this.props.testId}
                     autoFocus={this.props.autoFocus}
                     maxLength={this.props.maxLength}
                     ref={this._attachInput}

@@ -5,7 +5,7 @@ import Immutable from 'immutable';
 import ReactList from 'react-list';
 import cn from 'classnames';
 
-import CheckBox from '../CheckBox';
+import CheckBox from '../CheckBox/index';
 import { isDefined, findIdentifiables } from '../util/utils';
 
 const PROPERTY_TYPES = {

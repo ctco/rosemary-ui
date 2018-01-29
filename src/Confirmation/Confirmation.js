@@ -9,7 +9,8 @@ const PROPERTY_TYPES = {
     onConfirm: PropTypes.func,
     onCancel: PropTypes.func,
     confirmBtnTxt: PropTypes.string,
-    cancelBtnText: PropTypes.string
+    cancelBtnText: PropTypes.string,
+    testId: PropTypes.any
 };
 const DEFAULT_PROPS = {
     cancelBtnText: 'Cancel',
@@ -19,15 +20,11 @@ const DEFAULT_PROPS = {
 };
 
 class Confirmation extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         let style = classNames(this.props.className, 'ros-confirm');
 
         return (
-            <div className={style}>
+            <div data-test-id={this.props.testId} className={style}>
                 <h2 className="ros-confirm__title">{this.props.title}</h2>
                 <div className="ros-confirm__body">{this.props.body}</div>
                 <div className="form-separator" />

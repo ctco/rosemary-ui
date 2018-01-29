@@ -6,15 +6,12 @@ const PROPERTY_TYPES = {
     tabId: PropTypes.any,
     value: PropTypes.string,
     onEnter: PropTypes.func,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    testId: PropTypes.any
 };
 const DEFAULT_PROPS = {};
 
 class Tab extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentWillMount() {
         if (this._isSelected() && this.props.onEnter) {
             this.props.onEnter();
@@ -36,7 +33,7 @@ class Tab extends React.Component {
         });
 
         return (
-            <div className={style} onClick={() => this._onChange()}>
+            <div data-test-id={this.props.testId} className={style} onClick={() => this._onChange()}>
                 <span>{value || children}</span>
             </div>
         );
