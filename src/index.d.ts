@@ -192,7 +192,9 @@ declare module 'rosemary-ui/Feedback/FeedbackCard' {
     export default FeedbackCard;
 }
 declare module 'rosemary-ui/Feedback/types' {
-    type types = { error: string; warning: string; info: string; success: string };
+    type FeedbackTypes = { error: 'error', warning: 'warning', info: 'info', success: 'success' };
+    const types: FeedbackTypes;
+
     export default types;
 }
 
