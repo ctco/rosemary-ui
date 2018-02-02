@@ -15,6 +15,7 @@ const DESC = 'DESC';
 const ASC = 'ASC';
 
 const PROPERTY_TYPES = {
+    className: PropTypes.string,
     data: PropTypes.array,
     sorted: PropTypes.shape({
         key: PropTypes.any,
@@ -23,7 +24,6 @@ const PROPERTY_TYPES = {
     colgroup: PropTypes.array,
     colSpanBottom: PropTypes.number,
     defSorting: PropTypes.number,
-    expand: PropTypes.array,
     headerCells: PropTypes.func,
     loadingIndicator: PropTypes.func,
     rowStyle: PropTypes.func,
@@ -36,7 +36,7 @@ const PROPERTY_TYPES = {
 };
 const DEFAULT_PROPS = {
     data: [],
-    headerCells: []
+    headerCells: () => []
 };
 
 class Table extends React.Component {

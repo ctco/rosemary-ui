@@ -112,7 +112,28 @@ declare namespace __RosemaryUI {
 
     class Switch extends React.Component<any> {}
 
-    class Table extends React.Component<any> {}
+    type TableProps = {
+        data: any;
+        cells: (item) => Array<React.ReactNode>;
+        rowIndex: (item: any) => string | number;
+        className?: string;
+        sorted?: {
+            key: any,
+            direction: any
+        },
+        colgroup?: any[];
+        colSpanBottom?: number;
+        defSorting?: number;
+        rowStyle?: (item: any) => string;
+        bottomSection?: React.ReactNode;
+        headerCells?: () => Array<any>;
+        onHeaderClick?: (key: any) => void;
+        rowDetails?: {}
+        row?: {}
+        testId?: any
+    }
+
+    class Table extends React.Component<TableProps> {}
 
     class Tabs extends React.Component<any> {}
 
