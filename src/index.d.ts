@@ -112,6 +112,11 @@ declare namespace __RosemaryUI {
 
     class Switch extends React.Component<any> {}
 
+    type TableHeaderCell = {
+        el: React.ReactNode,
+        key: string | number
+    }
+
     type TableProps = {
         data: any;
         cells: (item) => Array<React.ReactNode>;
@@ -127,7 +132,7 @@ declare namespace __RosemaryUI {
         rowStyle?: (item: any) => string;
         bottomSection?: React.ReactNode;
         headerCells?: () => Array<any>;
-        onHeaderClick?: (key: any) => void;
+        onHeaderClick?: (key: any, index: number, el: TableHeaderCell, direction: string) => void;
         rowDetails?: {}
         row?: {}
         testId?: any

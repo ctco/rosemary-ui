@@ -110,8 +110,13 @@ class Table extends React.Component {
 
     _handleHeaderCellClick(key, index, cell, sortable) {
         if (this.props.onHeaderClick && sortable) {
-            this.props.onHeaderClick(key, index, cell);
+            this.props.onHeaderClick(key, index, cell, this._toggleDirection());
         }
+    }
+
+    _toggleDirection = () => {
+        return this._getSortDirection() === ASC ? DESC : ASC;
+
     }
 
     _renderHeader() {
