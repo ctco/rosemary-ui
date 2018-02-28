@@ -1,4 +1,8 @@
 declare module 'rosemary-ui' {
+    export interface Option {
+        id: Number;
+        displayString: string;
+    }
     export import NavBar = __RosemaryUI.NavBar;
     export import DatePicker = __RosemaryUI.DatePicker;
     export import DatePickerCalendar = __RosemaryUI.DatePickerCalendar;
