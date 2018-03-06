@@ -27,6 +27,15 @@
     text-decoration: none;
   }
 
+  &.selected {
+    svg {
+      fill: $white;
+    }
+    color: $white;
+    background-color: $brownish-grey;
+    box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.36);
+  }
+
   &:active,
   &.active {
     outline: 0;

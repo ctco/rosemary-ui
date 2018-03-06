@@ -5,6 +5,7 @@ import noop from 'lodash/noop';
 
 const PROPERTY_TYPES = {
     onClick: PropTypes.func,
+    selected: PropTypes.bool,
     disabled: PropTypes.bool,
     baseClassName: PropTypes.string,
     title: PropTypes.string,
@@ -19,7 +20,8 @@ const DEFAULT_PROPS = {
 class Button extends React.Component {
     render() {
         let style = classNames(this.props.className, this.props.baseClassName, {
-            disabled: this.props.disabled
+            disabled: this.props.disabled,
+            selected: this.props.selected
         });
 
         return (
