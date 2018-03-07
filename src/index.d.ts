@@ -1,6 +1,6 @@
 declare module 'rosemary-ui' {
     export interface Option {
-        id: Number;
+        id: number;
         displayString: string;
     }
     export import NavBar = __RosemaryUI.NavBar;
