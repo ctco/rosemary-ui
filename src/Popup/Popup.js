@@ -76,6 +76,8 @@ class Popup extends React.Component {
         if (this.context.addPopupsToReposition) {
             this.context.addPopupsToReposition(this.position);
         }
+
+        this.applyOverlay(this.state.popupState);
     }
 
     componentWillReceiveProps(nextProps) {
