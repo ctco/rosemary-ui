@@ -22,7 +22,9 @@
     "buildGh-Pages": "NODE_ENV=production webpack -p --config webpack/webpack.config.production.js",
     "clean": "./node_modules/.bin/rimraf lib",
     "deploy": "gh-pages-deploy",
-    "storybook": "npx start-storybook -p 9001 -c config/storybook"
+    "storybook": "npx start-storybook -p 9001 -c config/storybook",
+    "demo:dev": "npx webpack-dev-server --config webpack/webpack.config.local.js --hot",
+    "demo:build": "npx webpack --config webpack/webpack.config.production.no-chunks.js"
   },
   "peerDependencies": {
     "moment": "^2.15.1",

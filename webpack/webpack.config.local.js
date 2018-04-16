@@ -45,8 +45,42 @@ module.exports = webpackUtils.merge(base.defaults, {
                         }
                     }
                 ],
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 8192,
+                    name: 'font/[name]-[hash].[ext]',
+                    fallback: 'file-loader'
+                }
             }
-]
+        ]
+    },
+    optimization: {
+        //runtimeChunk: true,
+        splitChunks: {
+            cacheGroups: {
+                react: {
+                    test: /(react|fbjs)/,
+                    chunks: 'all',
+                    name: 'react',
+                    enforce: true
+                },
+                jscore: {
+                    test: /core-js/,
+                    chunks: 'all',
+                    name: 'jscore',
+                    enforce: true
+                },
+                lodash: {
+                    test: /lodash/,
+                    name: 'lodash',
+                    chunks: 'all',
+                    enforce: true
+                }
+            }
+        }
     },
     devServer: {
         publicPath: '/',
@@ -58,3 +92,4 @@ module.exports = webpackUtils.merge(base.defaults, {
         new webpack.NoEmitOnErrorsPlugin()
     ]
 });
+

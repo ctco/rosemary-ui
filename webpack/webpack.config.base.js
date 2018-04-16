@@ -13,7 +13,7 @@ const defaults = {
     devtool: 'eval',
 
     entry: {
-        app: [
+        bundle: [
             './demo/app'
         ]
     },
@@ -40,15 +40,6 @@ const defaults = {
                         name: 'img/[name]-[hash].[ext]'
                     }
                 }
-            },
-            {
-                test: /\.(woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 8192,
-                    name: 'font/[name]-[hash].[ext]',
-                    fallback: 'file-loader'
-                }
             }
         ]
     },
@@ -65,32 +56,7 @@ const defaults = {
         new HtmlWebpackPlugin({
             template: 'template.html'
         }),
-    ],
-    optimization: {
-        //runtimeChunk: true,
-        splitChunks: {
-            cacheGroups: {
-                react: {
-                    test: /(react|fbjs)/,
-                    chunks: 'all',
-                    name: 'react',
-                    enforce: true
-                },
-                jscore: {
-                    test: /core-js/,
-                    chunks: 'all',
-                    name: 'jscore',
-                    enforce: true
-                },
-                lodash: {
-                    test: /lodash/,
-                    name: 'lodash',
-                    chunks: 'all',
-                    enforce: true
-                }
-            }
-        }
-    }
+    ]
 };
 
 module.exports = {

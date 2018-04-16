@@ -1,4 +1,3 @@
-/* TODO: Fix relative path Extract text loader bug */
 const base = require('./webpack.config.base');
 const webpackUtils = require('./utils/webpack-utils');
 
@@ -8,11 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const {out, chunkName} = base;
 
 const extractCSS = new ExtractTextPlugin({
-    filename: 'css/' + chunkName + '.css'
-});
-
-const extractSass = new ExtractTextPlugin({
-    filename: 'css/' + chunkName + '.sass.css'
+    filename: chunkName + '.css'
 });
 
 module.exports = webpackUtils.merge(base.defaults, {
@@ -21,7 +16,6 @@ module.exports = webpackUtils.merge(base.defaults, {
 
     module: {
         rules: [
-
             {
                 test: /\.css$/,
                 use: extractCSS.extract({
@@ -34,14 +28,11 @@ module.exports = webpackUtils.merge(base.defaults, {
                             }
                         }
                     ],
-                    fallback: {
-                        loader: 'style-loader',
-                    }
                 })
             },
             {
                 test: /\.scss$/,
-                use: extractSass.extract({
+                use: extractCSS.extract({
                     use: [
                         {
                             loader: 'css-loader',
@@ -57,18 +48,32 @@ module.exports = webpackUtils.merge(base.defaults, {
                             }
                         }
                     ],
-                    fallback: {
-                        loader: 'style-loader',
-                    }
                 })
-            }
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: 'url-loader',
+                options: {
+                    name: '[name]-[hash].[ext]',
+                }
+            },
+            /* optimize images
+            {
+                test: /\.(png|jp(e*)g)$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8000, // Convert images < 8kb to base64 strings
+                        name: 'static/img/[name]-[hash:4].[ext]',
+                        fallback: 'responsive-loader'
+                    }
+                }]
+            },
+            /* */
         ]
     },
-
-
     plugins: [
         new CleanWebpackPlugin([out + '/*'], {root: out}),
-        extractCSS,
-        extractSass
+        extractCSS
     ]
 });
