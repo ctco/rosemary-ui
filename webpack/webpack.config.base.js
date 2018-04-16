@@ -1,41 +1,100 @@
-var path = require('path');
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var defaults = {
-    clearBeforeBuild: true,
+const chunkName = '[name]-[hash]';
+const out = path.join(__dirname, './../dist');
+
+const defaults = {
     resolve: {
-        extension: ['.js', '.jsx'],
-        root: [
-            path.resolve('src')
+        modules: ['demo', 'node_modules']
+    },
+
+    devtool: 'eval',
+
+    entry: {
+        app: [
+            './demo/app'
         ]
     },
-    devtool: 'source-map',
-    plugins: [
-        new ExtractTextPlugin('[name].css'),
-        new CopyWebpackPlugin([
-            {
-                from: path.resolve('src/assets/scss'),
-                to: path.resolve('lib/sass')
-            },
-            {
-                from: path.resolve('src/assets/fonts'),
-                to: path.resolve('lib/fonts')
-            },
-            {
-                from: path.resolve('src/assets/imgs'),
-                to: path.resolve('lib/imgs')
-            },
-            {
-                from: path.resolve('src/index.d.ts'),
-                to: path.resolve('lib/')
-            }
-        ])
-    ],
+
+    output: {
+        path: out,
+        filename: 'js/' + chunkName + '.js',
+        // publicPath: '/'
+    },
+
     module: {
-        noParse: [/autoit.js/]
+        noParse: [/autoit.js/],
+        rules: [
+            {
+                test: /\.js$/,
+                use: ['babel-loader'],
+                exclude: /node_modules/
+            },
+            {
+                test: /\.png$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: 'img/[name]-[hash].[ext]'
+                    }
+                }
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 8192,
+                    name: 'font/[name]-[hash].[ext]',
+                    fallback: 'file-loader'
+                }
+            }
+        ]
+    },
+
+    devServer: {
+        publicPath: '/',
+        hotOnly: true,
+        inline: true,
+        historyApiFallback: true,
+    },
+
+    plugins: [
+        new webpack.NoEmitOnErrorsPlugin(),
+        new HtmlWebpackPlugin({
+            template: 'template.html'
+        }),
+    ],
+    optimization: {
+        //runtimeChunk: true,
+        splitChunks: {
+            cacheGroups: {
+                react: {
+                    test: /(react|fbjs)/,
+                    chunks: 'all',
+                    name: 'react',
+                    enforce: true
+                },
+                jscore: {
+                    test: /core-js/,
+                    chunks: 'all',
+                    name: 'jscore',
+                    enforce: true
+                },
+                lodash: {
+                    test: /lodash/,
+                    name: 'lodash',
+                    chunks: 'all',
+                    enforce: true
+                }
+            }
+        }
     }
 };
 
-module.exports.defaults = defaults;
+module.exports = {
+    out,
+    chunkName,
+    defaults
+};

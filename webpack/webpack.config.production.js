@@ -1,47 +1,73 @@
-var path = require('path');
-var autoprefixer = require('autoprefixer');
-var webpack = require('webpack');
-var base = require('./webpack.config.base');
-var webpackUtils = require('./utils/webpack-utils');
+const base = require('./webpack.config.base');
+const webpackUtils = require('./utils/webpack-utils');
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const {out, chunkName} = base;
+
+const extractCSS = new ExtractTextPlugin({
+    filename: 'css/' + chunkName + '.css'
+});
+
+const extractSass = new ExtractTextPlugin({
+    filename: 'css/' + chunkName + '.sass.css'
+});
 
 module.exports = webpackUtils.merge(base.defaults, {
-    entry: {
-        bundle: [
-            'element-closest',
-            './demo/app'
-        ]
-    },
-    output: {
-        path: path.join(__dirname, './../dist'),
-        filename: '[name].js'
-    },
-    resolve: {
-        root: [
-            path.resolve('demo')
-        ]
-    },
+    mode: 'production',
+    devtool: 'source-map',
+
     module: {
-        preLoaders: [
-            { test: /\.js$/, loaders: ['eslint'], include: [path.resolve('src'), path.resolve('demo')] }
-        ],
-        loaders: [
-            { test: /\.js$/, loaders: ['babel'], include: [path.resolve('src'), path.resolve('demo')] },
-            { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
-            { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!postcss!sass?outputStyle=compact'), include: [path.resolve('src'), path.resolve('demo')] },
-            { test: /\.png$/, loader: 'file', include: [path.resolve('src'), path.resolve('demo')] },
-            { test: /\.(woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=100000', include: [path.resolve('src'), path.resolve('demo')] }
+        rules: [
+
+            {
+                test: /\.css$/,
+                use: extractCSS.extract({
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                minimize: true,
+                                sourceMap: true
+                            }
+                        }
+                    ],
+                    fallback: {
+                        loader: 'style-loader',
+                    }
+                })
+            },
+            {
+                test: /\.scss$/,
+                use: extractSass.extract({
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                minimize: true,
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        }
+                    ],
+                    fallback: {
+                        loader: 'style-loader',
+                    }
+                })
+            }
         ]
     },
-    devServer: {
-        historyApiFallback: true
-    },
+
+
     plugins: [
-        new webpack.NoErrorsPlugin(),
-        new HtmlWebpackPlugin({
-            template: 'template.html'
-        })
+        new CleanWebpackPlugin([out + '/*'], {root: out}),
+        extractCSS,
+        extractSass
     ]
 });

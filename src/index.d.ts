@@ -70,7 +70,7 @@ declare namespace __RosemaryUI {
 
     class Avatar extends React.Component<any> {}
 
-    class Button extends React.Component<any> {}
+    class Button extends React.Component<> {}
 
     class Confirmation extends React.Component<any> {}
 
@@ -117,9 +117,9 @@ declare namespace __RosemaryUI {
     class Switch extends React.Component<any> {}
 
     type TableHeaderCell = {
-        el: React.ReactNode,
-        key: string | number
-    }
+        el: React.ReactNode;
+        key: string | number;
+    };
 
     type TableProps = {
         data: any;
@@ -127,9 +127,9 @@ declare namespace __RosemaryUI {
         rowIndex: (item: any) => string | number;
         className?: string;
         sorted?: {
-            key: any,
-            direction: any
-        },
+            key: any;
+            direction: any;
+        };
         colgroup?: any[];
         colSpanBottom?: number;
         defSorting?: number;
@@ -137,10 +137,10 @@ declare namespace __RosemaryUI {
         bottomSection?: React.ReactNode;
         headerCells?: () => Array<any>;
         onHeaderClick?: (key: any, index: number, el: TableHeaderCell, direction: string) => void;
-        rowDetails?: {}
-        row?: {}
-        testId?: any
-    }
+        rowDetails?: {};
+        row?: {};
+        testId?: any;
+    };
 
     class Table extends React.Component<TableProps> {}
 
@@ -222,7 +222,7 @@ declare module 'rosemary-ui/Feedback/FeedbackCard' {
     export default FeedbackCard;
 }
 declare module 'rosemary-ui/Feedback/types' {
-    type FeedbackTypes = { error: 'error', warning: 'warning', info: 'info', success: 'success' };
+    type FeedbackTypes = { error: 'error'; warning: 'warning'; info: 'info'; success: 'success' };
     const types: FeedbackTypes;
 
     export default types;
