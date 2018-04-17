@@ -2,34 +2,43 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import noop from 'lodash/noop';
+import omit from 'lodash/omit';
 
-const PROPERTY_TYPES = {
-    onClick: PropTypes.func,
-    selected: PropTypes.bool,
-    disabled: PropTypes.bool,
-    baseClassName: PropTypes.string,
-    title: PropTypes.string,
-    value: PropTypes.string,
-    testId: PropTypes.any,
-    as: PropTypes.string
-};
-const DEFAULT_PROPS = {
-    baseClassName: 'btn',
-    onClick: noop
-};
 
 class Button extends React.Component {
+    static propTypes = {
+        onClick: PropTypes.func,
+        selected: PropTypes.bool,
+        disabled: PropTypes.bool,
+        baseClassName: PropTypes.string,
+        title: PropTypes.string,
+        value: PropTypes.string,
+        testId: PropTypes.any,
+        as: PropTypes.string,
+        children: PropTypes.node,
+    };
+    static defaultProps = {
+        baseClassName: 'btn',
+        onClick: noop
+    };
+
     render() {
-        let style = classNames(this.props.className, this.props.baseClassName, {
-            disabled: this.props.disabled,
-            selected: this.props.selected
-        });
+        let style = classNames(
+            this.props.className,
+            this.props.baseClassName, {
+                disabled: this.props.disabled,
+                selected: this.props.selected
+            }
+        );
+
         const Element = this.props.as || 'div';
         return (
             <Element
+                {...omit(this.props, [
+                    'baseClassName', 'disabled', 'selected',
+                    'className',
+                    'onClick', 'data-test-id', 'testId'])}
                 data-test-id={this.props.testId}
-                title={this.props.title}
-                id={this.props.id}
                 className={style}
                 onClick={this.onClickButton}
             >
@@ -44,8 +53,5 @@ class Button extends React.Component {
         }
     };
 }
-
-Button.propTypes = PROPERTY_TYPES;
-Button.defaultProps = DEFAULT_PROPS;
 
 export default Button;

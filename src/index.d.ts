@@ -74,7 +74,7 @@ declare namespace __RosemaryUI {
     class Avatar extends React.Component<any> {}
 
     type ButtonProps = {
-        onClick?: (e: React.SyntheticEvent<MouseEvent>) => void;
+        onClick?: ((e?: React.MouseEvent<any>) => void) | any;
         selected?: boolean;
         disabled?: boolean;
         className?: string;
@@ -82,8 +82,9 @@ declare namespace __RosemaryUI {
         value?: string;
         testId?: string;
         as?: string;
+        href?: string;
         baseClassName?: string;
-    };
+    } & React.HTMLAttributes<{}>;
 
     class Button extends React.Component<ButtonProps> {}
     class Confirmation extends React.Component<any> {}
