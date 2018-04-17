@@ -21,7 +21,6 @@ module.exports = webpackUtils.merge(base.defaults, {
 
     module: {
         rules: [
-
             {
                 test: /\.css$/,
                 use: extractCSS.extract({
@@ -30,9 +29,11 @@ module.exports = webpackUtils.merge(base.defaults, {
                             loader: 'css-loader',
                             options: {
                                 minimize: true,
-                                sourceMap: true
+                                sourceMap: true,
+                                relativeUrls: true,
                             }
-                        }
+                        },
+                        'resolve-url-loader'
                     ],
                     fallback: {
                         loader: 'style-loader',
@@ -47,13 +48,15 @@ module.exports = webpackUtils.merge(base.defaults, {
                             loader: 'css-loader',
                             options: {
                                 minimize: true,
-                                sourceMap: true
+                                sourceMap: true,
+                                relativeUrls: false,
                             }
                         },
+                        'resolve-url-loader',
                         {
                             loader: 'sass-loader',
                             options: {
-                                sourceMap: true
+                                sourceMap: true,
                             }
                         }
                     ],
@@ -61,6 +64,15 @@ module.exports = webpackUtils.merge(base.defaults, {
                         loader: 'style-loader',
                     }
                 })
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: 'file-loader',
+                options: {
+                    //limit: 8192,
+                    name: 'font/[name]-[hash].[ext]',
+                    //fallback: 'file-loader'
+                }
             }
         ]
     },

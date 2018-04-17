@@ -70,7 +70,17 @@ declare namespace __RosemaryUI {
 
     class Avatar extends React.Component<any> {}
 
-    class Button extends React.Component<> {}
+    type ButtonProps = {
+        onClick: (e: React.SyntheticEvent) => void;
+        selected: boolean;
+        disabled: boolean;
+        baseClassName: string;
+        title: string;
+        value: string;
+        testId: string;
+        as: string;
+    };
+    class Button extends React.Component<ButtonProps> {}
 
     class Confirmation extends React.Component<any> {}
 
@@ -187,7 +197,9 @@ declare module 'rosemary-ui/Avatar' {
 }
 declare module 'rosemary-ui/Button' {
     export import Button = __RosemaryUI.Button;
+    import ButtonProps = __RosemaryUI.ButtonProps;
     export default Button;
+    export { ButtonProps };
 }
 declare module 'rosemary-ui/CheckBox' {
     export import CheckBox = __RosemaryUI.CheckBox;
