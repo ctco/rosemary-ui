@@ -49,210 +49,210 @@ let now = new Date();
  */
 const PROPERTY_TYPES = {
     /**
-   * The current date value of the calendar. Determines the visible view range
-   *
-   * @controllable onNavigate
-   */
+     * The current date value of the calendar. Determines the visible view range
+     *
+     * @controllable onNavigate
+     */
     date: PropTypes.instanceOf(Date),
     defaultDate: PropTypes.instanceOf(Date),
     /**
-   * The current view of the calendar.
-   *
-   * @default 'month'
-   * @controllable onView
-   */
+     * The current view of the calendar.
+     *
+     * @default 'month'
+     * @controllable onView
+     */
     view: PropTypes.string,
 
     /**
-   * An array of event objects to display on the calendar
-   */
+     * An array of event objects to display on the calendar
+     */
     events: PropTypes.arrayOf(PropTypes.object),
 
     /**
-   * An array of event objects to display on the calendar
-   */
+     * An array of event objects to display on the calendar
+     */
     nonWorkingDays: PropTypes.arrayOf(PropTypes.object),
 
     /**
-   * Callback fired when the `date` value changes.
-   *
-   * @controllable date
-   */
+     * Callback fired when the `date` value changes.
+     *
+     * @controllable date
+     */
     onNavigate: PropTypes.func,
 
     /**
-   * Callback fired when the `view` value changes.
-   *
-   * @controllable date
-   */
+     * Callback fired when the `view` value changes.
+     *
+     * @controllable date
+     */
     onView: PropTypes.func,
 
     /**
-   * A callback fired when a date selection is made. Only fires when `selectable` is `true`.
-   *
-   * ```js
-   * function(
-   *   slotInfo: object {
+     * A callback fired when a date selection is made. Only fires when `selectable` is `true`.
+     *
+     * ```js
+     * function(
+     *   slotInfo: object {
      *     start: date,
      *     end: date,
      *     slots: array<date>
      *   }
-   * )
-   * ```
-   */
+     * )
+     * ```
+     */
     onSelectSlot: PropTypes.func,
 
     /**
-   * Callback fired when a calendar event is selected.
-   *
-   * ```js
-   * function(event: object)
-   * ```
-   */
+     * Callback fired when a calendar event is selected.
+     *
+     * ```js
+     * function(event: object)
+     * ```
+     */
     onSelectEvent: PropTypes.func,
 
     /**
-   * Callback fired when dragging a selection in the Time views.
-   *
-   * Returning `false` from the handler will prevent a selection.
-   *
-   * ```js
-   * function ({ start: Date, end: Date }) : boolean
-   * ```
-   */
+     * Callback fired when dragging a selection in the Time views.
+     *
+     * Returning `false` from the handler will prevent a selection.
+     *
+     * ```js
+     * function ({ start: Date, end: Date }) : boolean
+     * ```
+     */
     onSelecting: PropTypes.func,
 
     /**
-   * An array of built-in view names to allow the calendar to display.
-   *
-   * @type Calendar.views
-   * @default ['month', 'week', 'day', 'agenda']
-   */
+     * An array of built-in view names to allow the calendar to display.
+     *
+     * @type Calendar.views
+     * @default ['month', 'week', 'day', 'agenda']
+     */
     views: componentViews,
 
     /**
-   * Determines whether the toolbar is displayed
-   */
+     * Determines whether the toolbar is displayed
+     */
     toolbar: PropTypes.bool,
 
     /**
-   * Show truncated events in an overlay when you click the "+_x_ more" link.
-   */
+     * Show truncated events in an overlay when you click the "+_x_ more" link.
+     */
     popup: PropTypes.bool,
 
     /**
-   * Distance in pixels, from the edges of the viewport, the "show more" overlay should be positioned.
-   *
-   * ```js
-   * <BigCalendar popupOffset={30}/>
-   * <BigCalendar popupOffset={{x: 30, y: 20}}/>
-   * ```
-   */
+     * Distance in pixels, from the edges of the viewport, the "show more" overlay should be positioned.
+     *
+     * ```js
+     * <BigCalendar popupOffset={30}/>
+     * <BigCalendar popupOffset={{x: 30, y: 20}}/>
+     * ```
+     */
     popupOffset: PropTypes.oneOfType([PropTypes.number, PropTypes.shape({ x: PropTypes.number, y: PropTypes.number })]),
     /**
-   * Allows mouse selection of ranges of dates/times.
-   */
+     * Allows mouse selection of ranges of dates/times.
+     */
     selectable: PropTypes.bool,
 
     /**
-   * switch the calendar to a `right-to-left` read direction.
-   */
+     * switch the calendar to a `right-to-left` read direction.
+     */
     rtl: PropTypes.bool,
 
     /**
-   * Optionally provide a function that returns an object of className or style props
-   * to be applied to the the event node.
-   *
-   * ```js
-   * function(
-   * 	event: object,
-   * 	start: date,
-   * 	end: date,
-   * 	isSelected: bool
-   * ) -> { className: string?, style: object? }
-   * ```
-   */
+     * Optionally provide a function that returns an object of className or style props
+     * to be applied to the the event node.
+     *
+     * ```js
+     * function(
+     * 	event: object,
+     * 	start: date,
+     * 	end: date,
+     * 	isSelected: bool
+     * ) -> { className: string?, style: object? }
+     * ```
+     */
     eventPropGetter: PropTypes.func,
 
     /**
-   * Accessor for the event title, used to display event information. Should
-   * resolve to a `renderable` value.
-   *
-   * @type {(func|string)}
-   */
+     * Accessor for the event title, used to display event information. Should
+     * resolve to a `renderable` value.
+     *
+     * @type {(func|string)}
+     */
     titleAccessor: accessor,
 
     /**
-   * Determines whether the event should be considered an "all day" event and ignore time.
-   * Must resolve to a `boolean` value.
-   *
-   * @type {(func|string)}
-   */
+     * Determines whether the event should be considered an "all day" event and ignore time.
+     * Must resolve to a `boolean` value.
+     *
+     * @type {(func|string)}
+     */
     allDayAccessor: accessor,
 
     /**
-   * The start date/time of the event. Must resolve to a JavaScript `Date` object.
-   *
-   * @type {(func|string)}
-   */
+     * The start date/time of the event. Must resolve to a JavaScript `Date` object.
+     *
+     * @type {(func|string)}
+     */
     startAccessor: accessor,
 
     /**
-   * The end date/time of the event. Must resolve to a JavaScript `Date` object.
-   *
-   * @type {(func|string)}
-   */
+     * The end date/time of the event. Must resolve to a JavaScript `Date` object.
+     *
+     * @type {(func|string)}
+     */
     endAccessor: accessor,
 
     /**
-   * Constrains the minimum _time_ of the Day and Week views.
-   */
+     * Constrains the minimum _time_ of the Day and Week views.
+     */
     min: PropTypes.instanceOf(Date),
 
     /**
-   * Constrains the maximum _time_ of the Day and Week views..
-   */
+     * Constrains the maximum _time_ of the Day and Week views..
+     */
     max: PropTypes.instanceOf(Date),
 
     /**
-   * Localizer specific formats, tell the Calendar how to format and display dates.
-   */
+     * Localizer specific formats, tell the Calendar how to format and display dates.
+     */
     formats: PropTypes.shape({
         /**
-     * Format for the day of the month heading in the Month view.
-     */
+         * Format for the day of the month heading in the Month view.
+         */
         dateFormat,
 
         /**
-     * A day of the week format for Week and Day headings
-     */
+         * A day of the week format for Week and Day headings
+         */
         dayFormat: dateFormat,
         /**
-     * Week day name format for the Month week day headings.
-     */
+         * Week day name format for the Month week day headings.
+         */
         weekdayFormat: dateFormat,
 
         /**
-     * Toolbar header format for the Month view.
-     */
+         * Toolbar header format for the Month view.
+         */
         monthHeaderFormat: dateFormat,
         /**
-     * Toolbar header format for the Week views.
-     */
+         * Toolbar header format for the Week views.
+         */
         weekHeaderFormat: dateFormat,
         /**
-     * Toolbar header format for the Day view.
-     */
+         * Toolbar header format for the Day view.
+         */
         dayHeaderFormat: dateFormat,
 
         /**
-     * Toolbar header format for the Agenda view.
-     */
+         * Toolbar header format for the Agenda view.
+         */
         agendaHeaderFormat: dateFormat,
 
         /**
-     * A time range format for selecting time slots.
-     */
+         * A time range format for selecting time slots.
+         */
         selectRangeFormat: dateFormat,
         onRangeSelected: PropTypes.func,
         draggableSelect: PropTypes.func,
@@ -263,21 +263,21 @@ const PROPERTY_TYPES = {
     }),
 
     /**
-   * Customize how different sections of the calendar render by providing custom Components.
-   * In particular the `Event` component can be specified for the entire calendar, or you can
-   * provide an individual component for each view type.
-   *
-   * ```jsx
-   * let components = {
+     * Customize how different sections of the calendar render by providing custom Components.
+     * In particular the `Event` component can be specified for the entire calendar, or you can
+     * provide an individual component for each view type.
+     *
+     * ```jsx
+     * let components = {
      *   event: MyEvent, // used by each view (Month, Day, Week)
      *   toolbar: MyToolbar,
      *   agenda: {
      *   	 event: MyAgendaEvent // with the agenda view use a different component to render events
      *   }
      * }
-   * <Calendar components={components} />
-   * ```
-   */
+     * <Calendar components={components} />
+     * ```
+     */
     components: PropTypes.shape({
         event: elementType,
 
@@ -295,8 +295,8 @@ const PROPERTY_TYPES = {
     }),
 
     /**
-   * String messages used throughout the component, override to provide localizations
-   */
+     * String messages used throughout the component, override to provide localizations
+     */
     messages: PropTypes.shape({
         allDay: PropTypes.node,
         previous: PropTypes.node,
