@@ -1,5 +1,6 @@
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
+
 import GroupedMultiSelect from './GroupedMultiSelect.js';
 
 function generateOptions(name, amount) {

@@ -1,7 +1,7 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
-import { boolean } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
 import Select from './Select';
+import { boolean } from '@storybook/addon-knobs';
 
 function generateOptions(name, amount) {
     let result = [];
