@@ -10,8 +10,7 @@ const PROPERTY_TYPES = {
     baseClassName: PropTypes.string,
     title: PropTypes.string,
     value: PropTypes.string,
-    testId: PropTypes.any,
-    as: PropTypes.string
+    testId: PropTypes.any
 };
 const DEFAULT_PROPS = {
     baseClassName: 'btn',
@@ -24,9 +23,9 @@ class Button extends React.Component {
             disabled: this.props.disabled,
             selected: this.props.selected
         });
-        const Element = this.props.as || 'div';
+
         return (
-            <Element
+            <div
                 data-test-id={this.props.testId}
                 title={this.props.title}
                 id={this.props.id}
@@ -34,7 +33,7 @@ class Button extends React.Component {
                 onClick={this.onClickButton}
             >
                 {this.props.children || this.props.value}
-            </Element>
+            </div>
         );
     }
 

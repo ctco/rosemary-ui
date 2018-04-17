@@ -116,7 +116,8 @@ class Table extends React.Component {
 
     _toggleDirection = () => {
         return this._getSortDirection() === ASC ? DESC : ASC;
-    };
+
+    }
 
     _renderHeader() {
         return this.props.headerCells().map((headerCell, index) => {
