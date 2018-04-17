@@ -14,7 +14,10 @@ declare module 'rosemary-ui' {
     export import EventPlanner = __RosemaryUI.EventPlanner;
     export import Alert = __RosemaryUI.Alert;
     export import Avatar = __RosemaryUI.Avatar;
+
     export import Button = __RosemaryUI.Button;
+    export import ButtonProps = __RosemaryUI.ButtonProps;
+
     export import Confirmation = __RosemaryUI.Confirmation;
     export import CheckBox = __RosemaryUI.CheckBox;
     export import Feedback = __RosemaryUI.NavBar;
@@ -70,8 +73,19 @@ declare namespace __RosemaryUI {
 
     class Avatar extends React.Component<any> {}
 
-    class Button extends React.Component<any> {}
+    type ButtonProps = {
+        onClick?: (e: React.SyntheticEvent<MouseEvent>) => void;
+        selected?: boolean;
+        disabled?: boolean;
+        className?: string;
+        title?: string;
+        value?: string;
+        testId?: string;
+        as?: string;
+        baseClassName?: string;
+    };
 
+    class Button extends React.Component<ButtonProps> {}
     class Confirmation extends React.Component<any> {}
 
     class CheckBox extends React.Component<any> {}
@@ -188,6 +202,9 @@ declare module 'rosemary-ui/Avatar' {
 declare module 'rosemary-ui/Button' {
     export import Button = __RosemaryUI.Button;
     export default Button;
+
+    import ButtonProps = __RosemaryUI.ButtonProps;
+    export { ButtonProps };
 }
 declare module 'rosemary-ui/CheckBox' {
     export import CheckBox = __RosemaryUI.CheckBox;
