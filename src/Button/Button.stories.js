@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 storiesOf('Button', module)
     .add('default', () => <Button>Button</Button>)
-    .add('primary', () => <Button className="primary">Primary Button</Button>)
+    .add('primary', () => <Button className="btn--primary">Primary Button</Button>)
     .add('as link', () => (
         <Button href="#" as="a" className={classNames('btn-link', 'btn--inline')}>
             as link
