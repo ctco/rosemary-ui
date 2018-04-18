@@ -1,6 +1,6 @@
 {
   "name": "rosemary-ui",
-  "version": "1.0.275",
+  "version": "1.0.276",
   "description": "C.T.Co React component library",
   "main": "lib/index.js",
   "homepage": "https://github.com/ctco/rosemary-ui",
