@@ -15,7 +15,7 @@ class FeedbackDemo extends React.Component {
         return (
             <DemoWithSnippet>
                 <button onClick={this.props.feedbackAction}>Test</button>
-                <FeedbackManager messages={this.props.messages} onHide={this.props.removeFeedback}/>
+                <FeedbackManager messages={this.props.messages} onCloseMessage={this.props.removeFeedback} />
             </DemoWithSnippet>
         );
     }
