@@ -14,6 +14,7 @@ const defaults = {
 
     entry: {
         bundle: [
+            'element-closest',
             './demo/app'
         ]
     },
