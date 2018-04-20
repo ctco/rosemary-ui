@@ -38,7 +38,8 @@ class Button extends React.Component {
                     'className',
                     'onClick',
                     'data-test-id',
-                    'testId'
+                    'testId',
+                    'as'
                 ])}
                 data-test-id={this.props.testId}
                 className={style}
