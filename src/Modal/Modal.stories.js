@@ -51,11 +51,6 @@ storiesOf('Modal', module)
             <h1>I will close on dimmer click</h1>
         </Modal>
     ))
-    .add('transparentOverlay', () => (
-        <Modal transparentOverlay>
-            <h1>MyOverlay is transparent! transparentOverlay={true}</h1>
-        </Modal>
-    ))
     .add('Managed 1', () => (
         <Modal open>
             <h1>You won't be able to close me</h1>

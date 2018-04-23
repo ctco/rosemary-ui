@@ -16,10 +16,9 @@ export default class Modal extends React.Component {
                 popupClassName={classNames(this.props.popupClassName, 'popup')}
                 closeOnClickOutside={this.props.closeOnClickOutside}
                 onClose={this.props.onClose}
-                transparentOverlay={this.props.transparentOverlay}
             >
                 {this.props.trigger || <span />}
-                {this.props.content || this.props.children}
+                {this.props.children}
             </Popup>
         );
     }
@@ -29,7 +28,7 @@ Modal.propTypes = {
     open: PropTypes.bool,
     on: Popup.propTypes.on,
     trigger: PropTypes.element,
+    popupClassName: PropTypes.string,
     closeOnClickOutside: PropTypes.bool,
-    transparentOverlay: PropTypes.bool,
-    popupClassName: PropTypes.string
+    onClose: PropTypes.func
 };

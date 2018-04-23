@@ -34,6 +34,7 @@ declare module 'rosemary-ui' {
     export import MultiSelect = __RosemaryUI.MultiSelect;
     export import Pager = __RosemaryUI.Pager;
     export import Popup = __RosemaryUI.Popup;
+    export import Modal = __RosemaryUI.Modal;
     export import Radio = __RosemaryUI.Radio;
     export import RadioGroup = __RosemaryUI.RadioGroup;
     export import Select = __RosemaryUI.Select;
@@ -120,6 +121,16 @@ declare namespace __RosemaryUI {
     class Pager extends React.Component<any> {}
 
     class Popup extends React.Component<any> {}
+
+    type ModalProps = {
+        open?: boolean,
+        on?: string,
+        trigger?: React.ReactNode,
+        closeOnClickOutside?: boolean,
+        popupClassName?: string,
+        onClose?: () => void
+    };
+    class Modal extends React.Component<ModalProps> {}
 
     class Radio extends React.Component<any> {}
 
@@ -301,6 +312,12 @@ declare module 'rosemary-ui/Pager' {
 declare module 'rosemary-ui/Popup' {
     export import Popup = __RosemaryUI.Popup;
     export default Popup;
+}
+declare module 'rosemary-ui/Modal' {
+    export import Modal = __RosemaryUI.Modal;
+    export default Modal;
+    import ModalProps = __RosemaryUI.ModalProps;
+    export { ModalProps };
 }
 declare module 'rosemary-ui/Radio' {
     export import Radio = __RosemaryUI.Radio;

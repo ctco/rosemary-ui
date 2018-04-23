@@ -47,7 +47,6 @@ const PROPERTY_TYPES = {
     open: PropTypes.bool,
     openByDefault: PropTypes.bool,
     onContentDidMount: PropTypes.func,
-    transparentOverlay: PropTypes.bool,
     closeOnClickOutside: PropTypes.bool
 };
 const DEFAULT_PROPS = {
@@ -146,7 +145,7 @@ class Popup extends React.Component {
                     'popup-overlay-opening': this.isModal() && popupState === POPUP_STATE.OPEN,
                     'popup-overlay-closing': this.isModal() && popupState === POPUP_STATE.CLOSING,
                     'popup-overlay': this.isModal(),
-                    'popup-overlay-transparent': this.props.transparentOverlay
+                    'popup-overlay-transparent': this.props.closeOnClickOutside
                 },
                 this.props.overlayClassName
             );
