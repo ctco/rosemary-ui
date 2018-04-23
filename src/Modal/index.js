@@ -1,2 +1,2 @@
-export {default} from './Modal';
+export { default } from './Modal';
 export * from './Modal';

@@ -123,12 +123,12 @@ declare namespace __RosemaryUI {
     class Popup extends React.Component<any> {}
 
     type ModalProps = {
-        open?: boolean,
-        on?: string,
-        trigger?: React.ReactNode,
-        closeOnClickOutside?: boolean,
-        popupClassName?: string,
-        onClose?: () => void
+        open?: boolean;
+        on?: string;
+        trigger?: React.ReactNode;
+        closeOnClickOutside?: boolean;
+        popupClassName?: string;
+        onClose?: () => void;
     };
     class Modal extends React.Component<ModalProps> {}
 
