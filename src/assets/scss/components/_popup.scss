@@ -202,6 +202,7 @@
     background-color: $popup-background-color;
     max-height: 90vh;
     overflow-y: auto;
+    box-shadow:  $popup-box-shadow;
 
     &:before {
       background-color: $popup-background-color;
@@ -232,6 +233,12 @@
   left: 0;
   background-color: $popup-overlay-bg-color;
 }
+.popup-overlay-transparent {
+  &.popup-overlay {
+    background-color: transparent;
+  }
+}
+
 
 .popup--animation-scale-appear {
   @include transition-scale-in-start;

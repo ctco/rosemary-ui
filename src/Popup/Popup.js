@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import TetherComponent from '../react-tether/TetherComponent.js';
+import _noop from 'lodash/noop';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
+import TetherComponent from '../react-tether/TetherComponent.js';
 import { ESCAPE } from '../util/constant/key-codes';
 import { enhanceWithClickOutside } from '../util/hoc/OnClickOutsideHOC';
 import { enhanceWithKeyDown } from '../util/hoc/OnKeyDownHOC';
 import { isDefined } from '../util/utils';
+
 import PopupElement from './PopupElement';
 
 export const attachmentPositions = {
@@ -33,14 +36,19 @@ const PROPERTY_TYPES = {
     on: PropTypes.oneOf(['hover', 'click', 'focus']),
     popupClassName: PropTypes.string,
     targetClassName: PropTypes.string,
+    overlayClassName: PropTypes.string,
     changeAttachmentDynamically: PropTypes.bool,
     modal: PropTypes.bool,
     animationBaseName: PropTypes.string,
     onOpen: PropTypes.func,
+    onClose: PropTypes.func,
     onTransitionClosedToOpen: PropTypes.func,
     onPopupStateChange: PropTypes.func,
     open: PropTypes.bool,
-    onContentDidMount: PropTypes.func
+    openByDefault: PropTypes.bool,
+    onContentDidMount: PropTypes.func,
+    transparentOverlay: PropTypes.bool,
+    closeOnClickOutside: PropTypes.bool
 };
 const DEFAULT_PROPS = {
     on: 'hover',
@@ -49,17 +57,25 @@ const DEFAULT_PROPS = {
     changeAttachmentDynamically: false,
     modal: false,
     animationBaseName: 'popup--animation-scale',
-    onContentDidMount: () => {}
+    onContentDidMount: _noop,
+    onClose: _noop
 };
 
 class Popup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            popupState: isDefined(props.open) && props.open ? POPUP_STATE.OPEN : POPUP_STATE.CLOSED
+            popupState: isDefined(props.open)
+                ? props.open
+                    ? POPUP_STATE.OPEN
+                    : POPUP_STATE.CLOSED
+                : props.openByDefault
+                    ? POPUP_STATE.OPEN
+                    : POPUP_STATE.CLOSED
         };
         this.overlayElement = null;
         this.openTimeout = null;
+        this.blurTimeout = null;
         this.additionalChecks = [];
         this.popupsToRepopsition = [];
 
@@ -92,6 +108,20 @@ class Popup extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        if (this.state.popupState !== POPUP_STATE.CLOSED) {
+            this.closeCompletely();
+        }
+
+        if (this.openTimeout) {
+            clearTimeout(this.openTimeout);
+        }
+        if (this.blurTimeout) {
+            window.clearTimeout(this.blurTimeout);
+            this.blurTimeout = null;
+        }
+    }
+
     updatePopupState(popupState) {
         this.setState({ popupState });
         this.applyOverlay(popupState);
@@ -111,11 +141,15 @@ class Popup extends React.Component {
     applyOverlay(popupState) {
         if (this.isModal()) {
             let overlayElement = this.overlayElement;
-            let modalPopUpOverlayClassNames = classNames({
-                'popup-overlay-opening': this.isModal() && popupState === POPUP_STATE.OPEN,
-                'popup-overlay-closing': this.isModal() && popupState === POPUP_STATE.CLOSING,
-                'popup-overlay': this.isModal()
-            });
+            let modalPopUpOverlayClassNames = classNames(
+                {
+                    'popup-overlay-opening': this.isModal() && popupState === POPUP_STATE.OPEN,
+                    'popup-overlay-closing': this.isModal() && popupState === POPUP_STATE.CLOSING,
+                    'popup-overlay': this.isModal(),
+                    'popup-overlay-transparent': this.props.transparentOverlay
+                },
+                this.props.overlayClassName
+            );
 
             switch (popupState) {
                 case POPUP_STATE.OPEN:
@@ -151,6 +185,10 @@ class Popup extends React.Component {
         if (POPUP_STATE.CLOSED === popupState || !this.isPopupStateControlled()) {
             this.updatePopupState(popupState);
         }
+
+        if (POPUP_STATE.CLOSING === popupState && this.isPopupStateControlled()) {
+            this.props.onClose();
+        }
     }
 
     isPopupStateControlled() {
@@ -178,7 +216,7 @@ class Popup extends React.Component {
     }
 
     handleClickOutside(e) {
-        if (this.isModal()) {
+        if (this.isModal() && !this.props.closeOnClickOutside) {
             return;
         }
 
@@ -226,7 +264,10 @@ class Popup extends React.Component {
     }
 
     closeCompletely() {
-        this.changeState(POPUP_STATE.CLOSED);
+        if (this.state.popupState !== POPUP_STATE.CLOSED) {
+            this.changeState(POPUP_STATE.CLOSED);
+            this.props.onClose();
+        }
     }
 
     isOpen() {
@@ -292,7 +333,7 @@ class Popup extends React.Component {
                     this.scheduleOpen();
                 },
                 onBlur: () => {
-                    setTimeout(() => {
+                    this.blurTimeout = setTimeout(() => {
                         let focused = document.activeElement;
 
                         if (this.isComponentChild(focused)) {
@@ -300,6 +341,8 @@ class Popup extends React.Component {
                         }
 
                         this.close();
+                        clearTimeout(this.blurTimeout);
+                        this.blurTimeout = null;
                     }, 50);
                 }
             };
@@ -353,10 +396,10 @@ class Popup extends React.Component {
                 id={this.props.id}
                 ref={content => (this._content = content)}
                 key="popup"
+                didMount={content => this.props.onContentDidMount(content)}
                 onUnmount={() => {
                     this.closeCompletely();
                 }}
-                didMount={content => this.props.onContentDidMount(content)}
             >
                 {element}
             </PopupElement>

@@ -178,7 +178,9 @@ $popup-border:                1px solid $ash-grey;
 $popup-shadow:                0 2px 4px 0 rgba($black, 0.12), 0 2px 10px 0 rgba($black, 0.08);
 $popup-arrow-shadow-color:    $ash-grey;
 $popup-overlay-bg-color:      rgba(20, 20, 20, 0.7);
-$popup-blue-border:           0 0 0 6px $light-blue, 0 10px 14px 0 rgba(0, 0, 0, 0.28);
+
+$popup-box-shadow:            0 25px 50px 0 rgba(0, 0, 0, 0.20);
+$popup-blue-border:           0 0 0 6px $light-blue, $popup-box-shadow;
 
 $tooltip-color:               $white;
 $tooltip-background:          $black;
