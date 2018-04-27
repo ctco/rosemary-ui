@@ -15,4 +15,11 @@
   text-align: center;
   line-height: 40px;
   letter-spacing: 1px;
+  overflow: hidden;
+
+  &__img {
+    width: 100%;
+    height: 100%;
+  }
+
 }
