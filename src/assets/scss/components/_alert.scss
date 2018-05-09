@@ -5,14 +5,15 @@
   border-radius: 3px;
 
   .ros-alert__title {
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 1.5;
     font-weight: $semi-bold-weight;
   }
 
   .ros-alert__description {
     font-size: 14px;
     line-height: 1.43;
-    padding: 6px 0;
+    padding: 1px 0;
     font-weight: $normal-weight;
   }
 
