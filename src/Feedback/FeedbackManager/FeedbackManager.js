@@ -48,6 +48,7 @@ class FeedbackManager extends React.Component {
                     key={message.id}
                     id={message.id}
                     text={message.text}
+                    title={message.title}
                     type={message.type}
                     onClose={this.props.onCloseMessage}
                 />
