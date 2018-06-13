@@ -16,6 +16,7 @@ class FeedbackCard extends React.Component {
         id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         onClose: PropTypes.func,
         text: PropTypes.string.isRequired,
+        title: PropTypes.string,
         type: PropTypes.string.isRequired,
         testId: PropTypes.any
     };
@@ -40,7 +41,7 @@ class FeedbackCard extends React.Component {
                 <div className="card__content">
                     <i className="im card__icon" />
                     <div className="card-message">
-                        <div className="card-message__title">{cardTitle[type]}</div>
+                        <div className="card-message__title">{this.props.title || cardTitle[type]}</div>
                         <div className="card-message__description">
                             <span dangerouslySetInnerHTML={{ __html: this.props.text }} />
                         </div>
