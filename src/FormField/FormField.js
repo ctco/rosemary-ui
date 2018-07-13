@@ -8,7 +8,7 @@ const PROPERTY_TYPES = {
     error: PropTypes.string,
     touched: PropTypes.bool,
     valid: PropTypes.bool,
-    label: PropTypes.string,
+    label: PropTypes.node,
     testId: PropTypes.string
 };
 const DEFAULT_PROPS = {};
