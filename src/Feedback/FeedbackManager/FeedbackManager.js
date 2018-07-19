@@ -57,5 +57,4 @@ class FeedbackManager extends React.Component {
     };
 }
 
-
 export default FeedbackManager;

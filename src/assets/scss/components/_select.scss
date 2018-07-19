@@ -85,6 +85,9 @@
     background-color: $select__option-selected-background-color;
     color: $select__option-selected-color;
   }
+  &.odd {
+    background-color: $light-grey;
+  }
 }
 
 .select__clear-btn {

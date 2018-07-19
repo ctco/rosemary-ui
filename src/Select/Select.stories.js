@@ -8,7 +8,8 @@ function generateOptions(name, amount) {
     for (let i = 0; i < amount; i++) {
         result.push({
             id: i,
-            displayString: `${name} ${i}`
+            displayString: `${name} ${i}`,
+            className: i % 2 ? 'odd' : 'even'
         });
     }
 
@@ -23,6 +24,7 @@ const options = generateOptions('Robot', 1000);
 
 storiesOf('Select', module)
     .add('uncontrolled', () => <Select options={options} />)
+    .add('with special options', () => <Select options={options} />)
     .add('controlled', () => <Select open={boolean('Open', true)} options={options} />)
     .add('with search', () => <Select search={true} options={options} />)
     .add('disabled', () => <Select options={options} disabled />);

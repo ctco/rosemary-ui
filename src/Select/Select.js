@@ -141,11 +141,12 @@ class Select extends React.Component {
         return this.state.filtered.map(option => {
             let selected = selectedObject && selectedObject.id === option.id;
             let tempSelection = tempSelectionObject && tempSelectionObject.id === option.id;
-            let className = classNames('select__option', {
+            let className = classNames('select__option', option.className, {
                 selected: tempSelection
             });
 
             let ref = selected || tempSelection ? { ref: 'selected' } : null;
+
             return (
                 <div tabIndex="0" {...ref} className={className} key={option.id} onClick={() => this.select(option)}>
                     {option.displayString}
