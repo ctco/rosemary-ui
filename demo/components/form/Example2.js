@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 
-import {Input, Select, Button, FormField} from '../../../src';
+import {Input, Select, Button, FormField, MultiSelect} from '../../../src';
 
 class Example2 extends React.Component {
 
@@ -23,8 +23,22 @@ class Example2 extends React.Component {
                         <Input />
                     </FormField>
 
-                    <FormField label="city" {...city}>
+                    <FormField label="select [city]" {...city}>
                         <Select className="form__control" options={this.props.cities}/>
+                    </FormField>
+
+                    <FormField label="select [city]" {...city}>
+                        <Select className="form__control" options={this.props.cities} disabled={true}/>
+                    </FormField>
+
+                    <FormField label="multi select [city]" {...city}>
+                        <MultiSelect className="form__control" options={this.props.cities}/>
+                    </FormField>
+
+                    <FormField label="multi select [city]" {...city}>
+                        <MultiSelect className="form__control"
+                                     options={this.props.cities}
+                                     disabled={true}/>
                     </FormField>
 
                     <FormField label="Password" {...email}>
