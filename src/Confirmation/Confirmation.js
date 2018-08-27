@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import Button from '../Button/Button';
 
 const PROPERTY_TYPES = {
-    body: PropTypes.string,
-    title: PropTypes.string,
+    body: PropTypes.node,
+    title: PropTypes.node,
     onConfirm: PropTypes.func,
     onCancel: PropTypes.func,
     confirmBtnTxt: PropTypes.string,
