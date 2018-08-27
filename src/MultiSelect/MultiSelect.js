@@ -10,6 +10,7 @@ import MultiSelectPopup from './MultiSelectPopup';
 import { withIdAndTypeContext } from '../util/hoc/WithIdAndTypeHOC';
 
 const PROPERTY_TYPES = {
+    disabled: PropTypes.bool,
     placeholder: PropTypes.string,
     searchPlaceholder: PropTypes.string,
     options: PropTypes.arrayOf(
@@ -25,7 +26,8 @@ const PROPERTY_TYPES = {
 const DEFAULT_PROPS = {
     placeholder: 'Select...',
     searchPlaceholder: 'Search ...',
-    getText: selectedOptions => `${selectedOptions.length} item(s) selected`
+    getText: selectedOptions => `${selectedOptions.length} item(s) selected`,
+    disabled: false
 };
 
 class MultiSelect extends React.Component {
@@ -67,6 +69,10 @@ class MultiSelect extends React.Component {
     }
 
     handlePopupStateChange(open) {
+        if (this.props.disabled) {
+            return;
+        }
+
         let newState = {
             popupOpen: open,
             tooltipOpen: false
@@ -104,7 +110,8 @@ class MultiSelect extends React.Component {
 
     render() {
         let className = classNames(this.props.className, 'select', {
-            placeholder: this.state.selected.length === 0
+            placeholder: this.state.selected.length === 0,
+            disabled: this.props.disabled
         });
 
         return (
