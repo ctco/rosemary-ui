@@ -8,6 +8,7 @@ import { isDefined, findIdentifiables, compare } from '../util/utils';
 import MultiSelectPopup from './MultiSelectPopup';
 
 import { withIdAndTypeContext } from '../util/hoc/WithIdAndTypeHOC';
+import CheckBoxList from '../Select/CheckBoxList';
 
 const PROPERTY_TYPES = {
     disabled: PropTypes.bool,
@@ -21,13 +22,15 @@ const PROPERTY_TYPES = {
     ),
     className: PropTypes.string,
     onChange: PropTypes.func,
-    getText: PropTypes.func
+    getText: PropTypes.func,
+    CheckBoxList: PropTypes.node
 };
 const DEFAULT_PROPS = {
     placeholder: 'Select...',
     searchPlaceholder: 'Search ...',
     getText: selectedOptions => `${selectedOptions.length} item(s) selected`,
-    disabled: false
+    disabled: false,
+    CheckBoxList: CheckBoxList
 };
 
 class MultiSelect extends React.Component {
@@ -150,6 +153,7 @@ class MultiSelect extends React.Component {
                     })}
                     onChange={(selectedIds, selected) => this.select(selected)}
                     compare={compare}
+                    CheckBoxList={this.props.CheckBoxList}
                 />
             </Popup>
         );
