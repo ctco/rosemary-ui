@@ -4,7 +4,7 @@ import find from 'lodash/find';
 import trim from 'lodash/trim';
 import Fuse from 'fuse.js';
 import Link from '../Link/Link';
-import { isDefined, findIdentifiables, compare } from '../util/utils';
+import { compare, findIdentifiables, isDefined } from '../util/utils';
 import IconInput from '../InputIcon/IconInput';
 import CheckBoxList from '../Select/CheckBoxList';
 import keyNav from '../Select/KeyBoardNav';
@@ -158,7 +158,12 @@ class MultiSelectPopup extends React.Component {
     }
 
     render() {
-        const List = this.props.CheckBoxList || CheckBoxList;
+        return this.props.renderOptions
+            ? this.props.renderOptions()
+            : this.renderOptions();
+    }
+
+    renderOptions = () => {
         return (
             <div className="select__popup">
                 <div className="select__search-container">
@@ -174,18 +179,9 @@ class MultiSelectPopup extends React.Component {
                         iconClassName="im icon-search"
                     />
                 </div>
-                <div className="select__clear-btn">
-                    <Link
-                        className="select__clear-btn"
-                        onClick={() => {
-                            this._selectOptions([]);
-                        }}
-                    >
-                        Clear all selected
-                    </Link>
-                </div>
+                <div>{this.props.renderActions || this.renderActions}</div>
                 <div className="select__options">
-                    <List
+                    <CheckBoxList
                         ref={checkBoxList => (this._checkBoxList = checkBoxList)}
                         focus={this.state.tempSelection}
                         options={this.state.filtered}
@@ -197,7 +193,22 @@ class MultiSelectPopup extends React.Component {
                 </div>
             </div>
         );
-    }
+    };
+
+    renderActions = () => {
+        return (
+            <div className="select__clear-btn">
+                <Link
+                    className="select__clear-btn"
+                    onClick={() => {
+                        this._selectOptions([]);
+                    }}
+                >
+                    Clear all selected
+                </Link>
+            </div>
+        );
+    };
 }
 
 MultiSelectPopup.propTypes = PROPERTY_TYPES;
