@@ -193,7 +193,7 @@ class MultiSelectPopup extends React.Component {
                         value={this.state.selected.map(selected => {
                             return selected.id;
                         })}
-                    />}
+                    />
                 </div>
             </div>
         );
