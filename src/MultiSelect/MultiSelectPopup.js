@@ -179,7 +179,18 @@ class MultiSelectPopup extends React.Component {
                         iconClassName="im icon-search"
                     />
                 </div>
-                <div>{this.props.renderActions || this.renderActions}</div>
+                <div>
+                    <div className="select__clear-btn">
+                        <Link
+                            className="select__clear-btn"
+                            onClick={() => {
+                                this._selectOptions([]);
+                            }}
+                        >
+                            Clear all selected
+                        </Link>
+                    </div>
+                </div>
                 <div className="select__options">
                     <CheckBoxList
                         ref={checkBoxList => (this._checkBoxList = checkBoxList)}
@@ -191,21 +202,6 @@ class MultiSelectPopup extends React.Component {
                         })}
                     />
                 </div>
-            </div>
-        );
-    };
-
-    renderActions = () => {
-        return (
-            <div className="select__clear-btn">
-                <Link
-                    className="select__clear-btn"
-                    onClick={() => {
-                        this._selectOptions([]);
-                    }}
-                >
-                    Clear all selected
-                </Link>
             </div>
         );
     };

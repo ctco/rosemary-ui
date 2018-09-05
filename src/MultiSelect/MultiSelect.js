@@ -153,7 +153,6 @@ class MultiSelect extends React.Component {
                     })}
                     onChange={(selectedIds, selected) => this.select(selected)}
                     compare={compare}
-                    renderActions={this.props.renderActions}
                     renderOptions={this.props.renderOptions}
                 />
             </Popup>
