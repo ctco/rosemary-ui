@@ -20,7 +20,8 @@ const PROPERTY_TYPES = {
     ),
     onChange: PropTypes.func,
     value: PropTypes.arrayOf(PropTypes.number.isRequired),
-    compare: PropTypes.func
+    compare: PropTypes.func,
+    CheckBoxList: PropTypes.node
 };
 const DEFAULT_PROPS = {
     placeHolder: 'Search ...',
@@ -157,6 +158,7 @@ class MultiSelectPopup extends React.Component {
     }
 
     render() {
+        const List = this.props.CheckBoxList || CheckBoxList;
         return (
             <div className="select__popup">
                 <div className="select__search-container">
@@ -183,7 +185,7 @@ class MultiSelectPopup extends React.Component {
                     </Link>
                 </div>
                 <div className="select__options">
-                    <CheckBoxList
+                    <List
                         ref={checkBoxList => (this._checkBoxList = checkBoxList)}
                         focus={this.state.tempSelection}
                         options={this.state.filtered}
@@ -191,7 +193,7 @@ class MultiSelectPopup extends React.Component {
                         value={this.state.selected.map(selected => {
                             return selected.id;
                         })}
-                    />
+                    />}
                 </div>
             </div>
         );

@@ -13,13 +13,13 @@ const PROPERTY_TYPES = {
     options: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
-            displayString: PropTypes.string.isRequired
+            displayString: PropTypes.node.isRequired
         })
     ),
     onChange: PropTypes.func,
     focus: PropTypes.shape({
         id: PropTypes.number.isRequired,
-        displayString: PropTypes.string.isRequired
+        displayString: PropTypes.node.isRequired
     })
 };
 const DEFAULT_PROPS = {};
