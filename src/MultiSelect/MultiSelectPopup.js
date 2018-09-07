@@ -20,8 +20,7 @@ const PROPERTY_TYPES = {
     ),
     onChange: PropTypes.func,
     value: PropTypes.arrayOf(PropTypes.number.isRequired),
-    compare: PropTypes.func,
-    CheckBoxList: PropTypes.node
+    compare: PropTypes.func
 };
 const DEFAULT_PROPS = {
     placeHolder: 'Search ...',
@@ -158,9 +157,7 @@ class MultiSelectPopup extends React.Component {
     }
 
     render() {
-        return this.props.renderOptions
-            ? this.props.renderOptions()
-            : this.renderOptions();
+        return this.props.renderOptions ? this.props.renderOptions() : this.renderOptions();
     }
 
     renderOptions = () => {
