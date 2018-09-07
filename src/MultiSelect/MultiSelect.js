@@ -29,8 +29,7 @@ const DEFAULT_PROPS = {
     placeholder: 'Select...',
     searchPlaceholder: 'Search ...',
     getText: selectedOptions => `${selectedOptions.length} item(s) selected`,
-    disabled: false,
-    CheckBoxList: CheckBoxList
+    disabled: false
 };
 
 class MultiSelect extends React.Component {
