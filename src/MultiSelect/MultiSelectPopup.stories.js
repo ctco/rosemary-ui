@@ -2,17 +2,6 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import MultiSelect from './MultiSelect';
 
-function generateOptions(name, amount) {
-    let result = [];
-    for (let i = 0; i < amount; i++) {
-        result.push({
-            id: i,
-            displayString: `${name} ${i}`
-        });
-    }
-    return result;
-}
-
 function getOption(id, displayString) {
     return {
         id,

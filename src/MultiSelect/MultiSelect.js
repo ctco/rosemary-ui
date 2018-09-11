@@ -8,9 +8,8 @@ import { isDefined, findIdentifiables, compare } from '../util/utils';
 import MultiSelectPopup from './MultiSelectPopup';
 
 import { withIdAndTypeContext } from '../util/hoc/WithIdAndTypeHOC';
-import CheckBoxList from '../Select/CheckBoxList';
 
-const PROPERTY_TYPES = {
+export const PROPERTY_TYPES = {
     disabled: PropTypes.bool,
     placeholder: PropTypes.string,
     searchPlaceholder: PropTypes.string,
@@ -22,8 +21,7 @@ const PROPERTY_TYPES = {
     ),
     className: PropTypes.string,
     onChange: PropTypes.func,
-    getText: PropTypes.func,
-    CheckBoxList: PropTypes.node
+    getText: PropTypes.func
 };
 const DEFAULT_PROPS = {
     placeholder: 'Select...',

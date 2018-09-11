@@ -1,0 +1,46 @@
+.tree-select__clear-btn {
+  padding: 6px 12px 6px;
+}
+
+.expand {
+  width: 16px;
+  display: inline-block;
+  text-align: center;
+  height: 16px;
+  line-height: 16px;
+  transition: 0.1s;
+  transform: translate(-5px, 0px);
+}
+
+.expand.collapsed {
+  transform: rotate(-90deg) translate(-5px, 0px);
+}
+
+.check-box-list__broken {
+  text-decoration: line-through;
+  color: #9b9b9b;
+}
+
+.select__popup-footer {
+  padding: 5px 5px 5px 10px;
+  border-top: 1px solid #e9e9e9;
+}
+
+.select__popup-header {
+  clear: both;
+  padding-bottom: 20px;
+}
+
+.select__search-container {
+  padding: 18px 18px;
+}
+
+.tree-select .check-box-list__check-box {
+  padding-left: 6px;
+}
+
+.tree-select.check-box-list__item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
