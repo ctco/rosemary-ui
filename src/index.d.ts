@@ -32,6 +32,7 @@ declare module 'rosemary-ui' {
     export import MonthPickerCalendar = __RosemaryUI.MonthPickerCalendar;
     export import MonthPickerPopup = __RosemaryUI.MonthPickerPopup;
     export import MultiSelect = __RosemaryUI.MultiSelect;
+    export import TreeSelect = __RosemaryUI.TreeSelect;
     export import Pager = __RosemaryUI.Pager;
     export import Popup = __RosemaryUI.Popup;
     export import Modal = __RosemaryUI.Modal;
@@ -117,6 +118,8 @@ declare namespace __RosemaryUI {
     class MonthPickerPopup extends React.Component<any> {}
 
     class MultiSelect extends React.Component<any> {}
+
+    class TreeSelect extends React.Component<any> {}
 
     class Pager extends React.Component<any> {}
 
@@ -304,7 +307,10 @@ declare module 'rosemary-ui/MultiSelect' {
     export import MultiSelect = __RosemaryUI.MultiSelect;
     export default MultiSelect;
 }
-
+declare module 'rosemary-ui/TreeSelect' {
+    export import TreeSelect = __RosemaryUI.TreeSelect;
+    export default TreeSelect;
+}
 declare module 'rosemary-ui/Pager' {
     export import Pager = __RosemaryUI.Pager;
     export default Pager;
