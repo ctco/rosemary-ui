@@ -1,4 +1,4 @@
 import {TreeSelect, TreeWithInactiveSwitch} from './TreeSelect';
 
 export default TreeSelect;
-export {TreeWithInactiveSwitch};
+export {TreeWithInactiveSwitch, TreeSelect};

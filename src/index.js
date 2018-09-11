@@ -33,6 +33,8 @@ import Switch from './Switch/Switch';
 import GroupedMultiSelect from './Select/SelectGrouped/GroupedMultiSelect';
 import MultiSelectPopup from './MultiSelect/MultiSelectPopup';
 
+import TreeSelect from './TreeSelect';
+
 import * as dateUtils from './util/date-utils';
 import * as dateFormats from './util/date-formats';
 
@@ -53,6 +55,7 @@ export {
     Avatar,
     Select,
     MultiSelect,
+    TreeSelect,
     EventPlanner,
     FormField,
     Label,
