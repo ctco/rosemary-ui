@@ -35,12 +35,15 @@ export class TreeSelectRaw extends React.Component {
         if (this.props.value) {
             this.state.selected = this.getValidValues(this.props);
         }
-        window.ttt = this;
     }
 
     componentWillReceiveProps(props) {
         if (props.value) {
-            this.setState({ selected: this.getValidValues(props) });
+            this.setState({ selected: this.getValidValues(props) }, () => {
+                if (props.value.length !== this.state.selected.length) {
+                    this.sync();
+                }
+            });
         }
     }
 
