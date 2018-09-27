@@ -120,6 +120,7 @@ declare namespace __RosemaryUI {
     class MultiSelect extends React.Component<any> {}
 
     class TreeSelect extends React.Component<any> {}
+    class TreeSelectWithInactiveSwitch extends React.Component<any> {}
 
     class Pager extends React.Component<any> {}
 
@@ -310,6 +311,8 @@ declare module 'rosemary-ui/MultiSelect' {
 declare module 'rosemary-ui/TreeSelect' {
     export import TreeSelect = __RosemaryUI.TreeSelect;
     export default TreeSelect;
+    import TreeWithInactiveSwitch = __RosemaryUI.TreeSelectWithInactiveSwitch;
+    export {TreeWithInactiveSwitch};
 }
 declare module 'rosemary-ui/Pager' {
     export import Pager = __RosemaryUI.Pager;

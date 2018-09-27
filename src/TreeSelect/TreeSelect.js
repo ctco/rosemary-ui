@@ -13,6 +13,7 @@ import CheckBox from '../CheckBox';
 const TREE_PROPS = {
     ...msPropTyes,
     hashLength: PropTypes.number.isRequired,
+    renderHeader: PropTypes.func,
     footer: PropTypes.node
 };
 
@@ -55,6 +56,8 @@ export class TreeSelectRaw extends React.Component {
 
         this.optionsIn.forEach(item => {
             item.children = null;
+            // allow to use Tree select as simple select
+            item.treeNodeHash = item.treeNodeHash || item.id;
             item.searchString = item.displayString.toLowerCase();
         });
 
@@ -142,21 +145,28 @@ export class TreeSelectRaw extends React.Component {
                         iconClassName="im icon-search"
                     />
                 </div>
+
                 <div className="select__popup-header">
-                    <div className="float-left">
-                        <Link className="tree-select__clear-btn" onClick={this.expandCollapse(false)}>
-                            Expand all
-                        </Link>
-                        <Link className="tree-select__clear-btn" onClick={this.expandCollapse(true)}>
-                            Collapse all
-                        </Link>
+                {this.props.renderHeader
+                    ? this.props.renderHeader(this)
+                    : <div>
+                        <div className="float-left">
+                            <Link className="tree-select__clear-btn" onClick={this.expandCollapse(false)}>
+                                Expand all
+                            </Link>
+                            <Link className="tree-select__clear-btn" onClick={this.expandCollapse(true)}>
+                                Collapse all
+                            </Link>
+                        </div>
+                        <div className="float-right">
+                            <Link className="tree-select__clear-btn" onClick={this.clearSelected}>
+                                Clear selected
+                            </Link>
+                        </div>
                     </div>
-                    <div className="float-right">
-                        <Link className="tree-select__clear-btn" onClick={this.clearSelected}>
-                            Clear selected
-                        </Link>
-                    </div>
+                }
                 </div>
+
                 <div className="select__options" style={{ clear: 'both', margin: '20px 0 0 0' }}>
                     <List
                         options={this.options}
@@ -327,7 +337,7 @@ class List extends React.Component {
                         onClick={this.toggleExpanded(option)}
                     />
                 ) : (
-                    <span className={'expand'} />
+                    null
                 )}
                 <span onClick={this.select(option)()}>
                     <span className="check-box-list__check-box">
@@ -344,7 +354,7 @@ class List extends React.Component {
                         ) : null}
                     </span>
                     <span
-                        className={['check-box-list__label', isBroken ? 'check-box-list__broken' : ''].join(' ')}
+                        className={['check-box-list__label', isBroken ? 'check-box-list__broken' : '', option.className ? option.className : ''].join(' ')}
                         key={key}
                     >
                         {option.displayString}
