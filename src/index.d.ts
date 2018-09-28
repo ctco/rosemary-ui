@@ -312,7 +312,7 @@ declare module 'rosemary-ui/TreeSelect' {
     export import TreeSelect = __RosemaryUI.TreeSelect;
     export default TreeSelect;
     import TreeWithInactiveSwitch = __RosemaryUI.TreeSelectWithInactiveSwitch;
-    export {TreeWithInactiveSwitch};
+    export { TreeWithInactiveSwitch };
 }
 declare module 'rosemary-ui/Pager' {
     export import Pager = __RosemaryUI.Pager;

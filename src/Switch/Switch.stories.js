@@ -9,15 +9,17 @@ storiesOf('Switch', module)
     ))
     .add('Disabled', () => <Switch title="title title" disabled />)
     .add('Uncontrolled Switch', () => <Switch />)
-    .add('All in one', () => <div style={{margin: "10px"}}>
-        <Switch title="This is title"/>
-        <br />
-        <br />
-        <Switch title="This is title" value true/>
-        <br />
-        <br />
-        <Switch title="This is title" disabled/>
-        <br />
-        <br />
-        <Switch title="This is title" value={true} disabled/>
-    </div>);
+    .add('All in one', () => (
+        <div style={{ margin: '10px' }}>
+            <Switch title="This is title" />
+            <br />
+            <br />
+            <Switch title="This is title" value true />
+            <br />
+            <br />
+            <Switch title="This is title" disabled />
+            <br />
+            <br />
+            <Switch title="This is title" value={true} disabled />
+        </div>
+    ));

@@ -17,10 +17,16 @@ storiesOf('Button', module)
     .add('Group', () => (
         <ButtonGroup>
             <Button className="btn--grouped">Button</Button>
-            <Button className="btn--grouped" selected={true}>Button</Button>
+            <Button className="btn--grouped" selected={true}>
+                Button
+            </Button>
             <Button className="btn--grouped">Button</Button>
-            <Button className="btn--grouped" disabled={true}>Button</Button>
-            <Button className="btn--grouped" disabled={true} selected={true}>Button</Button>
+            <Button className="btn--grouped" disabled={true}>
+                Button
+            </Button>
+            <Button className="btn--grouped" disabled={true} selected={true}>
+                Button
+            </Button>
             <Button className="btn--grouped">Button</Button>
         </ButtonGroup>
     ));

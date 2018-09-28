@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
 import Popup from '../Popup';
-import { isDefined, findIdentifiables, compare } from '../util/utils';
+import {compare, findIdentifiables, isDefined} from '../util/utils';
 import MultiSelectPopup from './MultiSelectPopup';
 
-import { withIdAndTypeContext } from '../util/hoc/WithIdAndTypeHOC';
+import {withIdAndTypeContext} from '../util/hoc/WithIdAndTypeHOC';
 
 export const PROPERTY_TYPES = {
     disabled: PropTypes.bool,
@@ -21,6 +21,7 @@ export const PROPERTY_TYPES = {
     ),
     className: PropTypes.string,
     onChange: PropTypes.func,
+    handleTooltipStateChange: PropTypes.func,
     getText: PropTypes.func
 };
 const DEFAULT_PROPS = {
@@ -43,7 +44,7 @@ class MultiSelect extends React.Component {
     componentWillReceiveProps(nextProps) {
         let isValueChanged = nextProps.value !== this.props.value;
         if (isValueChanged) {
-            this.setState({ selected: this.sort(findIdentifiables(nextProps.options, nextProps.value)) });
+            this.setState({selected: this.sort(findIdentifiables(nextProps.options, nextProps.value))});
         }
     }
 
@@ -73,6 +74,10 @@ class MultiSelect extends React.Component {
             return;
         }
 
+        if (this.props.handlePopupStateChange) {
+            this.props.handlePopupStateChange(open);
+        }
+
         let newState = {
             popupOpen: open,
             tooltipOpen: false
@@ -85,8 +90,12 @@ class MultiSelect extends React.Component {
     }
 
     handleTooltipStateChange(open) {
+        if (this.props.handleTooltipStateChange) {
+            this.props.handleTooltipStateChange(open);
+        }
+
         if (!this.state.popupOpen && this.state.selected.length > 0) {
-            this.setState({ tooltipOpen: open });
+            this.setState({tooltipOpen: open});
         }
     }
 
@@ -133,7 +142,7 @@ class MultiSelect extends React.Component {
                 >
                     <div id={this.props.id} ref="input" tabIndex="0" className={className}>
                         <div>{this.getText()}</div>
-                        <i className="im icon-arrow-down" />
+                        <i className="im icon-arrow-down"/>
                     </div>
                     <div>
                         {this.state.selected.map(option => {

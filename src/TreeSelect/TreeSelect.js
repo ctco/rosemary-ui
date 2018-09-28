@@ -147,24 +147,25 @@ export class TreeSelectRaw extends React.Component {
                 </div>
 
                 <div className="select__popup-header">
-                {this.props.renderHeader
-                    ? this.props.renderHeader(this)
-                    : <div>
-                        <div className="float-left">
-                            <Link className="tree-select__clear-btn" onClick={this.expandCollapse(false)}>
-                                Expand all
-                            </Link>
-                            <Link className="tree-select__clear-btn" onClick={this.expandCollapse(true)}>
-                                Collapse all
-                            </Link>
+                    {this.props.renderHeader ? (
+                        this.props.renderHeader(this)
+                    ) : (
+                        <div>
+                            <div className="float-left">
+                                <Link className="tree-select__clear-btn" onClick={this.expandCollapse(false)}>
+                                    Expand all
+                                </Link>
+                                <Link className="tree-select__clear-btn" onClick={this.expandCollapse(true)}>
+                                    Collapse all
+                                </Link>
+                            </div>
+                            <div className="float-right">
+                                <Link className="tree-select__clear-btn" onClick={this.clearSelected}>
+                                    Clear selected
+                                </Link>
+                            </div>
                         </div>
-                        <div className="float-right">
-                            <Link className="tree-select__clear-btn" onClick={this.clearSelected}>
-                                Clear selected
-                            </Link>
-                        </div>
-                    </div>
-                }
+                    )}
                 </div>
 
                 <div className="select__options" style={{ clear: 'both', margin: '20px 0 0 0' }}>
@@ -336,9 +337,7 @@ class List extends React.Component {
                         )}
                         onClick={this.toggleExpanded(option)}
                     />
-                ) : (
-                    null
-                )}
+                ) : null}
                 <span onClick={this.select(option)()}>
                     <span className="check-box-list__check-box">
                         {selected === List.selected.ALL ? (
@@ -354,7 +353,11 @@ class List extends React.Component {
                         ) : null}
                     </span>
                     <span
-                        className={['check-box-list__label', isBroken ? 'check-box-list__broken' : '', option.className ? option.className : ''].join(' ')}
+                        className={[
+                            'check-box-list__label',
+                            isBroken ? 'check-box-list__broken' : '',
+                            option.className ? option.className : ''
+                        ].join(' ')}
                         key={key}
                     >
                         {option.displayString}
@@ -495,6 +498,12 @@ export class TreeWithInactiveSwitch extends React.Component {
     constructor(...r) {
         super(...r);
         this.state.value = this.props.value;
+    }
+
+    componentDidUpdate() {
+        if (this.state.value !== this.props.value) {
+            this.setState({ value: this.props.value });
+        }
     }
 
     doChange = value => {
