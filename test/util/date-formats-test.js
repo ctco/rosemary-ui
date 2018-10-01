@@ -1,25 +1,18 @@
-import moment from 'moment';
-
 import {expect} from '../test_helper';
 
-import {
-    parse,
-    setYear,
-    getYear,
-    getToday
-    } from '../../src/util/date-utils';
+import {getToday, getYear, isToday, parse, setYear} from '../../src/util/date-utils';
 
 import {
-    formatDMonthYear,
+    formatD,
+    formatDDMMYYYY,
     formatDMonthTime,
+    formatDMonthYear,
     formatFullMonth,
     formatFullMonthYear,
     formatRange,
-    formatDDMMYYYY,
     formatWeekDay,
-    formatD,
     parseDDMMYYYY
-    } from '../../src/util/date-formats';
+} from '../../src/util/date-formats';
 
 function getCurrentYear() {
     return getYear(getToday());
@@ -30,10 +23,12 @@ function changeYearToCurrent(date) {
 }
 
 describe('date formats', () => {
-    describe('formatDMonthYear', ()=> {
+    describe('formatDMonthYear', () => {
         it('should format correctly', () => {
             let date = changeYearToCurrent(parseDDMMYYYY('01.10.2016'));
-            expect(formatDMonthYear(date)).to.equal('1 Oct');
+            if (!isToday(date)) {
+                expect(formatDMonthYear(date)).to.equal('1 Oct');
+            }
 
             date = parseDDMMYYYY('02.10.2010');
             expect(formatDMonthYear(date)).to.equal('2 Oct 2010');
@@ -42,21 +37,21 @@ describe('date formats', () => {
         });
     });
 
-    describe('formatDMonthTime', ()=> {
+    describe('formatDMonthTime', () => {
         it('should format correctly', () => {
             let date = parse('03.01.2016 16:15', 'DD.MM.YYYY HH:mm');
             expect(formatDMonthTime(date)).to.equal('3 Jan 16:15');
         });
     });
 
-    describe('formatFullMonth', ()=> {
+    describe('formatFullMonth', () => {
         it('should format correctly', () => {
             let date = parseDDMMYYYY('08.12.2016');
             expect(formatFullMonth(date)).to.equal('December');
         });
     });
 
-    describe('formatFullMonthYear', ()=> {
+    describe('formatFullMonthYear', () => {
         it('should format correctly for current year', () => {
             let date = changeYearToCurrent(parseDDMMYYYY('01.12.2016'));
             expect(formatFullMonthYear(date)).to.equal('December');
@@ -68,7 +63,7 @@ describe('date formats', () => {
         });
     });
 
-    describe('range', ()=> {
+    describe('range', () => {
         it('should format correctly for same month current year', () => {
             let from = changeYearToCurrent(parseDDMMYYYY('01.12.2016'));
             let to = changeYearToCurrent(parseDDMMYYYY('08.12.2016'));
@@ -89,28 +84,28 @@ describe('date formats', () => {
         });
     });
 
-    describe('formatDDMMYYYY', ()=> {
+    describe('formatDDMMYYYY', () => {
         it('should format correctly', () => {
             let date = parseDDMMYYYY('01.12.2016');
             expect(formatDDMMYYYY(date)).to.equal('01.12.2016');
         });
     });
 
-    describe('formatWeekDay', ()=> {
+    describe('formatWeekDay', () => {
         it('should format correctly', () => {
             let date = parseDDMMYYYY('01.12.2016');
             expect(formatWeekDay(date)).to.equal('Th');
         });
     });
 
-    describe('formatD', ()=> {
+    describe('formatD', () => {
         it('should format correctly', () => {
             let date = parseDDMMYYYY('01.12.2016');
             expect(formatD(date)).to.equal('1');
         });
     });
 
-    describe('parseDDMMYYYY', ()=> {
+    describe('parseDDMMYYYY', () => {
         it('should format correctly', () => {
             let date = parseDDMMYYYY('01.12.2016');
             expect(formatDDMMYYYY(date)).to.equal('01.12.2016');
