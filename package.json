@@ -28,8 +28,8 @@
   },
   "peerDependencies": {
     "moment": "^2.15.1",
-    "react": "15.3.0 - 16.3.2",
-    "react-dom": "15.3.0 - 16.3.2"
+    "react": ">=15 <17",
+    "react-dom": ">=15 <17"
   },
   "author": "C.T.Co Team TaskODS",
   "devDependencies": {

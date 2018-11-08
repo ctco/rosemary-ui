@@ -9,7 +9,8 @@ const PROPERTY_TYPES = {
     touched: PropTypes.bool,
     valid: PropTypes.bool,
     label: PropTypes.node,
-    testId: PropTypes.string
+    testId: PropTypes.string,
+    colClass: PropTypes.string
 };
 const DEFAULT_PROPS = {};
 
