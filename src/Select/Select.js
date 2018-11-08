@@ -23,7 +23,8 @@ const PROPERTY_TYPES = {
     options: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-            displayString: PropTypes.string.isRequired
+            displayString: PropTypes.string.isRequired,
+            grayed_item: PropTypes.bool,
         })
     ),
     className: PropTypes.string
@@ -142,7 +143,8 @@ class Select extends React.Component {
             let selected = selectedObject && selectedObject.id === option.id;
             let tempSelection = tempSelectionObject && tempSelectionObject.id === option.id;
             let className = classNames('select__option', option.className, {
-                selected: tempSelection
+                selected: tempSelection,
+                grayed_item: option.grayed_item
             });
 
             let ref = selected || tempSelection ? { ref: 'selected' } : null;
@@ -191,7 +193,8 @@ class Select extends React.Component {
 
         let className = classNames(this.props.className, 'select', {
             placeholder: !selectedObject,
-            disabled: this.props.disabled
+            disabled: this.props.disabled,
+            grayed_item: selectedObject && selectedObject.grayed_item
         });
         return (
             <Popup

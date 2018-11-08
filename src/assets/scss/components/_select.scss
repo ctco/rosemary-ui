@@ -47,6 +47,10 @@
     color: $black;
     line-height: 1.2em;
   }
+
+  &.grayed_item {
+    color: $mid-grey;
+  }
 }
 
 .select--sm {
@@ -87,6 +91,9 @@
   }
   &.odd {
     background-color: $light-grey;
+  }
+  &.grayed_item {
+    color: $mid-grey;
   }
 }
 
