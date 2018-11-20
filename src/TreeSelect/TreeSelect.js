@@ -175,6 +175,7 @@ export class TreeSelectRaw extends React.Component {
                         search={this.state.search.toLowerCase()}
                         onChange={this.onChange}
                         tree={this.tree}
+                        toggleExpanded={this.toggleExpanded}
                     />
                 </div>
                 {this.props.footer ? <div className="select__popup-footer">{this.props.footer}</div> : null}
@@ -208,6 +209,11 @@ export class TreeSelectRaw extends React.Component {
             opt.collapsed = collapsed;
         });
         this.forceUpdate();
+    };
+
+    toggleExpanded = option => {
+        const opt = this.props.options.find(op => op.id === option.id);
+        opt.collapsed = !opt.collapsed;
     };
 }
 
@@ -427,6 +433,7 @@ class List extends React.Component {
     };
 
     toggleExpanded = option => () => {
+        this.props.toggleExpanded(option);
         option.collapsed = !option.collapsed;
 
         this.setState({
