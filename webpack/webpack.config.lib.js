@@ -33,14 +33,6 @@ module.exports = webpackUtils.merge(base.defaults, {
                 commonjs: 'react-dom',
                 amd: 'react-dom'
             }
-        },
-        {
-            'react-addons-css-transition-group': {
-                root: ['React', 'addons', 'CSSTransitionGroup'],
-                commonjs: 'react-addons-css-transition-group',
-                commonjs2: 'react-addons-css-transition-group',
-                amd: 'react-addons-css-transition-group'
-            }
         }
     ],
     module: {

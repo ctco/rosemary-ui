@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import _noop from 'lodash/noop';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import TetherComponent from '../react-tether/TetherComponent.js';
 import { ESCAPE } from '../util/constant/key-codes';

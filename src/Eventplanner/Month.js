@@ -151,7 +151,6 @@ class MonthView extends React.Component {
                     {content(levels, week, weekIdx)}
                     {!!extra.length && this.renderShowMore(segments, extra, week, weekIdx, levels.length)}
                 </div>
-                {this.props.popup && this._renderOverlay()}
             </div>
         );
     }
@@ -488,6 +487,7 @@ class MonthView extends React.Component {
             <div className={cn('rbc-month-view', this.props.className)}>
                 <div className="rbc-row rbc-month-header">{this._headers(weeks[0], weekdayFormat, culture)}</div>
                 {weeks.map((week, idx) => this.renderWeek(week, idx, measure && this._renderMeasureRows))}
+                {this.props.popup && this._renderOverlay()}
             </div>
         );
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import noop from 'lodash/noop';
 import values from 'lodash/values';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import Card from '../FeedbackCard';
 import types from '../types';
