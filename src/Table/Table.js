@@ -1,5 +1,4 @@
 import React from 'react';
-import createFragment from 'react-addons-create-fragment';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isUndefined from 'lodash/isUndefined';
@@ -180,32 +179,30 @@ class Table extends React.Component {
             this._getRowStyle(item)
         );
 
-        return createFragment({
-            row: (
-                <Row className={style} key={index} item={item} onClick={e => this._handleRowClick(item, index)}>
-                    {this._getCells(item).map((cell, key) => {
-                        if (cell === null) {
-                            return <td className={cellStyle} key={key} />;
-                        }
+        return <React.Fragment>
+            <Row className={style} key={index} item={item} onClick={e => this._handleRowClick(item, index)}>
+                {this._getCells(item).map((cell, key) => {
+                    if (cell === null) {
+                        return <td className={cellStyle} key={key}/>;
+                    }
 
-                        if (React.isValidElement(cell)) {
-                            return (
-                                <td key={key} className={cellStyle}>
-                                    {cell}
-                                </td>
-                            );
-                        }
-
+                    if (React.isValidElement(cell)) {
                         return (
-                            <td key={key} className={cellStyle} {...cell.props || {}}>
-                                {cell.el}
+                            <td key={key} className={cellStyle}>
+                                {cell}
                             </td>
                         );
-                    })}
-                </Row>
-            ),
-            bottomSection: this._renderBottomSection(showLoader, hasData, item, rowDetails)
-        });
+                    }
+
+                    return (
+                        <td key={key} className={cellStyle} {...cell.props || {}}>
+                            {cell.el}
+                        </td>
+                    );
+                })}
+            </Row>
+            {this._renderBottomSection(showLoader, hasData, item, rowDetails)}
+        </React.Fragment>;
     }
 
     _renderColGroup() {
