@@ -29,6 +29,8 @@ class EventCell extends React.Component {
             continuesPrior = dates.lt(start, slotStart, 'day'),
             continuesAfter = dates.gt(end, slotEnd, 'day');
 
+        const titleTooltip = typeof title === 'string' ? title : '';
+
         if (eventPropGetter) var { style, className: xClassName } = eventPropGetter(event, start, end, selected); //eslint-disable-line
 
         return (
@@ -42,7 +44,7 @@ class EventCell extends React.Component {
                 })}
                 onClick={() => onSelect(event)}
             >
-                <div className="rbc-event-content" title={title}>
+                <div className="rbc-event-content" title={titleTooltip}>
                     {Component ? <Component event={event} title={title} /> : title}
                 </div>
             </div>
