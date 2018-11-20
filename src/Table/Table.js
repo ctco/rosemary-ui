@@ -1,5 +1,5 @@
 import React from 'react';
-import createFragment from 'react-addons-create-fragment';
+import createFragment from 'react-transition-group/TransitionGroup';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isUndefined from 'lodash/isUndefined';
