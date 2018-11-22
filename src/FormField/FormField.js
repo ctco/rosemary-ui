@@ -15,10 +15,6 @@ const PROPERTY_TYPES = {
 const DEFAULT_PROPS = {};
 
 class FormField extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     getMessage() {
         let style = classNames({
             'form-field__error-msg': this.props.error
