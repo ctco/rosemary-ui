@@ -24,7 +24,7 @@ const PROPERTY_TYPES = {
         PropTypes.shape({
             id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
             displayString: PropTypes.string.isRequired,
-            grayed_item: PropTypes.bool,
+            grayed_item: PropTypes.bool
         })
     ),
     className: PropTypes.string

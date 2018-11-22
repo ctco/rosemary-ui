@@ -69,8 +69,8 @@ class Popup extends React.Component {
                     ? POPUP_STATE.OPEN
                     : POPUP_STATE.CLOSED
                 : props.openByDefault
-                    ? POPUP_STATE.OPEN
-                    : POPUP_STATE.CLOSED
+                ? POPUP_STATE.OPEN
+                : POPUP_STATE.CLOSED
         };
         this.overlayElement = null;
         this.openTimeout = null;

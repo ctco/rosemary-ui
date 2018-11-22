@@ -143,8 +143,8 @@ class DaySlot extends React.Component {
         let eventOffset = this.props.eventOffset || 10,
             isRtl = this.props.rtl;
 
-        let top = startSlot / this._totalMin * 100;
-        let bottom = endSlot / this._totalMin * 100;
+        let top = (startSlot / this._totalMin) * 100;
+        let bottom = (endSlot / this._totalMin) * 100;
         let per = leftOffset === 0 ? 0 : leftOffset * eventOffset;
         let rightDiff = eventOffset / (leftOffset + 1);
 

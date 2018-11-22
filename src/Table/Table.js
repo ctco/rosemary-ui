@@ -179,35 +179,43 @@ class Table extends React.Component {
             this._getRowStyle(item)
         );
 
-        return <React.Fragment>
-            <Row className={style} key={index} item={item} onClick={e => this._handleRowClick(item, index)}>
-                {this._getCells(item).map((cell, key) => {
-                    if (cell === null) {
-                        return <td className={cellStyle} key={key}/>;
-                    }
+        return (
+            <React.Fragment>
+                <Row className={style} key={index} item={item} onClick={e => this._handleRowClick(item, index)}>
+                    {this._getCells(item).map((cell, key) => {
+                        if (cell === null) {
+                            return <td className={cellStyle} key={key} />;
+                        }
 
-                    if (React.isValidElement(cell)) {
+                        if (React.isValidElement(cell)) {
+                            return (
+                                <td key={key} className={cellStyle}>
+                                    {cell}
+                                </td>
+                            );
+                        }
+
                         return (
-                            <td key={key} className={cellStyle}>
-                                {cell}
+                            <td key={key} className={cellStyle} {...cell.props || {}}>
+                                {cell.el}
                             </td>
                         );
-                    }
-
-                    return (
-                        <td key={key} className={cellStyle} {...cell.props || {}}>
-                            {cell.el}
-                        </td>
-                    );
-                })}
-            </Row>
-            {this._renderBottomSection(showLoader, hasData, item, rowDetails)}
-        </React.Fragment>;
+                    })}
+                </Row>
+                {this._renderBottomSection(showLoader, hasData, item, rowDetails)}
+            </React.Fragment>
+        );
     }
 
     _renderColGroup() {
         if (this.props.colgroup) {
-            return <colgroup>{this.props.colgroup.map((col, index) => <col key={index} width={col} />)}</colgroup>;
+            return (
+                <colgroup>
+                    {this.props.colgroup.map((col, index) => (
+                        <col key={index} width={col} />
+                    ))}
+                </colgroup>
+            );
         }
         return null;
     }

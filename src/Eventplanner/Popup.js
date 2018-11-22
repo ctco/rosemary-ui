@@ -8,33 +8,40 @@ import getScrollLeft from 'dom-helpers/query/scrollLeft';
 
 class Popup extends React.Component {
     componentDidMount() {
-        let { popupOffset = 5 } = this.props,
+        const { popupOffset = 5 } = this.props,
             { top, left, width, height } = getOffset(this.refs.root),
             viewBottom = window.innerHeight + getScrollTop(window),
             viewRight = window.innerWidth + getScrollLeft(window),
             bottom = top + height,
-            right = left + width;
+            right = left;
 
-        if (bottom > viewBottom || right > viewRight) {
-            let topOffset, leftOffset;
+        //if (bottom > viewBottom || right > viewRight) {
+        let topOffset, leftOffset;
 
-            if (bottom > viewBottom) topOffset = bottom - viewBottom + (popupOffset.y || +popupOffset || 0);
-            if (right > viewRight) leftOffset = right - viewRight + (popupOffset.x || +popupOffset || 0);
-
-            this.setState({ topOffset, leftOffset }); //eslint-disable-line
+        if (bottom > viewBottom) {
+            topOffset = bottom - viewBottom + (popupOffset.y || +popupOffset || 0);
         }
+        if (right > viewRight) {
+            leftOffset = right - viewRight + (popupOffset.x || +popupOffset || 0);
+        }
+        if (left < 0) {
+            leftOffset = -(this.props.position.width * 0.25) | 1;
+        }
+
+        this.setState({ topOffset, leftOffset }); //eslint-disable-line
+        // }
     }
 
     render() {
         let { events, selected, eventComponent, ...props } = this.props;
 
-        let { left, width, top } = this.props.position,
+        let { left, width, top, height } = this.props.position,
             topOffset = (this.state || {}).topOffset || 0,
             leftOffset = (this.state || {}).leftOffset || 0;
 
         let style = {
-            top: top - topOffset,
-            left: left - leftOffset,
+            top: top - topOffset - height * 0.25,
+            left: left - leftOffset - width * 0.25,
             minWidth: width + width / 2
         };
 
