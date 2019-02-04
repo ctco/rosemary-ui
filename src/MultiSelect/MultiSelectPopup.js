@@ -64,6 +64,9 @@ class MultiSelectPopup extends React.Component {
 
         let isValueChanged = nextProps.value !== this.props.value;
         if (isValueChanged) {
+            if (this.props.options !== nextProps.options) {
+                this._applySearch('');
+            }
             this.setState({ selected: findIdentifiables(nextProps.options, nextProps.value) });
         }
     }
@@ -140,13 +143,17 @@ class MultiSelectPopup extends React.Component {
     }
 
     _applySearch = value => {
+        if (this.state.query === value) {
+            return;
+        }
         this.resetNav();
         let filtered = trim(value).length === 0 ? this.props.options : this.fuse.search(value);
 
         filtered.sort(this._sortSelectedOnTop);
 
         this.setState({
-            filtered: filtered
+            filtered: filtered,
+            query: value
         });
     };
 
