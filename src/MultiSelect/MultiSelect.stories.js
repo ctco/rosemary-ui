@@ -23,3 +23,7 @@ const options = [
 ];
 
 storiesOf('MultiSelect', module).add('basic', () => <MultiSelect options={options} />);
+
+storiesOf('MultiSelect', module).add('custom', () => (
+    <MultiSelect options={options} popupHeader={<h2>CUSTOM Header</h2>} showSearch={false} showClear={false} />
+));

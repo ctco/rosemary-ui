@@ -20,11 +20,17 @@ const PROPERTY_TYPES = {
     ),
     onChange: PropTypes.func,
     value: PropTypes.arrayOf(PropTypes.number.isRequired),
-    compare: PropTypes.func
+    compare: PropTypes.func,
+    showSearch: PropTypes.boolean,
+    showClear: PropTypes.boolean,
+    popupHeader: PropTypes.element
 };
 const DEFAULT_PROPS = {
     placeHolder: 'Search ...',
-    compare: compare
+    compare: compare,
+    showSearch: true,
+    showClear: true,
+    popupHeader: null
 };
 
 class MultiSelectPopup extends React.Component {
@@ -163,31 +169,37 @@ class MultiSelectPopup extends React.Component {
     renderOptions = () => {
         return (
             <div className="select__popup">
-                <div className="select__search-container">
-                    <IconInput
-                        inputRef={input => (this._searchInput = input)}
-                        onKeyDown={e => this.navigate(e)}
-                        ref="searchInput"
-                        fluid={true}
-                        placeholder={this.props.placeholder}
-                        size="sm"
-                        onChange={this._applySearch}
-                        className="select__search"
-                        iconClassName="im icon-search"
-                    />
-                </div>
-                <div>
-                    <div className="select__clear-btn">
-                        <Link
-                            className="select__clear-btn"
-                            onClick={() => {
-                                this._selectOptions([]);
-                            }}
-                        >
-                            Clear all selected
-                        </Link>
+                {this.props.popupHeader ? this.props.popupHeader : null}
+                {this.props.showSearch ? (
+                    <div className="select__search-container">
+                        <IconInput
+                            inputRef={input => (this._searchInput = input)}
+                            onKeyDown={e => this.navigate(e)}
+                            ref="searchInput"
+                            fluid={true}
+                            placeholder={this.props.placeholder}
+                            size="sm"
+                            onChange={this._applySearch}
+                            className="select__search"
+                            iconClassName="im icon-search"
+                        />
                     </div>
-                </div>
+                ) : null}
+                {this.props.showClear ? (
+                    <div>
+                        <div className="select__clear-btn">
+                            <Link
+                                className="select__clear-btn"
+                                onClick={() => {
+                                    this._selectOptions([]);
+                                }}
+                            >
+                                Clear all selected
+                            </Link>
+                        </div>
+                    </div>
+                ) : null}
+
                 <div className="select__options">
                     <CheckBoxList
                         ref={checkBoxList => (this._checkBoxList = checkBoxList)}

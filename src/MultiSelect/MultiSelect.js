@@ -22,7 +22,11 @@ export const PROPERTY_TYPES = {
     className: PropTypes.string,
     onChange: PropTypes.func,
     handleTooltipStateChange: PropTypes.func,
-    getText: PropTypes.func
+    getText: PropTypes.func,
+
+    showSearch: PropTypes.boolean,
+    showClear: PropTypes.boolean,
+    popupHeader: PropTypes.element
 };
 const DEFAULT_PROPS = {
     placeholder: 'Select...',
@@ -152,6 +156,9 @@ class MultiSelect extends React.Component {
                 </Popup>
 
                 <MultiSelectPopup
+                    showSearch={this.props.showSearch}
+                    showClear={this.props.showClear}
+                    popupHeader={this.props.popupHeader}
                     placeholder={this.props.searchPlaceholder}
                     options={this.props.options}
                     value={this.state.selected.map(selected => {

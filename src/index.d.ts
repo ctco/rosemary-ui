@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 declare module 'rosemary-ui' {
     export interface Option {
         id: number;
@@ -117,7 +119,21 @@ declare namespace __RosemaryUI {
 
     class MonthPickerPopup extends React.Component<any> {}
 
-    class MultiSelect extends React.Component<any> {}
+    type MultiSelectProps = {
+        placeholder: string;
+        options: {
+            id: number;
+            displayString: string;
+        }[];
+        onChange: (value: number) => any;
+        value: number[];
+        compare: (a: any, b: any) => any;
+        showSearch: boolean;
+        showClear: boolean;
+        popupHeader: React.ReactNode;
+    };
+
+    class MultiSelect extends React.Component<MultiSelectProps> {}
 
     class TreeSelect extends React.Component<any> {}
     class TreeSelectWithInactiveSwitch extends React.Component<any> {}
@@ -140,7 +156,9 @@ declare namespace __RosemaryUI {
 
     class RadioGroup extends React.Component<any> {}
 
-    class Select extends React.Component<any> {}
+    class Select extends React.Component<{
+        id: number | string;
+    }> {}
 
     class SelectGrouped extends React.Component<any> {}
 
