@@ -159,11 +159,8 @@ class MultiSelectPopup extends React.Component {
 
     resetSearch = (options = this.props.options) => {
         this.resetNav();
-        let filtered = options;
-        filtered.sort(this._sortSelectedOnTop);
-
         this.setState({
-            filtered: filtered,
+            filtered: options.sort(this._sortSelectedOnTop),
             query: ''
         });
     };
