@@ -24,9 +24,9 @@ export const PROPERTY_TYPES = {
     handleTooltipStateChange: PropTypes.func,
     getText: PropTypes.func,
 
-    showSearch: PropTypes.boolean,
-    showClear: PropTypes.boolean,
-    popupHeader: PropTypes.element
+    showSearch: PropTypes.bool,
+    showClear: PropTypes.bool,
+    popupHeader: PropTypes.bool
 };
 const DEFAULT_PROPS = {
     placeholder: 'Select...',
