@@ -65,7 +65,7 @@ class MultiSelectPopup extends React.Component {
         let isValueChanged = nextProps.value !== this.props.value;
         if (isValueChanged) {
             if (this.props.options !== nextProps.options) {
-                this.resetSearch();
+                this.resetSearch(nextProps.options);
             }
             this.setState({ selected: findIdentifiables(nextProps.options, nextProps.value) });
         }
@@ -157,9 +157,9 @@ class MultiSelectPopup extends React.Component {
         });
     };
 
-    resetSearch = () => {
+    resetSearch = (options = this.props.options) => {
         this.resetNav();
-        let filtered = this.props.options;
+        let filtered = options;
         filtered.sort(this._sortSelectedOnTop);
 
         this.setState({
