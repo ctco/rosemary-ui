@@ -120,17 +120,23 @@ declare namespace __RosemaryUI {
     class MonthPickerPopup extends React.Component<any> {}
 
     type MultiSelectProps = {
-        placeholder: string;
         options: {
             id: number;
             displayString: string;
         }[];
         onChange: (value: number) => any;
         value: number[];
-        compare: (a: any, b: any) => any;
-        showSearch: boolean;
-        showClear: boolean;
-        popupHeader: React.ReactNode;
+
+        getText?: (...any) => React.ReactNode;
+        handleTooltipStateChange?: (...any) => any;
+        className?: string;
+        disabled?: boolean;
+        placeholder?: string;
+        searchPlaceholder?: string;
+        compare?: (a: any, b: any) => any;
+        showSearch?: boolean;
+        showClear?: boolean;
+        popupHeader?: React.ReactNode;
     };
 
     class MultiSelect extends React.Component<MultiSelectProps> {}
