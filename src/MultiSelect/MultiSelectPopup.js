@@ -21,8 +21,8 @@ const PROPERTY_TYPES = {
     onChange: PropTypes.func,
     value: PropTypes.arrayOf(PropTypes.number.isRequired),
     compare: PropTypes.func,
-    showSearch: PropTypes.boolean,
-    showClear: PropTypes.boolean,
+    showSearch: PropTypes.bool,
+    showClear: PropTypes.bool,
     popupHeader: PropTypes.element
 };
 const DEFAULT_PROPS = {
