@@ -246,4 +246,4 @@ class Select extends React.Component {
 Select.propTypes = PROPERTY_TYPES;
 Select.defaultProps = DEFAULT_PROPS;
 
-export default withIdAndTypeContext(keyBordNav(false)(Select));
+export default withIdAndTypeContext(keyBordNav(false)(Select), 'Select');

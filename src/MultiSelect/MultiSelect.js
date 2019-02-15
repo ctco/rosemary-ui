@@ -176,4 +176,4 @@ class MultiSelect extends React.Component {
 MultiSelect.propTypes = PROPERTY_TYPES;
 MultiSelect.defaultProps = DEFAULT_PROPS;
 
-export default withIdAndTypeContext(MultiSelect);
+export default withIdAndTypeContext(MultiSelect, 'MultiSelect');

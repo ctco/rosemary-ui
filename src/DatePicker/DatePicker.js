@@ -177,4 +177,4 @@ class DatePicker extends React.Component {
 DatePicker.propTypes = PROPERTY_TYPES;
 DatePicker.defaultProps = DEFAULT_PROPS;
 
-export default withIdAndTypeContext(DatePicker);
+export default withIdAndTypeContext(DatePicker, 'DatePicker');

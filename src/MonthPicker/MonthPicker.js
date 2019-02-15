@@ -141,4 +141,4 @@ class MonthPicker extends React.Component {
 MonthPicker.propTypes = PROPERTY_TYPES;
 MonthPicker.defaultProps = DEFAULT_PROPS;
 
-export default withIdAndTypeContext(MonthPicker);
+export default withIdAndTypeContext(MonthPicker, 'MonthPicker');
