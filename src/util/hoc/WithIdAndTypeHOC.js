@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export function withIdAndTypeContext(ParentClass) {
+export function withIdAndTypeContext(ParentClass, parentType) {
     class Enhance extends ParentClass {
         static get displayName() {
             return ParentClass.displayName || ParentClass.name;
@@ -18,7 +18,7 @@ export function withIdAndTypeContext(ParentClass) {
             }
             return {
                 ...result,
-                parentType: ParentClass.displayName || ParentClass.name,
+                parentType: parentType || ParentClass.displayName || ParentClass.name,
                 id: this.props.id || this.context.id
             };
         }
