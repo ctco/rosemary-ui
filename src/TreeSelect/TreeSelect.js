@@ -508,9 +508,9 @@ export class TreeWithInactiveSwitch extends React.Component {
         this.state.value = this.props.value;
     }
 
-    componentDidUpdate() {
-        if (this.state.value !== this.props.value) {
-            this.setState({ value: this.props.value });
+    componentWillReceiveProps(nextProps) {
+        if (this.state.value !== nextProps.value) {
+            this.setState({ value: nextProps.value });
         }
     }
 
