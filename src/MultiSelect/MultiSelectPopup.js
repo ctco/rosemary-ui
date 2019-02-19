@@ -57,7 +57,7 @@ class MultiSelectPopup extends React.Component {
 
     getAllSorted() {
         let result = this.props.options.slice(0);
-        if(this.props.selectedOnTop){
+        if (this.props.selectedOnTop) {
             result.sort(this._sortSelectedOnTop);
         }
         return result;
@@ -153,7 +153,7 @@ class MultiSelectPopup extends React.Component {
         this.resetNav();
         let filtered = trim(value).length === 0 ? this.props.options : this.fuse.search(value);
 
-        if(this.props.selectedOnTop) {
+        if (this.props.selectedOnTop) {
             filtered.sort(this._sortSelectedOnTop);
         }
 
