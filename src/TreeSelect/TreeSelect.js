@@ -87,6 +87,7 @@ export class TreeSelectRaw extends React.Component {
         return (
             <MultiSelect
                 {...this.props}
+                selectedOnTop={false}
                 value={this.state.selected}
                 options={this.options}
                 renderOptions={this.renderOptions}

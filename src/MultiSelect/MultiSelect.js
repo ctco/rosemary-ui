@@ -26,12 +26,15 @@ export const PROPERTY_TYPES = {
 
     showSearch: PropTypes.bool,
     showClear: PropTypes.bool,
-    popupHeader: PropTypes.bool
+    popupHeader: PropTypes.bool,
+
+    selectedOnTop: PropTypes.bool
 };
 const DEFAULT_PROPS = {
     placeholder: 'Select...',
     searchPlaceholder: 'Search ...',
     getText: selectedOptions => `${selectedOptions.length} item(s) selected`,
+    selectedOnTop: true,
     disabled: false
 };
 
@@ -156,6 +159,7 @@ class MultiSelect extends React.Component {
                 </Popup>
 
                 <MultiSelectPopup
+                    selectedOnTop={this.props.selectedOnTop}
                     showSearch={this.props.showSearch}
                     showClear={this.props.showClear}
                     popupHeader={this.props.popupHeader}

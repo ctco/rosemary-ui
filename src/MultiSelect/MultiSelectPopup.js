@@ -23,6 +23,7 @@ const PROPERTY_TYPES = {
     compare: PropTypes.func,
     showSearch: PropTypes.bool,
     showClear: PropTypes.bool,
+    selectedOnTop: PropTypes.bool,
     popupHeader: PropTypes.element
 };
 const DEFAULT_PROPS = {
@@ -30,7 +31,8 @@ const DEFAULT_PROPS = {
     compare: compare,
     showSearch: true,
     showClear: true,
-    popupHeader: null
+    popupHeader: null,
+    selectedOnTop: true
 };
 
 class MultiSelectPopup extends React.Component {
@@ -55,7 +57,9 @@ class MultiSelectPopup extends React.Component {
 
     getAllSorted() {
         let result = this.props.options.slice(0);
-        result.sort(this._sortSelectedOnTop);
+        if(this.props.selectedOnTop){
+            result.sort(this._sortSelectedOnTop);
+        }
         return result;
     }
 
@@ -149,7 +153,9 @@ class MultiSelectPopup extends React.Component {
         this.resetNav();
         let filtered = trim(value).length === 0 ? this.props.options : this.fuse.search(value);
 
-        filtered.sort(this._sortSelectedOnTop);
+        if(this.props.selectedOnTop) {
+            filtered.sort(this._sortSelectedOnTop);
+        }
 
         this.setState({
             filtered: filtered,
@@ -160,7 +166,7 @@ class MultiSelectPopup extends React.Component {
     resetSearch = (options = this.props.options) => {
         this.resetNav();
         this.setState({
-            filtered: options.sort(this._sortSelectedOnTop),
+            filtered: this.props.selectedOnTop ? options.sort(this._sortSelectedOnTop) : options,
             query: ''
         });
     };
