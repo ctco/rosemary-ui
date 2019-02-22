@@ -225,22 +225,18 @@ class GroupedMultiSelectContent extends React.Component {
                         return (
                             <div key={key} className="select__group">
                                 <div className="select__group-header">{this._getHeader(key)}</div>
-                                {(() => {
-                                    if (this._doSearchMatchAnyResult(key)) {
-                                        return (
-                                            <SelectionList
-                                                extra={viewConfig.extra}
-                                                noOptionPlaceholder={viewConfig.noOptionPlaceholder}
-                                                isSelected={option => this._isOptionSelected(option, key)}
-                                                onChange={option => this._onSelect(option, key)}
-                                                value={this._getSelected(key)}
-                                                options={this.state.filtered[key]}
-                                            />
-                                        );
-                                    } else {
-                                        return <div className="no-results-found">No results found</div>;
-                                    }
-                                })()}
+                                {this._doSearchMatchAnyResult(key) ? (
+                                    <SelectionList
+                                        extra={viewConfig.extra}
+                                        noOptionPlaceholder={viewConfig.noOptionPlaceholder}
+                                        isSelected={option => this._isOptionSelected(option, key)}
+                                        onChange={option => this._onSelect(option, key)}
+                                        value={this._getSelected(key)}
+                                        options={this.state.filtered[key]}
+                                    />
+                                ) : (
+                                    <div className="no-results-found">No results found</div>
+                                )}
                             </div>
                         );
                     })}

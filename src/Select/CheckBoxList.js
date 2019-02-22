@@ -116,7 +116,9 @@ class CheckBoxList extends React.Component {
                 <td className="check-box-list__check-box">
                     <CheckBox value={selected} />
                 </td>
-                <td className="check-box-list__label">{option.displayString}</td>
+                <td className="check-box-list__label" title={option.displayString}>
+                    {option.displayString}
+                </td>
             </tr>
         );
     }
