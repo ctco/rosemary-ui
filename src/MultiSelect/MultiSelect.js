@@ -51,7 +51,7 @@ class MultiSelect extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let isValueChanged = _isEqual(nextProps.value, this.props.value);
+        let isValueChanged = !_isEqual(nextProps.value, this.props.value);
         if (isValueChanged) {
             this.setState({ selected: this.sort(findIdentifiables(nextProps.options, nextProps.value)) });
         }
