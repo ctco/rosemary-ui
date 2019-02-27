@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const PROPERTY_TYPES = {
-    item: PropTypes.any
+    item: PropTypes.any,
+    rowProps: PropTypes.any
 };
 const DEFAULT_PROPS = {};
 
@@ -20,7 +21,10 @@ class Row extends React.Component {
 
     render() {
         return (
-            <tr className={this.props.className} onClick={e => this.props.onClick && this.props.onClick(e)}>
+            <tr className={this.props.className}
+                onClick={e => this.props.onClick && this.props.onClick(e)}
+                {...this.props.rowProps}
+            >
                 {this.props.children}
             </tr>
         );

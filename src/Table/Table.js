@@ -26,6 +26,7 @@ const PROPERTY_TYPES = {
     headerCells: PropTypes.func,
     loadingIndicator: PropTypes.func,
     rowStyle: PropTypes.func,
+    rowProps: PropTypes.func,
     row: PropTypes.object,
     cells: PropTypes.func.isRequired,
     rowIndex: PropTypes.func.isRequired,
@@ -155,6 +156,14 @@ class Table extends React.Component {
         return {};
     }
 
+    _getRowProps(item) {
+        if (this.props.rowProps) {
+            return this.props.rowProps(item);
+        }
+
+        return {};
+    }
+
     _findRowDetails(item) {
         return find(this.props.rowDetails, obj => {
             return obj.id === this.props.rowIndex(item);
@@ -181,7 +190,11 @@ class Table extends React.Component {
 
         return (
             <React.Fragment>
-                <Row className={style} key={index} item={item} onClick={e => this._handleRowClick(item, index)}>
+                <Row className={style}
+                     key={index}
+                     item={item}
+                     onClick={e => this._handleRowClick(item, index)}
+                     rowProps={this._getRowProps(item)}>
                     {this._getCells(item).map((cell, key) => {
                         if (cell === null) {
                             return <td className={cellStyle} key={key} />;

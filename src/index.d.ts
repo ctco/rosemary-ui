@@ -191,6 +191,7 @@ declare namespace __RosemaryUI {
         colSpanBottom?: number;
         defSorting?: number;
         rowStyle?: (item: any) => string;
+        rowProps?: (item: any) => any;
         bottomSection?: React.ReactNode;
         headerCells?: () => Array<any>;
         onHeaderClick?: (key: any, index: number, el: TableHeaderCell, direction: string) => void;
