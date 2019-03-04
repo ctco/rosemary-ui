@@ -28,7 +28,7 @@ export const PROPERTY_TYPES = {
 
     showSearch: PropTypes.bool,
     showClear: PropTypes.bool,
-    popupHeader: PropTypes.bool,
+    popupHeader: PropTypes.node,
 
     selectedOnTop: PropTypes.bool
 };
