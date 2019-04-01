@@ -13,11 +13,13 @@ class PopupElement extends React.Component {
     render() {
         let attrForType = this.context.parentType;
         let attrForId = this.props.id || this.context.id;
+        let testId = this.props.testId || (this.context.testId && this.context.testId + '_popup');
         return (
             <div
                 ref={popupElement => (this._popupElement = popupElement)}
                 data-attr-for-type={attrForType}
                 data-attr-for-id={attrForId}
+                data-test-id={testId}
                 className="popup-content-wrapper"
             >
                 <div className="popup-content">
@@ -33,7 +35,8 @@ class PopupElement extends React.Component {
 
 PopupElement.contextTypes = {
     id: PropTypes.string,
-    parentType: PropTypes.string
+    parentType: PropTypes.string,
+    testId: PropTypes.string
 };
 
 export default PopupElement;

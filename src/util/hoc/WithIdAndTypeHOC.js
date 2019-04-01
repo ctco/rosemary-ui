@@ -19,7 +19,8 @@ export function withIdAndTypeContext(ParentClass, parentType) {
             return {
                 ...result,
                 parentType: parentType || ParentClass.displayName || ParentClass.name,
-                id: this.props.id || this.context.id
+                id: this.props.id || this.context.id,
+                testId: this.props.testId || this.context.testId
             };
         }
     }
@@ -32,11 +33,13 @@ export function withIdAndTypeContext(ParentClass, parentType) {
     Enhance.childContextTypes = {
         ...parentChildContextTypes,
         parentType: PropTypes.string,
-        id: PropTypes.string
+        id: PropTypes.string,
+        testId: PropTypes.string
     };
     Enhance.contextTypes = {
         ...parentContextTypes,
-        id: PropTypes.string
+        id: PropTypes.string,
+        testId: PropTypes.string
     };
     return Enhance;
 }
