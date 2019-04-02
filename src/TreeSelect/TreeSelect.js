@@ -163,10 +163,17 @@ export class TreeWithInactiveSwitch extends React.Component {
 export class SingleTreeSelect extends React.Component {
     static propTypes = {
         ...TREE_PROPS,
+        label: PropTypes.string,
+        popupWidth: PropTypes.number,
+        attachment: PropTypes.string,
+        popupClassName: PropTypes.string
     };
 
     static defaultProps = {
-        onChange: noop
+        onChange: noop,
+        popupWidth: 600,
+        attachment: 'bottom right',
+        popupClassName: 'tree-select__popup popover'
     };
 
     state = {
@@ -186,9 +193,9 @@ export class SingleTreeSelect extends React.Component {
             <PopupWithControl
                 popupOpen={this.state.popupOpen}
                 handlePopupStateChange={this.handlePopupStateChange}
-                popupWidth={600}
-                attachment="bottom right"
-                popupClassName="tree-select__popup popover"
+                popupWidth={this.props.popupWidth}
+                attachment={this.props.attachment}
+                popupClassName={this.props.popupClassName}
                 renderInput={this.renderInput}
                 renderPopup={this.renderPopup}
                 testId={this.props.testId}
@@ -199,7 +206,7 @@ export class SingleTreeSelect extends React.Component {
     handlePopupStateChange = (open) => this.setState({popupOpen: open});
 
     renderInput = (inputRef) => (
-        <Label text="+ Add Org. Unit" testId={this.props.testId} inputRef={inputRef}  />
+        <Label text={this.props.label} testId={this.props.testId} inputRef={inputRef}  />
     );
 
     renderPopup = () => (

@@ -31,6 +31,6 @@ storiesOf('TreeSelect', module).add('showActive', () => (
 ));
 storiesOf('TreeSelect', module).add('single select', () => (
     <div style={{textAlign: 'center'}}>
-        <SingleTreeSelect  hashLength={1} options={options} onChange={action('onChange')}/>
+        <SingleTreeSelect hashLength={1} options={options} onChange={action('onChange')} label="+ Add Org. Unit" />
     </div>
 ));
