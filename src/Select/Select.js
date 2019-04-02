@@ -29,10 +29,11 @@ const PROPERTY_TYPES = {
     ),
     className: PropTypes.string,
     Input: PropTypes.any,
-    popupConfig: PropTypes.shape({
+    popup: PropTypes.shape({
         attachment: PropTypes.string,
-        popupClassName: PropTypes.string,
-        animationBaseName: PropTypes.string
+        className: PropTypes.string,
+        animationBaseName: PropTypes.string,
+        width: PropTypes.number
     })
 };
 const DEFAULT_PROPS = {
@@ -40,9 +41,11 @@ const DEFAULT_PROPS = {
     search: false,
     disabled: false,
     Input: SingleSelectInput,
-    attachment: "bottom left",
-    popupClassName: "select__popover",
-    animationBaseName: "select__popover--animation-slide-y"
+    popup: {
+        attachment: "bottom left",
+        className: "select__popover",
+        animationBaseName: "select__popover--animation-slide-y"
+    }
 };
 
 class Select extends React.Component {
@@ -192,14 +195,21 @@ class Select extends React.Component {
     }
 
     render() {
+        const {
+            attachment,
+            className,
+            animationBaseName,
+            width
+        } = this.props.popup;
+
         return (
             <PopupWithControl
                 popupOpen={this.state.open}
                 handlePopupStateChange={this.handlePopupStateChange}
-                popupWidth={this.props.popupWidth}
-                attachment={this.props.attachment}
-                popupClassName={this.props.popupClassName}
-                animationBaseName={this.props.animationBaseName}
+                popupWidth={width}
+                attachment={attachment}
+                popupClassName={className}
+                animationBaseName={animationBaseName}
                 renderInput={this.renderInput}
                 renderPopup={this.renderPopup}
                 testId={this.props.testId}

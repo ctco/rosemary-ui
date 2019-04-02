@@ -32,10 +32,12 @@ storiesOf('Select', module)
     .add('with custom input', () => (
         <Select
             options={options}
-            attachment="bottom left"
-            popupWidth={600}
             Input={(props) => <SelectLabelInput {...props} text="Select options" />}
-            popupClassName="tree-select__popup popover"
             testId="test-id-check"
+            popup={{
+                attachment: "bottom left",
+                width: 600,
+                className: "tree-select__popup popover"
+            }}
         />
     ));
