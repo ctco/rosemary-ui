@@ -70,8 +70,11 @@ export default isMulti =>
                         tempSelection: super.getOptions()[index]
                     },
                     () => {
-                        this._getSelectedOptionEl() && this._getSelectedOptionEl().focus();
-                        super.getInput().focus();
+                        const el = this._getSelectedOptionEl();
+                        el && el.focus && el.focus();
+
+                        const input = super.getInput();
+                        input && input.focus && input.focus();
                     }
                 );
             }

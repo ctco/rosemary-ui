@@ -49,6 +49,7 @@ class PopupWithControl extends React.Component {
     render() {
         return (
             <Popup
+                onContentDidMount={this.props.onContentDidMount}
                 ref="popup"
                 attachment={this.props.attachment}
                 on="click"

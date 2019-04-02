@@ -146,6 +146,7 @@ declare namespace __RosemaryUI {
 
     class TreeSelect extends React.Component<any> {}
     class TreeSelectWithInactiveSwitch extends React.Component<any> {}
+    class SingleTreeSelect extends React.Component<any> {}
 
     class Pager extends React.Component<any> {}
 
@@ -168,6 +169,10 @@ declare namespace __RosemaryUI {
     class Select extends React.Component<{
         id: number | string;
     }> {}
+
+    class SelectLabelInput extends React.Component<any> {}
+    class SingleSelectInput extends React.Component<any> {}
+    class MultiSelectInput extends React.Component<any> {}
 
     class SelectGrouped extends React.Component<any> {}
 
@@ -340,7 +345,8 @@ declare module 'rosemary-ui/TreeSelect' {
     export import TreeSelect = __RosemaryUI.TreeSelect;
     export default TreeSelect;
     import TreeWithInactiveSwitch = __RosemaryUI.TreeSelectWithInactiveSwitch;
-    export { TreeWithInactiveSwitch };
+    import SingleTreeSelect = __RosemaryUI.SingleTreeSelect;
+    export { TreeWithInactiveSwitch, SingleTreeSelect };
 }
 declare module 'rosemary-ui/Pager' {
     export import Pager = __RosemaryUI.Pager;
@@ -367,6 +373,11 @@ declare module 'rosemary-ui/Radio/RadioGroup' {
 declare module 'rosemary-ui/Select' {
     export import Select = __RosemaryUI.Select;
     export default Select;
+
+    import SingleSelectInput = __RosemaryUI.SingleSelectInput;
+    import MultiSelectInput = __RosemaryUI.MultiSelectInput;
+    import SelectLabelInput = __RosemaryUI.SelectLabelInput;
+    export { SingleSelectInput, MultiSelectInput, SelectLabelInput };
 }
 declare module 'rosemary-ui/Select/SelectGrouped' {
     export import SelectGrouped = __RosemaryUI.SelectGrouped;

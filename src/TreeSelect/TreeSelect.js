@@ -4,7 +4,7 @@ import {PROPERTY_TYPES as msPropTyes} from '../MultiSelect/MultiSelect';
 import noop from 'lodash/noop';
 import CheckBox from '../CheckBox';
 import PopupWithControl from "../Popup/PopupWithControl";
-import {Label, MultiSelectInput} from "./SelectInput";
+import {SelectLabelInput, MultiSelectInput} from "../Select/SelectInput";
 import {MultiTreeSelectContent, SingleTreeSelectContent} from "./TreeSelectContent";
 
 const TREE_PROPS = {
@@ -206,7 +206,7 @@ export class SingleTreeSelect extends React.Component {
     handlePopupStateChange = (open) => this.setState({popupOpen: open});
 
     renderInput = (inputRef) => (
-        <Label text={this.props.label} testId={this.props.testId} inputRef={inputRef}  />
+        <SelectLabelInput text={this.props.label} testId={this.props.testId} inputRef={inputRef}  />
     );
 
     renderPopup = () => (

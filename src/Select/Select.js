@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import Fuse from 'fuse.js';
 import find from 'lodash/find';
 import trim from 'lodash/trim';
-import Popup from '../Popup/Popup';
 import IconInput from '../InputIcon/IconInput';
-import { isDefined } from '../util/utils';
+import {isDefined} from '../util/utils';
 import fuseConfig from './fuseSearchConfig';
 
-import { withIdAndTypeContext } from '../util/hoc/WithIdAndTypeHOC';
+import {withIdAndTypeContext} from '../util/hoc/WithIdAndTypeHOC';
 import keyBordNav from './KeyBoardNav';
+import {SingleSelectInput} from "./SelectInput";
+import PopupWithControl from "../Popup/PopupWithControl";
 
 const PROPERTY_TYPES = {
     disabled: PropTypes.bool,
@@ -27,15 +27,27 @@ const PROPERTY_TYPES = {
             grayed_item: PropTypes.bool
         })
     ),
-    className: PropTypes.string
+    className: PropTypes.string,
+    Input: PropTypes.any,
+    popupConfig: PropTypes.shape({
+        attachment: PropTypes.string,
+        popupClassName: PropTypes.string,
+        animationBaseName: PropTypes.string
+    })
 };
 const DEFAULT_PROPS = {
     placeholder: 'Select...',
     search: false,
-    disabled: false
+    disabled: false,
+    Input: SingleSelectInput,
+    attachment: "bottom left",
+    popupClassName: "select__popover",
+    animationBaseName: "select__popover--animation-slide-y"
 };
 
 class Select extends React.Component {
+    inputRef;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -67,7 +79,6 @@ class Select extends React.Component {
     }
 
     _contentDidMount = content => {
-        this._changePosition(content);
         if (this.props.search) {
             setTimeout(() => {
                 this._searchInput.focus();
@@ -80,7 +91,7 @@ class Select extends React.Component {
     }
 
     select(option) {
-        this.refs.input.focus();
+        this.inputRef && this.inputRef.focus && this.inputRef.focus();
         if (!this.isControlled()) {
             this.setState({
                 selected: option,
@@ -97,14 +108,7 @@ class Select extends React.Component {
         }
     }
 
-    _changePosition = content => {
-        if (this.state.open) {
-            let input = ReactDOM.findDOMNode(this.refs.input);
-            content.style.width = `${input.offsetWidth}px`;
-        }
-    };
-
-    handlePopupStateChange(open) {
+    handlePopupStateChange = (open) => {
         if (this.props.disabled) {
             return;
         }
@@ -175,7 +179,7 @@ class Select extends React.Component {
         if (this.props.search && this._searchInput) {
             return this._searchInput;
         } else {
-            return this.refs.input;
+            return this.inputRef;
         }
     }
 
@@ -188,6 +192,22 @@ class Select extends React.Component {
     }
 
     render() {
+        return (
+            <PopupWithControl
+                popupOpen={this.state.open}
+                handlePopupStateChange={this.handlePopupStateChange}
+                popupWidth={this.props.popupWidth}
+                attachment={this.props.attachment}
+                popupClassName={this.props.popupClassName}
+                animationBaseName={this.props.animationBaseName}
+                renderInput={this.renderInput}
+                renderPopup={this.renderPopup}
+                testId={this.props.testId}
+            />
+        );
+    }
+
+    renderInput = (storeRef) => {
         let selectedObject = this.state.selected;
         let text = selectedObject ? selectedObject.displayString : this.props.placeholder;
 
@@ -196,51 +216,45 @@ class Select extends React.Component {
             disabled: this.props.disabled,
             grayed_item: selectedObject && selectedObject.grayed_item
         });
+
+        const InputComponent = this.props.Input;
+
         return (
-            <Popup
-                ref="popup"
-                onContentDidMount={this._contentDidMount}
-                attachment="bottom left"
-                on="click"
-                popupClassName="select__popover"
-                animationBaseName="select__popover--animation-slide-y"
-                open={this.state.open}
-                onPopupStateChange={open => this.handlePopupStateChange(open)}
-            >
-                <div
-                    onKeyDown={e => this.navigate(e)}
-                    id={this.props.id}
-                    ref="input"
-                    tabIndex="0"
-                    className={className}
-                >
-                    <div title={text}>{text}</div>
-                    <i className="im icon-arrow-down" />
-                </div>
-
-                <div className="select__popup">
-                    {this.props.search && (
-                        <div className="select__search-container">
-                            <IconInput
-                                inputRef={input => (this._searchInput = input)}
-                                fluid={true}
-                                placeholder="Search ... "
-                                size="sm"
-                                onKeyDown={e => this.navigate(e)}
-                                onChange={value => this.applySearch(value)}
-                                className="select__search"
-                                iconClassName="im icon-search"
-                            />
-                        </div>
-                    )}
-
-                    <div ref={optionContainer => (this._optionContainer = optionContainer)} className="select__options">
-                        {this.renderItems()}
-                    </div>
-                </div>
-            </Popup>
+            <InputComponent
+                id={this.props.id}
+                onKeyDown={e => this.navigate(e)}
+                inputRef={(ref) => {
+                    storeRef(ref);
+                    this.inputRef = ref;
+                }}
+                value={text}
+                className={className}
+            />
         );
     }
+
+    renderPopup = () => (
+        <div className="select__popup">
+            {this.props.search && (
+                <div className="select__search-container">
+                    <IconInput
+                        inputRef={input => (this._searchInput = input)}
+                        fluid={true}
+                        placeholder="Search ... "
+                        size="sm"
+                        onKeyDown={e => this.navigate(e)}
+                        onChange={value => this.applySearch(value)}
+                        className="select__search"
+                        iconClassName="im icon-search"
+                    />
+                </div>
+            )}
+
+            <div ref={optionContainer => (this._optionContainer = optionContainer)} className="select__options">
+                {this.renderItems()}
+            </div>
+        </div>
+    )
 }
 
 Select.propTypes = PROPERTY_TYPES;

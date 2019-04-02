@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Popup from "../Popup";
 
-export class Label extends React.Component {
+export class SelectLabelInput extends React.Component {
     static propTypes = {
         text: PropTypes.string,
         testId: PropTypes.string,
@@ -12,8 +12,14 @@ export class Label extends React.Component {
         onClick: PropTypes.func
     };
 
+    static contextTypes = {
+        testId: PropTypes.string
+    };
+
     render() {
-        const {text, testId, inputRef, onClick} = this.props;
+        const { text, inputRef, onClick } = this.props;
+
+        const testId = this.props.testId || this.context.testId;
 
         return (
             <Button
@@ -23,6 +29,41 @@ export class Label extends React.Component {
                 className="btn-link btn-m btn"
                 value={text}
             />
+        )
+    }
+}
+
+export class SingleSelectInput extends React.Component {
+    static propTypes = {
+        id: PropTypes.string,
+        text: PropTypes.string,
+        testId: PropTypes.string,
+        inputRef: PropTypes.func,
+        onClick: PropTypes.func
+    };
+
+    static contextTypes = {
+        testId: PropTypes.string
+    };
+
+    render() {
+        const { id, value, inputRef, onClick, onKeyDown, className } = this.props;
+
+        const testId = this.props.testId || this.context.testId;
+
+        return (
+            <div
+                onKeyDown={onKeyDown}
+                id={id}
+                ref={inputRef}
+                tabIndex="0"
+                className={className}
+                onClick={onClick}
+                data-test-id={testId}
+            >
+                <div title={value}>{value}</div>
+                <i className="im icon-arrow-down"/>
+            </div>
         )
     }
 }
@@ -48,8 +89,14 @@ export class MultiSelectInput extends React.Component {
         getText: selectedOptions => `${selectedOptions.length} item(s) selected`
     };
 
+    static contextTypes = {
+        testId: PropTypes.string
+    };
+
     render() {
-        const {onClick, value, id, inputRef, testId, tooltipOpen} = this.props;
+        const {onClick, value, id, inputRef, tooltipOpen} = this.props;
+
+        const testId = this.props.testId || this.context.testId;
 
         const className = classNames(this.props.className, 'select', {
             placeholder: value.length === 0,
