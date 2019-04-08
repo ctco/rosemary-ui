@@ -25,12 +25,13 @@ const options = [
     makeOption('Test 21', '21', true)
 ];
 
-storiesOf('TreeSelect', module).add('basic', () => <TreeSelect hashLength={1} options={options} onChange={noop} />);
-storiesOf('TreeSelect', module).add('showActive', () => (
-    <TreeWithInactiveSwitch hashLength={1} options={options} value={[4]} />
-));
-storiesOf('TreeSelect', module).add('single select', () => (
-    <div style={{textAlign: 'center'}}>
-        <SingleTreeSelect hashLength={1} options={options} onChange={action('onChange')} label="+ Add Org. Unit" />
-    </div>
-));
+storiesOf('TreeSelect', module)
+    .add('basic', () => <TreeSelect hashLength={1} options={options} onChange={noop} />)
+    .add('showActive', () => (
+        <TreeWithInactiveSwitch hashLength={1} options={options} value={[4]} />
+    ))
+    .add('single select', () => (
+        <div style={{textAlign: 'center'}}>
+            <SingleTreeSelect hashLength={1} options={options} onChange={action('onChange')} label="+ Add Org. Unit"/>
+        </div>
+    ));

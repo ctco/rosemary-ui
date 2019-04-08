@@ -166,7 +166,8 @@ export class SingleTreeSelect extends React.Component {
         label: PropTypes.string,
         popupWidth: PropTypes.number,
         attachment: PropTypes.string,
-        popupClassName: PropTypes.string
+        popupClassName: PropTypes.string,
+        onPopupStateChange: PropTypes.func
     };
 
     static defaultProps = {
@@ -203,7 +204,13 @@ export class SingleTreeSelect extends React.Component {
         );
     }
 
-    handlePopupStateChange = (open) => this.setState({popupOpen: open});
+    handlePopupStateChange = (open) => {
+        this.setState({popupOpen: open});
+
+        if (this.props.onPopupStateChange) {
+            this.props.onPopupStateChange(open);
+        }
+    };
 
     renderInput = (inputRef) => (
         <SelectLabelInput text={this.props.label} testId={this.props.testId} inputRef={inputRef}  />

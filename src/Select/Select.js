@@ -34,7 +34,8 @@ const PROPERTY_TYPES = {
         className: PropTypes.string,
         animationBaseName: PropTypes.string,
         width: PropTypes.number
-    })
+    }),
+    footer: PropTypes.node
 };
 const DEFAULT_PROPS = {
     placeholder: 'Select...',
@@ -45,7 +46,7 @@ const DEFAULT_PROPS = {
         attachment: "bottom left",
         className: "select__popover",
         animationBaseName: "select__popover--animation-slide-y"
-    }
+    },
 };
 
 class Select extends React.Component {
@@ -56,7 +57,8 @@ class Select extends React.Component {
         this.state = {
             selected: this.findById(this.props.options, props.value),
             open: false,
-            filtered: props.options
+            filtered: props.options,
+            search: ''
         };
         this.fuse = new Fuse(props.options, fuseConfig);
     }
@@ -78,6 +80,10 @@ class Select extends React.Component {
 
         if (isDefined(nextProps.open)) {
             this.setState({ open: nextProps.open });
+        }
+
+        if (this.props.options !== nextProps.options) {
+            this.applySearch(this.state.search, nextProps.options);
         }
     }
 
@@ -164,11 +170,12 @@ class Select extends React.Component {
         });
     }
 
-    applySearch(value) {
-        let filtered = trim(value).length === 0 ? this.props.options : this.fuse.search(value);
+    applySearch(value, options = this.props.options) {
+        let filtered = trim(value).length === 0 ? options : this.fuse.search(value);
 
         this.setState({
-            filtered: filtered
+            filtered: filtered,
+            search: value
         });
 
         this.resetNav();
@@ -252,6 +259,7 @@ class Select extends React.Component {
                         fluid={true}
                         placeholder="Search ... "
                         size="sm"
+                        value={this.state.search}
                         onKeyDown={e => this.navigate(e)}
                         onChange={value => this.applySearch(value)}
                         className="select__search"
@@ -263,6 +271,7 @@ class Select extends React.Component {
             <div ref={optionContainer => (this._optionContainer = optionContainer)} className="select__options">
                 {this.renderItems()}
             </div>
+            {this.props.footer ? <div className="select__popup-footer">{this.props.footer}</div> : null}
         </div>
     )
 }
