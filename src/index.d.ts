@@ -167,7 +167,7 @@ declare namespace __RosemaryUI {
     class RadioGroup extends React.Component<any> {}
 
     class Select extends React.Component<{
-        id: number | string;
+        id?: number | string;
     }> {}
 
     class SelectLabelInput extends React.Component<any> {}

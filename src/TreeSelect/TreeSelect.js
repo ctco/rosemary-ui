@@ -95,6 +95,7 @@ export class TreeSelect extends React.Component {
             options={this.props.options}
             onChange={this.doChange}
             footer={this.props.footer}
+            highlightBroken={this.props.highlightBroken}
         />
     )
 }
@@ -155,6 +156,7 @@ export class TreeWithInactiveSwitch extends React.Component {
                 footer={
                     <CheckBox onChange={this.setVisibility} value={this.state.showInactive} label={this.props.label} />
                 }
+                highlightBroken={this.props.highlightBroken}
             />
         );
     }
@@ -223,6 +225,7 @@ export class SingleTreeSelect extends React.Component {
             options={this.props.options}
             onChange={this.doChange}
             footer={this.props.footer}
+            highlightBroken={this.props.highlightBroken}
         />
     )
 }

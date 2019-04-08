@@ -14,7 +14,8 @@ const TREE_PROPS = {
     hashLength: PropTypes.number.isRequired,
     renderHeader: PropTypes.func,
     footer: PropTypes.node,
-    multiple: PropTypes.bool
+    multiple: PropTypes.bool,
+    highlightBroken: PropTypes.bool
 };
 
 export class TreeSelectContent extends React.Component {
@@ -22,7 +23,8 @@ export class TreeSelectContent extends React.Component {
 
     static defaultProps = {
         hashLength: 6,
-        multiple: true
+        multiple: true,
+        highlightBroken: true
     };
 
     state = {
@@ -143,6 +145,7 @@ export class TreeSelectContent extends React.Component {
                         tree={this.tree}
                         toggleExpanded={this.toggleExpanded}
                         multiple={this.props.multiple}
+                        highlightBroken={this.props.highlightBroken}
                     />
                 </div>
                 {this.props.footer ? <div className="select__popup-footer">{this.props.footer}</div> : null}
@@ -180,6 +183,10 @@ export class TreeSelectContent extends React.Component {
 }
 
 class List extends React.Component {
+    static propTypes = {
+        highlightBroken: PropTypes.bool
+    };
+
     static selected = {
         NONE: 0,
         ALL: 1,
@@ -303,7 +310,7 @@ class List extends React.Component {
         }
 
         const selected = this.isSelected(option);
-        const isBroken = !option.leaf && (!option.children || option.children.length === 0);
+        const isBroken = this.props.highlightBroken && !option.leaf && (!option.children || option.children.length === 0);
 
         const className = classNames("check-box-list__item tree-select", {
             "single-tree-select--selected": !this.props.multiple && selected,
