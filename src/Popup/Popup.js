@@ -47,7 +47,8 @@ const PROPERTY_TYPES = {
     open: PropTypes.bool,
     openByDefault: PropTypes.bool,
     onContentDidMount: PropTypes.func,
-    closeOnClickOutside: PropTypes.bool
+    closeOnClickOutside: PropTypes.bool,
+    animate: PropTypes.bool
 };
 const DEFAULT_PROPS = {
     on: 'hover',
@@ -57,7 +58,8 @@ const DEFAULT_PROPS = {
     modal: false,
     animationBaseName: 'popup--animation-scale',
     onContentDidMount: _noop,
-    onClose: _noop
+    onClose: _noop,
+    animate: true
 };
 
 class Popup extends React.Component {
@@ -410,19 +412,27 @@ class Popup extends React.Component {
             return null;
         }
 
-        return (
-            <ReactCSSTransitionGroup
-                ref="popup"
-                transitionAppear={true}
-                transitionLeave={true}
-                transitionAppearTimeout={300}
-                transitionEnterTimeout={300}
-                transitionLeaveTimeout={300}
-                transitionName={this.props.animationBaseName}
-            >
-                {this.renderPopupElement()}
-            </ReactCSSTransitionGroup>
-        );
+        if (this.props.animate) {
+            return (
+                <ReactCSSTransitionGroup
+                    ref="popup"
+                    transitionAppear={true}
+                    transitionLeave={true}
+                    transitionAppearTimeout={300}
+                    transitionEnterTimeout={300}
+                    transitionLeaveTimeout={300}
+                    transitionName={this.props.animationBaseName}
+                >
+                    {this.renderPopupElement()}
+                </ReactCSSTransitionGroup>
+            );
+        } else {
+            return (
+                <div ref="popup">
+                    {this.renderPopupElement()}
+                </div>
+            )
+        }
     }
 
     getProperties() {

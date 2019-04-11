@@ -202,6 +202,7 @@ export class SingleTreeSelect extends React.Component {
                 renderInput={this.renderInput}
                 renderPopup={this.renderPopup}
                 testId={this.props.testId}
+                animate={false}
             />
         );
     }

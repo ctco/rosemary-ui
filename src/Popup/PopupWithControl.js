@@ -14,6 +14,7 @@ export const PROPERTY_TYPES = {
     attachment: PropTypes.string,
     popupClassName: PropTypes.string,
     animationBaseName: PropTypes.string,
+    animate: PropTypes.bool
 };
 const DEFAULT_PROPS = {
     disabled: false
@@ -57,6 +58,7 @@ class PopupWithControl extends React.Component {
                 animationBaseName={this.props.animationBaseName}
                 open={this.props.popupOpen}
                 onPopupStateChange={this.handlePopupStateChange}
+                animate={this.props.animate}
             >
                 {this.props.renderInput(this.storeInputRef)}
 
