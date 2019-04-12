@@ -48,7 +48,8 @@ const PROPERTY_TYPES = {
     openByDefault: PropTypes.bool,
     onContentDidMount: PropTypes.func,
     closeOnClickOutside: PropTypes.bool,
-    animate: PropTypes.bool
+    animate: PropTypes.bool,
+    popupWidth: PropTypes.number
 };
 const DEFAULT_PROPS = {
     on: 'hover',
@@ -390,6 +391,7 @@ class Popup extends React.Component {
         }
 
         let element = React.Children.toArray(this.props.children)[1];
+        const style = this.props.popupWidth ? {width: `${this.props.popupWidth}px`} : null;
         return (
             <PopupElement
                 modal={this.isModal()}
@@ -401,6 +403,7 @@ class Popup extends React.Component {
                 onUnmount={() => {
                     this.closeCompletely();
                 }}
+                style={style}
             >
                 {element}
             </PopupElement>

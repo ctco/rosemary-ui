@@ -21,6 +21,7 @@ class PopupElement extends React.Component {
                 data-attr-for-id={attrForId}
                 data-test-id={testId}
                 className="popup-content-wrapper"
+                style={this.props.style}
             >
                 <div className="popup-content">
                     {this.props.modal && (
@@ -36,7 +37,8 @@ class PopupElement extends React.Component {
 PopupElement.contextTypes = {
     id: PropTypes.string,
     parentType: PropTypes.string,
-    testId: PropTypes.string
+    testId: PropTypes.string,
+    style: PropTypes.any
 };
 
 export default PopupElement;

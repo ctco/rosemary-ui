@@ -39,9 +39,7 @@ class PopupWithControl extends React.Component {
 
     handlePopupOpening() {
         let popupContent = ReactDOM.findDOMNode(this.refs.popup.getContent());
-        if (this.props.popupWidth) {
-            popupContent.style.width = `${this.props.popupWidth}px`;
-        } else {
+        if (!this.props.popupWidth) {
             let input = ReactDOM.findDOMNode(this.inputRef);
             popupContent.style.width = `${input.offsetWidth}px`;
         }
@@ -59,6 +57,7 @@ class PopupWithControl extends React.Component {
                 open={this.props.popupOpen}
                 onPopupStateChange={this.handlePopupStateChange}
                 animate={this.props.animate}
+                popupWidth={this.props.popupWidth}
             >
                 {this.props.renderInput(this.storeInputRef)}
 
