@@ -40,6 +40,7 @@ class Radio extends React.Component {
         return (
             <div
                 data-test-id={this.props.testId}
+                data-test-checked={this.props.checked}
                 className={radioStyle}
                 onClick={() => {
                     this.onChange();
