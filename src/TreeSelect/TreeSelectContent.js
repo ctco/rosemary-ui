@@ -110,6 +110,7 @@ export class TreeSelectContent extends React.Component {
                         onChange={this._applySearch}
                         className="select__search"
                         iconClassName="im icon-search"
+                        testId="tree_select_search"
                     />
                 </div>
 
