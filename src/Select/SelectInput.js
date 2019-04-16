@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../Button';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Popup from "../Popup";
+import Popup from '../Popup';
 
 export class SelectLabelInput extends React.Component {
     static propTypes = {
@@ -21,15 +21,7 @@ export class SelectLabelInput extends React.Component {
 
         const testId = this.props.testId || this.context.testId;
 
-        return (
-            <Button
-                onClick={onClick}
-                testId={testId}
-                ref={inputRef}
-                className="btn-link btn-m btn"
-                value={text}
-            />
-        )
+        return <Button onClick={onClick} testId={testId} ref={inputRef} className="btn-link btn-m btn" value={text} />;
     }
 }
 
@@ -62,9 +54,9 @@ export class SingleSelectInput extends React.Component {
                 data-test-id={testId}
             >
                 <div title={value}>{value}</div>
-                <i className="im icon-arrow-down"/>
+                <i className="im icon-arrow-down" />
             </div>
-        )
+        );
     }
 }
 
@@ -94,7 +86,7 @@ export class MultiSelectInput extends React.Component {
     };
 
     render() {
-        const {onClick, value, id, inputRef, tooltipOpen} = this.props;
+        const { onClick, value, id, inputRef, tooltipOpen } = this.props;
 
         const testId = this.props.testId || this.context.testId;
 
@@ -122,7 +114,7 @@ export class MultiSelectInput extends React.Component {
                     })}
                 </div>
             </Popup>
-        )
+        );
     }
 
     getText() {
@@ -133,11 +125,11 @@ export class MultiSelectInput extends React.Component {
         }
     }
 
-    handleTooltipStateChange = (open) => {
+    handleTooltipStateChange = open => {
         if (this.props.value.length > 0) {
             this.props.handleTooltipStateChange(open);
         } else {
             this.props.handleTooltipStateChange(false);
         }
-    }
+    };
 }

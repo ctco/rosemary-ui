@@ -190,11 +190,13 @@ class Table extends React.Component {
 
         return (
             <React.Fragment>
-                <Row className={style}
-                     key={index}
-                     item={item}
-                     onClick={e => this._handleRowClick(item, index)}
-                     rowProps={this._getRowProps(item)}>
+                <Row
+                    className={style}
+                    key={index}
+                    item={item}
+                    onClick={e => this._handleRowClick(item, index)}
+                    rowProps={this._getRowProps(item)}
+                >
                     {this._getCells(item).map((cell, key) => {
                         if (cell === null) {
                             return <td className={cellStyle} key={key} />;

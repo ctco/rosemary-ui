@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import ReactList from 'react-list';
 
-import {PROPERTY_TYPES as msPropTyes} from '../MultiSelect/MultiSelect';
+import { PROPERTY_TYPES as msPropTyes } from '../MultiSelect/MultiSelect';
 import keyBoardNav from '../Select/KeyBoardNav';
 import classNames from 'classnames';
 
@@ -24,7 +24,8 @@ export class TreeSelectContent extends React.Component {
     static defaultProps = {
         hashLength: 6,
         multiple: true,
-        highlightBroken: true
+        highlightBroken: true,
+        sort: (ak, bk) => ak.displayString.localeCompare(bk.displayString)
     };
 
     state = {
@@ -73,7 +74,7 @@ export class TreeSelectContent extends React.Component {
     }
 
     onChange = newValue => {
-        this.props.onChange(newValue)
+        this.props.onChange(newValue);
     };
 
     buildOptionsFromTree(tree, options = []) {
@@ -81,7 +82,7 @@ export class TreeSelectContent extends React.Component {
             return [];
         }
 
-        tree.children.sort((ak, bk) => ak.displayString.localeCompare(bk.displayString));
+        tree.children.sort(this.props.sort);
         tree.children.forEach(key => {
             options.push(key);
             if (key.children) {
@@ -277,7 +278,7 @@ class List extends React.Component {
         this.props.onChange(newValue);
     };
 
-    getLeafs = (option) => {
+    getLeafs = option => {
         const result = [];
         const stack = [option];
 
@@ -310,11 +311,12 @@ class List extends React.Component {
         }
 
         const selected = this.isSelected(option);
-        const isBroken = this.props.highlightBroken && !option.leaf && (!option.children || option.children.length === 0);
+        const isBroken =
+            this.props.highlightBroken && !option.leaf && (!option.children || option.children.length === 0);
 
-        const className = classNames("check-box-list__item tree-select", {
-            "single-tree-select--selected": !this.props.multiple && selected,
-            "tree-select--inactive": !option.active
+        const className = classNames('check-box-list__item tree-select', {
+            'single-tree-select--selected': !this.props.multiple && selected,
+            'tree-select--inactive': !option.active
         });
 
         return (
@@ -334,23 +336,21 @@ class List extends React.Component {
                     />
                 ) : null}
                 <span onClick={this.select(option)()}>
-                    {
-                        this.props.multiple && (
-                            <span className="check-box-list__check-box">
-                                {selected === List.selected.ALL ? (
-                                    <div className="checkbox checked">
-                                        <i className="im icon-ok" />
-                                    </div>
-                                ) : null}
-                                {selected === List.selected.NONE ? <div className="checkbox" /> : null}
-                                {selected === List.selected.SOME ? (
-                                    <div className="checkbox checked">
-                                        <i className="im ion-minus" />
-                                    </div>
-                                ) : null}
-                            </span>
-                        )
-                    }
+                    {this.props.multiple && (
+                        <span className="check-box-list__check-box">
+                            {selected === List.selected.ALL ? (
+                                <div className="checkbox checked">
+                                    <i className="im icon-ok" />
+                                </div>
+                            ) : null}
+                            {selected === List.selected.NONE ? <div className="checkbox" /> : null}
+                            {selected === List.selected.SOME ? (
+                                <div className="checkbox checked">
+                                    <i className="im ion-minus" />
+                                </div>
+                            ) : null}
+                        </span>
+                    )}
                     <span
                         className={[
                             'check-box-list__label',
@@ -490,17 +490,13 @@ class List extends React.Component {
 
 class Single extends React.Component {
     render() {
-        return (
-            <TreeSelectContent {...this.props} multiple={false}/>
-        )
+        return <TreeSelectContent {...this.props} multiple={false} />;
     }
 }
 
 class Multi extends React.Component {
     render() {
-        return (
-            <TreeSelectContent {...this.props}/>
-        )
+        return <TreeSelectContent {...this.props} />;
     }
 }
 

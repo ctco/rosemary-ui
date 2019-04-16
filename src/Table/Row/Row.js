@@ -21,7 +21,8 @@ class Row extends React.Component {
 
     render() {
         return (
-            <tr className={this.props.className}
+            <tr
+                className={this.props.className}
                 onClick={e => this.props.onClick && this.props.onClick(e)}
                 {...this.props.rowProps}
             >

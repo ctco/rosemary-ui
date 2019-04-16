@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 import Popup from '../Popup';
 
-import {withIdAndTypeContext} from '../util/hoc/WithIdAndTypeHOC';
+import { withIdAndTypeContext } from '../util/hoc/WithIdAndTypeHOC';
 
 export const PROPERTY_TYPES = {
     disabled: PropTypes.bool,
@@ -23,7 +23,7 @@ const DEFAULT_PROPS = {
 class PopupWithControl extends React.Component {
     inputRef;
 
-    handlePopupStateChange = (open) => {
+    handlePopupStateChange = open => {
         if (this.props.disabled) {
             return;
         }
@@ -66,7 +66,7 @@ class PopupWithControl extends React.Component {
         );
     }
 
-    storeInputRef = (ref) => this.inputRef = ref;
+    storeInputRef = ref => (this.inputRef = ref);
 }
 
 PopupWithControl.propTypes = PROPERTY_TYPES;

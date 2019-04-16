@@ -5,13 +5,13 @@ import Fuse from 'fuse.js';
 import find from 'lodash/find';
 import trim from 'lodash/trim';
 import IconInput from '../InputIcon/IconInput';
-import {isDefined} from '../util/utils';
+import { isDefined } from '../util/utils';
 import fuseConfig from './fuseSearchConfig';
 
-import {withIdAndTypeContext} from '../util/hoc/WithIdAndTypeHOC';
+import { withIdAndTypeContext } from '../util/hoc/WithIdAndTypeHOC';
 import keyBordNav from './KeyBoardNav';
-import {SingleSelectInput} from "./SelectInput";
-import PopupWithControl from "../Popup/PopupWithControl";
+import { SingleSelectInput } from './SelectInput';
+import PopupWithControl from '../Popup/PopupWithControl';
 
 const PROPERTY_TYPES = {
     disabled: PropTypes.bool,
@@ -43,10 +43,10 @@ const DEFAULT_PROPS = {
     disabled: false,
     Input: SingleSelectInput,
     popup: {
-        attachment: "bottom left",
-        className: "select__popover",
-        animationBaseName: "select__popover--animation-slide-y"
-    },
+        attachment: 'bottom left',
+        className: 'select__popover',
+        animationBaseName: 'select__popover--animation-slide-y'
+    }
 };
 
 class Select extends React.Component {
@@ -117,7 +117,7 @@ class Select extends React.Component {
         }
     }
 
-    handlePopupStateChange = (open) => {
+    handlePopupStateChange = open => {
         if (this.props.disabled) {
             return;
         }
@@ -133,7 +133,7 @@ class Select extends React.Component {
         if (this.props.onPopupStateChange) {
             this.props.onPopupStateChange(open);
         }
-    }
+    };
 
     isControlled() {
         return isDefined(this.props.value);
@@ -202,12 +202,7 @@ class Select extends React.Component {
     }
 
     render() {
-        const {
-            attachment,
-            className,
-            animationBaseName,
-            width
-        } = this.props.popup;
+        const { attachment, className, animationBaseName, width } = this.props.popup;
 
         return (
             <PopupWithControl
@@ -224,7 +219,7 @@ class Select extends React.Component {
         );
     }
 
-    renderInput = (storeRef) => {
+    renderInput = storeRef => {
         let selectedObject = this.state.selected;
         let text = selectedObject ? selectedObject.displayString : this.props.placeholder;
 
@@ -240,7 +235,7 @@ class Select extends React.Component {
             <InputComponent
                 id={this.props.id}
                 onKeyDown={e => this.navigate(e)}
-                inputRef={(ref) => {
+                inputRef={ref => {
                     storeRef(ref);
                     this.inputRef = ref;
                 }}
@@ -248,7 +243,7 @@ class Select extends React.Component {
                 className={className}
             />
         );
-    }
+    };
 
     renderPopup = () => (
         <div className="select__popup">
@@ -273,7 +268,7 @@ class Select extends React.Component {
             </div>
             {this.props.footer ? <div className="select__popup-footer">{this.props.footer}</div> : null}
         </div>
-    )
+    );
 }
 
 Select.propTypes = PROPERTY_TYPES;

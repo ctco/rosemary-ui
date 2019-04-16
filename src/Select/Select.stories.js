@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Select from './Select';
 import { boolean } from '@storybook/addon-knobs';
-import { SelectLabelInput } from "./SelectInput";
+import { SelectLabelInput } from './SelectInput';
 
 function generateOptions(name, amount) {
     let result = [];
@@ -32,12 +32,12 @@ storiesOf('Select', module)
     .add('with custom input', () => (
         <Select
             options={options}
-            Input={(props) => <SelectLabelInput {...props} text="Select options" />}
+            Input={props => <SelectLabelInput {...props} text="Select options" />}
             testId="test-id-check"
             popup={{
-                attachment: "bottom left",
+                attachment: 'bottom left',
                 width: 600,
-                className: "tree-select__popup popover"
+                className: 'tree-select__popup popover'
             }}
         />
     ));

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {PROPERTY_TYPES as msPropTyes} from '../MultiSelect/MultiSelect';
+import { PROPERTY_TYPES as msPropTyes } from '../MultiSelect/MultiSelect';
 import noop from 'lodash/noop';
 import CheckBox from '../CheckBox';
-import PopupWithControl from "../Popup/PopupWithControl";
-import {SelectLabelInput, MultiSelectInput} from "../Select/SelectInput";
-import {MultiTreeSelectContent, SingleTreeSelectContent} from "./TreeSelectContent";
+import PopupWithControl from '../Popup/PopupWithControl';
+import { SelectLabelInput, MultiSelectInput } from '../Select/SelectInput';
+import { MultiTreeSelectContent, SingleTreeSelectContent } from './TreeSelectContent';
 
 const TREE_PROPS = {
     ...msPropTyes,
@@ -17,7 +17,7 @@ const TREE_PROPS = {
 
 export class TreeSelect extends React.Component {
     static propTypes = {
-        ...TREE_PROPS,
+        ...TREE_PROPS
     };
 
     static defaultProps = {
@@ -63,20 +63,20 @@ export class TreeSelect extends React.Component {
         );
     }
 
-    handlePopupStateChange = (open) => {
+    handlePopupStateChange = open => {
         this.setState(prevState => ({
             popupOpen: open,
-            tooltipOpen: open ? false: prevState.tooltipOpen
+            tooltipOpen: open ? false : prevState.tooltipOpen
         }));
     };
 
-    handleTooltipStateChange = (open) => {
+    handleTooltipStateChange = open => {
         this.setState(prevState => ({
             tooltipOpen: prevState.popupOpen ? false : open
-        }))
+        }));
     };
 
-    renderInput = (inputRef) => (
+    renderInput = inputRef => (
         <MultiSelectInput
             className={this.props.className}
             value={this.props.options.filter(option => this.state.value.find(val => val === option.id))}
@@ -97,7 +97,7 @@ export class TreeSelect extends React.Component {
             footer={this.props.footer}
             highlightBroken={this.props.highlightBroken}
         />
-    )
+    );
 }
 
 export class TreeWithInactiveSwitch extends React.Component {
@@ -130,12 +130,13 @@ export class TreeWithInactiveSwitch extends React.Component {
     setVisibility = value => {
         this.setState(prevState => ({
             showInactive: value,
-            value: value ? prevState.value : prevState.value.filter(prevValue => {
-                const option = this.props.options.find(option => option.id === prevValue);
-                return option && option.active;
-            })
+            value: value
+                ? prevState.value
+                : prevState.value.filter(prevValue => {
+                      const option = this.props.options.find(option => option.id === prevValue);
+                      return option && option.active;
+                  })
         }));
-
     };
 
     doChange = value => {
@@ -169,7 +170,8 @@ export class SingleTreeSelect extends React.Component {
         popupWidth: PropTypes.number,
         attachment: PropTypes.string,
         popupClassName: PropTypes.string,
-        onPopupStateChange: PropTypes.func
+        onPopupStateChange: PropTypes.func,
+        sort: PropTypes.func
     };
 
     static defaultProps = {
@@ -206,16 +208,16 @@ export class SingleTreeSelect extends React.Component {
         );
     }
 
-    handlePopupStateChange = (open) => {
-        this.setState({popupOpen: open});
+    handlePopupStateChange = open => {
+        this.setState({ popupOpen: open });
 
         if (this.props.onPopupStateChange) {
             this.props.onPopupStateChange(open);
         }
     };
 
-    renderInput = (inputRef) => (
-        <SelectLabelInput text={this.props.label} testId={this.props.testId} inputRef={inputRef}  />
+    renderInput = inputRef => (
+        <SelectLabelInput text={this.props.label} testId={this.props.testId} inputRef={inputRef} />
     );
 
     renderPopup = () => (
@@ -226,6 +228,7 @@ export class SingleTreeSelect extends React.Component {
             onChange={this.doChange}
             footer={this.props.footer}
             highlightBroken={this.props.highlightBroken}
+            sort={this.props.sort}
         />
-    )
+    );
 }
