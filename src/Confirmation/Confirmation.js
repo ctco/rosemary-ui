@@ -29,10 +29,14 @@ class Confirmation extends React.Component {
                 <div className="ros-confirm__body">{this.props.body}</div>
                 <div className="form-separator" />
                 <div className="form-btn-group">
-                    <Button className="btn btn--primary" onClick={() => this.props.onConfirm()}>
+                    <Button className="btn btn--primary"
+                            testId={this.props.testId + "_confirm"}
+                            onClick={this.props.onConfirm}>
                         {this.props.confirmBtnText}
                     </Button>
-                    <Button className="btn-link btn--m" onClick={() => this.props.onCancel()}>
+                    <Button className="btn-link btn--m"
+                            testId={this.props.testId + "_cancel"}
+                            onClick={this.props.onCancel}>
                         {this.props.cancelBtnText}
                     </Button>
                 </div>
