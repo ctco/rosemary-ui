@@ -7,8 +7,6 @@ import Popup from '../Popup';
 import { compare, findIdentifiables, isDefined } from '../util/utils';
 import MultiSelectPopup from './MultiSelectPopup';
 
-import _isEqual from 'lodash/isEqual';
-
 import { withIdAndTypeContext } from '../util/hoc/WithIdAndTypeHOC';
 
 export const PROPERTY_TYPES = {
@@ -51,19 +49,13 @@ class MultiSelect extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let isValueChanged = !_isEqual(nextProps.value, this.props.value);
+        let isValueChanged = nextProps.value !== this.props.value;
         if (isValueChanged) {
             this.setState({ selected: this.sort(findIdentifiables(nextProps.options, nextProps.value)) });
         }
     }
 
     select(selected) {
-        if (!this.isControlled()) {
-            this.setState({
-                selected: this.sort(selected)
-            });
-        }
-
         if (this.props.onChange) {
             this.props.onChange(
                 selected.map(option => {
@@ -72,6 +64,9 @@ class MultiSelect extends React.Component {
                 selected
             );
         }
+        this.setState({
+            selected: this.sort(selected)
+        });
     }
 
     sort(selected) {
