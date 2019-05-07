@@ -52,7 +52,7 @@ class IconInput extends React.Component {
         });
 
         return (
-            <div data-test-id={this.props.testId} className={className} onClick={this.props.onClick}>
+            <div className={className} onClick={this.props.onClick}>
                 <Input
                     {...this.props}
                     type="text"

@@ -110,6 +110,7 @@ export class TreeSelectContent extends React.Component {
                         onChange={this._applySearch}
                         className="select__search"
                         iconClassName="im icon-search"
+                        testId="tree_select_search"
                     />
                 </div>
 
@@ -119,16 +120,20 @@ export class TreeSelectContent extends React.Component {
                     ) : (
                         <div>
                             <div className="float-left">
-                                <Link className="tree-select__clear-btn" onClick={this.expandCollapse(false)}>
+                                <Link testId="tree_select_expand_all"
+                                      className="tree-select__clear-btn" onClick={this.expandCollapse(false)}>
                                     Expand all
                                 </Link>
-                                <Link className="tree-select__clear-btn" onClick={this.expandCollapse(true)}>
+                                <Link testId="tree_select_collapse_all"
+                                      className="tree-select__clear-btn" onClick={this.expandCollapse(true)}>
                                     Collapse all
                                 </Link>
                             </div>
                             {this.props.multiple && (
                                 <div className="float-right">
-                                    <Link className="tree-select__clear-btn" onClick={this.clearSelected}>
+                                    <Link testId="tree_select_clear_selected"
+                                          className="tree-select__clear-btn"
+                                          onClick={this.clearSelected}>
                                         Clear selected
                                     </Link>
                                 </div>
@@ -335,7 +340,10 @@ class List extends React.Component {
                         onClick={this.toggleExpanded(option)}
                     />
                 ) : null}
-                <span onClick={this.select(option)()}>
+                <span onClick={this.select(option)()}
+                      data-test-id={option.displayString + "_select_option"}
+                      data-test-checked={selected === true || (option.leaf && selected === List.selected.ALL)}
+                >
                     {this.props.multiple && (
                         <span className="check-box-list__check-box">
                             {selected === List.selected.ALL ? (
