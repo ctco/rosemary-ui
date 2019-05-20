@@ -182,10 +182,10 @@ class GroupedMultiSelectContent extends React.Component {
     };
 
     _doSearchMatchAnyResult = key => {
-        if (this.props.options[key].length === 0) {
+        if (!this.props.options[key] || this.props.options[key].length === 0) {
             return true;
         }
-        return this.state.filtered[key].length !== 0;
+        return this.state.filtered[key] && this.state.filtered[key].length !== 0;
     };
 
     _getGroupViewConfig = key => {
