@@ -61,11 +61,13 @@ class CheckBox extends React.Component {
         });
 
         return (
-            <div data-test-id={this.props.testId}
-                 data-test-checked={this.state.value}
-                 tabIndex="1"
-                 onClick={e => this.onClickCheckBox(e)}
-                 className={style}>
+            <div
+                data-test-id={this.props.testId}
+                data-test-checked={this.state.value}
+                tabIndex="1"
+                onClick={e => this.onClickCheckBox(e)}
+                className={style}
+            >
                 <i className="im icon-ok" />
                 {this.props.label ? <label className="checkbox-label">{this.props.label}</label> : null}
             </div>

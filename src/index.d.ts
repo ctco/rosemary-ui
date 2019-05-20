@@ -213,7 +213,19 @@ declare namespace __RosemaryUI {
 
     class TextArea extends React.Component<any> {}
 
-    class GroupedMultiSelect extends React.Component<any> {}
+    class GroupedMultiSelect extends React.Component<{
+        onChange: (value: any) => any;
+        showSubSection: boolean;
+        placeholder: string;
+        value: any;
+        options: any[];
+        keys: string[];
+        extra: () => any;
+        subSection: any;
+        onGoBack: () => any;
+        onPopupStateChange: () => any;
+        popupHeader: React.ReactNode;
+    }> {}
 
     class MultiSelectPopup extends React.Component<any> {}
 }

@@ -15,7 +15,8 @@ const PROP_TYPES = {
         noOptionPlaceholder: PropTypes.element
     }),
     value: PropTypes.object,
-    extra: PropTypes.func
+    extra: PropTypes.func,
+    popupHeader: PropTypes.node
 };
 
 const DEF_PROPS = {
@@ -208,6 +209,7 @@ class GroupedMultiSelectContent extends React.Component {
     render() {
         return (
             <div className="select__popup" style={{ fontSize: '1.4rem' }}>
+                {this.props.popupHeader}
                 <div className="select__search-container">
                     <IconInput
                         inputRef={input => (this._searchInput = input)}

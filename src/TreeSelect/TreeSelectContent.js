@@ -120,20 +120,28 @@ export class TreeSelectContent extends React.Component {
                     ) : (
                         <div>
                             <div className="float-left">
-                                <Link testId="tree_select_expand_all"
-                                      className="tree-select__clear-btn" onClick={this.expandCollapse(false)}>
+                                <Link
+                                    testId="tree_select_expand_all"
+                                    className="tree-select__clear-btn"
+                                    onClick={this.expandCollapse(false)}
+                                >
                                     Expand all
                                 </Link>
-                                <Link testId="tree_select_collapse_all"
-                                      className="tree-select__clear-btn" onClick={this.expandCollapse(true)}>
+                                <Link
+                                    testId="tree_select_collapse_all"
+                                    className="tree-select__clear-btn"
+                                    onClick={this.expandCollapse(true)}
+                                >
                                     Collapse all
                                 </Link>
                             </div>
                             {this.props.multiple && (
                                 <div className="float-right">
-                                    <Link testId="tree_select_clear_selected"
-                                          className="tree-select__clear-btn"
-                                          onClick={this.clearSelected}>
+                                    <Link
+                                        testId="tree_select_clear_selected"
+                                        className="tree-select__clear-btn"
+                                        onClick={this.clearSelected}
+                                    >
                                         Clear selected
                                     </Link>
                                 </div>
@@ -340,9 +348,10 @@ class List extends React.Component {
                         onClick={this.toggleExpanded(option)}
                     />
                 ) : null}
-                <span onClick={this.select(option)()}
-                      data-test-id={option.displayString + "_select_option"}
-                      data-test-checked={selected === true || (option.leaf && selected === List.selected.ALL)}
+                <span
+                    onClick={this.select(option)()}
+                    data-test-id={option.displayString + '_select_option'}
+                    data-test-checked={selected === true || (option.leaf && selected === List.selected.ALL)}
                 >
                     {this.props.multiple && (
                         <span className="check-box-list__check-box">

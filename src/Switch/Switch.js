@@ -63,10 +63,12 @@ class Switch extends React.Component {
         });
 
         return (
-            <div data-test-id={this.props.testId}
-                 data-test-checked={checked}
-                 onClick={this._handleOnChange}
-                 className={classNames}>
+            <div
+                data-test-id={this.props.testId}
+                data-test-checked={checked}
+                onClick={this._handleOnChange}
+                className={classNames}
+            >
                 <span className="ros-switch__control">
                     <i />
                 </span>

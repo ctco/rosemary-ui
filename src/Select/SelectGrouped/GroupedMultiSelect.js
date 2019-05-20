@@ -22,7 +22,8 @@ const PROP_TYPES = {
     extra: PropTypes.func,
     subSection: PropTypes.any,
     onGoBack: PropTypes.func,
-    onPopupStateChange: PropTypes.func
+    onPopupStateChange: PropTypes.func,
+    popupHeader: PropTypes.node
 };
 
 const DEF_PROPS = {
