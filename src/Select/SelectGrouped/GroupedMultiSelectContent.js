@@ -6,7 +6,7 @@ import noop from 'lodash/noop';
 
 import SelectionList from '../SelectionList';
 import IconInput from '../../InputIcon/IconInput';
-import { contains, compare } from '../../util/utils';
+import { compare, contains } from '../../util/utils';
 
 const PROP_TYPES = {
     onChange: PropTypes.func,
@@ -16,6 +16,7 @@ const PROP_TYPES = {
     }),
     value: PropTypes.object,
     extra: PropTypes.func,
+    showSearch: PropTypes.bool,
     popupHeader: PropTypes.node
 };
 
@@ -29,6 +30,7 @@ const DEF_PROPS = {
     groupView: {},
     onChange: noop,
     compare: compare,
+    showSearch: true,
     methodCallback: noop
 };
 
@@ -51,6 +53,7 @@ class GroupedMultiSelectContent extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.options && nextProps.options !== this.props.options) {
             const filtered = this._getFilteredOptions({
+                keys: nextProps.keys,
                 options: nextProps.options,
                 filterFn: options => this._filterByQueryStr(this._getSearchValue(), options)
             });
@@ -62,9 +65,11 @@ class GroupedMultiSelectContent extends React.Component {
     }
 
     componentDidMount() {
-        const x = window.scrollX,
-            y = window.scrollY;
-        this._searchInput.focus();
+        const x = window.scrollX;
+        const y = window.scrollY;
+        if (this._searchInput) {
+            this._searchInput.focus();
+        }
         window.scrollTo(x, y);
     }
 
@@ -153,8 +158,8 @@ class GroupedMultiSelectContent extends React.Component {
         });
     }
 
-    _getFilteredOptions({ options, filterFn, sortFn }) {
-        return this.props.keys.reduce((result, key) => {
+    _getFilteredOptions({ options, filterFn, sortFn, keys = this.props.keys }) {
+        return keys.reduce((result, key) => {
             let filtered = options[key];
 
             if (filterFn) {
@@ -210,17 +215,20 @@ class GroupedMultiSelectContent extends React.Component {
         return (
             <div className="select__popup" style={{ fontSize: '1.4rem' }}>
                 {this.props.popupHeader}
-                <div className="select__search-container">
-                    <IconInput
-                        inputRef={input => (this._searchInput = input)}
-                        fluid={true}
-                        placeholder={this.props.searchPlaceholder}
-                        size="sm"
-                        onChange={this._applySearch}
-                        className="select__search"
-                        iconClassName="im icon-search"
-                    />
-                </div>
+                {this.props.showSearch ? (
+                    <div className="select__search-container">
+                        <IconInput
+                            inputRef={input => (this._searchInput = input)}
+                            fluid={true}
+                            placeholder={this.props.searchPlaceholder}
+                            size="sm"
+                            onChange={this._applySearch}
+                            className="select__search"
+                            iconClassName="im icon-search"
+                        />
+                    </div>
+                ) : null}
+
                 <div style={{ maxHeight: this.props.height }} className="select__options">
                     {this.props.keys.map(key => {
                         const viewConfig = this._getGroupViewConfig(key);
